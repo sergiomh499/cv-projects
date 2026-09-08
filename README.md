@@ -80,8 +80,10 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/real-time-detectors-and-segmenters/ddrnet|DDRNet: Deep Dual-Resolution Networks for Real-Time and Accurate Semantic Segmentation]]**: Real-Time Segmentation (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/edge-sam|EdgeSAM: Prompt-In-the-Loop Distillation for On-Device Real-Time SAM]]**: Prompt-In-the-Loop Distilled Real-Time Segmenter (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/efficient-sam|EfficientSAM: Leveraged Masked Image Pretraining for Efficient Segment Anything]]**: Masked-Image-Pretrained Lightweight Foundation Segmenter (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/efficientvit-sam|EfficientViT-SAM: Accelerated Segment Anything Model Without Performance Loss]]**: Real-Time Foundation Segmenter (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/fastsam|FastSAM: Fast Segment Anything Model via Real-Time CNN Instance Segmentation]]**: Real-Time CNN Instance Detector & Mask Router (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/grounding-dino|Grounding DINO: Open-Set Object Detection with Grounded Pre-Training]]**: Open-Set Vision-Language Detection (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/lw-detr|LW-DETR: Lightweight Detection Transformer with ViT Backbone]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/mask2former|Mask2Former: Masked-Attention Mask Transformer for Universal Image Segmentation]]**: Universal Query Transformer (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/mobilesam|MobileSAM: Faster Segment Anything Model via Decoupled Distillation]]**: Decoupled TinyViT Distilled Foundation Model (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/oneformer|OneFormer: One Transformer to Rule Panoptic, Instance and Semantic Segmentation]]**: Universal Multi-Task Segmentation Transformer (Apache-2.0).
@@ -89,12 +91,16 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/real-time-detectors-and-segmenters/repvit-sam|RepViT-SAM: Sub-Millisecond Mobile Segmentation via Structural Reparameterization]]**: Structural Reparameterized Mobile Foundation Segmenter (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/rf-detr|RF-DETR: Real-Time Detection Transformers via Neural Architecture Search]]**: Real-Time Unified (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/rt-detr-v2|RT-DETR v2: Discrete Sampling and Bag-of-Freebies for Real-Time Detection Transformers]]**: Real-Time Object Detection (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/rt-detr-v3|RT-DETRv3: Real-Time End-to-End Object Detection with Hierarchical Dense Positive Supervision]]**: Real-Time Object Detection (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/rt-detr-v4|RT-DETRv4: Painlessly Furthering Real-Time Object Detection with Vision Foundation Models]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/rt-detr|RT-DETR: Real-Time End-to-End Object Detection with Vision Transformers]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/sam-hq|HQ-SAM: Segment Anything in High Quality]]**: High-Quality Promptable Foundation Segmentation (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/seaformer|SeaFormer: Squeeze-Enhanced Axial Attention for Mobile Semantic Segmentation]]**: Real-Time Segmentation (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/segformer|SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers]]**: Real-Time Segmentation (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/yolo-ulm|YOLO-ULM: Ultra-Lightweight Models for Real-Time Object Detection on Microcontrollers & Extreme Edge]]**: Ultra-Lightweight Micro-Edge Detector (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolo-world|YOLO-World: Real-Time Open-Vocabulary Object Detection with RepVL-PAN]]**: Real-Time Open-Vocabulary Object Detection (GPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolo11|Ultralytics YOLO11: Unified Multi-Task Architecture for Real-Time Perception]]**: Real-Time Unified (AGPL-3.0).
+- **[[architectures/real-time-detectors-and-segmenters/yolo26|YOLO26: State-of-the-Art NMS-Free Real-Time Object Detector for Edge Vision AI]]**: Real-Time Object Detection (AGPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov10|YOLOv10: Consistent Dual Assignments for NMS-Free Real-Time Object Detection]]**: Real-Time Object Detection (AGPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12: Attention-Centric Real-Time Detection Architecture]]**: Real-Time Unified (AGPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov8|Ultralytics YOLOv8: Anchor-Free Decoupled Architecture for Real-Time Perception]]**: Real-Time Unified (AGPL-3.0).
