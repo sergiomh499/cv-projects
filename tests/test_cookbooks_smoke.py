@@ -75,11 +75,19 @@ def _require_torch():
         pytest.skip("torch not installed")
 
 
-def test_cb01_rfdetr_tensorrt():
+def _require_onnx():
     _require_torch()
+    try:
+        import importlib
+        importlib.import_module("onnx")
+    except ImportError:
+        pytest.skip("onnx not installed")
+
+
+def test_cb01_rfdetr_tensorrt():
+    _require_onnx()
     result = _run(_script("01-rfdetr-tensorrt", "export_rfdetr_tensorrt.py"))
     assert result.returncode == 0, result.stderr
-
 
 def test_cb02_sam2_video_stream():
     _require_torch()

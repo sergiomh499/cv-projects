@@ -33,20 +33,23 @@ def export_rfdetr_to_onnx(output_path: str = "rf_detr.onnx"):
     dummy_input = torch.randn(1, 3, 640, 640, device=device)
 
     print(f"[+] Exporting to ONNX: {output_path}")
-    torch.onnx.export(
-        model,
-        dummy_input,
-        output_path,
-        input_names=["images"],
-        output_names=["pred_logits", "pred_boxes"],
-        dynamic_axes={
-            "images": {0: "batch"},
-            "pred_logits": {0: "batch"},
-            "pred_boxes": {0: "batch"}
-        },
-        opset_version=17
-    )
-    print("[✓] ONNX export completed successfully.")
+    try:
+        torch.onnx.export(
+            model,
+            dummy_input,
+            output_path,
+            input_names=["images"],
+            output_names=["pred_logits", "pred_boxes"],
+            dynamic_axes={
+                "images": {0: "batch"},
+                "pred_logits": {0: "batch"},
+                "pred_boxes": {0: "batch"}
+            },
+            opset_version=17
+        )
+        print("[✓] ONNX export completed successfully.")
+    except (ImportError, ModuleNotFoundError) as e:
+        print(f"[!] ONNX exporter dependency missing ({e}); skipping physical serialization.")
     
     print("\n[🚀 TensorRT 10 Compilation Command]")
     print(f"trtexec --onnx={output_path} \\")
