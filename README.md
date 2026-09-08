@@ -54,12 +54,15 @@ Cross-cutting models and multi-task foundation backbones shared across topics:
 - **[[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack: Real-Time Multi-Object Tracking (MOT)]]**: Tracking-by-Detection (Kalman + ReID + GMC) (MIT / Apache-2.0).
 - **[[architectures/real-time-unified/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4: Modern Edge & Workstation Visual Backbones]]**: Modern Pure ConvNet (Inverted Bottleneck & GRN) (Apache-2.0).
 - **[[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer: Dynamic Sparse Window Transformers for 3D LiDAR]]**: Sparse Voxel Transformer (Apache-2.0).
+- **[[architectures/real-time-unified/florence-2|Florence-2: Unified Sequence-to-Sequence Vision Foundation Model]]**: Unified Multi-Task Vision-Language Seq2Seq (MIT).
 - **[[architectures/real-time-unified/foundationpose-and-megapose|FoundationPose & MegaPose: 6-DoF Zero-Shot Object Pose Estimation]]**: Foundation 3D Vision Transformer (Render-and-Compare + Score Network) (Custom Non-Commercial (FoundationPose) / Apache-2.0 (MegaPose)).
 - **[[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh: Ultra-Low-Latency Real-Time Middleware]]**: Lock-Free Shared Memory Inter-Process Communication (IPC) (Apache-2.0 / MIT).
 - **[[architectures/real-time-unified/mask2former|Mask2Former: Masked-Attention Mask Transformer for Universal Image Segmentation]]**: Universal Query Transformer (Apache-2.0).
 - **[[architectures/real-time-unified/pi0-and-diffusion-policy|Pi-0 (π0) & Diffusion Policy: Visuomotor Robot Foundation Policies]]**: Flow Matching & Denoising Diffusion Policy (Apache-2.0).
+- **[[architectures/real-time-unified/qwen2-vl|Qwen2-VL: Dynamic Resolution Vision-Language Foundation Model]]**: Multimodal Vision-Language Transformer (Apache-2.0).
 - **[[architectures/real-time-unified/tensorrt-and-vulkan|TensorRT 10 & Vulkan Kompute: Cross-Platform High-Throughput GPU Inference]]**: Deep Learning Compiler & Cross-Platform Compute Runtimes (Apache-2.0 / NVIDIA Proprietary EULA).
 - **[[architectures/real-time-unified/vitis-ai-and-finn|Vitis AI 3.5 & FINN: Quantized Neural Inference on FPGAs]]**: Reconfigurable Logic (DPU Cores & Dataflow Streaming Engines) (Apache-2.0 / Xilinx EULA).
+- **[[architectures/real-time-unified/yolov12|YOLOv12: Attention-Centric Real-Time Detection Architecture]]**: Attention-Centric Real-Time Detector (AGPL-3.0).
 - **[[architectures/transformer-detectors/cotracker|CoTracker & CoTracker3: Dense Point Trajectory Transformers]]**: Spatial-Temporal Point Transformer (Apache-2.0).
 
 ---
