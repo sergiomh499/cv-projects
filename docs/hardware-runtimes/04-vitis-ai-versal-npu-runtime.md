@@ -30,20 +30,21 @@ aliases:
 
 ```mermaid
 flowchart TD
-    PyTorch[PyTorch / ONNX Model] --> Quark[AMD Quark Quantizer: INT8 / MX6 / MX9]
-    Quark --> Calib[Unlabeled Calibration Split: 512 Images]
-    Calib --> QModel[Quantized Model: model_quantized.onnx]
+    PyTorch["PyTorch / ONNX Model"] --> Quark["AMD Quark Quantizer: INT8 / MX6 / MX9"]
+    Quark --> Calib["Unlabeled Calibration Split: 512 Images"]
+    Calib --> QModel["Quantized Model: model_quantized.onnx"]
     
-    QModel --> Partition[XIR Graph Partitioning: vai_c_xir]
-    Partition --> DPUSubgraph[DPU Hardware Supported Subgraph]
-    Partition --> HostSubgraph[CPU / Host ARM Fallback Subgraph]
+    QModel --> Partition["XIR Graph Partitioning: vai_c_xir"]
+    Partition --> DPUSubgraph["DPU Hardware Supported Subgraph"]
+    Partition --> HostSubgraph["CPU / Host ARM Fallback Subgraph"]
     
-    DPUSubgraph --> Compiler[Vitis AI Compiler: vai_c_xir]
-    ArchJSON[Versal DPU Architecture Configuration: arch.json] --> Compiler
-    Compiler --> Microcode[DPU Microcode Binary: compiled.xmodel]
+    DPUSubgraph --> Compiler["Vitis AI Compiler: vai_c_xir"]
+    ArchJSON["Versal DPU Architecture Configuration: arch.json"] --> Compiler
+    Compiler --> Microcode["DPU Microcode Binary: compiled.xmodel"]
     
-    Microcode --> Board[Physical Board: Versal AI Edge / Kria KV260]
-    Board --> VART[Vitis AI Runtime: vart::Runner via zero-copy DMA]
+    Microcode --> Board["Physical Board: Versal AI Edge / Kria KV260"]
+    Board --> VART["Vitis AI Runtime: vart::Runner via zero-copy DMA"]
+
 ```
 
 ### Supported Sub-Byte Quantization (Versal Gen 2):

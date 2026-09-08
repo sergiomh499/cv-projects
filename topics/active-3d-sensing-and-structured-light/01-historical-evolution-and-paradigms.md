@@ -33,6 +33,7 @@ timeline
     2014 : AMCW Indirect ToF (Kinect v2) : 4-phase cross-correlation photodetectors for direct phase delay.
     2020 : Apple dToF SPAD Array : Single-Photon Avalanche Diodes with picosecond laser pulse timing on iPhone/iPad.
     2025-2026 : Deep Neural ToF / Metrology : Physics-guided neural de-aliasing & real-time multi-path cancellation (Zivid 2+, Photoneo).
+
 ```
 
 ---

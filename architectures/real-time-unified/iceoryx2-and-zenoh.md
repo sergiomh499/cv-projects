@@ -39,17 +39,18 @@ Passing high-resolution 4K video streams ($3840 \times 2160 \times 3 \approx 25\
 
 ```mermaid
 flowchart LR
-    subgraph Traditional Socket / DDS Transport (Multi-Copy Latency)
-        Publisher1[Camera Driver] --> Copy1[Kernel Space Buffer Copy]
-        Copy1 --> NetStack[TCP/IP / UDP Network Stack]
-        NetStack --> Copy2[User Space Application Copy]
-        Copy2 --> Consumer1[Vision AI Model]
+    subgraph Traditional_Socket___DDS_Transport__Multi_Copy_Latency ["Traditional Socket / DDS Transport (Multi-Copy Latency)"]
+        Publisher1["Camera Driver"] --> Copy1["Kernel Space Buffer Copy"]
+        Copy1 --> NetStack["TCP/IP / UDP Network Stack"]
+        NetStack --> Copy2["User Space Application Copy"]
+        Copy2 --> Consumer1["Vision AI Model"]
     end
-    subgraph Iceoryx2 Zero-Copy Shared Memory (Sub-Microsecond Latency)
-        Publisher2[Camera Driver] --> ShmPool[(Pre-allocated Shared Memory Segment)]
-        Consumer2[Vision AI Model] --> ShmPool
+    subgraph Iceoryx2_Zero_Copy_Shared_Memory__Sub_Microsecond_Latency ["Iceoryx2 Zero-Copy Shared Memory (Sub-Microsecond Latency)"]
+        Publisher2["Camera Driver"] --> ShmPool["(Pre-allocated Shared Memory Segment)"]
+        Consumer2["Vision AI Model"] --> ShmPool
         Publisher2 -.->|Pointer Exchange Only: <1 microsecond| Consumer2
     end
+
 ```
 
 ---

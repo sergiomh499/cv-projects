@@ -26,11 +26,12 @@ Related notes: [[topics/active-3d-sensing-and-structured-light/00-active-3d-sens
 
 ```mermaid
 flowchart LR
-    Projector[Pattern Projector: IR Speckle / Fringe] --> Sensor[IR CMOS Sensor Pair]
-    Sensor --> ASICStereo[On-Chip Vision ASIC: RealSense D4 / ToF DSP]
-    ASICStereo --> TemporalFilt[Temporal & Spatial Bilateral Depth Filter]
-    TemporalFilt --> HoleFill[Hole-Filling & Edge-Preserving Filter]
-    HoleFill --> MetricCloud[Registered Metric XYZ Point Cloud]
+    Projector["Pattern Projector: IR Speckle / Fringe"] --> Sensor["IR CMOS Sensor Pair"]
+    Sensor --> ASICStereo["On-Chip Vision ASIC: RealSense D4 / ToF DSP"]
+    ASICStereo --> TemporalFilt["Temporal & Spatial Bilateral Depth Filter"]
+    TemporalFilt --> HoleFill["Hole-Filling & Edge-Preserving Filter"]
+    HoleFill --> MetricCloud["Registered Metric XYZ Point Cloud"]
+
 ```
 
 ---

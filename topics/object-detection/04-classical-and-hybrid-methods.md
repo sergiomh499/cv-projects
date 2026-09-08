@@ -27,15 +27,16 @@ Related notes: [[topics/object-detection/00-object-detection-moc|Object Detectio
 
 ```mermaid
 flowchart TD
-    Image[Input Image] --> Branch{Detection Paradigm}
-    Branch -->|Classical 2001: Haar Adaboost| Haar[Haar Integral Image + Cascaded Adaboost Classifier]
-    Branch -->|Classical 2005: HOG + Linear SVM| HOG[Histogram of Oriented Gradients HOG Descriptors]
-    Branch -->|Hybrid 2014: Selective Search| SS[Graph-Based Color / Texture Region Grouping -> CNN]
-    Branch -->|Hybrid 2024-2026: Slicing Aided SAHI| SAHI[Sliding Window Tiling + Deep Detector + NMS Merge]
-    Haar --> FastFace[Ultra-Fast Fixed Target Detection <1ms on Microcontroller]
-    HOG --> RigidPed[Rigid Pedestrian / Object Contour Detection]
-    SS --> RCNN[Multi-Scale Regional Proposals]
-    SAHI --> MicroDefect[Sub-Pixel Drone & Micro-Defect Localization]
+    Image["Input Image"] --> Branch{"Detection Paradigm"}
+    Branch -->|Classical 2001: Haar Adaboost| Haar["Haar Integral Image + Cascaded Adaboost Classifier"]
+    Branch -->|Classical 2005: HOG + Linear SVM| HOG["Histogram of Oriented Gradients HOG Descriptors"]
+    Branch -->|Hybrid 2014: Selective Search| SS["Graph-Based Color / Texture Region Grouping -> CNN"]
+    Branch -->|Hybrid 2024-2026: Slicing Aided SAHI| SAHI["Sliding Window Tiling + Deep Detector + NMS Merge"]
+    Haar --> FastFace["Ultra-Fast Fixed Target Detection <1ms on Microcontroller"]
+    HOG --> RigidPed["Rigid Pedestrian / Object Contour Detection"]
+    SS --> RCNN["Multi-Scale Regional Proposals"]
+    SAHI --> MicroDefect["Sub-Pixel Drone & Micro-Defect Localization"]
+
 ```
 
 ### Classical vs. Modern Detection Feature Comparison

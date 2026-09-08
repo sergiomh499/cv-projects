@@ -26,15 +26,16 @@ Related notes: [[topics/object-segmentation/00-object-segmentation-moc|Object Se
 
 ```mermaid
 flowchart TD
-    Input[Input Image] --> Branch{Segmentation Method}
-    Branch -->|Classical 1988: Active Contours Snakes| Snakes[Variational Energy Spline Minimization: Internal + External Forces]
-    Branch -->|Classical 1991: Watershed Transform| Watershed[Topological Gradient Flooding: Immersion Simulation]
-    Branch -->|Classical 2004: GrabCut Min-Cut| GrabCut[Gaussian Mixture Models + Max-Flow Graph Cut Energy]
-    Branch -->|Hybrid 2024-2026: Deep Mask Refinement| Hybrid[Deep Coarse Mask -> Classical Bilateral / Guided Filter -> PointRend]
-    Snakes --> Smooth[Closed Elastic Boundary Tracking]
-    Watershed --> Cell[Separating Touching Microscopic Particles / Cells]
-    GrabCut --> Interactive[Interactive Foreground Extraction with Bounding Box Priors]
-    Hybrid --> SubPixel[Crisp Sub-Pixel Edges Free from Transposed Conv Artifacts]
+    Input["Input Image"] --> Branch{"Segmentation Method"}
+    Branch -->|Classical 1988: Active Contours Snakes| Snakes["Variational Energy Spline Minimization: Internal + External Forces"]
+    Branch -->|Classical 1991: Watershed Transform| Watershed["Topological Gradient Flooding: Immersion Simulation"]
+    Branch -->|Classical 2004: GrabCut Min-Cut| GrabCut["Gaussian Mixture Models + Max-Flow Graph Cut Energy"]
+    Branch -->|Hybrid 2024-2026: Deep Mask Refinement| Hybrid["Deep Coarse Mask -> Classical Bilateral / Guided Filter -> PointRend"]
+    Snakes --> Smooth["Closed Elastic Boundary Tracking"]
+    Watershed --> Cell["Separating Touching Microscopic Particles / Cells"]
+    GrabCut --> Interactive["Interactive Foreground Extraction with Bounding Box Priors"]
+    Hybrid --> SubPixel["Crisp Sub-Pixel Edges Free from Transposed Conv Artifacts"]
+
 ```
 
 ### Segmentation Algorithm Comparison

@@ -27,15 +27,16 @@ Related notes: [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|6-DoF P
 
 ```mermaid
 flowchart TD
-    Data[2D Image Keypoints + 3D CAD Mesh Coordinates] --> Branch{Pose Solving Paradigm}
-    Branch -->|Classical 1981-2009: Analytical PnP| EPnP[EPnP: 4 Virtual Control Points Formulation in O(n) Time]
-    Branch -->|Classical 1992: Point Cloud Alignment| ICP[Iterative Closest Point ICP: Point-to-Plane Minimization]
-    Branch -->|Pure Deep Learning 2018-2022| Direct[Direct Neural Regression: Quaternions + Translation]
-    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid[Deep Correspondence Network -> RANSAC-PnP -> Classical Depth ICP]
-    EPnP --> Microsecond[Microsecond Deterministic Rigid Transform Estimation]
-    ICP --> Refine[Sub-Millimeter Alignment from Depth Cameras]
-    Direct --> ErrFail[Severe Rotational Discontinuity on Symmetrical Objects]
-    Hybrid --> RobustBOP[BOP Leaderboard Winner: Robust to Symmetry & Novel Objects]
+    Data["2D Image Keypoints + 3D CAD Mesh Coordinates"] --> Branch{"Pose Solving Paradigm"}
+    Branch -->|Classical 1981-2009: Analytical PnP| EPnP["EPnP: 4 Virtual Control Points Formulation in O(n) Time"]
+    Branch -->|Classical 1992: Point Cloud Alignment| ICP["Iterative Closest Point ICP: Point-to-Plane Minimization"]
+    Branch -->|Pure Deep Learning 2018-2022| Direct["Direct Neural Regression: Quaternions + Translation"]
+    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid["Deep Correspondence Network -> RANSAC-PnP -> Classical Depth ICP"]
+    EPnP --> Microsecond["Microsecond Deterministic Rigid Transform Estimation"]
+    ICP --> Refine["Sub-Millimeter Alignment from Depth Cameras"]
+    Direct --> ErrFail["Severe Rotational Discontinuity on Symmetrical Objects"]
+    Hybrid --> RobustBOP["BOP Leaderboard Winner: Robust to Symmetry & Novel Objects"]
+
 ```
 
 ### 6-DoF Solving Paradigms Compared

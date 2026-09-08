@@ -26,11 +26,12 @@ Related topics: [[topics/object-detection/00-object-detection-moc|Object Detecti
 
 ```mermaid
 flowchart LR
-    Input[Input Image HxW] --> PatchEmbed[Patch Embedding Conv 3x3 s=2]
-    PatchEmbed --> A2Block1[Area Attention Block 1: Horizontal Window Partition]
-    A2Block1 --> A2Block2[Area Attention Block 2: Vertical Window Partition]
-    A2Block2 --> RELAN[Residual Efficient Layer Aggregation Network: R-ELAN]
-    RELAN --> Head[Anchor-Free Decoupled Classification & Regression Head]
+    Input["Input Image HxW"] --> PatchEmbed["Patch Embedding Conv 3x3 s=2"]
+    PatchEmbed --> A2Block1["Area Attention Block 1: Horizontal Window Partition"]
+    A2Block1 --> A2Block2["Area Attention Block 2: Vertical Window Partition"]
+    A2Block2 --> RELAN["Residual Efficient Layer Aggregation Network: R-ELAN"]
+    RELAN --> Head["Anchor-Free Decoupled Classification & Regression Head"]
+
 ```
 
 ### 1. Area Attention ($A^2$) Module

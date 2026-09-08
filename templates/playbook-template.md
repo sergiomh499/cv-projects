@@ -24,10 +24,11 @@ aliases:
 
 ```mermaid
 flowchart LR
-    Ingest[Sensor Ingest & DMA Buffers] --> Preproc[Preprocessing & Normalization]
-    Preproc --> Infer[Asynchronous Forward Pass]
-    Infer --> Postproc[Fused Postprocessing]
-    Postproc --> Dispatch[Lock-free Zero-Copy Dispatch]
+    Ingest["Sensor Ingest & DMA Buffers"] --> Preproc["Preprocessing & Normalization"]
+    Preproc --> Infer["Asynchronous Forward Pass"]
+    Infer --> Postproc["Fused Postprocessing"]
+    Postproc --> Dispatch["Lock-free Zero-Copy Dispatch"]
+
 ```
 
 > [!TIP] Zero-Copy Pipeline Design

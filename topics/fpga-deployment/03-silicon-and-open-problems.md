@@ -30,15 +30,16 @@ FPGA deep learning inference has structured into three distinct hardware executi
 
 ```mermaid
 flowchart TD
-    Model[Quantized Vision Network INT8 / QNN] --> Branch{Hardware Architectural Target}
-    Branch -->|A: Coarse DPU Overlay| DPU[Vitis AI: DPUCZDX8G Cores on Zynq PL]
-    Branch -->|B: Spatial Streaming Dataflow| FINN[FINN: Custom AXI-Stream BRAM / LUT Pipelines]
-    Branch -->|C: Hardened Vector Engines| Versal[AMD Versal Gen 2: AIE-ML v2 Cores + PL Interface]
-    Branch -->|D: Memory-Centric Boolean Logic| LUTNet[LUT-Net / SparseLUT: Truth-Table Sub-Byte Inference]
-    DPU --> Out1[Turnkey Integration: Off-Chip DDR Streaming (9-12ms)]
-    FINN --> Out2[Sub-Millisecond Line-Rate Inspection: On-Chip FIFO (<1ms)]
-    Versal --> Out3[High TOPS/Watt: Heterogeneous Scalar + Vector (0.35ms)]
-    LUTNet --> Out4[Multiplier-Free Boolean Logic in 6-LUTs (<100us)]
+    Model["Quantized Vision Network INT8 / QNN"] --> Branch{"Hardware Architectural Target"}
+    Branch -->|A: Coarse DPU Overlay| DPU["Vitis AI: DPUCZDX8G Cores on Zynq PL"]
+    Branch -->|B: Spatial Streaming Dataflow| FINN["FINN: Custom AXI-Stream BRAM / LUT Pipelines"]
+    Branch -->|C: Hardened Vector Engines| Versal["AMD Versal Gen 2: AIE-ML v2 Cores + PL Interface"]
+    Branch -->|D: Memory-Centric Boolean Logic| LUTNet["LUT-Net / SparseLUT: Truth-Table Sub-Byte Inference"]
+    DPU --> Out1["Turnkey Integration: Off-Chip DDR Streaming (9-12ms)"]
+    FINN --> Out2["Sub-Millisecond Line-Rate Inspection: On-Chip FIFO (<1ms)"]
+    Versal --> Out3["High TOPS/Watt: Heterogeneous Scalar + Vector (0.35ms)"]
+    LUTNet --> Out4["Multiplier-Free Boolean Logic in 6-LUTs (<100us)"]
+
 ```
 
 ### Deep Architecture Evaluation Matrix

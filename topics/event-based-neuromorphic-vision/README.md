@@ -49,11 +49,12 @@ Related notes: [[topics/event-based-neuromorphic-vision/00-event-based-neuromorp
 
 ```mermaid
 flowchart LR
-    Sensor[Prophesee Event Sensor] --> BAF[Step 1: Background Activity Filter BAF in FPGA]
-    BAF --> ERC[Step 2: Event Rate Controller ERC: Clamping Rate at 50M ev/s]
-    ERC --> Fusion{Step 3: Ingestion Strategy}
-    Fusion -->|Voxel Grid Pipeline| GPU[TensorRT 10: High-Speed Object Detection]
-    Fusion -->|Asynchronous Event Stream| SNN[Loihi 2 / FPGA SNN: Microsecond Reflex Interception]
+    Sensor["Prophesee Event Sensor"] --> BAF["Step 1: Background Activity Filter BAF in FPGA"]
+    BAF --> ERC["Step 2: Event Rate Controller ERC: Clamping Rate at 50M ev/s"]
+    ERC --> Fusion{"Step 3: Ingestion Strategy"}
+    Fusion -->|Voxel Grid Pipeline| GPU["TensorRT 10: High-Speed Object Detection"]
+    Fusion -->|Asynchronous Event Stream| SNN["Loihi 2 / FPGA SNN: Microsecond Reflex Interception"]
+
 ```
 
 ### Production Workarounds for Event Perception:

@@ -37,17 +37,18 @@ In real-time multi-object tracking (MOT), the gold standard remains **Tracking-b
 
 ```mermaid
 flowchart TD
-    Frame[Input Video Frame t] --> Detector[Detector: e.g. RF-DETR / YOLO]
-    Detector --> HighBoxes[High-Score Detections: score > 0.6]
-    Detector --> LowBoxes[Low-Score Detections: 0.1 < score < 0.6]
-    Frame --> GMC[Global Motion Compensation: Sparse Optical Flow Homography H]
-    GMC --> Kalman[Updated Kalman Track States with Motion Correction]
-    HighBoxes --> Assoc1[First Association: IoU + ReID Matrix via Jonker-Volgenant]
+    Frame["Input Video Frame t"] --> Detector["Detector: e.g. RF-DETR / YOLO"]
+    Detector --> HighBoxes["High-Score Detections: score > 0.6"]
+    Detector --> LowBoxes["Low-Score Detections: 0.1 < score < 0.6"]
+    Frame --> GMC["Global Motion Compensation: Sparse Optical Flow Homography H"]
+    GMC --> Kalman["Updated Kalman Track States with Motion Correction"]
+    HighBoxes --> Assoc1["First Association: IoU + ReID Matrix via Jonker-Volgenant"]
     Kalman --> Assoc1
-    Assoc1 --> UnmatchedTracks[Unmatched Tracks]
-    LowBoxes --> Assoc2[Second Association: Match Remaining Tracks with Low-Score Detections]
+    Assoc1 --> UnmatchedTracks["Unmatched Tracks"]
+    LowBoxes --> Assoc2["Second Association: Match Remaining Tracks with Low-Score Detections"]
     UnmatchedTracks --> Assoc2
-    Assoc2 --> Matched[Updated Active Track Pool]
+    Assoc2 --> Matched["Updated Active Track Pool"]
+
 ```
 
 ---

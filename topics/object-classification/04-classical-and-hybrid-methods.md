@@ -26,15 +26,16 @@ Related notes: [[topics/object-classification/00-object-classification-moc|Objec
 
 ```mermaid
 flowchart TD
-    Input[Input Image] --> Branch{Classification Paradigm}
-    Branch -->|Classical 1999: SIFT Descriptors| SIFT[DoG Extrema Detection + Gradient Orientation Histograms]
-    Branch -->|Classical 2006: Bag of Visual Words| BoVW[K-Means Dictionary Codebook + TF-IDF Spatial Pyramid]
-    Branch -->|Classical 2010: Fisher Vectors| FV[Gaussian Mixture Model GMM First/Second Order Derivatives]
-    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid[Deep ViT/DINOv2 Embeddings + Linear SVM / Mahalanobis OOD Detector]
-    SIFT --> ScaleInvariant[Scale & Rotation Invariant Keypoint Extraction]
-    BoVW --> FixedVector[Fixed-Length Global Histogram Representation]
-    FV --> DenseSignature[Dense Discriminative Image Signatures for Kernel SVMs]
-    Hybrid --> CertifiedFewShot[Provable Few-Shot Classification & Zero False-Positive Gate]
+    Input["Input Image"] --> Branch{"Classification Paradigm"}
+    Branch -->|Classical 1999: SIFT Descriptors| SIFT["DoG Extrema Detection + Gradient Orientation Histograms"]
+    Branch -->|Classical 2006: Bag of Visual Words| BoVW["K-Means Dictionary Codebook + TF-IDF Spatial Pyramid"]
+    Branch -->|Classical 2010: Fisher Vectors| FV["Gaussian Mixture Model GMM First/Second Order Derivatives"]
+    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid["Deep ViT/DINOv2 Embeddings + Linear SVM / Mahalanobis OOD Detector"]
+    SIFT --> ScaleInvariant["Scale & Rotation Invariant Keypoint Extraction"]
+    BoVW --> FixedVector["Fixed-Length Global Histogram Representation"]
+    FV --> DenseSignature["Dense Discriminative Image Signatures for Kernel SVMs"]
+    Hybrid --> CertifiedFewShot["Provable Few-Shot Classification & Zero False-Positive Gate"]
+
 ```
 
 ### Classification Representation Paradigms Compared

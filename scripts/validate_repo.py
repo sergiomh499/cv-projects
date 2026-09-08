@@ -107,6 +107,15 @@ def main() -> int:
             errors.append(f"Missing 02-production-pipeline-and-workarounds.md in {topic_dir}")
         else:
             errors.extend(check_yaml_frontmatter(playbook_file.read_text(encoding="utf-8"), playbook_file))
+    # 5. Mermaid diagram syntax validation
+    validate_mermaid_py = repo_root / "scripts" / "validate_mermaid.py"
+    if validate_mermaid_py.exists():
+        import subprocess
+        m_res = subprocess.run([sys.executable, str(validate_mermaid_py)], cwd=str(repo_root), capture_output=True, text=True)
+        if m_res.returncode != 0:
+            errors.append(f"Mermaid validation failed:\n{m_res.stdout}\n{m_res.stderr}")
+        else:
+            print("[+] Mermaid syntax validation: ALL diagrams passed without errors.")
 
     if errors:
         print(f"[-] Validation FAILED with {len(errors)} error(s):")

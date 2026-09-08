@@ -28,10 +28,11 @@ Related notes: [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]
 
 ```mermaid
 flowchart LR
-    HostMem[Pinned Host Buffer: cudaHostAlloc] --> AsyncH2D[Asynchronous H2D Copy on Stream 1]
-    AsyncH2D --> TRTGraph[TensorRT Executed inside Fused CUDA Graph]
-    TRTGraph --> AsyncD2H[Asynchronous D2H Copy on Stream 2]
-    AsyncD2H --> Downstream[Zero-Copy IPC Stream to Shared Memory]
+    HostMem["Pinned Host Buffer: cudaHostAlloc"] --> AsyncH2D["Asynchronous H2D Copy on Stream 1"]
+    AsyncH2D --> TRTGraph["TensorRT Executed inside Fused CUDA Graph"]
+    TRTGraph --> AsyncD2H["Asynchronous D2H Copy on Stream 2"]
+    AsyncD2H --> Downstream["Zero-Copy IPC Stream to Shared Memory"]
+
 ```
 
 ---

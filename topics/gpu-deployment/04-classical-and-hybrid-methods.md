@@ -26,15 +26,16 @@ Related notes: [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]
 
 ```mermaid
 flowchart TD
-    Kernel[Deep Neural Network Layer GEMM / Attention] --> Branch{Implementation Paradigm}
-    Branch -->|Classical CUDA 2007: Shared Memory Tiling| Tiling[Block-Level Shared Memory Tiling + Bank Conflict Resolution]
-    Branch -->|Classical CUDA 2012: Warp Shuffles| Warp[Registers Exchange via __shfl_sync: Bypassing Shared Memory]
-    Branch -->|Hardware Tensor Cores 2017-2024| Tensor[MMA Matrix Multiply Accumulate Hard IP via wmma / mma.sync]
-    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid[OpenAI Triton JIT Python -> Block-Level Pipelining -> CUDA Graphs]
-    Tiling --> Coalesced[Eliminates Redundant High-Latency Global VRAM Accesses]
-    Warp --> UltraFastReduce[Single-Cycle Intrawarp Reductions and Prefix Sums]
-    Tensor --> PFLOPS[Peak Theoretical Arithmetic Throughput on Hopper / Blackwell]
-    Hybrid --> ZeroOverhead[Automated Memory Hierarchy Tuning Without C++ CUDA Boilerplate]
+    Kernel["Deep Neural Network Layer GEMM / Attention"] --> Branch{"Implementation Paradigm"}
+    Branch -->|Classical CUDA 2007: Shared Memory Tiling| Tiling["Block-Level Shared Memory Tiling + Bank Conflict Resolution"]
+    Branch -->|Classical CUDA 2012: Warp Shuffles| Warp["Registers Exchange via __shfl_sync: Bypassing Shared Memory"]
+    Branch -->|Hardware Tensor Cores 2017-2024| Tensor["MMA Matrix Multiply Accumulate Hard IP via wmma / mma.sync"]
+    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid["OpenAI Triton JIT Python -> Block-Level Pipelining -> CUDA Graphs"]
+    Tiling --> Coalesced["Eliminates Redundant High-Latency Global VRAM Accesses"]
+    Warp --> UltraFastReduce["Single-Cycle Intrawarp Reductions and Prefix Sums"]
+    Tensor --> PFLOPS["Peak Theoretical Arithmetic Throughput on Hopper / Blackwell"]
+    Hybrid --> ZeroOverhead["Automated Memory Hierarchy Tuning Without C++ CUDA Boilerplate"]
+
 ```
 
 ### GPU Compute Paradigms Compared

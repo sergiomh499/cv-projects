@@ -30,14 +30,15 @@ Production robotics has shifted from relying solely on CycloneDDS/FastDDS to a d
 
 ```mermaid
 flowchart TD
-    App[Robotics Multi-Node System] --> NodeA[Local Node: 4K Camera Perception]
-    App --> NodeB[Local Node: 1kHz Motor Controller]
-    App --> Fleet[Remote Fleet: Cloud Teleop & Coordination]
-    NodeA -->|High-Bandwidth Multi-GB/s Zero-Copy| Ice[Iceoryx2: Lock-Free Shared Memory IPC (<1us latency)]
-    NodeB -->|Hard Real-Time Isolated Thread| RT[PREEMPT_RT: Linux SCHED_FIFO Priority 98]
+    App["Robotics Multi-Node System"] --> NodeA["Local Node: 4K Camera Perception"]
+    App --> NodeB["Local Node: 1kHz Motor Controller"]
+    App --> Fleet["Remote Fleet: Cloud Teleop & Coordination"]
+    NodeA -->|High-Bandwidth Multi-GB/s Zero-Copy| Ice["Iceoryx2: Lock-Free Shared Memory IPC (<1us latency)"]
+    NodeB -->|Hard Real-Time Isolated Thread| RT["PREEMPT_RT: Linux SCHED_FIFO Priority 98"]
     NodeA --> NodeB
-    NodeA -->|Low-Overhead Distributed Network| Zenoh[Zenoh / rmw_zenoh: Zero-Discovery WAN / Micro-DDS]
+    NodeA -->|Low-Overhead Distributed Network| Zenoh["Zenoh / rmw_zenoh: Zero-Discovery WAN / Micro-DDS"]
     Fleet --> Zenoh
+
 ```
 
 ### Transport Layer Comparison

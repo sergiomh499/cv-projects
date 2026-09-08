@@ -21,11 +21,12 @@ RF-DETR bridges large self-supervised vision foundation models (**DINOv2**) with
 
 ```mermaid
 flowchart TD
-    DINO[Pretrained DINOv2 Foundation Backbone] --> SuperNet[Weight-Sharing SuperNet Search Space]
-    SuperNet --> NAS[Multi-Objective Evolutionary Search: Latency vs AP]
-    NAS --> Subnets[Pareto-Optimal Subnets: Nano, Small, Medium, Large]
-    Subnets --> NMSFree[NMS-Free Real-Time Inference Engine]
-    NMSFree --> TensorRT[TensorRT / ONNX Deployable Core < 6ms]
+    DINO["Pretrained DINOv2 Foundation Backbone"] --> SuperNet["Weight-Sharing SuperNet Search Space"]
+    SuperNet --> NAS["Multi-Objective Evolutionary Search: Latency vs AP"]
+    NAS --> Subnets["Pareto-Optimal Subnets: Nano, Small, Medium, Large"]
+    Subnets --> NMSFree["NMS-Free Real-Time Inference Engine"]
+    NMSFree --> TensorRT["TensorRT / ONNX Deployable Core < 6ms"]
+
 ```
 
 ---
@@ -45,12 +46,13 @@ Once the SuperNet converges, an evolutionary search queries the parameter space,
 
 ```mermaid
 flowchart LR
-    Img[Input Image: 640x640] --> Backbone[Frozen or LoRA-Tuned DINOv2]
-    Backbone --> Feat[Multi-Scale Feature Hierarchy: P3, P4, P5]
-    Feat --> Enc[Lightweight Deformable Encoder]
-    Queries[Learnable Object Queries Q: 1..300] --> Dec[Configurable NAS Decoder Layers]
+    Img["Input Image: 640x640"] --> Backbone["Frozen or LoRA-Tuned DINOv2"]
+    Backbone --> Feat["Multi-Scale Feature Hierarchy: P3, P4, P5"]
+    Feat --> Enc["Lightweight Deformable Encoder"]
+    Queries["Learnable Object Queries Q: 1..300"] --> Dec["Configurable NAS Decoder Layers"]
     Enc --> Dec
-    Dec --> Preds[Class Predictions + Coordinate Regressors]
+    Dec --> Preds["Class Predictions + Coordinate Regressors"]
+
 ```
 
 ### C. NMS-Free Bipartite Matching

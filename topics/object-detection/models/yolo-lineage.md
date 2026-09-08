@@ -22,15 +22,16 @@ The **YOLO (You Only Look Once)** series remains the most widely deployed comput
 
 ```mermaid
 flowchart TD
-    Input[Input Image 640x640] --> Backbone[Backbone: C3k2 + SPPF + C2PSA Attention]
-    Backbone --> Neck[Path Aggregation Network PANet]
-    Neck --> TrainDual{Training Phase?}
-    TrainDual -->|Yes| OneToMany[One-to-Many Head: Rich Supervised Gradients]
-    TrainDual -->|Yes| OneToOne[One-to-One Head: Strict 1-to-1 Match]
-    OneToMany -.-> Loss[Combined Task Loss]
+    Input["Input Image 640x640"] --> Backbone["Backbone: C3k2 + SPPF + C2PSA Attention"]
+    Backbone --> Neck["Path Aggregation Network PANet"]
+    Neck --> TrainDual{"Training Phase?"}
+    TrainDual -->|Yes| OneToMany["One-to-Many Head: Rich Supervised Gradients"]
+    TrainDual -->|Yes| OneToOne["One-to-One Head: Strict 1-to-1 Match"]
+    OneToMany -.-> Loss["Combined Task Loss"]
     OneToOne --> Loss
-    TrainDual -->|Inference Deployment| Deploy[Deploy ONLY One-to-One Head]
-    Deploy --> NMSFree[Native NMS-Free Output: Zero CPU Latency Jitter]
+    TrainDual -->|Inference Deployment| Deploy["Deploy ONLY One-to-One Head"]
+    Deploy --> NMSFree["Native NMS-Free Output: Zero CPU Latency Jitter"]
+
 ```
 
 ---

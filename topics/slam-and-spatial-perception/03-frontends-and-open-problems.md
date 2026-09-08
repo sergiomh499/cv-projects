@@ -29,15 +29,16 @@ Real-time SLAM decouples high-rate local motion estimation from global trajector
 
 ```mermaid
 flowchart TD
-    Sensors[RGB-D / Stereo / LiDAR + IMU at 200 Hz] --> Frontend[Frontend Thread: Visual / Point Odometry at 30-60 Hz]
-    Frontend --> RelPose[Relative Frame-to-Frame Metric Transformations]
-    Frontend --> Keyframes[Keyframe Selection Criteria: Translation > 0.2m or Rotation > 15 deg]
-    Keyframes --> Backend[Backend Thread: Global Factor Graph Optimization at 1-5 Hz]
-    Keyframes --> PlaceRec[Place Recognition / Loop Closure: NetVLAD / DBoW3]
-    PlaceRec --> LoopConstraints[Loop Closure Factor Edges]
+    Sensors["RGB-D / Stereo / LiDAR + IMU at 200 Hz"] --> Frontend["Frontend Thread: Visual / Point Odometry at 30-60 Hz"]
+    Frontend --> RelPose["Relative Frame-to-Frame Metric Transformations"]
+    Frontend --> Keyframes["Keyframe Selection Criteria: Translation > 0.2m or Rotation > 15 deg"]
+    Keyframes --> Backend["Backend Thread: Global Factor Graph Optimization at 1-5 Hz"]
+    Keyframes --> PlaceRec["Place Recognition / Loop Closure: NetVLAD / DBoW3"]
+    PlaceRec --> LoopConstraints["Loop Closure Factor Edges"]
     LoopConstraints --> Backend
-    Backend --> Solvers[Nonlinear Least Squares Solver: GTSAM / Ceres / g2o]
-    Solvers --> ConsistentMap[Globally Consistent 6-DoF Metric Trajectory & 3D Map]
+    Backend --> Solvers["Nonlinear Least Squares Solver: GTSAM / Ceres / g2o"]
+    Solvers --> ConsistentMap["Globally Consistent 6-DoF Metric Trajectory & 3D Map"]
+
 ```
 
 ### Frontend vs. Backend Decomposition

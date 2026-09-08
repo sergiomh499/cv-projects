@@ -56,12 +56,13 @@ In autonomous driving and drone navigation, total optical flow $F_{\text{total}}
 
 ```mermaid
 flowchart LR
-    TotalFlow[Deep Optical Flow Field: RAFT / GMFlow] --> Epipolar[Step 1: Classical 8-Point Essential Matrix + IMU Gyro]
-    Epipolar --> RigidFlow[Analytical Rigid Ego-Motion Flow Field]
-    TotalFlow --> Subtraction[Step 2: Vector Subtraction F_residual = F_total - F_rigid]
+    TotalFlow["Deep Optical Flow Field: RAFT / GMFlow"] --> Epipolar["Step 1: Classical 8-Point Essential Matrix + IMU Gyro"]
+    Epipolar --> RigidFlow["Analytical Rigid Ego-Motion Flow Field"]
+    TotalFlow --> Subtraction["Step 2: Vector Subtraction F_residual = F_total - F_rigid"]
     RigidFlow --> Subtraction
-    Subtraction --> ResidualThreshold[Step 3: Chi-Square Residual Thresholding]
-    ResidualThreshold --> MovingObjects[Pure Independent Moving Object Segmentation]
+    Subtraction --> ResidualThreshold["Step 3: Chi-Square Residual Thresholding"]
+    ResidualThreshold --> MovingObjects["Pure Independent Moving Object Segmentation"]
+
 ```
 
 ### Exact Residual Formulation:

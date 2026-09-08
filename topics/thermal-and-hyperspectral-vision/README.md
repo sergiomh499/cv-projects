@@ -50,11 +50,12 @@ Related notes: [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspe
 
 ```mermaid
 flowchart LR
-    Sensor[Thermal Microbolometer FPA] --> NUC[Step 1: FPGA Two-Point Polynomial NUC Engine]
-    NUC --> AGC[Step 2: Plateau Equalization Histogram AGC: 16-bit to 8-bit]
-    AGC --> Parallax[Step 3: Depth Anything V2 Parallax Correction]
-    Parallax --> Fusion[Step 4: Dual-Backbone Frequency-Guided Cross-Attention]
-    Fusion --> Detection[Zero-Visibility 24/7 Pedestrian & Vehicle Localization]
+    Sensor["Thermal Microbolometer FPA"] --> NUC["Step 1: FPGA Two-Point Polynomial NUC Engine"]
+    NUC --> AGC["Step 2: Plateau Equalization Histogram AGC: 16-bit to 8-bit"]
+    AGC --> Parallax["Step 3: Depth Anything V2 Parallax Correction"]
+    Parallax --> Fusion["Step 4: Dual-Backbone Frequency-Guided Cross-Attention"]
+    Fusion --> Detection["Zero-Visibility 24/7 Pedestrian & Vehicle Localization"]
+
 ```
 
 ### Production Workarounds for Thermal Imaging:

@@ -28,12 +28,13 @@ Related notes: [[topics/object-segmentation/00-object-segmentation-moc|Object Se
 
 ```mermaid
 flowchart TD
-    A[Classical & Energy Methods: Otsu, Graph Cuts 1979-2012] --> B[Dense Convolutional Architectures: FCN, U-Net 2014-2016]
-    B --> C[Two-Stage Proposal-Based: Mask R-CNN 2017]
-    B --> D[Real-Time Prototype Methods: YOLACT, YOLO-Seg 2019-2024]
-    C --> E[Universal Transformers: Mask2Former 2022]
-    D --> F[Foundation Segmenters: SAM 1, SAM 2, Depth Anything V2 2023-2026]
+    A["Classical & Energy Methods: Otsu, Graph Cuts 1979-2012"] --> B["Dense Convolutional Architectures: FCN, U-Net 2014-2016"]
+    B --> C["Two-Stage Proposal-Based: Mask R-CNN 2017"]
+    B --> D["Real-Time Prototype Methods: YOLACT, YOLO-Seg 2019-2024"]
+    C --> E["Universal Transformers: Mask2Former 2022"]
+    D --> F["Foundation Segmenters: SAM 1, SAM 2, Depth Anything V2 2023-2026"]
     E --> F
+
 ```
 
 ### Era 1: Classical Energy Minimization & Graph Cuts (1979–2012)
@@ -51,16 +52,17 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph Encoder
-        E1[Conv 64] --> E2[Conv 128] --> E3[Conv 256] --> E4[Conv 512]
+    subgraph Encoder ["Encoder"]
+        E1["Conv 64"] --> E2["Conv 128"] --> E3["Conv 256"] --> E4["Conv 512"]
     end
-    subgraph Decoder
-        D4[UpConv 256] --> D3[UpConv 128] --> D2[UpConv 64] --> D1[Output Mask]
+    subgraph Decoder ["Decoder"]
+        D4["UpConv 256"] --> D3["UpConv 128"] --> D2["UpConv 64"] --> D1["Output Mask"]
     end
     E1 -.->|Skip Connection| D2
     E2 -.->|Skip Connection| D3
     E3 -.->|Skip Connection| D4
     E4 --> D4
+
 ```
 
 ---
@@ -87,13 +89,14 @@ Instead of extracting RoIs sequentially, decompose instance segmentation into tw
 
 ```mermaid
 flowchart TD
-    Image[Input Frame] --> Backbone[Backbone & Neck]
-    Backbone --> Proto[ProtoNet: k Prototype Masks k x H/4 x W/4]
-    Backbone --> Head[Detection Head: Boxes + k Mask Coefficients]
-    Proto --> MatMul[Linear Matrix Multiplication & Sigmoid]
+    Image["Input Frame"] --> Backbone["Backbone & Neck"]
+    Backbone --> Proto["ProtoNet: k Prototype Masks k x H/4 x W/4"]
+    Backbone --> Head["Detection Head: Boxes + k Mask Coefficients"]
+    Proto --> MatMul["Linear Matrix Multiplication & Sigmoid"]
     Head --> MatMul
-    MatMul --> Crop[Crop to Bounding Box]
-    Crop --> Final[Instance Masks at 60+ FPS]
+    MatMul --> Crop["Crop to Bounding Box"]
+    Crop --> Final["Instance Masks at 60+ FPS"]
+
 ```
 
 ---
@@ -104,18 +107,19 @@ The latest revolution treats segmentation as a zero-shot, promptable foundation 
 
 ```mermaid
 flowchart LR
-    subgraph Image / Video Encoder
-        In[Input Frame / Video Stream] --> ViT[Vision Transformer / Hiera Backbone]
-        ViT --> ImageEmbed[Image / Video Embedding]
+    subgraph Image___Video_Encoder ["Image / Video Encoder"]
+        In["Input Frame / Video Stream"] --> ViT["Vision Transformer / Hiera Backbone"]
+        ViT --> ImageEmbed["Image / Video Embedding"]
     end
-    subgraph Memory & Prompting
-        Clicks[Point / Box / Text Prompts] --> PromptEnc[Prompt Encoder]
-        MemoryBank[Past Frame Memory Bank] --> MemAttn[Memory Cross-Attention]
+    subgraph Memory___Prompting ["Memory & Prompting"]
+        Clicks["Point / Box / Text Prompts"] --> PromptEnc["Prompt Encoder"]
+        MemoryBank["Past Frame Memory Bank"] --> MemAttn["Memory Cross-Attention"]
     end
-    ImageEmbed --> LightDec[Lightweight Two-Way Mask Decoder]
+    ImageEmbed --> LightDec["Lightweight Two-Way Mask Decoder"]
     PromptEnc --> LightDec
     MemAttn --> LightDec
-    LightDec --> MaskOut[Multi-Mask Output + Confidence]
+    LightDec --> MaskOut["Multi-Mask Output + Confidence"]
+
 ```
 
 ### Key Milestones:

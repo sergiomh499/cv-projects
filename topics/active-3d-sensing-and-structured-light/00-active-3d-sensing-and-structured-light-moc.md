@@ -35,6 +35,7 @@ graph TD
     MOC --> E3["[[topics/active-3d-sensing-and-structured-light/03-sensor-physics-and-open-problems|03: Physics & Open Problems]]"]
     MOC --> E4["[[topics/active-3d-sensing-and-structured-light/04-classical-and-hybrid-methods|04: Classical & Hybrid Methods]]"]
     MOC --> Central["[[topics/active-3d-sensing-and-structured-light/README|Domain Playbook]]"]
+
 ```
 
 ---

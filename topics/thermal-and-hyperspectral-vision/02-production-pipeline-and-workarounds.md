@@ -20,12 +20,13 @@ aliases:
 
 ```mermaid
 flowchart TD
-    Sensors[Dual Optical Ingestion: 4K RGB Sensor + LWIR VOx Thermal FPA 640x512] --> NUC[Step 1: Shutterless Two-Point Polynomial NUC in FPGA Fabric]
-    NUC --> Reg{Step 2: Cross-Spectral Homography Registration}
+    Sensors["Dual Optical Ingestion: 4K RGB Sensor + LWIR VOx Thermal FPA 640x512"] --> NUC["Step 1: Shutterless Two-Point Polynomial NUC in FPGA Fabric"]
+    NUC --> Reg{"Step 2: Cross-Spectral Homography Registration"}
     Sensors --> Reg
-    Reg --> Decomp[Step 3: Frequency Domain Wavelet Decomposition: Low + High Freq]
-    Decomp --> DualBackbone[Step 4: Dual-Backbone Cross-Modal Attention: ConvNeXt + ViT]
-    DualBackbone --> TRT[Step 5: Fused 24/7 Zero-Visibility Object Detection & Segmentation]
+    Reg --> Decomp["Step 3: Frequency Domain Wavelet Decomposition: Low + High Freq"]
+    Decomp --> DualBackbone["Step 4: Dual-Backbone Cross-Modal Attention: ConvNeXt + ViT"]
+    DualBackbone --> TRT["Step 5: Fused 24/7 Zero-Visibility Object Detection & Segmentation"]
+
 ```
 
 ## 2. Production Engineering Traps & Battle-Tested Workarounds

@@ -26,15 +26,16 @@ Related notes: [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]], 
 
 ```mermaid
 flowchart TD
-    Sensors[Radar Doppler + 360 Camera + 3D LiDAR + IMU] --> Branch{Fusion Architecture}
-    Branch -->|Classical 1960s-2000s: Late Track Fusion| Late[Independent Classifiers -> Mahalanobis Distance -> EKF Track Fusion]
-    Branch -->|Classical Non-Linear: Unscented Kalman Filter| UKF[Deterministic Sigma-Points Propagated Through Non-Linear Kinematics]
-    Branch -->|Deep Unified Fusion 2022-2026: BEV| Deep[BEVFusion / Sparse4D: Feature-Level Cross-Attention BEV Grid]
-    Branch -->|Modern Hybrid 2025-2026: SOTA Paradigm| Hybrid[Deep BEV Object Proposals -> Classical EKF Multi-Hypothesis Track Association]
-    Late --> HighJitter[Fragile Association Under Severe Sensor Asymmetry]
-    UKF --> NonLinear[Exact Covariance Mapping Without Jacobian Linearization]
-    Deep --> EndToEnd[Superior Metric Detection Under Heavy Fog / Occlusion]
-    Hybrid --> SafeCertification[ISO 26262 ASIL-D Certifiable Kinematic Tracking]
+    Sensors["Radar Doppler + 360 Camera + 3D LiDAR + IMU"] --> Branch{"Fusion Architecture"}
+    Branch -->|Classical 1960s-2000s: Late Track Fusion| Late["Independent Classifiers -> Mahalanobis Distance -> EKF Track Fusion"]
+    Branch -->|Classical Non-Linear: Unscented Kalman Filter| UKF["Deterministic Sigma-Points Propagated Through Non-Linear Kinematics"]
+    Branch -->|Deep Unified Fusion 2022-2026: BEV| Deep["BEVFusion / Sparse4D: Feature-Level Cross-Attention BEV Grid"]
+    Branch -->|Modern Hybrid 2025-2026: SOTA Paradigm| Hybrid["Deep BEV Object Proposals -> Classical EKF Multi-Hypothesis Track Association"]
+    Late --> HighJitter["Fragile Association Under Severe Sensor Asymmetry"]
+    UKF --> NonLinear["Exact Covariance Mapping Without Jacobian Linearization"]
+    Deep --> EndToEnd["Superior Metric Detection Under Heavy Fog / Occlusion"]
+    Hybrid --> SafeCertification["ISO 26262 ASIL-D Certifiable Kinematic Tracking"]
+
 ```
 
 ### Sensor Fusion Paradigms Compared

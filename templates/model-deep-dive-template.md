@@ -28,9 +28,10 @@ aliases:
 
 ```mermaid
 flowchart TD
-    Input[Input Tensor / Multi-modal Feeds] --> Backbone[Backbone Feature Extraction]
-    Backbone --> Core[Core Novel Module / Mechanism]
-    Core --> Out[Output Prediction / Zero-Copy Stream]
+    Input["Input Tensor / Multi-modal Feeds"] --> Backbone["Backbone Feature Extraction"]
+    Backbone --> Core["Core Novel Module / Mechanism"]
+    Core --> Out["Output Prediction / Zero-Copy Stream"]
+
 ```
 
 ---

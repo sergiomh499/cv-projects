@@ -30,13 +30,14 @@ Video tracking has structured into three complementary operational tiers:
 
 ```mermaid
 flowchart TD
-    VideoStream[Continuous Video Stream: 30-60 FPS] --> Branch{Tracking Objective & Latency Budget}
-    Branch -->|A: Ultra-Fast MOT <2ms CPU| ByteTrack[ByteTrack / BoT-SORT: 2D Box Detection + Kalman + GMC]
-    Branch -->|B: Dense Physical Surface Points| CoTracker[CoTracker3: Joint Point Correlation Transformer]
-    Branch -->|C: Temporal Segment Masks| SAM2[SAM 2 / SAM-MT: Streaming Spatial-Temporal Memory Bank]
-    ByteTrack --> TrackIDs1[High-Throughput CCTV Surveillance / Edge Fleet Tracking]
-    CoTracker --> Trajectories[Surface Deformation / Grasp Slip / Kinematic Odometry]
-    SAM2 --> MaskStream[Dense Video Segmentation / Autonomous Driving Free Space]
+    VideoStream["Continuous Video Stream: 30-60 FPS"] --> Branch{"Tracking Objective & Latency Budget"}
+    Branch -->|A: Ultra-Fast MOT <2ms CPU| ByteTrack["ByteTrack / BoT-SORT: 2D Box Detection + Kalman + GMC"]
+    Branch -->|B: Dense Physical Surface Points| CoTracker["CoTracker3: Joint Point Correlation Transformer"]
+    Branch -->|C: Temporal Segment Masks| SAM2["SAM 2 / SAM-MT: Streaming Spatial-Temporal Memory Bank"]
+    ByteTrack --> TrackIDs1["High-Throughput CCTV Surveillance / Edge Fleet Tracking"]
+    CoTracker --> Trajectories["Surface Deformation / Grasp Slip / Kinematic Odometry"]
+    SAM2 --> MaskStream["Dense Video Segmentation / Autonomous Driving Free Space"]
+
 ```
 
 ### Deep Tracker Evaluation Matrix

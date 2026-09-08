@@ -35,12 +35,13 @@ Automotive LiDAR sensors stream over 2.5 million 3D spatial points per second. P
 
 ```mermaid
 flowchart TD
-    RawPts[Raw 3D LiDAR Point Cloud: 2.5M Points] --> DynamicVoxel[Dynamic Voxelization: Sub-millisecond GPU Hash Grid]
-    DynamicVoxel --> NonEmpty[Filter Non-Empty 3D Voxels: ~30,000 active]
-    NonEmpty --> DynamicWindow[Dynamic Sparse Window Partitioning: Fixed Tensor Shapes]
-    DynamicWindow --> SparseTrans[Window-Based Multi-Head Self-Attention]
-    SparseTrans --> RegHead[3D CenterPoint / Anchor-Free Bounding Box Head]
-    RegHead --> BBoxes[Metric 3D Bounding Boxes: x, y, z, dx, dy, dz, yaw]
+    RawPts["Raw 3D LiDAR Point Cloud: 2.5M Points"] --> DynamicVoxel["Dynamic Voxelization: Sub-millisecond GPU Hash Grid"]
+    DynamicVoxel --> NonEmpty["Filter Non-Empty 3D Voxels: ~30,000 active"]
+    NonEmpty --> DynamicWindow["Dynamic Sparse Window Partitioning: Fixed Tensor Shapes"]
+    DynamicWindow --> SparseTrans["Window-Based Multi-Head Self-Attention"]
+    SparseTrans --> RegHead["3D CenterPoint / Anchor-Free Bounding Box Head"]
+    RegHead --> BBoxes["Metric 3D Bounding Boxes: x, y, z, dx, dy, dz, yaw"]
+
 ```
 
 ---

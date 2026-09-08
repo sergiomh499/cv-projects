@@ -28,14 +28,15 @@ Related notes: [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]], 
 
 ```mermaid
 flowchart LR
-    Sensors[Cameras, LiDAR, Radar, IMU] --> PTP[Hardware PTP IEEE 1588 Microsecond Sync]
-    PTP --> DMA[Zero-Copy Shared Ring Buffers: DMA-BUF / Iceoryx2]
-    DMA --> Extrapolate[High-Rate IMU Spline Extrapolation to Common Timestamp]
-    Extrapolate --> BEVFusion[Unified BEVFusion Engine on CUDA Stream 0]
-    Extrapolate --> SafeRule[Rule-Based Classical Radar/LiDAR EKF on Stream 1]
-    BEVFusion --> Arbiter[Safety Arbiter & Discrepancy Gate: ISO 26262]
+    Sensors["Cameras, LiDAR, Radar, IMU"] --> PTP["Hardware PTP IEEE 1588 Microsecond Sync"]
+    PTP --> DMA["Zero-Copy Shared Ring Buffers: DMA-BUF / Iceoryx2"]
+    DMA --> Extrapolate["High-Rate IMU Spline Extrapolation to Common Timestamp"]
+    Extrapolate --> BEVFusion["Unified BEVFusion Engine on CUDA Stream 0"]
+    Extrapolate --> SafeRule["Rule-Based Classical Radar/LiDAR EKF on Stream 1"]
+    BEVFusion --> Arbiter["Safety Arbiter & Discrepancy Gate: ISO 26262"]
     SafeRule --> Arbiter
-    Arbiter --> Plan[Validated Trajectory Planner]
+    Arbiter --> Plan["Validated Trajectory Planner"]
+
 ```
 
 ---

@@ -34,15 +34,16 @@ Mask2Former unified all three paradigms into a single, elegant formulation using
 
 ```mermaid
 flowchart TD
-    Img[Input Image] --> Backbone[Pixel Backbone: ResNet or Swin]
-    Backbone --> PixelDec[Multi-Scale Pixel Decoder]
-    PixelDec --> HighResFeat[High-Resolution Per-Pixel Embeddings]
-    PixelDec --> MultiScaleFeats[Multi-Scale Feature Hierarchy]
+    Img["Input Image"] --> Backbone["Pixel Backbone: ResNet or Swin"]
+    Backbone --> PixelDec["Multi-Scale Pixel Decoder"]
+    PixelDec --> HighResFeat["High-Resolution Per-Pixel Embeddings"]
+    PixelDec --> MultiScaleFeats["Multi-Scale Feature Hierarchy"]
     
-    Queries[N Object Queries] --> TransDec[Transformer Decoder with Masked Attention]
+    Queries["N Object Queries"] --> TransDec["Transformer Decoder with Masked Attention"]
     MultiScaleFeats --> TransDec
-    TransDec --> PredictMask[Predicted Bipartite Masks & Class Logits]
+    TransDec --> PredictMask["Predicted Bipartite Masks & Class Logits"]
     PredictMask -.->|Feedback Bounding Masks| TransDec
+
 ```
 
 ---

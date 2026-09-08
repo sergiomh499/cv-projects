@@ -26,14 +26,15 @@ Related notes: [[topics/safety-verification-and-robustness/00-safety-verificatio
 
 ```mermaid
 flowchart TD
-    NN[Deep Neural Network f: x -> y] --> Prop[Safety Property Specification: e.g. L-inf ball epsilon <= 8/255]
-    Prop --> AlphaCROWN[Alpha-CROWN: Linear Bound Propagation with Optimizable Activation Slopes alpha]
-    AlphaCROWN --> Check{Property Verified for Entire Continuous Space?}
-    Check -->|Yes: Certified Safe| Proof[Output Verified Proof Certificate]
-    Check -->|Unknown / Loose Bound| BetaCROWN[Beta-CROWN: Branch-and-Bound Split on Unstable ReLU Neurons beta]
-    BetaCROWN --> CheckSplit{Subdomains Resolved?}
+    NN["Deep Neural Network f: x -> y"] --> Prop["Safety Property Specification: e.g. L-inf ball epsilon <= 8/255"]
+    Prop --> AlphaCROWN["Alpha-CROWN: Linear Bound Propagation with Optimizable Activation Slopes alpha"]
+    AlphaCROWN --> Check{"Property Verified for Entire Continuous Space?"}
+    Check -->|Yes: Certified Safe| Proof["Output Verified Proof Certificate"]
+    Check -->|Unknown / Loose Bound| BetaCROWN["Beta-CROWN: Branch-and-Bound Split on Unstable ReLU Neurons beta"]
+    BetaCROWN --> CheckSplit{"Subdomains Resolved?"}
     CheckSplit -->|All Subdomains Safe| Proof
-    CheckSplit -->|Counterexample Found| CE[Concrete Counterexample Perturbation Found]
+    CheckSplit -->|Counterexample Found| CE["Concrete Counterexample Perturbation Found"]
+
 ```
 
 ### Verification Solver Comparison

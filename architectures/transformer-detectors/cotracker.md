@@ -32,11 +32,12 @@ Traditional video tracking tracks bounding box centroids (Multiple Object Tracki
 
 ```mermaid
 flowchart TD
-    Video[Long Video Stream: T x H x W] --> CNN[High-Resolution Feature Stride-4/8 CNN]
-    Points[Input Point Coordinates: N x 2] --> PatchCorr[Multi-Scale Correlation Volumes]
+    Video["Long Video Stream: T x H x W"] --> CNN["High-Resolution Feature Stride-4/8 CNN"]
+    Points["Input Point Coordinates: N x 2"] --> PatchCorr["Multi-Scale Correlation Volumes"]
     CNN --> PatchCorr
-    PatchCorr --> SlidingTrans[Sliding-Window Spatial-Temporal Transformer]
-    SlidingTrans --> TrajOut[Updated Trajectories: N x T x 2 x,y + Visibility Flags v]
+    PatchCorr --> SlidingTrans["Sliding-Window Spatial-Temporal Transformer"]
+    SlidingTrans --> TrajOut["Updated Trajectories: N x T x 2 x,y + Visibility Flags v"]
+
 ```
 
 ---

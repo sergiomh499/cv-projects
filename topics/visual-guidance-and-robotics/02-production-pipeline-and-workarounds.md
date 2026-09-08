@@ -29,12 +29,13 @@ Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robo
 
 ```mermaid
 flowchart LR
-    Sensors[Wrist Camera + Overhead Depth Sensor] --> Zenoh[Zenoh Real-Time Shared Memory Transport]
-    Zenoh --> VLA[OpenVLA / Grasp Engine on GPU CUDA Stream]
-    VLA --> ActionChunk[Action Chunking Prediction: 10 Future Waypoints]
-    ActionChunk --> Kinematics[Closed-Loop Damped Least Squares IK Solver: 500 Hz]
-    Kinematics --> SafetyFilter[Joint Limit & Dynamic Collision Safety Shield]
-    SafetyFilter --> EtherCAT[EtherCAT Real-Time Motor Drive Cycle: 1000 Hz]
+    Sensors["Wrist Camera + Overhead Depth Sensor"] --> Zenoh["Zenoh Real-Time Shared Memory Transport"]
+    Zenoh --> VLA["OpenVLA / Grasp Engine on GPU CUDA Stream"]
+    VLA --> ActionChunk["Action Chunking Prediction: 10 Future Waypoints"]
+    ActionChunk --> Kinematics["Closed-Loop Damped Least Squares IK Solver: 500 Hz"]
+    Kinematics --> SafetyFilter["Joint Limit & Dynamic Collision Safety Shield"]
+    SafetyFilter --> EtherCAT["EtherCAT Real-Time Motor Drive Cycle: 1000 Hz"]
+
 ```
 
 ---

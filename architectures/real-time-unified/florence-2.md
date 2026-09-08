@@ -28,12 +28,13 @@ Related notes: [[topics/object-detection/00-object-detection-moc|Object Detectio
 
 ```mermaid
 flowchart LR
-    Image[Input Image] --> DaViT[DaViT Vision Backbone: Multi-Scale Patch Tokens]
-    Prompt["Task Prompt (e.g. '<OD>', '<CAPTION>', '<OCR>')"] --> Enc[Standard Text Transformer Encoder]
-    DaViT --> CrossAttn[Cross-Attention Bridge]
+    Image["Input Image"] --> DaViT["DaViT Vision Backbone: Multi-Scale Patch Tokens"]
+    Prompt["Task Prompt (e.g. '<OD>', '<CAPTION>', '<OCR>')"] --> Enc["Standard Text Transformer Encoder"]
+    DaViT --> CrossAttn["Cross-Attention Bridge"]
     Enc --> CrossAttn
-    CrossAttn --> Dec[Standard Autoregressive Transformer Decoder]
+    CrossAttn --> Dec["Standard Autoregressive Transformer Decoder"]
     Dec --> Tokens["Output Text + Normalized Bounding Box Coordinates: '<loc_45><loc_120><loc_310><loc_400>'"]
+
 ```
 
 ### Discrete Spatial Coordinate Quantization

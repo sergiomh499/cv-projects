@@ -34,12 +34,13 @@ Depth Anything V2 solves this by training exclusively with **synthetic data dist
 
 ```mermaid
 flowchart TD
-    Synthetic[Synthetic Datasets: Precise Mathematical Depth] --> Teacher[Heavy Teacher Model: DINOv2-Giant]
-    Unlabeled[62 Million Unlabeled Real Images] --> Teacher
-    Teacher --> Pseudo[High-Precision Pseudo Depth Labels]
-    Pseudo --> Distill[Distillation with Boundary Gradient Loss]
-    Distill --> Students[Student Deployable Models: Small, Base, Large]
-    Students --> TensorRT[Sub-20ms Real-Time Inference on Edge GPU]
+    Synthetic["Synthetic Datasets: Precise Mathematical Depth"] --> Teacher["Heavy Teacher Model: DINOv2-Giant"]
+    Unlabeled["62 Million Unlabeled Real Images"] --> Teacher
+    Teacher --> Pseudo["High-Precision Pseudo Depth Labels"]
+    Pseudo --> Distill["Distillation with Boundary Gradient Loss"]
+    Distill --> Students["Student Deployable Models: Small, Base, Large"]
+    Students --> TensorRT["Sub-20ms Real-Time Inference on Edge GPU"]
+
 ```
 
 ---

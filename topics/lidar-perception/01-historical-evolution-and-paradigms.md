@@ -37,6 +37,7 @@ timeline
     2019 : PointPillars : Lang et al. : Collapsing vertical voxels into 2D pillars for 60+ FPS inference
     2021 : CenterPoint : Yin et al. : Anchor-free 3D center heatmap regression and velocity prediction
     2023-2026 : DSVT & FlatFormer : Dynamic Sparse Window Transformers eliminating SpConv deployment friction
+
 ```
 
 ---
@@ -59,9 +60,10 @@ Yan et al. introduced **Submanifold Sparse Convolutions**:
 
 ```mermaid
 flowchart LR
-    SparseInput[Sparse 3D Voxels: 95% Empty Space] --> HashInd[Hash Table Coordinate Indexing]
-    HashInd --> SubmanifoldConv[Submanifold Sparse Conv: Kernel Evaluated ONLY on Active Voxels]
-    SubmanifoldConv --> RetainSparsity[Strict Sparsity Retained: Zero Memory Blowup]
+    SparseInput["Sparse 3D Voxels: 95% Empty Space"] --> HashInd["Hash Table Coordinate Indexing"]
+    HashInd --> SubmanifoldConv["Submanifold Sparse Conv: Kernel Evaluated ONLY on Active Voxels"]
+    SubmanifoldConv --> RetainSparsity["Strict Sparsity Retained: Zero Memory Blowup"]
+
 ```
 
 ---

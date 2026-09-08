@@ -37,6 +37,7 @@ timeline
     2019-2022 : Eclipse Iceoryx : First C++ zero-copy shared memory transport for ROS 2 rmw layers
     2023 : Linux PREEMPT_RT Mainline : Formal integration of hard real-time kernel scheduling into upstream Linux
     2024-2026 : Iceoryx2 & Zenoh : Memory-safe lock-free Rust shared memory and lightweight pub/sub with sub-microsecond latency
+
 ```
 
 ---
@@ -58,10 +59,11 @@ The PREEMPT_RT kernel patch transforms the standard Linux kernel into a hard rea
 
 ```mermaid
 flowchart TD
-    Low[Low-Priority Task holds Mutex M] --> Medium[Medium-Priority Task Preempts Low-Priority Task]
-    Medium --> High[High-Priority Task Needs Mutex M: BLOCKED!]
-    High -.->|PREEMPT_RT Priority Inheritance| Boost[Temporarily Boost Priority of Low Task to Finish M immediately]
-    Boost --> Unblock[High-Priority Task Acquires M without Jitter]
+    Low["Low-Priority Task holds Mutex M"] --> Medium["Medium-Priority Task Preempts Low-Priority Task"]
+    Medium --> High["High-Priority Task Needs Mutex M: BLOCKED!"]
+    High -.->|PREEMPT_RT Priority Inheritance| Boost["Temporarily Boost Priority of Low Task to Finish M immediately"]
+    Boost --> Unblock["High-Priority Task Acquires M without Jitter"]
+
 ```
 
 ---

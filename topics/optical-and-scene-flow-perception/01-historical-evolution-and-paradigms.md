@@ -32,6 +32,7 @@ timeline
     2015 : Deep End-to-End (FlowNet) : Fischer et al. prove CNNs can regress dense displacement vectors directly.
     2020 : RAFT (Recurrent All-Pairs Correlation) : Teed & Deng introduce 4D multi-scale correlation volumes with gated recurrent updates.
     2022-2026 : Global Matching Transformers (GMFlow / UniMatch) : Cross-attention replacing recurrent GRU iterations, achieving single-pass real-time inference (>60 FPS).
+
 ```
 
 ---

@@ -37,6 +37,7 @@ timeline
     2020 : FINN & Brevitas : AMD Research compiling sub-byte QNNs directly into hardware LUT networks
     2022-2023 : Vitis AI 3.0 / 3.5 : Unified ONNX / PyTorch quantizer with native Transformer attention support
     2024-2026 : Versal AI Engine & AMD NPU : Heterogeneous architecture combining reconfigurable PL with VLIW vector processors
+
 ```
 
 ---
@@ -62,16 +63,17 @@ The **DPU Overlay Paradigm** decoupled software from hardware:
 
 ```mermaid
 flowchart TD
-    subgraph Traditional RTL / HLS Flow (4 to 12 Hours)
-        Code[C++ / RTL Model Definition] --> VivadoSynth[Vivado Synthesis & Place-and-Route]
-        VivadoSynth --> Bitstream[FPGA Bitstream (.bit)]
+    subgraph Traditional_RTL___HLS_Flow__4_to_12_Hours ["Traditional RTL / HLS Flow (4 to 12 Hours)"]
+        Code["C++ / RTL Model Definition"] --> VivadoSynth["Vivado Synthesis & Place-and-Route"]
+        VivadoSynth --> Bitstream["FPGA Bitstream (.bit)"]
     end
-    subgraph Modern DPU Overlay Flow (2 Minutes)
-        FixedFabric[Pre-Instantiated DPU Hardware Overlay on FPGA]
-        ONNX[Trained ONNX Model] --> VitisCompiler[Vitis AI Compiler]
-        VitisCompiler --> Xmodel[Binary Instruction Stream (.xmodel)]
-        Xmodel --> Execute[Execute on Static DPU Fabric at Runtime]
+    subgraph Modern_DPU_Overlay_Flow__2_Minutes ["Modern DPU Overlay Flow (2 Minutes)"]
+        FixedFabric["Pre-Instantiated DPU Hardware Overlay on FPGA"]
+        ONNX["Trained ONNX Model"] --> VitisCompiler["Vitis AI Compiler"]
+        VitisCompiler --> Xmodel["Binary Instruction Stream (.xmodel)"]
+        Xmodel --> Execute["Execute on Static DPU Fabric at Runtime"]
     end
+
 ```
 
 ---

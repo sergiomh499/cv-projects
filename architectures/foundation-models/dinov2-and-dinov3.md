@@ -37,14 +37,15 @@ DINO (Self-**di**stillation with **no** labels) eliminates human supervision ent
 
 ```mermaid
 flowchart TD
-    Img[Unlabeled Image: Global & Local Crops] --> Student[Student ViT Network]
-    Img --> Teacher[Teacher ViT Network: EMA Updated Weights]
-    Student --> CrossLoss[Cross-Entropy Loss with Centering & Sharpening]
+    Img["Unlabeled Image: Global & Local Crops"] --> Student["Student ViT Network"]
+    Img --> Teacher["Teacher ViT Network: EMA Updated Weights"]
+    Student --> CrossLoss["Cross-Entropy Loss with Centering & Sharpening"]
     Teacher --> CrossLoss
-    Student --> MaskLoss[Patch-Level Masked Image Modeling Loss (iBOT)]
+    Student --> MaskLoss["Patch-Level Masked Image Modeling Loss (iBOT)"]
     Teacher --> MaskLoss
-    CrossLoss --> Backprop[Backpropagate Gradients to Student ONLY]
-    Backprop --> EMA[Update Teacher via Exponential Moving Average: theta_t = m*theta_t + 1-m*theta_s]
+    CrossLoss --> Backprop["Backpropagate Gradients to Student ONLY"]
+    Backprop --> EMA["Update Teacher via Exponential Moving Average: theta_t = m*theta_t + 1-m*theta_s"]
+
 ```
 
 ---

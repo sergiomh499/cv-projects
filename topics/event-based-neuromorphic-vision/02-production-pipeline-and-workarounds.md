@@ -20,14 +20,15 @@ aliases:
 
 ```mermaid
 flowchart TD
-    Sensor[Prophesee GenX320 / Sony IMX636 Event Sensor] --> RawStream[Asynchronous USB3 / MIPI CSI Event Stream: up to 100M ev/s]
-    RawStream --> BackgroundFilter[Step 1: Spatio-Temporal Background Activity Filter: BAF]
-    BackgroundFilter --> Surface{Step 2: Choose Representation Engine}
-    Surface -->|Path A: SNN Neuromorphic Pipeline| SNN[Spiking Vision Transformer on Loihi 2 / FPGA (<10mW)]
-    Surface -->|Path B: GPU Deep Learning Pipeline| VoxelGrid[Discretized 3D Event Voxel Grid with Bilinear Trilinear Splatting]
-    VoxelGrid --> TRT[TensorRT 10 Deep Feature Extractor: RF-DETR / YOLOv12]
-    SNN --> MicroAction[Microsecond High-Speed Ballistic Obstacle Interception]
-    TRT --> HighSpeedTrack[Sub-Millisecond Multi-Target Drone Tracking]
+    Sensor["Prophesee GenX320 / Sony IMX636 Event Sensor"] --> RawStream["Asynchronous USB3 / MIPI CSI Event Stream: up to 100M ev/s"]
+    RawStream --> BackgroundFilter["Step 1: Spatio-Temporal Background Activity Filter: BAF"]
+    BackgroundFilter --> Surface{"Step 2: Choose Representation Engine"}
+    Surface -->|Path A: SNN Neuromorphic Pipeline| SNN["Spiking Vision Transformer on Loihi 2 / FPGA (<10mW)"]
+    Surface -->|Path B: GPU Deep Learning Pipeline| VoxelGrid["Discretized 3D Event Voxel Grid with Bilinear Trilinear Splatting"]
+    VoxelGrid --> TRT["TensorRT 10 Deep Feature Extractor: RF-DETR / YOLOv12"]
+    SNN --> MicroAction["Microsecond High-Speed Ballistic Obstacle Interception"]
+    TRT --> HighSpeedTrack["Sub-Millisecond Multi-Target Drone Tracking"]
+
 ```
 
 ## 2. Production Engineering Traps & Battle-Tested Workarounds

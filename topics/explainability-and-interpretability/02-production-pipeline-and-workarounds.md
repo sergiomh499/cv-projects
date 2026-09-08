@@ -20,14 +20,15 @@ aliases:
 
 ```mermaid
 flowchart TD
-    Input[Input Image] --> Model[Vision Model: CNN / Vision Transformer]
-    Model --> Prediction[Predicted Class & Confidence]
-    Prediction --> Check{Confidence in Ambiguity Zone 0.4 <= p <= 0.7?}
-    Check -->|No: High Confidence| FastPath[Log Output Directly]
-    Check -->|Yes: Flagged for Review| XAI[Compute Grad-CAM & Deletion-Faithfulness Curve]
-    XAI --> FaithScore{Faithfulness Area-Under-Curve AUC >= 0.75?}
-    FaithScore -->|Pass| AuditLog[Store Verified Heatmap with Human Review Token]
-    FaithScore -->|Fail: Heatmap Hallucinated| Fallback[Trigger Concept Vector Decomposition TCAV]
+    Input["Input Image"] --> Model["Vision Model: CNN / Vision Transformer"]
+    Model --> Prediction["Predicted Class & Confidence"]
+    Prediction --> Check{"Confidence in Ambiguity Zone 0.4 <= p <= 0.7?"}
+    Check -->|No: High Confidence| FastPath["Log Output Directly"]
+    Check -->|Yes: Flagged for Review| XAI["Compute Grad-CAM & Deletion-Faithfulness Curve"]
+    XAI --> FaithScore{"Faithfulness Area-Under-Curve AUC >= 0.75?"}
+    FaithScore -->|Pass| AuditLog["Store Verified Heatmap with Human Review Token"]
+    FaithScore -->|Fail: Heatmap Hallucinated| Fallback["Trigger Concept Vector Decomposition TCAV"]
+
 ```
 
 ## 2. Production Engineering Traps & Battle-Tested Workarounds

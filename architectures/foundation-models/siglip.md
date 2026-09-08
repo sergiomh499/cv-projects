@@ -33,17 +33,18 @@ Contrastive Language-Image Pre-training (CLIP - Radford et al., 2021) establishe
 
 ```mermaid
 flowchart TD
-    subgraph Traditional Softmax CLIP (High Communication Overhead)
-        BatchImg[Image Batch B] --> Softmax[Cross-GPU All-Gather Softmax Normalization]
-        BatchText[Text Batch B] --> Softmax
-        Softmax --> ExpCost[O(B^2) Memory & Global Synchronization Barrier]
+    subgraph Traditional_Softmax_CLIP__High_Communication_Overhead ["Traditional Softmax CLIP (High Communication Overhead)"]
+        BatchImg["Image Batch B"] --> Softmax["Cross-GPU All-Gather Softmax Normalization"]
+        BatchText["Text Batch B"] --> Softmax
+        Softmax --> ExpCost["O(B^2) Memory & Global Synchronization Barrier"]
     end
-    subgraph SigLIP (Independent Pairwise Processing)
-        ImgEnc[Image Encoder: ViT] --> Dot[Simple Dot Product Similarity: x_i . y_j]
-        TextEnc[Text Encoder: Transformer] --> Dot
-        Dot --> Sigmoid[Independent Binary Sigmoid Loss: sigma(z_ij)]
-        Sigmoid --> Decoupled[Zero Cross-GPU Communication Overhead]
+    subgraph SigLIP__Independent_Pairwise_Processing ["SigLIP (Independent Pairwise Processing)"]
+        ImgEnc["Image Encoder: ViT"] --> Dot["Simple Dot Product Similarity: x_i . y_j"]
+        TextEnc["Text Encoder: Transformer"] --> Dot
+        Dot --> Sigmoid["Independent Binary Sigmoid Loss: sigma(z_ij)"]
+        Sigmoid --> Decoupled["Zero Cross-GPU Communication Overhead"]
     end
+
 ```
 
 ---

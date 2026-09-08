@@ -33,13 +33,14 @@ When deploying computer vision and robotics in life-critical environments (comme
 
 ```mermaid
 flowchart LR
-    Level[System Safety Integrity Level Requirement] --> Branch{Regulatory Framework}
-    Branch -->|Aerospace: FAA / EASA| Aero[DO-254 Hardware DAL-A/B + DO-178C Software DAL-A/B]
-    Branch -->|Automotive: ISO 26262| Auto[ASIL-D: Dual Lockstep Cores + Hardware Diagnostic Coverage >99%]
-    Branch -->|Industrial: IEC 61508| Indus[SIL 3 / SIL 4: Redundant Voting + Failure Rate <10^-8 / hour]
-    Aero --> Target1[AMD Versal Gen 2 + CoreAVI VKCore SC / ArgusCore SC Drivers]
-    Auto --> Target2[NVIDIA Jetson AGX Orin Industrial (ASIL-D Safety Island) / Versal Prime Gen 2]
-    Indus --> Target3[AMD Kria KV260 / Alveo U50 with Isolated Safety Microcontroller]
+    Level["System Safety Integrity Level Requirement"] --> Branch{"Regulatory Framework"}
+    Branch -->|Aerospace: FAA / EASA| Aero["DO-254 Hardware DAL-A/B + DO-178C Software DAL-A/B"]
+    Branch -->|Automotive: ISO 26262| Auto["ASIL-D: Dual Lockstep Cores + Hardware Diagnostic Coverage >99%"]
+    Branch -->|Industrial: IEC 61508| Indus["SIL 3 / SIL 4: Redundant Voting + Failure Rate <10^-8 / hour"]
+    Aero --> Target1["AMD Versal Gen 2 + CoreAVI VKCore SC / ArgusCore SC Drivers"]
+    Auto --> Target2["NVIDIA Jetson AGX Orin Industrial (ASIL-D Safety Island) / Versal Prime Gen 2"]
+    Indus --> Target3["AMD Kria KV260 / Alveo U50 with Isolated Safety Microcontroller"]
+
 ```
 
 ### Safety & Environmental Certification Comparison

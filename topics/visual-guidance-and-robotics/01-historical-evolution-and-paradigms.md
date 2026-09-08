@@ -35,6 +35,7 @@ timeline
     2021 : Contact-GraspNet : Sundermeyer et al. : Direct 6-DoF grasp contact distribution prediction
     2023 : RT-2 & Octo : DeepMind / UC Berkeley : Vision-Language-Action models projecting tokens to robot joints
     2024-2026 : OpenVLA & Diffusion Policies : Open-source 7B foundation policies mapping multi-modal vision to continuous motor control
+
 ```
 
 ---

@@ -28,13 +28,14 @@ Related notes: [[topics/object-classification/00-object-classification-moc|Objec
 
 ```mermaid
 flowchart LR
-    Ingest[Batch of Image Crops / RoIs] --> Pinned[Pinned Host Memory & Normalization]
-    Pinned --> AsyncCopy[Asynchronous Host-to-Device Transfer]
-    AsyncCopy --> TRT[TensorRT Engine FP16/INT8 Forward Pass]
-    TRT --> Logits[Raw Uncalibrated Logits]
-    Logits --> Calib[Temperature Scaling Calibration]
-    Calib --> Filter[OOD Anomaly Distance Rejector]
-    Filter --> Out[Final Validated Class Predictions & Embedding Tokens]
+    Ingest["Batch of Image Crops / RoIs"] --> Pinned["Pinned Host Memory & Normalization"]
+    Pinned --> AsyncCopy["Asynchronous Host-to-Device Transfer"]
+    AsyncCopy --> TRT["TensorRT Engine FP16/INT8 Forward Pass"]
+    TRT --> Logits["Raw Uncalibrated Logits"]
+    Logits --> Calib["Temperature Scaling Calibration"]
+    Calib --> Filter["OOD Anomaly Distance Rejector"]
+    Filter --> Out["Final Validated Class Predictions & Embedding Tokens"]
+
 ```
 
 ### Stage Breakdown:
@@ -93,10 +94,11 @@ Stack all detected RoI crops from a single frame into a contiguous tensor batch 
 
 ```mermaid
 flowchart TD
-    Detector[2D Object Detector Output: 32 RoIs] --> RoIAlign[Batched RoIAlign to 224x224]
-    RoIAlign --> Stack[Stack into Single Tensor: 32 x 3 x 224 x 224]
-    Stack --> TensorRT[Single TensorRT Forward Pass: 3.2ms]
-    TensorRT --> Split[Split Results to Trackers]
+    Detector["2D Object Detector Output: 32 RoIs"] --> RoIAlign["Batched RoIAlign to 224x224"]
+    RoIAlign --> Stack["Stack into Single Tensor: 32 x 3 x 224 x 224"]
+    Stack --> TensorRT["Single TensorRT Forward Pass: 3.2ms"]
+    TensorRT --> Split["Split Results to Trackers"]
+
 ```
 
 ---

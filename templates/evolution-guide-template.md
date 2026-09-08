@@ -27,6 +27,7 @@ timeline
     Era 1 : Classical Heuristics : Foundations
     Era 2 : Deep Learning : Convolutional Breakthroughs
     Era 3 : Transformers & Foundation Models : Modern SOTA
+
 ```
 
 ---
@@ -46,7 +47,8 @@ timeline
 
 ```mermaid
 flowchart TD
-    Classic[Classical Pipeline] --> Modern[Modern End-to-End Pipeline]
+    Classic["Classical Pipeline"] --> Modern["Modern End-to-End Pipeline"]
+
 ```
 
 | Dimension | Classical Paradigm | First-Gen Deep Learning | Modern SOTA Foundation Paradigm |

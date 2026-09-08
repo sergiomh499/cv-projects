@@ -26,13 +26,14 @@ Related notes: [[topics/optical-and-scene-flow-perception/00-optical-and-scene-f
 
 ```mermaid
 flowchart LR
-    FrameT[Frame t: 1080p Image] --> Backbone[Feature Encoder Backbone: MobileNetV4 / ConvNeXt]
-    FrameT1[Frame t+1: 1080p Image] --> Backbone
-    Backbone --> CorrVol[4D Correlation Volume Construction: Dot Product]
-    CorrVol --> Matching[Transformer Attention or ConvGRU Iterative Updates]
-    Matching --> FlowField[Raw Flow Field: dx, dy per pixel]
-    FlowField --> OcclusionGate[Forward-Backward Consistency Check]
-    OcclusionGate --> FilteredFlow[Occlusion-Masked Flow Vector Field]
+    FrameT["Frame t: 1080p Image"] --> Backbone["Feature Encoder Backbone: MobileNetV4 / ConvNeXt"]
+    FrameT1["Frame t+1: 1080p Image"] --> Backbone
+    Backbone --> CorrVol["4D Correlation Volume Construction: Dot Product"]
+    CorrVol --> Matching["Transformer Attention or ConvGRU Iterative Updates"]
+    Matching --> FlowField["Raw Flow Field: dx, dy per pixel"]
+    FlowField --> OcclusionGate["Forward-Backward Consistency Check"]
+    OcclusionGate --> FilteredFlow["Occlusion-Masked Flow Vector Field"]
+
 ```
 
 ---

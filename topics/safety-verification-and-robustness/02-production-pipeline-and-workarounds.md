@@ -20,14 +20,15 @@ aliases:
 
 ```mermaid
 flowchart TD
-    Model[Trained Vision / Perception Model] --> FormalTier[Tier 1: Offline Alpha-Beta-CROWN Formal L-inf Verification]
-    FormalTier -->|Certified Bound Proved| CertDoc[Generate ISO/PAS 8800 Compliance Certificate]
-    FormalTier -->|Counterexample Discovered| AdvAug[Inject Counterexample into Adversarial Retraining Loop]
+    Model["Trained Vision / Perception Model"] --> FormalTier["Tier 1: Offline Alpha-Beta-CROWN Formal L-inf Verification"]
+    FormalTier -->|Certified Bound Proved| CertDoc["Generate ISO/PAS 8800 Compliance Certificate"]
+    FormalTier -->|Counterexample Discovered| AdvAug["Inject Counterexample into Adversarial Retraining Loop"]
     AdvAug --> Model
-    CertDoc --> Deploy[Deploy to Autonomous Edge Hardware]
-    Deploy --> RuntimeCBF{Tier 2: Online Control Barrier Function Interceptor}
-    RuntimeCBF -->|Action in Safe Set| Drive[Execute Motor Actuation]
-    RuntimeCBF -->|Unsafe Trajectory| Override[Clamp To Safe Invariant Boundary]
+    CertDoc --> Deploy["Deploy to Autonomous Edge Hardware"]
+    Deploy --> RuntimeCBF{"Tier 2: Online Control Barrier Function Interceptor"}
+    RuntimeCBF -->|Action in Safe Set| Drive["Execute Motor Actuation"]
+    RuntimeCBF -->|Unsafe Trajectory| Override["Clamp To Safe Invariant Boundary"]
+
 ```
 
 ## 2. Production Engineering Traps & Battle-Tested Workarounds

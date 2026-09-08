@@ -28,12 +28,13 @@ Related notes: [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perceptio
 
 ```mermaid
 flowchart LR
-    Sensor[LiDAR UDP Packets: 100 Mb/s] --> Kernel[AF_XDP Kernel Bypass Zero-Copy Driver]
-    Kernel --> RingBuf[Lock-Free Circular Point Ring Buffer]
-    RingBuf --> Deskew[Motion Deskewing via IMU High-Rate Spline: 200 Hz]
-    Deskew --> Voxelize[CUDA Hash Dynamic Voxelization]
-    Voxelize --> TRT[TensorRT Engine: DSVT / PointPillars]
-    TRT --> BoxFilter[3D NMS / CenterPoint Velocity Association]
+    Sensor["LiDAR UDP Packets: 100 Mb/s"] --> Kernel["AF_XDP Kernel Bypass Zero-Copy Driver"]
+    Kernel --> RingBuf["Lock-Free Circular Point Ring Buffer"]
+    RingBuf --> Deskew["Motion Deskewing via IMU High-Rate Spline: 200 Hz"]
+    Deskew --> Voxelize["CUDA Hash Dynamic Voxelization"]
+    Voxelize --> TRT["TensorRT Engine: DSVT / PointPillars"]
+    TRT --> BoxFilter["3D NMS / CenterPoint Velocity Association"]
+
 ```
 
 ---

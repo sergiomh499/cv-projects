@@ -27,11 +27,12 @@ Related notes: [[topics/object-detection/00-object-detection-moc|Object Detectio
 
 ```mermaid
 flowchart TD
-    A[Classical Vision 2001-2013] -->|Deep Learning Revolution| B[Two-Stage Detectors 2013-2018]
-    B -->|Need for Real-Time Speed| C[Single-Stage CNNs: YOLO / SSD 2015-2026]
-    B -->|Eliminate Handcrafted Priors| D[Set-Prediction Transformers: DETR 2020-2026]
-    C --> E[Hybrid Real-Time Transformers: RT-DETR / RF-DETR]
+    A["Classical Vision 2001-2013"] -->|Deep Learning Revolution| B["Two-Stage Detectors 2013-2018"]
+    B -->|Need for Real-Time Speed| C["Single-Stage CNNs: YOLO / SSD 2015-2026"]
+    B -->|Eliminate Handcrafted Priors| D["Set-Prediction Transformers: DETR 2020-2026"]
+    C --> E["Hybrid Real-Time Transformers: RT-DETR / RF-DETR"]
     D --> E
+
 ```
 
 ### Paradigm 1: Classical Handcrafted Features (2001–2013)
@@ -47,13 +48,14 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    Img[Raw Image] --> Backbone[Deep Conv Backbone]
-    Backbone --> SharedMap[Shared Feature Map]
-    SharedMap --> RPN[Region Proposal Network]
-    RPN --> Propos[Top K RoIs]
-    SharedMap --> RoIAlign[RoIAlign Layer]
+    Img["Raw Image"] --> Backbone["Deep Conv Backbone"]
+    Backbone --> SharedMap["Shared Feature Map"]
+    SharedMap --> RPN["Region Proposal Network"]
+    RPN --> Propos["Top K RoIs"]
+    SharedMap --> RoIAlign["RoIAlign Layer"]
     Propos --> RoIAlign
-    RoIAlign --> Heads[Box Regression & Classification Heads]
+    RoIAlign --> Heads["Box Regression & Classification Heads"]
+
 ```
 
 ---
@@ -74,6 +76,7 @@ timeline
     2024 : YOLOv9 & YOLOv10 : Programmable Gradient Info (PGI), NMS-free Dual Assignment
     2024 : YOLO11 : C3k2 blocks, SPPF + C2PSA attention, efficient multi-task heads
     2025-2026 : YOLOv12 & YOLO26 : Area attention, native end-to-end NMS-free, MuSGD optimizer
+
 ```
 
 ### Detailed Structural Evolutions
@@ -101,12 +104,13 @@ Traditional detectors relied on hand-crafted components: anchor generation rules
 
 ```mermaid
 flowchart LR
-    Input[Input Image] --> CNN[CNN / DINOv2 Backbone]
-    CNN --> TransEnc[Transformer Encoder]
-    Queries[Learnable Object Queries Q_1...Q_N] --> TransDec[Transformer Decoder]
+    Input["Input Image"] --> CNN["CNN / DINOv2 Backbone"]
+    CNN --> TransEnc["Transformer Encoder"]
+    Queries["Learnable Object Queries Q_1...Q_N"] --> TransDec["Transformer Decoder"]
     TransEnc --> TransDec
-    TransDec --> Bipartite[Hungarian Bipartite Matcher]
-    Bipartite --> Loss[Set Prediction Loss: GIoU + Focal Loss]
+    TransDec --> Bipartite["Hungarian Bipartite Matcher"]
+    Bipartite --> Loss["Set Prediction Loss: GIoU + Focal Loss"]
+
 ```
 
 ### Evolution of Detection Transformers:

@@ -146,3 +146,16 @@ def test_architecture_frontmatter(architecture_files):
         if missing:
             problems.append(f"{arch.name}: missing frontmatter fields {sorted(missing)}")
     assert not problems, "\n".join(problems)
+
+
+# ---------------------------------------------------------------------------
+# Test 6: all Mermaid diagrams pass syntax validation
+# ---------------------------------------------------------------------------
+
+def test_all_mermaid_diagrams_valid(repo_root):
+    import subprocess
+    import sys
+    validator = repo_root / "scripts" / "validate_mermaid.py"
+    assert validator.exists(), f"Mermaid validator script missing: {validator}"
+    res = subprocess.run([sys.executable, str(validator)], cwd=str(repo_root), capture_output=True, text=True)
+    assert res.returncode == 0, f"Mermaid validation failed:\n{res.stdout}\n{res.stderr}"

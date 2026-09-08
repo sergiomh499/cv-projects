@@ -48,12 +48,13 @@ Related notes: [[topics/optical-and-scene-flow-perception/00-optical-and-scene-f
 
 ```mermaid
 flowchart LR
-    FrameT[Image t] --> Model[GMFlow / RAFT Backbone]
-    FrameT1[Image t+1] --> Model
-    Model --> Flow[Dense Vector Field (u, v)]
-    Flow --> FWD_BWD[Forward-Backward Consistency Filter]
-    FWD_BWD --> EgoMotion[Epipolar Decoupling & IMU Subtraction]
-    EgoMotion --> CollisionAlert[Independent Dynamic Moving Obstacle Alert]
+    FrameT["Image t"] --> Model["GMFlow / RAFT Backbone"]
+    FrameT1["Image t+1"] --> Model
+    Model --> Flow["Dense Vector Field (u, v)"]
+    Flow --> FWD_BWD["Forward-Backward Consistency Filter"]
+    FWD_BWD --> EgoMotion["Epipolar Decoupling & IMU Subtraction"]
+    EgoMotion --> CollisionAlert["Independent Dynamic Moving Obstacle Alert"]
+
 ```
 
 ### Production Workarounds for Optical Flow:

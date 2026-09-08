@@ -27,9 +27,10 @@ While Denoising Diffusion Probabilistic Models (DDPM) require simulating Brownia
 
 ```mermaid
 flowchart LR
-    Noise[Standard Gaussian Noise a_0 ~ N(0, I)] --> VectorField[Velocity Vector Field v_theta(a_t, t | vision, text)]
-    VectorField --> ODE[Deterministic ODE Integration: da/dt = v_theta]
-    ODE --> SmoothTraj[Smooth Continuous Action Chunk a_1 in 4 Steps]
+    Noise["Standard Gaussian Noise a_0 ~ N(0, I)"] --> VectorField["Velocity Vector Field v_theta(a_t, t | vision, text)"]
+    VectorField --> ODE["Deterministic ODE Integration: da/dt = v_theta"]
+    ODE --> SmoothTraj["Smooth Continuous Action Chunk a_1 in 4 Steps"]
+
 ```
 
 ### Mathematical Formulation of Conditional Flow Matching:

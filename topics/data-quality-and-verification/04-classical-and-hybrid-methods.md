@@ -26,15 +26,16 @@ Related notes: [[topics/data-quality-and-verification/00-data-quality-and-verifi
 
 ```mermaid
 flowchart TD
-    Dataset[Raw Computer Vision Dataset: Metadata + Pixels + Annotations] --> Branch{Quality Control Methodology}
-    Branch -->|Classical 1867: Chebyshev Bounds| Cheby[Distribution-Free Probability Outlier Upper Bounds]
-    Branch -->|Classical 1936: Mahalanobis Metric| Maha[Covariance-Aware Distance from Semantic Cluster Centroid]
-    Branch -->|Classical 1938: Benford's Law| Benford[Logarithmic First-Digit Distribution of Bounding Box Areas]
-    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid[Foundation Model Latents -> Classical Isolation Forest / Elliptic Envelope]
-    Cheby --> ProvableGuarantees[Provable Bounding Box Outlier Bounds Independent of Normality]
-    Maha --> EllipsoidalOOD[Detecting Distorted Sensor Calibrations via Multivariate Covariance]
-    Benford --> FraudDetection[Instant Discovery of Synthetic / Inverted Annotation Artifacts]
-    Hybrid --> MicroAnomalies[Sub-Percent Defect Discovery in Massive Multimodal Datasets]
+    Dataset["Raw Computer Vision Dataset: Metadata + Pixels + Annotations"] --> Branch{"Quality Control Methodology"}
+    Branch -->|Classical 1867: Chebyshev Bounds| Cheby["Distribution-Free Probability Outlier Upper Bounds"]
+    Branch -->|Classical 1936: Mahalanobis Metric| Maha["Covariance-Aware Distance from Semantic Cluster Centroid"]
+    Branch -->|Classical 1938: Benford's Law| Benford["Logarithmic First-Digit Distribution of Bounding Box Areas"]
+    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid["Foundation Model Latents -> Classical Isolation Forest / Elliptic Envelope"]
+    Cheby --> ProvableGuarantees["Provable Bounding Box Outlier Bounds Independent of Normality"]
+    Maha --> EllipsoidalOOD["Detecting Distorted Sensor Calibrations via Multivariate Covariance"]
+    Benford --> FraudDetection["Instant Discovery of Synthetic / Inverted Annotation Artifacts"]
+    Hybrid --> MicroAnomalies["Sub-Percent Defect Discovery in Massive Multimodal Datasets"]
+
 ```
 
 ### Statistical Quality Verification Paradigms Compared

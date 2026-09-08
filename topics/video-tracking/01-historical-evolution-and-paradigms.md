@@ -39,6 +39,7 @@ timeline
     2022 : BoT-SORT : Aharon et al. : Global Motion Compensation (GMC) correcting camera ego-motion
     2023 : CoTracker & TAPIR : Meta FAIR & DeepMind : Long-term point tracking via Transformers
     2024-2026 : SAM 2 & MemTracker : Streaming spatial-temporal memory banks for real-time video mask tracking
+
 ```
 
 ---
@@ -50,10 +51,11 @@ Bewley et al. challenged the assumption that visual trackers needed complex inte
 
 ```mermaid
 flowchart LR
-    FrameT[Frame t Detections] --> KalmanPred[Predict Prior Tracks with Kalman Filter]
-    KalmanPred --> IoUMatrix[Compute N x M IoU Overlap Cost Matrix]
-    IoUMatrix --> Hungarian[Solve Bipartite Matching via Hungarian Algorithm]
-    Hungarian --> Updates[Update Kalman Velocities & Maintain Track IDs]
+    FrameT["Frame t Detections"] --> KalmanPred["Predict Prior Tracks with Kalman Filter"]
+    KalmanPred --> IoUMatrix["Compute N x M IoU Overlap Cost Matrix"]
+    IoUMatrix --> Hungarian["Solve Bipartite Matching via Hungarian Algorithm"]
+    Hungarian --> Updates["Update Kalman Velocities & Maintain Track IDs"]
+
 ```
 - **Limitation**: Failed completely during severe occlusions or sudden camera pans because IoU dropped to zero.
 

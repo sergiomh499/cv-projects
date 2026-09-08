@@ -27,15 +27,16 @@ Related notes: [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perceptio
 
 ```mermaid
 flowchart TD
-    RawPts[Raw 3D LiDAR Points: 2.5M pts/sec] --> Branch{Spatial Structuring Paradigm}
-    Branch -->|A: 2D Vertical Pillars| Pillar[PointPillars / PillarNeXt: Vertical Stacking to 2D BEV]
-    Branch -->|B: Submanifold Sparse Voxels| Voxel[SECOND / CenterPoint: 3D SpConv Hash Tables]
-    Branch -->|C: Dynamic Window Transformers| DSVT[DSVT / FlatFormer: Packed Dense Window Tokens]
-    Branch -->|D: Dense 3D Occupancy| Occ[UniOcc / InfraOcc: Continuous Voxel Volume States]
-    Pillar --> FastBox[Ultra-Fast Edge Inference: 10-15ms, Low Z Precision]
-    Voxel --> ExactBox1[High 3D Precision: 45ms, Non-Standard SpConv Ops]
-    DSVT --> ExactBox2[Native TensorRT FP16 Deployment: 21-27ms]
-    Occ --> DenseGeometry[Arbitrary Geometry & Free Space: Essential for Obstacle Avoidance]
+    RawPts["Raw 3D LiDAR Points: 2.5M pts/sec"] --> Branch{"Spatial Structuring Paradigm"}
+    Branch -->|A: 2D Vertical Pillars| Pillar["PointPillars / PillarNeXt: Vertical Stacking to 2D BEV"]
+    Branch -->|B: Submanifold Sparse Voxels| Voxel["SECOND / CenterPoint: 3D SpConv Hash Tables"]
+    Branch -->|C: Dynamic Window Transformers| DSVT["DSVT / FlatFormer: Packed Dense Window Tokens"]
+    Branch -->|D: Dense 3D Occupancy| Occ["UniOcc / InfraOcc: Continuous Voxel Volume States"]
+    Pillar --> FastBox["Ultra-Fast Edge Inference: 10-15ms, Low Z Precision"]
+    Voxel --> ExactBox1["High 3D Precision: 45ms, Non-Standard SpConv Ops"]
+    DSVT --> ExactBox2["Native TensorRT FP16 Deployment: 21-27ms"]
+    Occ --> DenseGeometry["Arbitrary Geometry & Free Space: Essential for Obstacle Avoidance"]
+
 ```
 
 ### Representation Architecture Matrix

@@ -29,15 +29,16 @@ The autonomous vehicle perception stack has evolved from disconnected modular pi
 
 ```mermaid
 flowchart TD
-    Sensors[6x Surround Cameras + 360 LiDAR + 4D Imaging Radar] --> Branch{System Design Paradigm}
-    Branch -->|A: Decoupled Modular Stacks| Mod[Detectors -> Kalman Trackers -> HD Map -> Rule Planner]
-    Branch -->|B: Unified BEV Perception| BEV[BEVFusion / Sparse4D: Unified Camera-LiDAR 3D Grids]
-    Branch -->|C: Planning-Oriented End-to-End| UniAD[UniAD: Unified Perception + Motion Prediction + Planning Head]
-    Branch -->|D: Generative World Models| World[World Engine / READ: Diffusion World Simulation + RL Policy]
-    Mod --> ErrorAccum[Error Accumulation Cascades & Brittle Hand-Offs]
-    BEV --> HighPrecision[Robust Metric 3D Boxes & Static HD Map Reconstruction]
-    UniAD --> SafeTrajectory[Safe Collision-Free Ego-Vehicle Trajectories (No Modularity Gaps)]
-    World --> ClosedLoop[Counterfactual Imagination of Long-Tail Scenarios]
+    Sensors["6x Surround Cameras + 360 LiDAR + 4D Imaging Radar"] --> Branch{"System Design Paradigm"}
+    Branch -->|A: Decoupled Modular Stacks| Mod["Detectors -> Kalman Trackers -> HD Map -> Rule Planner"]
+    Branch -->|B: Unified BEV Perception| BEV["BEVFusion / Sparse4D: Unified Camera-LiDAR 3D Grids"]
+    Branch -->|C: Planning-Oriented End-to-End| UniAD["UniAD: Unified Perception + Motion Prediction + Planning Head"]
+    Branch -->|D: Generative World Models| World["World Engine / READ: Diffusion World Simulation + RL Policy"]
+    Mod --> ErrorAccum["Error Accumulation Cascades & Brittle Hand-Offs"]
+    BEV --> HighPrecision["Robust Metric 3D Boxes & Static HD Map Reconstruction"]
+    UniAD --> SafeTrajectory["Safe Collision-Free Ego-Vehicle Trajectories (No Modularity Gaps)"]
+    World --> ClosedLoop["Counterfactual Imagination of Long-Tail Scenarios"]
+
 ```
 
 ### Architectural Evaluation Matrix

@@ -26,15 +26,16 @@ Related notes: [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]
 
 ```mermaid
 flowchart TD
-    Video[Sequential Video Frames t and t+1] --> Branch{Motion Estimation Paradigm}
-    Branch -->|Classical 1981: Lucas-Kanade Flow| LK[Differential Brightness Constancy Over 3x3 Neighborhood]
-    Branch -->|Classical 2010: MOSSE / KCF Filter| KCF[Circulant Matrix Fast Fourier Transform Correlation]
-    Branch -->|State Estimation: Kalman Filter| KF[Linear Quadratic Estimator: Constant Velocity Prior]
-    Branch -->|Hybrid 2024-2026: Hybrid Deep Tracking| Hybrid[Deep Re-ID + Classical Spatial Optical Flow Verification + EKF]
-    LK --> SparsePts[Microsecond Sparse Keypoint Motion Tracking]
-    KCF --> HighSpeed[1000+ FPS Real-Time Object Tracking on CPU]
-    KF --> SmoothTrack[Predicting Bounding Box Coordinates Through Occlusion]
-    Hybrid --> ZeroDrift[Cycle-Consistent MOT Resilient to Rapid Camera Jitter]
+    Video["Sequential Video Frames t and t+1"] --> Branch{"Motion Estimation Paradigm"}
+    Branch -->|Classical 1981: Lucas-Kanade Flow| LK["Differential Brightness Constancy Over 3x3 Neighborhood"]
+    Branch -->|Classical 2010: MOSSE / KCF Filter| KCF["Circulant Matrix Fast Fourier Transform Correlation"]
+    Branch -->|State Estimation: Kalman Filter| KF["Linear Quadratic Estimator: Constant Velocity Prior"]
+    Branch -->|Hybrid 2024-2026: Hybrid Deep Tracking| Hybrid["Deep Re-ID + Classical Spatial Optical Flow Verification + EKF"]
+    LK --> SparsePts["Microsecond Sparse Keypoint Motion Tracking"]
+    KCF --> HighSpeed["1000+ FPS Real-Time Object Tracking on CPU"]
+    KF --> SmoothTrack["Predicting Bounding Box Coordinates Through Occlusion"]
+    Hybrid --> ZeroDrift["Cycle-Consistent MOT Resilient to Rapid Camera Jitter"]
+
 ```
 
 ### Motion Tracking Comparison Matrix

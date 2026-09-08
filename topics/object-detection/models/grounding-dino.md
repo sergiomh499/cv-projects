@@ -21,15 +21,16 @@ Traditional object detectors operate under a closed-set paradigm: they can only 
 
 ```mermaid
 flowchart LR
-    subgraph Multi-Modal Inputs
-        Img[Input Image] --> ImageBackbone[Swin / DINOv2 Backbone]
-        Text[Text Prompt: arbitrary text] --> TextBackbone[BERT / RoBERTa Backbone]
+    subgraph Multi_Modal_Inputs ["Multi-Modal Inputs"]
+        Img["Input Image"] --> ImageBackbone["Swin / DINOv2 Backbone"]
+        Text["Text Prompt: arbitrary text"] --> TextBackbone["BERT / RoBERTa Backbone"]
     end
-    ImageBackbone --> Neck[Feature Enhancer: Bi-directional Cross-Attention]
+    ImageBackbone --> Neck["Feature Enhancer: Bi-directional Cross-Attention"]
     TextBackbone --> Neck
-    Neck --> Fusion[Language-Guided Query Selection]
-    Fusion --> Decoder[Cross-Modality Decoder]
-    Decoder --> Output[Grounded Bounding Boxes + Confidence]
+    Neck --> Fusion["Language-Guided Query Selection"]
+    Fusion --> Decoder["Cross-Modality Decoder"]
+    Decoder --> Output["Grounded Bounding Boxes + Confidence"]
+
 ```
 
 ---

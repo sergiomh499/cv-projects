@@ -37,6 +37,7 @@ timeline
     2021 : FAST-LIO2 : Xu & Zhang : Direct LiDAR-inertial odometry via incremental k-d trees at 100 Hz
     2022 : NICE-SLAM : First real-time neural implicit NeRF dense spatial mapping
     2024-2026 : 3DGS SLAM & MonoGS : Differentiable 3D Gaussian Splatting rendering real-time photo-realistic dense maps
+
 ```
 
 ---

@@ -29,13 +29,14 @@ Deploying modern detectors (YOLOv10/26, RF-DETR, RT-DETRv3) requires selecting t
 
 ```mermaid
 flowchart TD
-    PyTorch[PyTorch Detector Graph] --> ONNX[Standardized ONNX Graph Opset 17/18]
-    ONNX --> Branch{Target Hardware Platform?}
-    Branch -->|NVIDIA GPU / Jetson| TRT[TensorRT 10.x Engine: Fused GEMM + FP8/INT8]
-    Branch -->|Intel CPU / iGPU| OpenVINO[OpenVINO 2024.x Model Optimizer: NNCF Quantization]
-    Branch -->|Qualcomm Snapdragon NPU| QNN[Qualcomm QNN SDK: Hexagon HTA DSP Backend]
-    Branch -->|Apple Silicon ANE| CoreML[CoreML Compiler: ANE Fixed-Point Graph Fusion]
-    Branch -->|Cross-Platform Embedded / Mobile| VulkanNCNN[Tencent NCNN: SPIR-V GPU Shaders]
+    PyTorch["PyTorch Detector Graph"] --> ONNX["Standardized ONNX Graph Opset 17/18"]
+    ONNX --> Branch{"Target Hardware Platform?"}
+    Branch -->|NVIDIA GPU / Jetson| TRT["TensorRT 10.x Engine: Fused GEMM + FP8/INT8"]
+    Branch -->|Intel CPU / iGPU| OpenVINO["OpenVINO 2024.x Model Optimizer: NNCF Quantization"]
+    Branch -->|Qualcomm Snapdragon NPU| QNN["Qualcomm QNN SDK: Hexagon HTA DSP Backend"]
+    Branch -->|Apple Silicon ANE| CoreML["CoreML Compiler: ANE Fixed-Point Graph Fusion"]
+    Branch -->|Cross-Platform Embedded / Mobile| VulkanNCNN["Tencent NCNN: SPIR-V GPU Shaders"]
+
 ```
 
 ### Deep Backend Evaluation Matrix

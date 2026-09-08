@@ -26,15 +26,16 @@ Related notes: [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Sys
 
 ```mermaid
 flowchart TD
-    Tasks[Robotics Perception & Control Tasks] --> Branch{Scheduling Paradigm}
-    Branch -->|Classical 1973: Rate-Monotonic RMS| RMS[Static Priority: Higher Frequency = Higher Priority (P_i ~ 1/T_i)]
-    Branch -->|Classical 1973: Earliest Deadline First| EDF[Dynamic Priority: Task with Closest Deadline Gets CPU]
-    Branch -->|Synchronization: Priority Ceiling| PCP[PCP Protocol: Bounding Priority Inversion to Single Critical Section]
-    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid[SCHED_DEADLINE Kernel Isolation + ROS 2 Priority Preemption]
-    RMS --> ProvableStatic[Provable Deterministic Guarantees with Fixed Priorities]
-    EDF --> MaxUtilization[100% Theoretical CPU Schedulability Bound]
-    PCP --> DeadlockFree[Provable Zero Deadlock & Bounded Priority Inversion]
-    Hybrid --> AITolerance[Running 30ms Deep AI Perception Beside 1ms Hard Motor Loops]
+    Tasks["Robotics Perception & Control Tasks"] --> Branch{"Scheduling Paradigm"}
+    Branch -->|Classical 1973: Rate-Monotonic RMS| RMS["Static Priority: Higher Frequency = Higher Priority (P_i ~ 1/T_i)"]
+    Branch -->|Classical 1973: Earliest Deadline First| EDF["Dynamic Priority: Task with Closest Deadline Gets CPU"]
+    Branch -->|Synchronization: Priority Ceiling| PCP["PCP Protocol: Bounding Priority Inversion to Single Critical Section"]
+    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid["SCHED_DEADLINE Kernel Isolation + ROS 2 Priority Preemption"]
+    RMS --> ProvableStatic["Provable Deterministic Guarantees with Fixed Priorities"]
+    EDF --> MaxUtilization["100% Theoretical CPU Schedulability Bound"]
+    PCP --> DeadlockFree["Provable Zero Deadlock & Bounded Priority Inversion"]
+    Hybrid --> AITolerance["Running 30ms Deep AI Perception Beside 1ms Hard Motor Loops"]
+
 ```
 
 ### Classical Real-Time Scheduling Paradigms Compared

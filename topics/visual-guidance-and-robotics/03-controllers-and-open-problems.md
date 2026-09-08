@@ -29,12 +29,13 @@ Robotic manipulation spans three fundamentally incompatible clock frequencies:
 
 ```mermaid
 flowchart TD
-    Cam[Visual Observation: RGB Camera at 30 Hz] --> Policy[VLA Neural Policy: OpenVLA / Pi-0 at 5-10 Hz]
-    Policy --> Chunk[Action Chunk Predictor: H = 16 Future Waypoints]
-    Chunk --> Interpolator[Spline Trajectory Generator: Smooth Joint Waypoints at 100 Hz]
-    Interpolator --> CartesianIK[Differential Inverse Kinematics / QP Solver at 500 Hz]
-    CartesianIK --> SafetyShield[Control Barrier Function (CBF) Safety Clamping]
-    SafetyShield --> MotorBus[EtherCAT / CANopen Hardware Motor Loop at 1000 Hz]
+    Cam["Visual Observation: RGB Camera at 30 Hz"] --> Policy["VLA Neural Policy: OpenVLA / Pi-0 at 5-10 Hz"]
+    Policy --> Chunk["Action Chunk Predictor: H = 16 Future Waypoints"]
+    Chunk --> Interpolator["Spline Trajectory Generator: Smooth Joint Waypoints at 100 Hz"]
+    Interpolator --> CartesianIK["Differential Inverse Kinematics / QP Solver at 500 Hz"]
+    CartesianIK --> SafetyShield["Control Barrier Function (CBF) Safety Clamping"]
+    SafetyShield --> MotorBus["EtherCAT / CANopen Hardware Motor Loop at 1000 Hz"]
+
 ```
 
 ### Frequency & Latency Mismatch Matrix

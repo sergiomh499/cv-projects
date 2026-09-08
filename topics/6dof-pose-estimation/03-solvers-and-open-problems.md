@@ -27,14 +27,15 @@ Related notes: [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|6-DoF P
 
 ```mermaid
 flowchart TD
-    RGBD[RGB-D Camera Stream: 30 FPS] --> Mask[2D Object Segmentation / Crop]
-    Mask --> Branch{Pose Paradigm}
-    Branch -->|A: Direct Regression PnP| PVNet[Keypoint / Vector Voting + EPnP Solver]
-    Branch -->|B: Direct Neural Geometry| GDRN[GDR-Net / GDRNPP: Direct Surface Correspondence Patch Map]
-    Branch -->|C: Foundation Render-and-Compare| FoundationPose[FoundationPose / MegaPose: Iterative Differentiable GPU Rendering]
-    PVNet --> FastPose[Ultra-Fast: 15-30ms, Low Boundary Precision]
-    GDRN --> MetricPose1[Millimeter Metric Precision on Known Objects: 45ms]
-    FoundationPose --> MetricPose2[Zero-Shot Unseen CAD Models: 32ms (TensorRT Tracking)]
+    RGBD["RGB-D Camera Stream: 30 FPS"] --> Mask["2D Object Segmentation / Crop"]
+    Mask --> Branch{"Pose Paradigm"}
+    Branch -->|A: Direct Regression PnP| PVNet["Keypoint / Vector Voting + EPnP Solver"]
+    Branch -->|B: Direct Neural Geometry| GDRN["GDR-Net / GDRNPP: Direct Surface Correspondence Patch Map"]
+    Branch -->|C: Foundation Render-and-Compare| FoundationPose["FoundationPose / MegaPose: Iterative Differentiable GPU Rendering"]
+    PVNet --> FastPose["Ultra-Fast: 15-30ms, Low Boundary Precision"]
+    GDRN --> MetricPose1["Millimeter Metric Precision on Known Objects: 45ms"]
+    FoundationPose --> MetricPose2["Zero-Shot Unseen CAD Models: 32ms (TensorRT Tracking)"]
+
 ```
 
 ### Deep Architectural Trade-Off Matrix

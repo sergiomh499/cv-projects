@@ -28,14 +28,15 @@ Related notes: [[topics/slam-and-spatial-perception/00-slam-and-spatial-percepti
 
 ```mermaid
 flowchart LR
-    Sensors[RGB-D / Stereo Cameras + High-Rate IMU] --> Sync[Hardware PTP Timestamp Alignment]
-    Sync --> Preint[IMU Continuous Manifold Pre-integration: 200 Hz]
-    Preint --> TrackThread[High-Rate Visual Odometry Thread: 30 Hz]
-    TrackThread --> Keyframe[Keyframe Selection Logic]
-    Keyframe --> LocalBA[Local Bundle Adjustment Thread: Sliding Window]
-    Keyframe --> LoopClose[Global Loop Closure & DBoW / NetVLAD Place Recognition]
-    LoopClose --> PoseGraph[Pose Graph Optimization: g2o / GTSAM]
-    PoseGraph --> DenseMap[Dense 3D Gaussian Map Reconstruction]
+    Sensors["RGB-D / Stereo Cameras + High-Rate IMU"] --> Sync["Hardware PTP Timestamp Alignment"]
+    Sync --> Preint["IMU Continuous Manifold Pre-integration: 200 Hz"]
+    Preint --> TrackThread["High-Rate Visual Odometry Thread: 30 Hz"]
+    TrackThread --> Keyframe["Keyframe Selection Logic"]
+    Keyframe --> LocalBA["Local Bundle Adjustment Thread: Sliding Window"]
+    Keyframe --> LoopClose["Global Loop Closure & DBoW / NetVLAD Place Recognition"]
+    LoopClose --> PoseGraph["Pose Graph Optimization: g2o / GTSAM"]
+    PoseGraph --> DenseMap["Dense 3D Gaussian Map Reconstruction"]
+
 ```
 
 ---

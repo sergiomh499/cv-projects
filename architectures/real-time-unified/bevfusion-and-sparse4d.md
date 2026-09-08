@@ -37,14 +37,15 @@ Autonomous perception requires fusing dense visual semantics (RGB cameras) with 
 
 ```mermaid
 flowchart TD
-    MultiCam[6x Surround RGB Cameras] --> CamBackbone[Camera Backbone: Swin / ConvNeXt]
-    MultiCamLSS[Lift-Splat-Shoot: 2D Feature Depth Distribution] --> FastBEV[Fast GPU BEV Pooling Kernel: 8.8x Speedup]
+    MultiCam["6x Surround RGB Cameras"] --> CamBackbone["Camera Backbone: Swin / ConvNeXt"]
+    MultiCamLSS["Lift-Splat-Shoot: 2D Feature Depth Distribution"] --> FastBEV["Fast GPU BEV Pooling Kernel: 8.8x Speedup"]
     CamBackbone --> MultiCamLSS
-    LiDAR[3D LiDAR Point Cloud] --> SparseVoxel[Sparse Voxel / Pillar Backbone]
-    SparseVoxel --> LiDARBEV[LiDAR Bird's-Eye-View Feature Map]
-    FastBEV --> FusedBEV[Convolutional / Transformer Multi-Modal BEV Fusion]
+    LiDAR["3D LiDAR Point Cloud"] --> SparseVoxel["Sparse Voxel / Pillar Backbone"]
+    SparseVoxel --> LiDARBEV["LiDAR Bird's-Eye-View Feature Map"]
+    FastBEV --> FusedBEV["Convolutional / Transformer Multi-Modal BEV Fusion"]
     LiDARBEV --> FusedBEV
-    FusedBEV --> Heads[Unified 3D Detection, Tracking & HD Map Segmentation Heads]
+    FusedBEV --> Heads["Unified 3D Detection, Tracking & HD Map Segmentation Heads"]
+
 ```
 
 ---

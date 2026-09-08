@@ -26,12 +26,13 @@ Related notes: [[topics/explainability-and-interpretability/00-explainability-an
 
 ```mermaid
 flowchart LR
-    Input[Input Image] --> ViT[Vision Transformer Penultimate Layer Activations x in R^d]
-    ViT --> SAE[Sparse Autoencoder: Overcomplete Dictionary Projection f in R^m, m >> d]
-    SAE --> Sparsity[L1 Penalty / TopK Activation Sparsity Gate: Exactly k Active Features]
-    Sparsity --> Monosemantic[Monosemantic Concept Features: e.g. Feature 4092: 'Dog Snout', Feature 811: 'Wheel Rim']
-    Monosemantic --> LLM[Multimodal LLM Auto-Annotator: Automated Semantic Concept Labeling]
-    LLM --> VerifiedAudit[Human-Auditable Causal Decision Graph]
+    Input["Input Image"] --> ViT["Vision Transformer Penultimate Layer Activations x in R^d"]
+    ViT --> SAE["Sparse Autoencoder: Overcomplete Dictionary Projection f in R^m, m >> d"]
+    SAE --> Sparsity["L1 Penalty / TopK Activation Sparsity Gate: Exactly k Active Features"]
+    Sparsity --> Monosemantic["Monosemantic Concept Features: e.g. Feature 4092: 'Dog Snout', Feature 811: 'Wheel Rim'"]
+    Monosemantic --> LLM["Multimodal LLM Auto-Annotator: Automated Semantic Concept Labeling"]
+    LLM --> VerifiedAudit["Human-Auditable Causal Decision Graph"]
+
 ```
 
 ### XAI Methodology Comparison

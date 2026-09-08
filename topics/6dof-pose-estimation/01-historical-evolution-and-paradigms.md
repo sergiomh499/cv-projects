@@ -37,6 +37,7 @@ timeline
     2020-2022 : DenseFusion & GDR-Net : Deep RGB-D geometric fusion and direct differentiable geometry regression
     2022 : MegaPose : First scalable multi-view render-and-compare transformer for unseen CAD objects
     2024-2026 : FoundationPose : Unified zero-shot pose estimation and 30 FPS tracking from untextured CAD models
+
 ```
 
 ---
@@ -55,11 +56,12 @@ Directly regressing 2D keypoint coordinates $(u, v)$ with a CNN fails when the k
 
 ```mermaid
 flowchart TD
-    ObjectPixels[Object Segmentation Mask Pixels] --> UnitVectors[Dense Unit Direction Vectors: v_p -> Keypoint k]
-    UnitVectors --> RANSACVoting[Hough / RANSAC Intersection Voting]
-    RANSACVoting --> RobustKeypoints[Occlusion-Resilient 2D Keypoint Coordinates]
-    RobustKeypoints --> EPnP[Uncertainty-Weighted EPnP Solver]
-    EPnP --> Metric6D[Metric 6-DoF Pose R, T]
+    ObjectPixels["Object Segmentation Mask Pixels"] --> UnitVectors["Dense Unit Direction Vectors: v_p -> Keypoint k"]
+    UnitVectors --> RANSACVoting["Hough / RANSAC Intersection Voting"]
+    RANSACVoting --> RobustKeypoints["Occlusion-Resilient 2D Keypoint Coordinates"]
+    RobustKeypoints --> EPnP["Uncertainty-Weighted EPnP Solver"]
+    EPnP --> Metric6D["Metric 6-DoF Pose R, T"]
+
 ```
 
 ---

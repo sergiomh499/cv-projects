@@ -20,13 +20,14 @@ aliases:
 
 ```mermaid
 flowchart TD
-    Ingest[Raw Field Imagery & Annotations] --> Validate{Great Expectations Schema Assertion}
-    Validate -->|Coordinates Valid, No NaNs| Embed[Extract DINOv2 Visual Embeddings]
-    Validate -->|Corrupted Exif / Negative Coords| Reject[Quarantine Buffer]
-    Embed --> Cluster[Index in FiftyOne Vector Space: Detect Cluster Gaps]
-    Cluster --> Cleanlab[Run Cleanlab Confident Learning on OOF Predictions]
-    Cleanlab --> Curate[Prune Mislabels / Auto-Suggest Verified Labels]
-    Curate --> CleanSet[Golden Dataset for Production Training]
+    Ingest["Raw Field Imagery & Annotations"] --> Validate{"Great Expectations Schema Assertion"}
+    Validate -->|Coordinates Valid, No NaNs| Embed["Extract DINOv2 Visual Embeddings"]
+    Validate -->|Corrupted Exif / Negative Coords| Reject["Quarantine Buffer"]
+    Embed --> Cluster["Index in FiftyOne Vector Space: Detect Cluster Gaps"]
+    Cluster --> Cleanlab["Run Cleanlab Confident Learning on OOF Predictions"]
+    Cleanlab --> Curate["Prune Mislabels / Auto-Suggest Verified Labels"]
+    Curate --> CleanSet["Golden Dataset for Production Training"]
+
 ```
 
 ## 2. Production Engineering Traps & Battle-Tested Workarounds

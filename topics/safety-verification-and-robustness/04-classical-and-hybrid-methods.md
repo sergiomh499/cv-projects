@@ -26,15 +26,16 @@ Related notes: [[topics/safety-verification-and-robustness/00-safety-verificatio
 
 ```mermaid
 flowchart TD
-    State[Physical Robot / Autonomous Vehicle State x in X] --> Branch{Safety Assurance Mechanism}
-    Branch -->|Classical 1892: Lyapunov Direct Method| Lyap[Lyapunov Energy Function V(x): Asymptotic Stability Proof]
-    Branch -->|Classical 2001: Sha Simplex Architecture| Simplex[High-Performance AI + Verified Classical Baseline + Safety Switch]
-    Branch -->|Modern Classical 2014-2026: Control Barrier Functions| CBF[Forward Invariant Safe Set C via Nagumo Theorem h_dot >= -gamma h]
-    Branch -->|Modern Hybrid 2024-2026: Differentiable CBF Gate| Hybrid[Deep Perception Policy -> Quadratic Program QP Safety Filter -> Actuators]
-    Lyap --> GuaranteedConvergence[Mathematically Proved Zero Steady-State Tracking Divergence]
-    Simplex --> FailSafeIntervention[Instantaneous Hardware Handover to Proven Baseline Controller]
-    CBF --> ContinuousInvariant[Provable Collision-Free Invariance Across Continuous State Space]
-    Hybrid --> CertifiedAI[Safe Deployment of Uncertified Deep Reinforcement Learning / VLAs]
+    State["Physical Robot / Autonomous Vehicle State x in X"] --> Branch{"Safety Assurance Mechanism"}
+    Branch -->|Classical 1892: Lyapunov Direct Method| Lyap["Lyapunov Energy Function V(x): Asymptotic Stability Proof"]
+    Branch -->|Classical 2001: Sha Simplex Architecture| Simplex["High-Performance AI + Verified Classical Baseline + Safety Switch"]
+    Branch -->|Modern Classical 2014-2026: Control Barrier Functions| CBF["Forward Invariant Safe Set C via Nagumo Theorem h_dot >= -gamma h"]
+    Branch -->|Modern Hybrid 2024-2026: Differentiable CBF Gate| Hybrid["Deep Perception Policy -> Quadratic Program QP Safety Filter -> Actuators"]
+    Lyap --> GuaranteedConvergence["Mathematically Proved Zero Steady-State Tracking Divergence"]
+    Simplex --> FailSafeIntervention["Instantaneous Hardware Handover to Proven Baseline Controller"]
+    CBF --> ContinuousInvariant["Provable Collision-Free Invariance Across Continuous State Space"]
+    Hybrid --> CertifiedAI["Safe Deployment of Uncertified Deep Reinforcement Learning / VLAs"]
+
 ```
 
 ### Safety Certification Paradigms Compared

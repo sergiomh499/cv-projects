@@ -36,15 +36,16 @@ SAM 2 introduces a **hierarchical Hiera image/video encoder** coupled with a **s
 
 ```mermaid
 flowchart TD
-    Video[Video Frames / Streaming Ingestion] --> Hiera[Hiera Multiscale Image/Video Encoder]
-    Hiera --> Feat[Frame Embeddings]
-    Prompt[Point / Box / Mask Prompts] --> PromptEnc[Prompt Encoder]
-    MemoryBank[(Streaming Memory Bank: Past Frame Features & Object Pointers)] --> MemAttn[Memory Cross-Attention]
-    Feat --> Decoder[Two-Way Lightweight Transformer Decoder]
+    Video["Video Frames / Streaming Ingestion"] --> Hiera["Hiera Multiscale Image/Video Encoder"]
+    Hiera --> Feat["Frame Embeddings"]
+    Prompt["Point / Box / Mask Prompts"] --> PromptEnc["Prompt Encoder"]
+    MemoryBank["(Streaming Memory Bank: Past Frame Features & Object Pointers)"] --> MemAttn["Memory Cross-Attention"]
+    Feat --> Decoder["Two-Way Lightweight Transformer Decoder"]
     PromptEnc --> Decoder
     MemAttn --> Decoder
-    Decoder --> Out[Real-Time Masks + Quality Estimation at 44 FPS]
+    Decoder --> Out["Real-Time Masks + Quality Estimation at 44 FPS"]
     Out --> MemoryBank
+
 ```
 
 ---

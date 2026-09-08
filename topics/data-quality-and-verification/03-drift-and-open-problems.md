@@ -26,13 +26,14 @@ Related notes: [[topics/data-quality-and-verification/00-data-quality-and-verifi
 
 ```mermaid
 flowchart TD
-    Raw[Ingested Multimodal Stream: Images + 3D LiDAR + Sensor Metadata] --> Contract[Step 1: Declarative Schema Validation: Great Expectations]
-    Contract -->|Valid Dimensions & Ranges| Embed[Step 2: Dense Feature Extraction via DINOv2 / SigLIP]
-    Contract -->|Degenerate NaN / Range Violations| Quarantine[Quarantine Buffer & Sentry Alert]
-    Embed --> Geometry[Step 3: HDBSCAN Density Clustering in FiftyOne]
-    Geometry --> SplitAudit[Step 4: Near-Duplicate Leakage Auditor: GroupKFold]
-    SplitAudit --> Confident[Step 5: Cleanlab Confident Learning Out-of-Sample Probability Audit]
-    Confident --> Golden[Validated Golden Dataset for Production Training]
+    Raw["Ingested Multimodal Stream: Images + 3D LiDAR + Sensor Metadata"] --> Contract["Step 1: Declarative Schema Validation: Great Expectations"]
+    Contract -->|Valid Dimensions & Ranges| Embed["Step 2: Dense Feature Extraction via DINOv2 / SigLIP"]
+    Contract -->|Degenerate NaN / Range Violations| Quarantine["Quarantine Buffer & Sentry Alert"]
+    Embed --> Geometry["Step 3: HDBSCAN Density Clustering in FiftyOne"]
+    Geometry --> SplitAudit["Step 4: Near-Duplicate Leakage Auditor: GroupKFold"]
+    SplitAudit --> Confident["Step 5: Cleanlab Confident Learning Out-of-Sample Probability Audit"]
+    Confident --> Golden["Validated Golden Dataset for Production Training"]
+
 ```
 
 ### Data Quality Tooling Benchmark

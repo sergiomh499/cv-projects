@@ -33,14 +33,15 @@ When real data is scarce (e.g. 50–500 annotated physical images, or a few reco
 
 ```mermaid
 flowchart TD
-    SyntheticEnv[Unreal Engine 5 Synthetic World: Nanite + Lumen + Movie Render Queue] --> MassiveSyn[Massive Synthetic Dataset: 100k+ Images with Perfect 6D Pose & Masks]
-    RealWorld[Scarce Real Physical Data: e.g. 100-300 Real Samples] --> Partition{Strict Real Split}
-    Partition -->|60% Real Data: UNLABELED ONLY| Adaptation[Unsupervised Domain Adaptation: DANN / Optimal Transport / Style Alignment]
-    Partition -->|20% Real Data: LABELED| Val[Real Validation Set: Hyperparameter & Epoch Early Stopping]
-    Partition -->|20% Real Data: LABELED HELD-OUT| Test[Vaulted Test Benchmark: Final Certification ONLY]
-    MassiveSyn --> SupervisedTrain[Supervised Task Loss: Detection / 6D Pose / Segmentation]
-    SupervisedTrain --> Model[Shared Feature Encoder]
+    SyntheticEnv["Unreal Engine 5 Synthetic World: Nanite + Lumen + Movie Render Queue"] --> MassiveSyn["Massive Synthetic Dataset: 100k+ Images with Perfect 6D Pose & Masks"]
+    RealWorld["Scarce Real Physical Data: e.g. 100-300 Real Samples"] --> Partition{"Strict Real Split"}
+    Partition -->|60% Real Data: UNLABELED ONLY| Adaptation["Unsupervised Domain Adaptation: DANN / Optimal Transport / Style Alignment"]
+    Partition -->|20% Real Data: LABELED| Val["Real Validation Set: Hyperparameter & Epoch Early Stopping"]
+    Partition -->|20% Real Data: LABELED HELD-OUT| Test["Vaulted Test Benchmark: Final Certification ONLY"]
+    MassiveSyn --> SupervisedTrain["Supervised Task Loss: Detection / 6D Pose / Segmentation"]
+    SupervisedTrain --> Model["Shared Feature Encoder"]
     Adaptation --> Model
+
 ```
 
 ### The Golden Law of Scarce Real Data:
@@ -55,12 +56,13 @@ Unreal Engine 5.4/5.5 provides unmatched geometric and radiometric fidelity thro
 
 ```mermaid
 flowchart LR
-    UE5Editor[UE5 Level & CAD Blueprints] --> Randomizer[Automated Domain Randomization Engine: C++ / Python Remote Control API]
-    Randomizer --> MatRand[Material & PBR Parameter Randomization]
-    Randomizer --> LightRand[Lumen HDRI & SkyAtmosphere Randomization]
-    Randomizer --> SensorRand[Camera Optical Aberrations & Noise Model]
-    SensorRand --> MRQ[Movie Render Queue: High-Throughput Headless Export]
-    MRQ --> Channels[Export Pass: RGB 16-bit, Depth 32-bit float, Instance ID, Object 6D Bounding Box]
+    UE5Editor["UE5 Level & CAD Blueprints"] --> Randomizer["Automated Domain Randomization Engine: C++ / Python Remote Control API"]
+    Randomizer --> MatRand["Material & PBR Parameter Randomization"]
+    Randomizer --> LightRand["Lumen HDRI & SkyAtmosphere Randomization"]
+    Randomizer --> SensorRand["Camera Optical Aberrations & Noise Model"]
+    SensorRand --> MRQ["Movie Render Queue: High-Throughput Headless Export"]
+    MRQ --> Channels["Export Pass: RGB 16-bit, Depth 32-bit float, Instance ID, Object 6D Bounding Box"]
+
 ```
 
 ### 1. PBR Material Randomization in UE5:
@@ -135,6 +137,7 @@ sequenceDiagram
     Note over Train,Bench: Step 4: Verification Against Held-Out Real Data
     Bench->>Train: Run validation on 50 LABELED real images
     Train-->>Bench: Compute mAP, ADD-S metric for 6-DoF pose, and confusion matrix
+
 ```
 
 ### Phase 1: Automated Synthetic Generation (Unreal Engine 5)

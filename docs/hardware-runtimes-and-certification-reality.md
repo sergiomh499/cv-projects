@@ -30,17 +30,18 @@ Related notes: [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]
 
 ```mermaid
 flowchart TD
-    Model[Trained Model: PyTorch / ONNX Graph] --> Target{Target Hardware Runtime}
+    Model["Trained Model: PyTorch / ONNX Graph"] --> Target{"Target Hardware Runtime"}
     
-    Target -->|NVIDIA GPU: Consumer / Orin| CUDA_TRT[CUDA & TensorRT 10.x]
-    Target -->|Safety-Critical Automotive / Avionics| VKSC[Vulkan SC & CoreAVI VkCore SC]
-    Target -->|Cross-Vendor Commercial Edge| VK[Standard Vulkan 1.3 Compute / Kompute]
-    Target -->|AMD / Xilinx FPGA & Versal NPU| VAI[AMD Vitis AI 5.x & DPU/NPU IP]
+    Target -->|NVIDIA GPU: Consumer / Orin| CUDA_TRT["CUDA & TensorRT 10.x"]
+    Target -->|Safety-Critical Automotive / Avionics| VKSC["Vulkan SC & CoreAVI VkCore SC"]
+    Target -->|Cross-Vendor Commercial Edge| VK["Standard Vulkan 1.3 Compute / Kompute"]
+    Target -->|AMD / Xilinx FPGA & Versal NPU| VAI["AMD Vitis AI 5.x & DPU/NPU IP"]
     
-    CUDA_TRT --> TRT_Exec[Dynamic JIT Profiling -> Layer Fusion -> Int8 Tensor Cores]
-    VKSC --> VKSC_Exec[Offline Pipeline Compilation -> Zero Runtime Alloc -> Static VRAM Ring]
-    VK --> VK_Exec[GLSL/HLSL Shaders -> SPIR-V Bytecode -> Compute Command Buffers]
-    VAI --> VAI_Exec[Quark Quantizer -> XIR Graph -> AIE-ML DPU Microcode Assembly]
+    CUDA_TRT --> TRT_Exec["Dynamic JIT Profiling -> Layer Fusion -> Int8 Tensor Cores"]
+    VKSC --> VKSC_Exec["Offline Pipeline Compilation -> Zero Runtime Alloc -> Static VRAM Ring"]
+    VK --> VK_Exec["GLSL/HLSL Shaders -> SPIR-V Bytecode -> Compute Command Buffers"]
+    VAI --> VAI_Exec["Quark Quantizer -> XIR Graph -> AIE-ML DPU Microcode Assembly"]
+
 ```
 
 ### 1. NVIDIA CUDA & TensorRT 10.x

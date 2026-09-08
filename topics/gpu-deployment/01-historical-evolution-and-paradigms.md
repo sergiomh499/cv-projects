@@ -38,6 +38,7 @@ timeline
     2022 : FlashAttention : Dao et al. : Tiling attention computation in SRAM to avoid HBM memory traffic
     2023 : OpenAI Triton : Python-like domain-specific language generating peak CUDA/ROCm kernels
     2024-2026 : TensorRT 10 & Blackwell : Native FP8/FP4 micro-scaling formats and Transformer Engines
+
 ```
 
 ---
@@ -63,16 +64,17 @@ Tri Dao et al. introduced **FlashAttention**:
 
 ```mermaid
 flowchart TD
-    subgraph Traditional Attention (HBM Memory Bottleneck)
-        Q1[Q, K Tensors in HBM] --> Matmul1[Matmul: Q x K^T]
-        Matmul1 --> Write1[Write N x N Matrix to High-Latency HBM]
-        Write1 --> Read1[Read N x N Matrix from HBM to compute Softmax]
-        Read1 --> Write2[Write Softmax Matrix to HBM]
+    subgraph Traditional_Attention__HBM_Memory_Bottleneck ["Traditional Attention (HBM Memory Bottleneck)"]
+        Q1["Q, K Tensors in HBM"] --> Matmul1["Matmul: Q x K^T"]
+        Matmul1 --> Write1["Write N x N Matrix to High-Latency HBM"]
+        Write1 --> Read1["Read N x N Matrix from HBM to compute Softmax"]
+        Read1 --> Write2["Write Softmax Matrix to HBM"]
     end
-    subgraph FlashAttention (Fused On-Chip SRAM Tiling)
-        Q2[Q, K, V Loaded in SRAM Tiles] --> FusedKernel[Fused Online Softmax + GEMM in SRAM]
-        FusedKernel --> Out[Write Final Output Directly to HBM: Zero N x N Intermediate Storage]
+    subgraph FlashAttention__Fused_On_Chip_SRAM_Tiling ["FlashAttention (Fused On-Chip SRAM Tiling)"]
+        Q2["Q, K, V Loaded in SRAM Tiles"] --> FusedKernel["Fused Online Softmax + GEMM in SRAM"]
+        FusedKernel --> Out["Write Final Output Directly to HBM: Zero N x N Intermediate Storage"]
     end
+
 ```
 
 ---

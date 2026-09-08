@@ -36,11 +36,12 @@ Traditional Visual SLAM (e.g. ORB-SLAM3) reconstructs sparse 3D point clouds wit
 
 ```mermaid
 flowchart LR
-    RGBD[Incoming RGB / RGB-D Frame] --> Tracking[Tracking Thread: Camera Pose Optimization via Photometric Loss]
-    Tracking --> Keyframe[Keyframe Selection & Insertion]
-    Keyframe --> Mapping[Mapping Thread: Densify, Clone & Prune 3D Gaussians]
-    Mapping --> SplatEngine[Differentiable Tile-Based Gaussian Rasterizer]
-    SplatEngine --> OutMap[Photorealistic Dense 3D Metric Map & Metric Odometry]
+    RGBD["Incoming RGB / RGB-D Frame"] --> Tracking["Tracking Thread: Camera Pose Optimization via Photometric Loss"]
+    Tracking --> Keyframe["Keyframe Selection & Insertion"]
+    Keyframe --> Mapping["Mapping Thread: Densify, Clone & Prune 3D Gaussians"]
+    Mapping --> SplatEngine["Differentiable Tile-Based Gaussian Rasterizer"]
+    SplatEngine --> OutMap["Photorealistic Dense 3D Metric Map & Metric Odometry"]
+
 ```
 
 ---

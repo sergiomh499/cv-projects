@@ -35,16 +35,17 @@ While Vision Transformers dominate massive cloud-scale training, pure Convolutio
 
 ```mermaid
 flowchart LR
-    subgraph ConvNeXt V2 Block
-        Input1[Input 7x7 Depthwise Conv] --> LayerNorm[LayerNorm & 1x1 Expansion]
-        LayerNorm --> GELU[GELU Activation]
-        GELU --> GRN[Global Response Normalization (GRN)]
-        GRN --> Linear[1x1 Projection & Residual Add]
+    subgraph ConvNeXt_V2_Block ["ConvNeXt V2 Block"]
+        Input1["Input 7x7 Depthwise Conv"] --> LayerNorm["LayerNorm & 1x1 Expansion"]
+        LayerNorm --> GELU["GELU Activation"]
+        GELU --> GRN["Global Response Normalization (GRN)"]
+        GRN --> Linear["1x1 Projection & Residual Add"]
     end
-    subgraph MobileNetV4 UIB
-        Input2[Input] --> InvertedBot[Universal Inverted Bottleneck: Dynamic Depthwise/Pointwise Paths]
-        InvertedBot --> HardwareOpt[Hardware-Specific DSP/NPU Optimization]
+    subgraph MobileNetV4_UIB ["MobileNetV4 UIB"]
+        Input2["Input"] --> InvertedBot["Universal Inverted Bottleneck: Dynamic Depthwise/Pointwise Paths"]
+        InvertedBot --> HardwareOpt["Hardware-Specific DSP/NPU Optimization"]
     end
+
 ```
 
 ---

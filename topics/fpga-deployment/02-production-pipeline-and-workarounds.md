@@ -28,11 +28,12 @@ Related notes: [[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment M
 
 ```mermaid
 flowchart LR
-    MIPI[MIPI CSI-2 Camera Sensor] --> V4L2[FPGA PL Video Pipeline / DMA Subsystem]
-    V4L2 --> DirectBRAM[Direct Stream to Contiguous CMA Pinned Memory]
-    DirectBRAM --> DPU[Hardware DPU Core: Vitis AI Runtime]
-    DPU --> PostProc[Hardware AXI-Stream Post-Processing Fused Kernel]
-    PostProc --> UDP[Ethernet UDP / ZeroMQ Industrial Bus Output]
+    MIPI["MIPI CSI-2 Camera Sensor"] --> V4L2["FPGA PL Video Pipeline / DMA Subsystem"]
+    V4L2 --> DirectBRAM["Direct Stream to Contiguous CMA Pinned Memory"]
+    DirectBRAM --> DPU["Hardware DPU Core: Vitis AI Runtime"]
+    DPU --> PostProc["Hardware AXI-Stream Post-Processing Fused Kernel"]
+    PostProc --> UDP["Ethernet UDP / ZeroMQ Industrial Bus Output"]
+
 ```
 
 ---

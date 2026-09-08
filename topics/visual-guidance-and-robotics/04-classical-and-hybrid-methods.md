@@ -27,15 +27,16 @@ Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robo
 
 ```mermaid
 flowchart TD
-    Sensors[Wrist Camera / Eye-in-Hand RGB-D Feed] --> Branch{Control Paradigm}
-    Branch -->|Classical 1990s: Image-Based IBVS| IBVS[Direct Pixel Error Minimization via Image Jacobian L_e]
-    Branch -->|Classical 1990s: Position-Based PBVS| PBVS[3D Metric Pose Estimation -> Cartesian Kinematic Control]
-    Branch -->|Pure Deep Learning: VLA End-to-End| VLA[OpenVLA / Octo: Multi-Token Autoregressive Action Generation]
-    Branch -->|Modern Hybrid 2025-2026: SOTA Paradigm| Hybrid[High-Level VLA 5Hz Goal Pose -> Classical IBVS 1000Hz Motor Convergence]
-    IBVS --> DeterministicClosedLoop[Zero Calibration Drift; Susceptible to Image Feature Retreat]
-    PBVS --> StraightLines[Direct Straight-Line Cartesian Trajectories; Fails Under Bad Calibration]
-    VLA --> OpenWorld[Open-Vocabulary Generalization to Novel Physical Utensils]
-    Hybrid --> MillimeterAccuracy[Millimeter Precision Peg-in-Hole Assembly with Zero Visual Drift]
+    Sensors["Wrist Camera / Eye-in-Hand RGB-D Feed"] --> Branch{"Control Paradigm"}
+    Branch -->|Classical 1990s: Image-Based IBVS| IBVS["Direct Pixel Error Minimization via Image Jacobian L_e"]
+    Branch -->|Classical 1990s: Position-Based PBVS| PBVS["3D Metric Pose Estimation -> Cartesian Kinematic Control"]
+    Branch -->|Pure Deep Learning: VLA End-to-End| VLA["OpenVLA / Octo: Multi-Token Autoregressive Action Generation"]
+    Branch -->|Modern Hybrid 2025-2026: SOTA Paradigm| Hybrid["High-Level VLA 5Hz Goal Pose -> Classical IBVS 1000Hz Motor Convergence"]
+    IBVS --> DeterministicClosedLoop["Zero Calibration Drift; Susceptible to Image Feature Retreat"]
+    PBVS --> StraightLines["Direct Straight-Line Cartesian Trajectories; Fails Under Bad Calibration"]
+    VLA --> OpenWorld["Open-Vocabulary Generalization to Novel Physical Utensils"]
+    Hybrid --> MillimeterAccuracy["Millimeter Precision Peg-in-Hole Assembly with Zero Visual Drift"]
+
 ```
 
 ### Visual Guidance Control Paradigms Compared

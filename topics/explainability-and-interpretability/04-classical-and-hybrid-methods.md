@@ -26,15 +26,16 @@ Related notes: [[topics/explainability-and-interpretability/00-explainability-an
 
 ```mermaid
 flowchart TD
-    Inference[Black-Box Vision Model Output f: x -> y] --> Branch{Attribution Methodology}
-    Branch -->|Classical 1953: Shapley Values| Shapley[Cooperative Game Theory: Marginal Contributions Over All 2^N Coalitions]
-    Branch -->|Classical 1991: Sobol Sensitivity| Sobol[Variance Decomposition: Main Effect S_i + Total Order Interaction S_Ti]
-    Branch -->|Surrogate 2016: LIME Local Linear| LIME[Perturbation Sampling Around x -> Locally Weighted Sparse Ridge Regressor]
-    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid[Sparse Autoencoder SAE Monosemantic Features + KernelSHAP Game Attribution]
-    Shapley --> Axiomatic[Only Method Satisfying Efficiency, Symmetry, Linearity, Null Player]
-    Sobol --> OrthogonalFactors[Quantifying Multi-Parameter Physical Sensitivities Without Black-Box Assumption]
-    LIME --> VisualSuperpixels[Human-Auditable Segment Importance Masks]
-    Hybrid --> CausalCircuit[Causal Explanation of High-Level Concepts with Zero Pixel-Noise Blur]
+    Inference["Black-Box Vision Model Output f: x -> y"] --> Branch{"Attribution Methodology"}
+    Branch -->|Classical 1953: Shapley Values| Shapley["Cooperative Game Theory: Marginal Contributions Over All 2^N Coalitions"]
+    Branch -->|Classical 1991: Sobol Sensitivity| Sobol["Variance Decomposition: Main Effect S_i + Total Order Interaction S_Ti"]
+    Branch -->|Surrogate 2016: LIME Local Linear| LIME["Perturbation Sampling Around x -> Locally Weighted Sparse Ridge Regressor"]
+    Branch -->|Modern Hybrid 2024-2026: SOTA Paradigm| Hybrid["Sparse Autoencoder SAE Monosemantic Features + KernelSHAP Game Attribution"]
+    Shapley --> Axiomatic["Only Method Satisfying Efficiency, Symmetry, Linearity, Null Player"]
+    Sobol --> OrthogonalFactors["Quantifying Multi-Parameter Physical Sensitivities Without Black-Box Assumption"]
+    LIME --> VisualSuperpixels["Human-Auditable Segment Importance Masks"]
+    Hybrid --> CausalCircuit["Causal Explanation of High-Level Concepts with Zero Pixel-Noise Blur"]
+
 ```
 
 ### Explainability Attribution Paradigms Compared

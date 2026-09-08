@@ -27,15 +27,16 @@ Related notes: [[topics/slam-and-spatial-perception/00-slam-and-spatial-percepti
 
 ```mermaid
 flowchart TD
-    Camera[Stereo / Monocular Camera Feed] --> Branch{Spatial Perception Paradigm}
-    Branch -->|Classical 1990s: Epipolar Geometry| Epi[Essential Matrix E = [t]_x R -> SVD Decomposition]
-    Branch -->|Classical 2010s: Sparse Keypoint SLAM| ORB[ORB-SLAM3: DBoW2 Place Recognition + Local BA Factor Graph]
-    Branch -->|Modern Hybrid 2024-2026: Deep Frontend| Super[SuperPoint Keypoints + LightGlue Matching + Ceres Backend]
-    Branch -->|Dense Volumetric 2024-2026: 3DGS| MonoGS[MonoGS: Differentiable 3D Gaussians for Photorealistic Map]
-    Epi --> PoseEst[Metric 6-DoF Rotation & Translation Up to Scale]
-    ORB --> MillimeterRT[Deterministic Millimeter Real-Time Tracking on CPU]
-    Super --> Textureless[Robust Feature Matching Through Smoke / Glare / Dark]
-    MonoGS --> DenseCollision[Continuous Real-Time 3D Mesh & Rendering]
+    Camera["Stereo / Monocular Camera Feed"] --> Branch{"Spatial Perception Paradigm"}
+    Branch -->|Classical 1990s: Epipolar Geometry| Epi["Essential Matrix E = [t]_x R -> SVD Decomposition"]
+    Branch -->|Classical 2010s: Sparse Keypoint SLAM| ORB["ORB-SLAM3: DBoW2 Place Recognition + Local BA Factor Graph"]
+    Branch -->|Modern Hybrid 2024-2026: Deep Frontend| Super["SuperPoint Keypoints + LightGlue Matching + Ceres Backend"]
+    Branch -->|Dense Volumetric 2024-2026: 3DGS| MonoGS["MonoGS: Differentiable 3D Gaussians for Photorealistic Map"]
+    Epi --> PoseEst["Metric 6-DoF Rotation & Translation Up to Scale"]
+    ORB --> MillimeterRT["Deterministic Millimeter Real-Time Tracking on CPU"]
+    Super --> Textureless["Robust Feature Matching Through Smoke / Glare / Dark"]
+    MonoGS --> DenseCollision["Continuous Real-Time 3D Mesh & Rendering"]
+
 ```
 
 ### SLAM Architecture Comparison

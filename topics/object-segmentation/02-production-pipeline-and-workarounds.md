@@ -28,12 +28,13 @@ Related notes: [[topics/object-segmentation/00-object-segmentation-moc|Object Se
 
 ```mermaid
 flowchart LR
-    Sensor[Camera / Video Stream] --> Ingest[DMA Ingestion & Pinned Memory Buffer]
-    Ingest --> Resize[Aspect-Preserving Resize & Normalization]
-    Resize --> TRT[TensorRT Forward Pass: Backbone + Mask Heads]
-    TRT --> MatMul[Fused Prototype GEMM / Decoder Kernel]
-    MatMul --> Post[Contour Extraction / RLE Compression]
-    Post --> Stream[Zero-Copy IPC Stream to Downstream Planner]
+    Sensor["Camera / Video Stream"] --> Ingest["DMA Ingestion & Pinned Memory Buffer"]
+    Ingest --> Resize["Aspect-Preserving Resize & Normalization"]
+    Resize --> TRT["TensorRT Forward Pass: Backbone + Mask Heads"]
+    TRT --> MatMul["Fused Prototype GEMM / Decoder Kernel"]
+    MatMul --> Post["Contour Extraction / RLE Compression"]
+    Post --> Stream["Zero-Copy IPC Stream to Downstream Planner"]
+
 ```
 
 ### Stage Breakdown:
@@ -87,10 +88,11 @@ Instead of upsampling the entire mask uniformly, use **PointRend** (Kirillov et 
 
 ```mermaid
 flowchart TD
-    Coarse[Coarse 1/4 Prototype Mask] --> Identify[Identify Uncertain Boundary Pixels: p ~ 0.5]
-    Identify --> SparseSample[Sample Top 5% Coordinate Points]
-    SparseSample --> PointHead[Lightweight MLP Point Evaluator]
-    PointHead --> CrispMask[Crisp Sub-Pixel Boundaries with Zero Interior Overhead]
+    Coarse["Coarse 1/4 Prototype Mask"] --> Identify["Identify Uncertain Boundary Pixels: p ~ 0.5"]
+    Identify --> SparseSample["Sample Top 5% Coordinate Points"]
+    SparseSample --> PointHead["Lightweight MLP Point Evaluator"]
+    PointHead --> CrispMask["Crisp Sub-Pixel Boundaries with Zero Interior Overhead"]
+
 ```
 
 ### Workaround 3: Downsampled Buffer Streaming

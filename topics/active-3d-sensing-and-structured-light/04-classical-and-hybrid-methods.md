@@ -56,10 +56,11 @@ Active depth sensors often produce sparse, noisy, or edge-blurred depth maps. Mo
 
 ```mermaid
 flowchart TD
-    SparseDepth[Raw Active Depth Map: Noisy, Holes, Flying Pixels] --> NormalFilter[Step 1: Classical Surface Normal Filter & Flying Pixel Rejection]
-    NormalFilter --> GuidedNet[Step 2: Bilateral Guided Edge-Preserving Neural Network]
-    HighResRGB[4K High-Resolution RGB Stream] --> GuidedNet
-    GuidedNet --> DenseDepth[Sub-Millimeter Dense Metric 3D Depth Map]
+    SparseDepth["Raw Active Depth Map: Noisy, Holes, Flying Pixels"] --> NormalFilter["Step 1: Classical Surface Normal Filter & Flying Pixel Rejection"]
+    NormalFilter --> GuidedNet["Step 2: Bilateral Guided Edge-Preserving Neural Network"]
+    HighResRGB["4K High-Resolution RGB Stream"] --> GuidedNet
+    GuidedNet --> DenseDepth["Sub-Millimeter Dense Metric 3D Depth Map"]
+
 ```
 
 ### Key Engineering Benefits:

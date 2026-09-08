@@ -51,11 +51,12 @@ Related notes: [[topics/sensor-fusion/03-uniad-and-open-problems|Sensor Fusion F
 
 ```mermaid
 flowchart TD
-    Sensor[Camera / LiDAR Stream] --> Perception[Neural Network Perception: Object Detector / VLA]
-    Perception --> Output[Raw Proposed Trajectory / Bounding Boxes]
-    Output --> CBF{Runtime Safety Filter: Control Barrier Function}
-    CBF -->|Within Invariant Safety Set| Motor[Direct Actuator Execution]
-    CBF -->|Violates Invariant Boundary| Clamp[Intervene: Clamp Torque / Emergency Stop]
+    Sensor["Camera / LiDAR Stream"] --> Perception["Neural Network Perception: Object Detector / VLA"]
+    Perception --> Output["Raw Proposed Trajectory / Bounding Boxes"]
+    Output --> CBF{"Runtime Safety Filter: Control Barrier Function"}
+    CBF -->|Within Invariant Safety Set| Motor["Direct Actuator Execution"]
+    CBF -->|Violates Invariant Boundary| Clamp["Intervene: Clamp Torque / Emergency Stop"]
+
 ```
 
 ### Production Workarounds for Safety-Critical Constraints:

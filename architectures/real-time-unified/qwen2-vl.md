@@ -27,11 +27,12 @@ Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robo
 
 ```mermaid
 flowchart LR
-    Input[Arbitrary Image / Video WxHxF] --> NaiveRes[Naive Dynamic Resolution: Exact Patch Tokenization]
-    NaiveRes --> ViT[Vision Transformer: Dynamic 2D Grid Pos Embedding]
-    ViT --> MROPE[Multimodal RoPE: Decoupled Temporal, Height, Width Rotations]
-    MROPE --> LLM[Qwen2 LLM Backbone: 2B / 7B / 72B Parameters]
-    LLM --> Out[Bounding Box Tokens / Multi-Turn Text / Action Decisions]
+    Input["Arbitrary Image / Video WxHxF"] --> NaiveRes["Naive Dynamic Resolution: Exact Patch Tokenization"]
+    NaiveRes --> ViT["Vision Transformer: Dynamic 2D Grid Pos Embedding"]
+    ViT --> MROPE["Multimodal RoPE: Decoupled Temporal, Height, Width Rotations"]
+    MROPE --> LLM["Qwen2 LLM Backbone: 2B / 7B / 72B Parameters"]
+    LLM --> Out["Bounding Box Tokens / Multi-Turn Text / Action Decisions"]
+
 ```
 
 ### 1. Naive Dynamic Resolution

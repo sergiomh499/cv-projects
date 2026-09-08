@@ -51,12 +51,13 @@ Related notes: [[topics/data-quality-and-verification/README|Data Quality Playbo
 
 ```mermaid
 flowchart LR
-    Input[Input Image] --> Backbone[Vision Transformer / ConvNet Feature Extractor]
-    Backbone --> Latent[Intermediate Latent Activations z]
-    Latent --> SAE[Sparse Autoencoder: Unpacks Latents into Sparse Monosemantic Features]
+    Input["Input Image"] --> Backbone["Vision Transformer / ConvNet Feature Extractor"]
+    Backbone --> Latent["Intermediate Latent Activations z"]
+    Latent --> SAE["Sparse Autoencoder: Unpacks Latents into Sparse Monosemantic Features"]
     SAE --> Concepts["Interpretable Concept Space: (e.g. 'metallic reflection', 'sharp edge')"]
-    Concepts --> LinearClassifier[Linear Probe / Concept Predictor]
-    LinearClassifier --> Decision[Final Verified Decision + Human-Readable Audit Trail]
+    Concepts --> LinearClassifier["Linear Probe / Concept Predictor"]
+    LinearClassifier --> Decision["Final Verified Decision + Human-Readable Audit Trail"]
+
 ```
 
 ### Production Workarounds for Explainability Traps:

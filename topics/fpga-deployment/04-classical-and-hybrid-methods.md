@@ -26,15 +26,16 @@ Related notes: [[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment M
 
 ```mermaid
 flowchart TD
-    Model[Deep Neural Network Architecture] --> Branch{FPGA Implementation Strategy}
-    Branch -->|Classical 1978: Kung-Leiserson Systolic Array| Systolic[2D Grid of Processing Elements with Lock-Step Register Shifting]
-    Branch -->|Classical Fixed-Point DSP: Q-Format| Fixed[Fixed-Point Integer MAC Arithmetic: Q1.7 / Q4.12 Two's Complement]
-    Branch -->|Classical Memory Banking: Ping-Pong BRAM| PingPong[Dual-Port Block RAM Pipelined Buffer Overlapping Compute & DMA]
-    Branch -->|Modern Hybrid 2024-2026: ARM + DPU / AIE| Hybrid[ARM Scalar Controller + PL Streaming Matrix Multiplier + AIE Vector Engine]
-    Systolic --> HighThroughput[100% DSP Utilization with Localized Wire Routing]
-    Fixed --> MinimalLUTs[Zero Floating-Point Core Bloat; Ultra-Low Power Consumption]
-    PingPong --> ZeroWaitStates[Hiding Off-Chip DDR Latency via Deterministic Burst Transfers]
-    Hybrid --> TurnkeyVersal[High-Level PyTorch Compilation on Heterogeneous Silicon]
+    Model["Deep Neural Network Architecture"] --> Branch{"FPGA Implementation Strategy"}
+    Branch -->|Classical 1978: Kung-Leiserson Systolic Array| Systolic["2D Grid of Processing Elements with Lock-Step Register Shifting"]
+    Branch -->|Classical Fixed-Point DSP: Q-Format| Fixed["Fixed-Point Integer MAC Arithmetic: Q1.7 / Q4.12 Two's Complement"]
+    Branch -->|Classical Memory Banking: Ping-Pong BRAM| PingPong["Dual-Port Block RAM Pipelined Buffer Overlapping Compute & DMA"]
+    Branch -->|Modern Hybrid 2024-2026: ARM + DPU / AIE| Hybrid["ARM Scalar Controller + PL Streaming Matrix Multiplier + AIE Vector Engine"]
+    Systolic --> HighThroughput["100% DSP Utilization with Localized Wire Routing"]
+    Fixed --> MinimalLUTs["Zero Floating-Point Core Bloat; Ultra-Low Power Consumption"]
+    PingPong --> ZeroWaitStates["Hiding Off-Chip DDR Latency via Deterministic Burst Transfers"]
+    Hybrid --> TurnkeyVersal["High-Level PyTorch Compilation on Heterogeneous Silicon"]
+
 ```
 
 ### Digital Arithmetic Implementation Trade-offs

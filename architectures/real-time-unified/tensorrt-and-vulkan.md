@@ -35,14 +35,15 @@ In production, two complementary runtimes dominate:
 
 ```mermaid
 flowchart TD
-    PyTorch[Trained PyTorch Model] --> ONNX[Standardized ONNX Export]
-    ONNX --> Branch{Target Platform?}
-    Branch -->|NVIDIA GPU / Jetson| TRT[TensorRT 10 Engine Optimizer]
-    Branch -->|AMD / Intel / Mobile / Pi| Vulkan[Vulkan Compute Pipeline: NCNN / Kompute]
-    TRT --> FusedTRT[Horizontal/Vertical Layer Fusion + FP8/INT8 Kernels]
-    Vulkan --> SPIRV[Compiled SPIR-V Compute Shaders]
-    FusedTRT --> Out1[Sub-millisecond NVIDIA Hardware Execution]
-    SPIRV --> Out2[Vendor-Agnostic Cross-Platform GPU Execution]
+    PyTorch["Trained PyTorch Model"] --> ONNX["Standardized ONNX Export"]
+    ONNX --> Branch{"Target Platform?"}
+    Branch -->|NVIDIA GPU / Jetson| TRT["TensorRT 10 Engine Optimizer"]
+    Branch -->|AMD / Intel / Mobile / Pi| Vulkan["Vulkan Compute Pipeline: NCNN / Kompute"]
+    TRT --> FusedTRT["Horizontal/Vertical Layer Fusion + FP8/INT8 Kernels"]
+    Vulkan --> SPIRV["Compiled SPIR-V Compute Shaders"]
+    FusedTRT --> Out1["Sub-millisecond NVIDIA Hardware Execution"]
+    SPIRV --> Out2["Vendor-Agnostic Cross-Platform GPU Execution"]
+
 ```
 
 ---

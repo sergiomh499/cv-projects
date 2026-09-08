@@ -30,15 +30,16 @@ The visual backbone landscape has bifurcated between **pure attention scaling** 
 
 ```mermaid
 flowchart TD
-    RawImage[Raw RGB Image 224x224 / 384x384] --> Branch{Architectural Design Philosophy}
-    Branch -->|Pure Transformer Scaling| EVA[EVA-02: ViT + Masked Image Modeling Distillation]
-    Branch -->|Deformable ConvNet| InternImage[InternImage: DCNv3 Deformable Kernels]
-    Branch -->|Pure Modern ConvNet| ConvNeXt[ConvNeXt V2: Inverted Bottleneck + GRN]
-    Branch -->|Mobile Hybrid Pareto| MobileNet[MobileNetV4: Universal Inverted Bottleneck UIB]
-    EVA --> DenseFeatures1[90.0% ImageNet Top-1: High Accuracy, Heavy Attention Matrix]
-    InternImage --> DenseFeatures2[Adaptive Spatial Receptive Fields: Ideal for Dense Heads]
-    ConvNeXt --> DenseFeatures3[Plug-and-Play TensorRT Simplicity: Zero Attention Cache]
-    MobileNet --> DenseFeatures4[Sub-Millisecond Mobile NPU / DSP Latency: 0.42 ms]
+    RawImage["Raw RGB Image 224x224 / 384x384"] --> Branch{"Architectural Design Philosophy"}
+    Branch -->|Pure Transformer Scaling| EVA["EVA-02: ViT + Masked Image Modeling Distillation"]
+    Branch -->|Deformable ConvNet| InternImage["InternImage: DCNv3 Deformable Kernels"]
+    Branch -->|Pure Modern ConvNet| ConvNeXt["ConvNeXt V2: Inverted Bottleneck + GRN"]
+    Branch -->|Mobile Hybrid Pareto| MobileNet["MobileNetV4: Universal Inverted Bottleneck UIB"]
+    EVA --> DenseFeatures1["90.0% ImageNet Top-1: High Accuracy, Heavy Attention Matrix"]
+    InternImage --> DenseFeatures2["Adaptive Spatial Receptive Fields: Ideal for Dense Heads"]
+    ConvNeXt --> DenseFeatures3["Plug-and-Play TensorRT Simplicity: Zero Attention Cache"]
+    MobileNet --> DenseFeatures4["Sub-Millisecond Mobile NPU / DSP Latency: 0.42 ms"]
+
 ```
 
 ### Comparative Production Backbone Profile
@@ -58,20 +59,21 @@ Transferring dense representations from a massive foundation teacher (e.g. EVA-0
 
 ```mermaid
 flowchart LR
-    Img[Training Image x] --> Teacher[Foundation Teacher: 1.1B Parameters (Frozen)]
-    Img --> Student[Edge Student: 9M Parameters (Trainable)]
-    Teacher --> ClsT[Teacher [CLS] Token Logits]
-    Student --> ClsS[Student Projected Logits]
-    Teacher --> FeatT[Intermediate Feature Maps: C_t x H_t x W_t]
-    Student --> Proj[1x1 Conv Dimension Align Proj]
-    Student --> FeatS[Intermediate Feature Maps: C_s x H_s x W_s]
+    Img["Training Image x"] --> Teacher["Foundation Teacher: 1.1B Parameters (Frozen)"]
+    Img --> Student["Edge Student: 9M Parameters (Trainable)"]
+    Teacher --> ClsT["Teacher [CLS] Token Logits"]
+    Student --> ClsS["Student Projected Logits"]
+    Teacher --> FeatT["Intermediate Feature Maps: C_t x H_t x W_t"]
+    Student --> Proj["1x1 Conv Dimension Align Proj"]
+    Student --> FeatS["Intermediate Feature Maps: C_s x H_s x W_s"]
     FeatS --> Proj
-    ClsT --> KL[KL Divergence Softmax Loss: tau = 4.0]
+    ClsT --> KL["KL Divergence Softmax Loss: tau = 4.0"]
     ClsS --> KL
-    FeatT --> SmoothL1[Masked Spatial Attention Transfer Loss]
+    FeatT --> SmoothL1["Masked Spatial Attention Transfer Loss"]
     Proj --> SmoothL1
-    KL --> Backprop[Backpropagate Gradients to Student ONLY]
+    KL --> Backprop["Backpropagate Gradients to Student ONLY"]
     SmoothL1 --> Backprop
+
 ```
 
 ### Mathematical Loss Formulation:

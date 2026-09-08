@@ -47,11 +47,12 @@ Related notes: [[topics/active-3d-sensing-and-structured-light/00-active-3d-sens
 
 ```mermaid
 flowchart LR
-    HW[Hardware Capture: Stereo IR + Projector] --> StereoEngine[ASIC Semi-Global Matching]
-    StereoEngine --> EdgeFilt[Edge Discontinuity Flying Pixel Filter]
-    EdgeFilt --> NormalFilt[Normal Consistency & Statistical Outlier Removal]
-    NormalFilt --> ICP[Point-to-Plane ICP Registration]
-    ICP --> Mesh[Dense Metric 3D Reconstruction]
+    HW["Hardware Capture: Stereo IR + Projector"] --> StereoEngine["ASIC Semi-Global Matching"]
+    StereoEngine --> EdgeFilt["Edge Discontinuity Flying Pixel Filter"]
+    EdgeFilt --> NormalFilt["Normal Consistency & Statistical Outlier Removal"]
+    NormalFilt --> ICP["Point-to-Plane ICP Registration"]
+    ICP --> Mesh["Dense Metric 3D Reconstruction"]
+
 ```
 
 ### Production Workarounds for Active Depth Cameras:

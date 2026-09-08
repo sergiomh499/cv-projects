@@ -28,14 +28,15 @@ Related notes: [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]
 
 ```mermaid
 flowchart LR
-    Stream[Live RTSP / V4L2 Stream] --> Ingest[Zero-Copy Frame Grabber]
-    Ingest --> Det[High-Rate Object Detector: RF-DETR / YOLO]
-    Ingest --> GMC[Sparse Background Optical Flow Homography]
-    Det --> TwoStage[Two-Stage Bipartite Association: ByteTrack]
-    GMC --> Kalman[Motion-Compensated Kalman Filter Predict]
+    Stream["Live RTSP / V4L2 Stream"] --> Ingest["Zero-Copy Frame Grabber"]
+    Ingest --> Det["High-Rate Object Detector: RF-DETR / YOLO"]
+    Ingest --> GMC["Sparse Background Optical Flow Homography"]
+    Det --> TwoStage["Two-Stage Bipartite Association: ByteTrack"]
+    GMC --> Kalman["Motion-Compensated Kalman Filter Predict"]
     Kalman --> TwoStage
-    TwoStage --> ReID[Appearance Cosine Verification on Re-Entry]
-    ReID --> Publisher[Zero-Allocation Track Publisher via Shared Memory / IPC]
+    TwoStage --> ReID["Appearance Cosine Verification on Re-Entry"]
+    ReID --> Publisher["Zero-Allocation Track Publisher via Shared Memory / IPC"]
+
 ```
 
 ---
@@ -90,6 +91,7 @@ stateDiagram-v2
     Confirmed --> Lost: Detection Missed
     Lost --> Confirmed: Re-Associated via Low-Score IoU or ReID
     Lost --> [*]: Missed > 30 Frames (Decommission)
+
 ```
 
 ### Workaround 3: Zero-Allocation Object Pools

@@ -23,11 +23,12 @@ The **RT-DETR** family (Lyu et al., Baidu & Xia et al., 2023–2024) is the pion
 
 ```mermaid
 flowchart TD
-    Backbone[Backbone: ResNet-D or HGNetv2] --> CCFM[CCFM: Cross-scale Intra-scale Feature Fusion]
-    CCFM --> Queries[Uncertainty-Minimal Query Selection]
-    Queries --> Dec[Transformer Decoder Layers]
-    Dec --> AuxHeads[Hierarchical Dense Positive Supervision (v3 Training)]
-    Dec --> Out[Direct Prediction: Classes + Bounding Boxes]
+    Backbone["Backbone: ResNet-D or HGNetv2"] --> CCFM["CCFM: Cross-scale Intra-scale Feature Fusion"]
+    CCFM --> Queries["Uncertainty-Minimal Query Selection"]
+    Queries --> Dec["Transformer Decoder Layers"]
+    Dec --> AuxHeads["Hierarchical Dense Positive Supervision (v3 Training)"]
+    Dec --> Out["Direct Prediction: Classes + Bounding Boxes"]
+
 ```
 
 ---
@@ -48,10 +49,11 @@ RT-DETRv3 introduces auxiliary dense positive anchors during training:
 
 ```mermaid
 flowchart LR
-    DecoderFeats[Decoder Layer Outputs] --> Head1[One-to-One Hungarian Head (Retained for Inference)]
-    DecoderFeats --> HeadMany[Hierarchical Dense Positive Head (Discarded post-training)]
-    Head1 --> Out1[NMS-Free Deployable Predictions]
-    HeadMany -.->|Rich Supervised Gradients| Loss[Multi-Task Loss]
+    DecoderFeats["Decoder Layer Outputs"] --> Head1["One-to-One Hungarian Head (Retained for Inference)"]
+    DecoderFeats --> HeadMany["Hierarchical Dense Positive Head (Discarded post-training)"]
+    Head1 --> Out1["NMS-Free Deployable Predictions"]
+    HeadMany -.->|Rich Supervised Gradients| Loss["Multi-Task Loss"]
+
 ```
 
 ---

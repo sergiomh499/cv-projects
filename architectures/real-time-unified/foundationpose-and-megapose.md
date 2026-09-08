@@ -36,12 +36,13 @@ Historically, models were trained for a single specific object class (e.g. PVNet
 
 ```mermaid
 flowchart LR
-    RGBD[Input RGB-D Image] --> Segment[2D Mask: SAM 2 / Detector]
-    CAD[Unseen 3D CAD Mesh] --> Render[Differentiable GPU Render of Candidate Poses]
-    Segment --> Hierarchical[Hierarchical Transformer Score Network]
+    RGBD["Input RGB-D Image"] --> Segment["2D Mask: SAM 2 / Detector"]
+    CAD["Unseen 3D CAD Mesh"] --> Render["Differentiable GPU Render of Candidate Poses"]
+    Segment --> Hierarchical["Hierarchical Transformer Score Network"]
     Render --> Hierarchical
-    Hierarchical --> PoseRefine[Iterative Neural Render-and-Compare Refiner]
-    PoseRefine --> FinalPose[Final Metric 6-DoF Rigid Transform: R in SO3, T in R3]
+    Hierarchical --> PoseRefine["Iterative Neural Render-and-Compare Refiner"]
+    PoseRefine --> FinalPose["Final Metric 6-DoF Rigid Transform: R in SO3, T in R3"]
+
 ```
 
 ---

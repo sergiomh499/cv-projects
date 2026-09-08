@@ -39,6 +39,7 @@ timeline
     2021 : CLIP & Swin Transformer : Language-image contrastive pre-training, shifted windows
     2022-2023 : ConvNeXt & DINOv2 : Modernized ConvNets with GRN, massive self-supervised ViT
     2024-2026 : MobileNetV4, SigLIP 2, DINOv3 : Universal mobile Pareto search, in-context dense features
+
 ```
 
 ---
@@ -53,13 +54,14 @@ $$\mathcal{F}(x) = \mathcal{H}(x) - x \implies \mathcal{H}(x) = \mathcal{F}(x) +
 
 ```mermaid
 flowchart TD
-    X[Input x] --> Weight1[Weight Layer]
-    Weight1 --> ReLU1[ReLU]
-    ReLU1 --> Weight2[Weight Layer]
-    Weight2 --> Add((+))
+    X["Input x"] --> Weight1["Weight Layer"]
+    Weight1 --> ReLU1["ReLU"]
+    ReLU1 --> Weight2["Weight Layer"]
+    Weight2 --> Add(("+"))
     X -->|Identity Shortcut x| Add
-    Add --> Out[Output: F(x) + x]
-    Out --> ReLU2[ReLU]
+    Add --> Out["Output: F(x) + x"]
+    Out --> ReLU2["ReLU"]
+
 ```
 - **Why it matters**: If an identity mapping is optimal, the solver simply drives residual weights $\mathcal{F}(x) \to 0$, which is far easier than fitting identity weights from scratch. This allowed training networks with 1,000+ layers without gradient decay.
 
@@ -74,12 +76,13 @@ Dosovitskiy et al. questioned whether convolutions were truly indispensable for 
 
 ```mermaid
 flowchart LR
-    Img[2D Image 224x224] --> Patches[196 Patches of 16x16]
-    Patches --> LinProj[Linear Projection to Dimension D]
-    LinProj --> AddPos[Add Learnable Positional Embeddings]
-    AddPos --> TransBlocks[L x Transformer Encoder Blocks]
-    TransBlocks --> MLPHead[MLP Classification Head on CLS Token]
-    MLPHead --> Prediction[Class Probabilities]
+    Img["2D Image 224x224"] --> Patches["196 Patches of 16x16"]
+    Patches --> LinProj["Linear Projection to Dimension D"]
+    LinProj --> AddPos["Add Learnable Positional Embeddings"]
+    AddPos --> TransBlocks["L x Transformer Encoder Blocks"]
+    TransBlocks --> MLPHead["MLP Classification Head on CLS Token"]
+    MLPHead --> Prediction["Class Probabilities"]
+
 ```
 - **Trade-off**: ViTs possess weak inductive bias (no innate assumption of translation invariance or local 2D pixel locality). They require massive pre-training data (JFT-300M or ImageNet-21k), but scale with superior performance ceilings compared to standard CNNs.
 

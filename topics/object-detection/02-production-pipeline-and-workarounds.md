@@ -28,12 +28,13 @@ Related notes: [[topics/object-detection/00-object-detection-moc|Object Detectio
 
 ```mermaid
 flowchart LR
-    V4L2[Camera Sensor / RTSP / Video Stream] --> DMA[DMA Ring Buffer / Shared Memory]
-    DMA --> Letterbox[Aspect-Preserving Letterbox Resize & Normalization]
-    Letterbox --> TRT[TensorRT Engine FP16/INT8 Forward Pass]
-    TRT --> Post[Fused Bounding Box Decode & Coordinate Restoration]
-    Post --> Filter[Class & Confidence Threshold Filter]
-    Filter --> Out[Lock-Free Zero-Copy Consumer Dispatch]
+    V4L2["Camera Sensor / RTSP / Video Stream"] --> DMA["DMA Ring Buffer / Shared Memory"]
+    DMA --> Letterbox["Aspect-Preserving Letterbox Resize & Normalization"]
+    Letterbox --> TRT["TensorRT Engine FP16/INT8 Forward Pass"]
+    TRT --> Post["Fused Bounding Box Decode & Coordinate Restoration"]
+    Post --> Filter["Class & Confidence Threshold Filter"]
+    Filter --> Out["Lock-Free Zero-Copy Consumer Dispatch"]
+
 ```
 
 ### Stage Breakdown:
@@ -65,11 +66,12 @@ For high-resolution aerial, drone, or industrial defect inspection, partition th
 
 ```mermaid
 flowchart TD
-    LargeImg[Large 4K Frame 3840x2160] --> Slicer[SAHI Slicer: Overlapping 640x640 Tiles]
-    Slicer --> Batch[Batch 1..N Slices]
-    Batch --> Infer[Batched GPU Forward Pass]
-    Infer --> NMM[Non-Maximum Merging: Merge Overlapping Spatial Boxes]
-    NMM --> GlobalOut[Unified Global Coordinates Bounding Boxes]
+    LargeImg["Large 4K Frame 3840x2160"] --> Slicer["SAHI Slicer: Overlapping 640x640 Tiles"]
+    Slicer --> Batch["Batch 1..N Slices"]
+    Batch --> Infer["Batched GPU Forward Pass"]
+    Infer --> NMM["Non-Maximum Merging: Merge Overlapping Spatial Boxes"]
+    NMM --> GlobalOut["Unified Global Coordinates Bounding Boxes"]
+
 ```
 
 ### Workaround 2: Migration to NMS-Free Architectures

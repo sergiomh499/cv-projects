@@ -28,12 +28,13 @@ Related notes: [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|6-DoF P
 
 ```mermaid
 flowchart LR
-    RGBD[RGB-D Camera Ingestion: RealSense / Photoneo] --> Segment[2D Instance Mask: SAM 2 / YOLO-Seg]
-    Segment --> Crop[Depth-Guided 3D RoI Point Cloud Cropping]
-    Crop --> ScoreNet[Neural Score Network: Hypothesis Generation]
-    ScoreNet --> Refiner[Iterative GPU Render-and-Compare Refiner]
-    Refiner --> ICP[CUDA-Accelerated Iterative Closest Point Refinement]
-    ICP --> Robot[Collision-Free Gripper Trajectory Planner]
+    RGBD["RGB-D Camera Ingestion: RealSense / Photoneo"] --> Segment["2D Instance Mask: SAM 2 / YOLO-Seg"]
+    Segment --> Crop["Depth-Guided 3D RoI Point Cloud Cropping"]
+    Crop --> ScoreNet["Neural Score Network: Hypothesis Generation"]
+    ScoreNet --> Refiner["Iterative GPU Render-and-Compare Refiner"]
+    Refiner --> ICP["CUDA-Accelerated Iterative Closest Point Refinement"]
+    ICP --> Robot["Collision-Free Gripper Trajectory Planner"]
+
 ```
 
 ---

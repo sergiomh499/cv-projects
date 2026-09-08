@@ -32,6 +32,7 @@ flowchart TD
     CertifiedPose --> OSC["Classical Operational Space Controller / Cartesian Impedance Control (500 Hz)"]
     OSC --> Torque["Deterministic Joint Torques tau = J^T F + N^T tau_null"]
     Torque --> Motors["Robot Joint Actuators: Zero Physical Jerk / No Oscillation"]
+
 ```
 
 ---

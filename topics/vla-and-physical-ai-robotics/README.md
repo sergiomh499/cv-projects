@@ -49,12 +49,13 @@ Related notes: [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robo
 
 ```mermaid
 flowchart LR
-    RGB[Multi-View Cameras: Wrist + Overhead] --> VLA[VLA Backbone: OpenVLA / pi0]
+    RGB["Multi-View Cameras: Wrist + Overhead"] --> VLA["VLA Backbone: OpenVLA / pi0"]
     Language["Task Prompt: 'Pick red screw'"] --> VLA
-    VLA --> Chunk[Action Chunk Prediction]
-    Chunk --> Gate[Mission Safety Gate & Velocity Saturation]
-    Gate --> OSC[Impedance Controller: 500 Hz Joint Torques]
-    OSC --> Hardware[Physical Robot Arm Actuators]
+    VLA --> Chunk["Action Chunk Prediction"]
+    Chunk --> Gate["Mission Safety Gate & Velocity Saturation"]
+    Gate --> OSC["Impedance Controller: 500 Hz Joint Torques"]
+    OSC --> Hardware["Physical Robot Arm Actuators"]
+
 ```
 
 ### Production Workarounds for VLA Robotics:

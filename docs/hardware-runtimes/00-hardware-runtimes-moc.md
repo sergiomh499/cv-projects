@@ -32,6 +32,7 @@ graph TD
     MOC --> H2["[[docs/hardware-runtimes/02-vulkan-compute-runtime|02: Khronos Standard Vulkan 1.3 Compute]]"]
     MOC --> H3["[[docs/hardware-runtimes/03-vulkan-sc-safety-runtime|03: Khronos Vulkan SC & CoreAVI]]"]
     MOC --> H4["[[docs/hardware-runtimes/04-vitis-ai-versal-npu-runtime|04: AMD Vitis AI & Versal NPU / FPGA]]"]
+
 ```
 
 ---

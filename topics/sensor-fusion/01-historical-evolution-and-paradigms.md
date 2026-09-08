@@ -35,6 +35,7 @@ timeline
     2022 : BEVFormer : Li et al. : Predefined BEV grid queries attending to multi-view camera features
     2023 : BEVFusion : MIT Han Lab : Hardware-accelerated unified Camera-LiDAR BEV representation
     2024-2026 : Sparse4D & UniAD : Sparse spatial-temporal anchor queries and unified end-to-end perception-to-planning
+
 ```
 
 ---
@@ -59,12 +60,13 @@ Cameras operate in 2D perspective space $(u, v)$, while autonomous navigation oc
 
 ```mermaid
 flowchart LR
-    RGB[2D Camera Image] --> DepthDist[Predict Depth Probability Distribution P D]
-    RGB --> Feat[Extract 2D Semantic Features F]
-    DepthDist --> OuterProd[Outer Product: 3D Frustum Points]
+    RGB["2D Camera Image"] --> DepthDist["Predict Depth Probability Distribution P D"]
+    RGB --> Feat["Extract 2D Semantic Features F"]
+    DepthDist --> OuterProd["Outer Product: 3D Frustum Points"]
     Feat --> OuterProd
-    OuterProd --> SplatPool[Pillar Pooling onto BEV Plane]
-    SplatPool --> BEVGrid[Metric 2D Bird's-Eye-View Feature Tensor]
+    OuterProd --> SplatPool["Pillar Pooling onto BEV Plane"]
+    SplatPool --> BEVGrid["Metric 2D Bird's-Eye-View Feature Tensor"]
+
 ```
 
 ---

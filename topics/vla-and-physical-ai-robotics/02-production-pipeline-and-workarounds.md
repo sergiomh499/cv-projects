@@ -28,13 +28,14 @@ Because 7B VLA models cannot infer at $500\,\text{Hz}$ motor update rates, produ
 
 ```mermaid
 flowchart TD
-    Camera[Stereo Wrist & Head Cameras: 30 FPS] --> VLA[System 2: Slow VLA Policy (OpenVLA / pi0) @ 5 Hz]
+    Camera["Stereo Wrist & Head Cameras: 30 FPS"] --> VLA["System 2: Slow VLA Policy (OpenVLA / pi0) @ 5 Hz"]
     TaskPrompt["Natural Language: 'Fold the cloth gently'"] --> VLA
-    VLA --> Chunk[Action Chunk Prediction: H = 32 Continuous Waypoints]
-    Chunk --> TemporalQueue[Thread-Safe Lockless Temporal Trajectory Buffer]
-    TemporalQueue --> Spline[Cubic Hermite Spline Interpolator]
-    Spline --> LowLevel[System 1: Fast Cartesian Impedance Controller @ 500 Hz]
-    LowLevel --> RobotHardware[Franka Emika / Universal Robots Joint Servos]
+    VLA --> Chunk["Action Chunk Prediction: H = 32 Continuous Waypoints"]
+    Chunk --> TemporalQueue["Thread-Safe Lockless Temporal Trajectory Buffer"]
+    TemporalQueue --> Spline["Cubic Hermite Spline Interpolator"]
+    Spline --> LowLevel["System 1: Fast Cartesian Impedance Controller @ 500 Hz"]
+    LowLevel --> RobotHardware["Franka Emika / Universal Robots Joint Servos"]
+
 ```
 
 ---

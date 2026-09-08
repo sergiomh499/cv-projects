@@ -30,15 +30,16 @@ Related notes: [[topics/gpu-deployment/03-compilers-and-open-problems|GPU Compil
 
 ```mermaid
 flowchart TD
-    FloatModel[Full Precision PyTorch Model: FP32 / BF16] --> Path{Quantization Route}
-    Path -->|Route A: Fast Calibration PTQ| PTQ[PTQ: Feed 512 Representative Samples -> Compute Scale s & Zero-Point z]
-    Path -->|Route B: Fine-Tuned Gradient QAT| QAT[QAT: Insert FakeQuant Nodes -> Retrain with Straight-Through Estimator STE]
-    PTQ --> Check{Accuracy Degradation > 1.0%?}
-    Check -->|No: Stable CNNs / ConvNeXt| DeployPTQ[Export INT8 Calibration Cache -> Compile Engine]
-    Check -->|Yes: Transformer / Softmax Drift| Mitigate{Apply Outlier Suppression}
-    Mitigate -->|SmoothQuant Migration| PTQ2[Scale Channels s = diag(w/a) -> Re-calibrate PTQ]
+    FloatModel["Full Precision PyTorch Model: FP32 / BF16"] --> Path{"Quantization Route"}
+    Path -->|Route A: Fast Calibration PTQ| PTQ["PTQ: Feed 512 Representative Samples -> Compute Scale s & Zero-Point z"]
+    Path -->|Route B: Fine-Tuned Gradient QAT| QAT["QAT: Insert FakeQuant Nodes -> Retrain with Straight-Through Estimator STE"]
+    PTQ --> Check{"Accuracy Degradation > 1.0%?"}
+    Check -->|No: Stable CNNs / ConvNeXt| DeployPTQ["Export INT8 Calibration Cache -> Compile Engine"]
+    Check -->|Yes: Transformer / Softmax Drift| Mitigate{"Apply Outlier Suppression"}
+    Mitigate -->|SmoothQuant Migration| PTQ2["Scale Channels s = diag(w/a) -> Re-calibrate PTQ"]
     Mitigate -->|Fails Complex SOTA| QAT
-    QAT --> DeployQAT[Export Explicit Q/DQ ONNX -> Compile Engine]
+    QAT --> DeployQAT["Export Explicit Q/DQ ONNX -> Compile Engine"]
+
 ```
 
 ### Comparative Strategy Matrix

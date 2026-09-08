@@ -28,11 +28,12 @@ Related notes: [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]
 
 ```mermaid
 flowchart TD
-    App[Vision / Multi-Modal / VLA Model Definition] --> Layer1[Layer 1: Compilation & Layer Fusion: TensorRT 10 / torch.compile]
-    Layer1 --> Layer2[Layer 2: Bandwidth-Efficient Attention: FlashAttention-3 Warp Specialization]
-    Layer2 --> Layer3[Layer 3: Sub-Byte Precision Formats: FP8 E4M3 / FP4 Micro-Scaling]
-    Layer3 --> Layer4[Layer 4: Zero-CPU Kernel Launch Tax: CUDA Graph Replay Engine]
-    Layer4 --> Hardware[NVIDIA Hopper H100 / Blackwell B200 / Jetson Orin Hardware Cores]
+    App["Vision / Multi-Modal / VLA Model Definition"] --> Layer1["Layer 1: Compilation & Layer Fusion: TensorRT 10 / torch.compile"]
+    Layer1 --> Layer2["Layer 2: Bandwidth-Efficient Attention: FlashAttention-3 Warp Specialization"]
+    Layer2 --> Layer3["Layer 3: Sub-Byte Precision Formats: FP8 E4M3 / FP4 Micro-Scaling"]
+    Layer3 --> Layer4["Layer 4: Zero-CPU Kernel Launch Tax: CUDA Graph Replay Engine"]
+    Layer4 --> Hardware["NVIDIA Hopper H100 / Blackwell B200 / Jetson Orin Hardware Cores"]
+
 ```
 
 ### Deep Component Breakdown

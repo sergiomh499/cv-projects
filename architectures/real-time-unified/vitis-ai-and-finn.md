@@ -38,17 +38,18 @@ The two dominant open-source FPGA paradigms are:
 
 ```mermaid
 flowchart TD
-    subgraph Vitis AI (Coarse-Grained DPU)
-        ONNX1[PyTorch Model INT8] --> Quant1[Vitis AI Quantizer]
-        Quant1 --> Compiler1[Vitis AI Compiler]
-        Compiler1 --> XMODEL[xmodel Instructions]
-        XMODEL --> DPU[FPGA Fabric: Pre-synthesized DPU Core]
+    subgraph Vitis_AI__Coarse_Grained_DPU ["Vitis AI (Coarse-Grained DPU)"]
+        ONNX1["PyTorch Model INT8"] --> Quant1["Vitis AI Quantizer"]
+        Quant1 --> Compiler1["Vitis AI Compiler"]
+        Compiler1 --> XMODEL["xmodel Instructions"]
+        XMODEL --> DPU["FPGA Fabric: Pre-synthesized DPU Core"]
     end
-    subgraph FINN (Spatial Dataflow Streaming)
-        ONNX2[PyTorch Model 1-4 bit] --> Brevitas[Brevitas QAT]
-        Brevitas --> FINNTrans[FINN High-Level Synthesis HLS]
-        FINNTrans --> Bitstream[Custom Vivado Bitstream: Dedicated Hardware Pipelines]
+    subgraph FINN__Spatial_Dataflow_Streaming ["FINN (Spatial Dataflow Streaming)"]
+        ONNX2["PyTorch Model 1-4 bit"] --> Brevitas["Brevitas QAT"]
+        Brevitas --> FINNTrans["FINN High-Level Synthesis HLS"]
+        FINNTrans --> Bitstream["Custom Vivado Bitstream: Dedicated Hardware Pipelines"]
     end
+
 ```
 
 ---

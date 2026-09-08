@@ -31,15 +31,16 @@ In contrast to standard Vulkan/CUDA where drivers compile kernels on the fly and
 
 ```mermaid
 flowchart TD
-    Offline[Host Workstation: Offline Stage] --> PCC[PCC: Pipeline Cache Compiler]
-    Shaders[SPIR-V Shaders + Pipeline JSON Config] --> PCC
-    PCC --> StaticBin[Static Binary Pipeline Cache: static_cache.bin]
+    Offline["Host Workstation: Offline Stage"] --> PCC["PCC: Pipeline Cache Compiler"]
+    Shaders["SPIR-V Shaders + Pipeline JSON Config"] --> PCC
+    PCC --> StaticBin["Static Binary Pipeline Cache: static_cache.bin"]
     
-    StaticBin --> TargetECU[Target Embedded ECU: e.g. CoreAVI on AMD E9171 / NXP i.MX8]
-    Boot[Vehicle / Aircraft Boot Stage] --> PreAlloc[Pre-allocate all GPU Memory Pools: vkCreateDevice]
-    PreAlloc --> FrozenState[Memory State FROZEN: Zero Allocations Allowed]
+    StaticBin --> TargetECU["Target Embedded ECU: e.g. CoreAVI on AMD E9171 / NXP i.MX8"]
+    Boot["Vehicle / Aircraft Boot Stage"] --> PreAlloc["Pre-allocate all GPU Memory Pools: vkCreateDevice"]
+    PreAlloc --> FrozenState["Memory State FROZEN: Zero Allocations Allowed"]
     StaticBin --> FrozenState
-    FrozenState --> RealTimeLoop[Deterministic Live Perception Loop: Bounded Execution Time]
+    FrozenState --> RealTimeLoop["Deterministic Live Perception Loop: Bounded Execution Time"]
+
 ```
 
 ### Key Differences from Standard Vulkan:

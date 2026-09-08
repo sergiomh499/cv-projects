@@ -28,16 +28,17 @@ The segmentation decoder is responsible for reconstructing dense 2D spatial mask
 
 ```mermaid
 flowchart TD
-    Backbone[Encoder Backbone Output: 1/16 or 1/32 Spatial Res] --> Branch{Decoder Strategy}
-    Branch -->|A: Bilinear FCN / U-Net| ConvDeconv[Progressive 2x Transposed Convolutions / Upsampling]
-    Branch -->|B: Prototype Decomposition| ProtoNet[Spatial Prototype Generator: k maps at 1/4 res]
-    Branch -->|B: Prototype Decomposition| CoeffNet[Per-Instance Coefficient Predictor: 1xk vector]
-    Branch -->|C: Masked-Attention Query Transformer| QueryTrans[Mask2Former: Cross-Attention restricted to prior mask RoI]
-    ProtoNet --> FusedGEMM[Fused Matrix Multiplication: N x k @ k x H/4 x W/4]
+    Backbone["Encoder Backbone Output: 1/16 or 1/32 Spatial Res"] --> Branch{"Decoder Strategy"}
+    Branch -->|A: Bilinear FCN / U-Net| ConvDeconv["Progressive 2x Transposed Convolutions / Upsampling"]
+    Branch -->|B: Prototype Decomposition| ProtoNet["Spatial Prototype Generator: k maps at 1/4 res"]
+    Branch -->|B: Prototype Decomposition| CoeffNet["Per-Instance Coefficient Predictor: 1xk vector"]
+    Branch -->|C: Masked-Attention Query Transformer| QueryTrans["Mask2Former: Cross-Attention restricted to prior mask RoI"]
+    ProtoNet --> FusedGEMM["Fused Matrix Multiplication: N x k @ k x H/4 x W/4"]
     CoeffNet --> FusedGEMM
-    ConvDeconv --> DenseMask1[Dense Semantic Logits]
-    FusedGEMM --> DenseMask2[Real-Time Instance Masks: 60+ FPS]
-    QueryTrans --> UniversalMask[Universal Panoptic / Semantic / Instance Output]
+    ConvDeconv --> DenseMask1["Dense Semantic Logits"]
+    FusedGEMM --> DenseMask2["Real-Time Instance Masks: 60+ FPS"]
+    QueryTrans --> UniversalMask["Universal Panoptic / Semantic / Instance Output"]
+
 ```
 
 ### Decoder Architectural Trade-Off Matrix
@@ -93,12 +94,13 @@ Independent instance and semantic segmentation heads frequently output overlappi
 
 ```mermaid
 flowchart TD
-    InstHead[Instance Mask: Car #4 (score: 0.78)] --> Conflict{Pixel Conflict at (x, y)}
-    SemHead[Semantic Mask: Road (score: 0.85)] --> Conflict
-    Conflict --> Logic{Panoptic Arbiter Resolution}
-    Logic -->|Rule 1: Priority to Things| MaskOut1[Car #4 Claims Pixel; Road Mask Cleared]
-    Logic -->|Rule 2: Mask Thresholding| MaskOut2[If Instance IoU < 0.5, Stuff Wins]
-    Logic -->|Rule 3: End-to-End Query Transformer| Mask2Former[Mask2Former: Native Mutually Exclusive Queries]
+    InstHead["Instance Mask: Car #4 (score: 0.78)"] --> Conflict{"Pixel Conflict at (x, y)"}
+    SemHead["Semantic Mask: Road (score: 0.85)"] --> Conflict
+    Conflict --> Logic{"Panoptic Arbiter Resolution"}
+    Logic -->|Rule 1: Priority to Things| MaskOut1["Car #4 Claims Pixel; Road Mask Cleared"]
+    Logic -->|Rule 2: Mask Thresholding| MaskOut2["If Instance IoU < 0.5, Stuff Wins"]
+    Logic -->|Rule 3: End-to-End Query Transformer| Mask2Former["Mask2Former: Native Mutually Exclusive Queries"]
+
 ```
 
 ### Production Panoptic Merge Algorithm:

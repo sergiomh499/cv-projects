@@ -26,13 +26,14 @@ Related notes: [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspe
 
 ```mermaid
 flowchart TD
-    Sensors[Dual Optical Stream: High-Res RGB 4K + Thermal LWIR 640x512] --> Branch{Fusion Architecture}
-    Branch -->|Classical 1990s: Wavelet Multiscale Fusion| Wavelet[Discrete Wavelet Transform DWT: Max-Absolute Frequency Rule]
-    Branch -->|Classical 2000s: IHS Color Space Fusion| IHS[Intensity-Hue-Saturation Transform: Replace Intensity with Thermal]
-    Branch -->|Modern Hybrid 2025-2026: Frequency-Guided Cross-Attention| Hybrid[Dual ConvNeXt/ViT Backbones + Frequency Gated Cross-Attention]
-    Wavelet --> ZeroBlur[Pixel-Level Fusion with High Spatial Edge Preservation]
-    IHS --> FastRealTime[Microsecond Transform on Standard CPU Without Neural Weights]
-    Hybrid --> WeatherInvariant[CVPR 2026 SOTA: Superior Semantic Segmentation in Fog / Night / Smoke]
+    Sensors["Dual Optical Stream: High-Res RGB 4K + Thermal LWIR 640x512"] --> Branch{"Fusion Architecture"}
+    Branch -->|Classical 1990s: Wavelet Multiscale Fusion| Wavelet["Discrete Wavelet Transform DWT: Max-Absolute Frequency Rule"]
+    Branch -->|Classical 2000s: IHS Color Space Fusion| IHS["Intensity-Hue-Saturation Transform: Replace Intensity with Thermal"]
+    Branch -->|Modern Hybrid 2025-2026: Frequency-Guided Cross-Attention| Hybrid["Dual ConvNeXt/ViT Backbones + Frequency Gated Cross-Attention"]
+    Wavelet --> ZeroBlur["Pixel-Level Fusion with High Spatial Edge Preservation"]
+    IHS --> FastRealTime["Microsecond Transform on Standard CPU Without Neural Weights"]
+    Hybrid --> WeatherInvariant["CVPR 2026 SOTA: Superior Semantic Segmentation in Fog / Night / Smoke"]
+
 ```
 
 ---

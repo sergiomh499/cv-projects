@@ -35,6 +35,7 @@ graph TD
     MOC --> E3["[[topics/optical-and-scene-flow-perception/03-representations-and-open-problems|03: Representations & Open Frontiers]]"]
     MOC --> E4["[[topics/optical-and-scene-flow-perception/04-classical-and-hybrid-methods|04: Classical Variational & Hybrid Methods]]"]
     MOC --> Central["[[topics/optical-and-scene-flow-perception/README|Domain Playbook]]"]
+
 ```
 
 ---

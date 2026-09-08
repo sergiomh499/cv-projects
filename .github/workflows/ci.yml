@@ -19,6 +19,14 @@ jobs:
         with:
           enable-cache: true
 
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Mermaid validator dependencies
+        run: bun add -d mermaid jsdom @mermaid-js/parser
       - name: Install Python 3.12
         run: uv python install 3.12
 

@@ -36,13 +36,14 @@ While autoregressive VLA models (e.g. OpenVLA) discretize robotic joint outputs 
 
 ```mermaid
 flowchart LR
-    RGB[Camera RGB Streams: Wrist + Base] --> VLM[Pretrained Vision-Language Backbone: PaliGemma]
-    Language[Task Instruction: 'Fold the cloth'] --> VLM
-    Noise[Gaussian Noise Action Chunk: N(0, I)] --> Denoiser[Conditional Flow Matching / Action Denoiser]
+    RGB["Camera RGB Streams: Wrist + Base"] --> VLM["Pretrained Vision-Language Backbone: PaliGemma"]
+    Language["Task Instruction: 'Fold the cloth'"] --> VLM
+    Noise["Gaussian Noise Action Chunk: N(0, I)"] --> Denoiser["Conditional Flow Matching / Action Denoiser"]
     VLM --> Denoiser
-    Denoiser --> Steps[Iterative Denoising Flow: 10 steps]
-    Steps --> ActionSeq[Continuous Metric Joint Velocities: 16 x 7 Future Actions]
-    ActionSeq --> Motor[Motor Actuation at 50 Hz via Zenoh Shared Memory]
+    Denoiser --> Steps["Iterative Denoising Flow: 10 steps"]
+    Steps --> ActionSeq["Continuous Metric Joint Velocities: 16 x 7 Future Actions"]
+    ActionSeq --> Motor["Motor Actuation at 50 Hz via Zenoh Shared Memory"]
+
 ```
 
 ---

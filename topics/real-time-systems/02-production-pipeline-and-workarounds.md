@@ -29,11 +29,12 @@ Related notes: [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Sys
 
 ```mermaid
 flowchart LR
-    Sensor[Hardware Camera / Sensor Interrupt] --> RealTimeThread[PREEMPT_RT Thread: SCHED_FIFO Priority 95]
-    RealTimeThread --> Mlock[mlockall: Pinned RAM Pages]
-    Mlock --> ShmPool[Iceoryx2 Zero-Copy Shared Memory Segment]
-    ShmPool --> TRT[Async TensorRT Forward Pass on CUDA Stream]
-    TRT --> Actuator[Zero-Copy IPC Event to CAN / EtherCAT Actuator Bus]
+    Sensor["Hardware Camera / Sensor Interrupt"] --> RealTimeThread["PREEMPT_RT Thread: SCHED_FIFO Priority 95"]
+    RealTimeThread --> Mlock["mlockall: Pinned RAM Pages"]
+    Mlock --> ShmPool["Iceoryx2 Zero-Copy Shared Memory Segment"]
+    ShmPool --> TRT["Async TensorRT Forward Pass on CUDA Stream"]
+    TRT --> Actuator["Zero-Copy IPC Event to CAN / EtherCAT Actuator Bus"]
+
 ```
 
 ---

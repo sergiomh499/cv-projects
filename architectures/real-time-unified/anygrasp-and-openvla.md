@@ -36,11 +36,12 @@ Modern robotic perception bypasses these hand-crafted abstractions using:
 
 ```mermaid
 flowchart LR
-    Prompt[Language Prompt: 'wipe the spilled coffee'] --> VLA[OpenVLA 7B Multi-Modal Transformer]
-    Cam[Eye-in-Hand Camera Frame] --> VLA
-    VLA --> Tokens[Autoregressive Action Token Prediction: 1x7 vector]
-    Tokens --> Dequant[Dequantize to Metric Joint Velocities]
-    Dequant --> Actuator[Zero-Copy Shared Memory to Robot Joint Controllers (Zenoh / EtherCAT)]
+    Prompt["Language Prompt: 'wipe the spilled coffee'"] --> VLA["OpenVLA 7B Multi-Modal Transformer"]
+    Cam["Eye-in-Hand Camera Frame"] --> VLA
+    VLA --> Tokens["Autoregressive Action Token Prediction: 1x7 vector"]
+    Tokens --> Dequant["Dequantize to Metric Joint Velocities"]
+    Dequant --> Actuator["Zero-Copy Shared Memory to Robot Joint Controllers (Zenoh / EtherCAT)"]
+
 ```
 
 ---

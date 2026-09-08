@@ -26,15 +26,16 @@ Related notes: [[topics/lidar-perception/00-lidar-perception-moc|LiDAR MOC]], [[
 
 ```mermaid
 flowchart TD
-    Raw[Raw LiDAR Point Cloud 100k-250k Points per Frame] --> Pass[Step 1: PassThrough ROI & Intensity Range Filter]
-    Pass --> Voxel[Step 2: Classical Octree / Voxel Grid Downsampling]
-    Voxel --> Ground{Step 3: Ground Plane Segmentation}
-    Ground -->|Classical RANSAC Plane / Patchwork++| PureObstacles[Obstacle Point Cloud Above Ground]
-    PureObstacles --> Cluster[Step 4: KD-Tree Radius Clustering / DBSCAN]
-    Cluster --> BoundingBox[Oriented Bounding Boxes: Convex Hull / PCA]
-    PureObstacles --> DeepVoxel[Alternative: Feed Filtered Points to DSVT / FlatFormer]
-    BoundingBox --> FastCPU[Millisecond Deterministic Safety Obstacle Detection on CPU]
-    DeepVoxel --> HighmAP[Semantic Object Classification Car / Pedestrian / Cyclist]
+    Raw["Raw LiDAR Point Cloud 100k-250k Points per Frame"] --> Pass["Step 1: PassThrough ROI & Intensity Range Filter"]
+    Pass --> Voxel["Step 2: Classical Octree / Voxel Grid Downsampling"]
+    Voxel --> Ground{"Step 3: Ground Plane Segmentation"}
+    Ground -->|Classical RANSAC Plane / Patchwork++| PureObstacles["Obstacle Point Cloud Above Ground"]
+    PureObstacles --> Cluster["Step 4: KD-Tree Radius Clustering / DBSCAN"]
+    Cluster --> BoundingBox["Oriented Bounding Boxes: Convex Hull / PCA"]
+    PureObstacles --> DeepVoxel["Alternative: Feed Filtered Points to DSVT / FlatFormer"]
+    BoundingBox --> FastCPU["Millisecond Deterministic Safety Obstacle Detection on CPU"]
+    DeepVoxel --> HighmAP["Semantic Object Classification Car / Pedestrian / Cyclist"]
+
 ```
 
 ### Point Cloud Processing Comparison Matrix

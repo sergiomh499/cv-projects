@@ -50,13 +50,14 @@ Related notes: [[resources/ecosystem-tools|Ecosystem Tools]], [[topics/safety-ve
 
 ```mermaid
 flowchart TD
-    Raw[Raw Camera & LiDAR Ingestion Pipeline] --> GX[Step 1: Great Expectations Schema Contract Gate]
-    GX -->|Pass| Embed[Step 2: DINOv2 Vector Embedding & Clustering in FiftyOne]
-    GX -->|Fail: Bad Coords / Corrupt File| Reject[Quarantine Buffer & Alert]
-    Embed --> OOF[Step 3: 5-Fold Cross-Validation Model Training]
-    OOF --> Cleanlab[Step 4: Cleanlab Confident Learning Audit]
-    Cleanlab --> CleanData[Curated Cleaned Train Set: Pruned / Relabeled]
-    CleanData --> ProductionTrain[Final Model Training Loop]
+    Raw["Raw Camera & LiDAR Ingestion Pipeline"] --> GX["Step 1: Great Expectations Schema Contract Gate"]
+    GX -->|Pass| Embed["Step 2: DINOv2 Vector Embedding & Clustering in FiftyOne"]
+    GX -->|Fail: Bad Coords / Corrupt File| Reject["Quarantine Buffer & Alert"]
+    Embed --> OOF["Step 3: 5-Fold Cross-Validation Model Training"]
+    OOF --> Cleanlab["Step 4: Cleanlab Confident Learning Audit"]
+    Cleanlab --> CleanData["Curated Cleaned Train Set: Pruned / Relabeled"]
+    CleanData --> ProductionTrain["Final Model Training Loop"]
+
 ```
 
 ### Production Workarounds for Common Data Pitfalls:

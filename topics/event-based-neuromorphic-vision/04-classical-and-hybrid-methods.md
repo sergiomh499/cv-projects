@@ -26,13 +26,14 @@ Related notes: [[topics/event-based-neuromorphic-vision/00-event-based-neuromorp
 
 ```mermaid
 flowchart TD
-    Sensors[Dual Sensor Stream: 60 FPS RGB Camera + 10M ev/s Neuromorphic DVS] --> Branch{Processing Architecture}
-    Branch -->|Classical 2014: Benosman Optical Flow| Flow[Local Time Surface Gradient Fitting: Flow Velocity in O(1) per Event]
-    Branch -->|Classical Geometric: Event-Based Line Hought| Line[Spatiotemporal Ray Accumulator for High-Speed Ballistic Tracking]
-    Branch -->|Modern Hybrid 2025-2026: SOTA Paradigm| Hybrid[RGB Frame Provides Rich Semantic Textures + Events Fill Intra-Frame Blur Gaps]
-    Flow --> MicrosecondTracking[100,000 Hz Continuous Optical Flow Estimation]
-    Line --> HighSpeedInterception[Sub-Millisecond Bullet / Projectile Trajectory Extrapolation]
-    Hybrid --> HDRPerception[Zero-Motion-Blur Detection Across 120 dB Light Changes]
+    Sensors["Dual Sensor Stream: 60 FPS RGB Camera + 10M ev/s Neuromorphic DVS"] --> Branch{"Processing Architecture"}
+    Branch -->|Classical 2014: Benosman Optical Flow| Flow["Local Time Surface Gradient Fitting: Flow Velocity in O(1) per Event"]
+    Branch -->|Classical Geometric: Event-Based Line Hought| Line["Spatiotemporal Ray Accumulator for High-Speed Ballistic Tracking"]
+    Branch -->|Modern Hybrid 2025-2026: SOTA Paradigm| Hybrid["RGB Frame Provides Rich Semantic Textures + Events Fill Intra-Frame Blur Gaps"]
+    Flow --> MicrosecondTracking["100,000 Hz Continuous Optical Flow Estimation"]
+    Line --> HighSpeedInterception["Sub-Millisecond Bullet / Projectile Trajectory Extrapolation"]
+    Hybrid --> HDRPerception["Zero-Motion-Blur Detection Across 120 dB Light Changes"]
+
 ```
 
 ---

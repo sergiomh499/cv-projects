@@ -33,6 +33,7 @@ timeline
     2023 : RT-2 : Co-fine-tuning PaLM-E / PaLI-X vision-language models to emit action tokens directly.
     2024 : OpenVLA & Octo : Open-source 7B foundation VLA; Octo introduces modular diffusion policies.
     2025-2026 : π0 (Physical Intelligence) & Flow Matching : Continuous flow matching replacing discrete tokens for dexterous, fluid manipulation.
+
 ```
 
 ---
