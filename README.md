@@ -44,6 +44,7 @@ A curated research engineering knowledge base, didactic repository, and producti
 | **16. Event-Based Neuromorphic Vision** | [[topics/event-based-neuromorphic-vision/00-event-based-neuromorphic-vision-moc\|Event Vision MOC]] ([Directory](topics/event-based-neuromorphic-vision/README.md)) | Prophesee Metavision 5.x, Spikformers, ESVO, Benosman Flow | `prophesee-ai/metavision_sdk`, `fangwei123456/spikingjelly` | <1 $\mu$s Temporal Res (>120 dB) | **Apache-2.0** |
 | **17. Thermal & Hyperspectral Vision** | [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspectral-vision-moc\|Thermal Vision MOC]] ([Directory](topics/thermal-and-hyperspectral-vision/README.md)) | TherA, UniCD, Frequency-Guided Cross-Attention, VOx Microbolometers | `FLIR/flirpy`, `spectral/spectral` | 800 FPS NUC (<1.5 ms) | **MIT / Apache-2.0** |
 | **18. Active 3D Sensing & Structured Light** | [[topics/active-3d-sensing-and-structured-light/00-active-3d-sensing-and-structured-light-moc\|Active 3D Sensing MOC]] ([Directory](topics/active-3d-sensing-and-structured-light/README.md)) | Sinusoidal Phase Profilometry, Indirect/Direct ToF SPAD, RealSense | `IntelRealSense/librealsense`, `isl-org/Open3D` | <10 $\mu$m Metrology (90 FPS) | **Apache-2.0 / MIT** |
+| **19. Vision-Language-Action & Physical AI** | [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc\|VLA Robotics MOC]] ([Directory](topics/vla-and-physical-ai-robotics/README.md)) | $\pi_0$, OpenVLA, Octo, Continuous Flow Matching, Cartesian Impedance | `openvla/openvla`, `huggingface/lerobot` | 50 Hz Control (20 ms) | **Apache-2.0 / MIT** |
 ---
 
 ## 🏛️ Central Architecture Vault (`architectures/`)
@@ -83,6 +84,7 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/06-mechanistic-cbm-attribution/concept_intervention.py|06-mechanistic-cbm-attribution]]**: Concept Bottleneck Model (CBM) with test-time human-in-the-loop concept intervention.
 - **[[cookbooks/07-neuromorphic-event-flow/event_flow.py|07-neuromorphic-event-flow]]**: Asynchronous Surface of Active Events (SAE) optical flow estimation via local plane fitting in $\mathcal{O}(1)$ time.
 - **[[cookbooks/08-control-barrier-filter/cbf_qp_filter.py|08-control-barrier-filter]]**: Real-time Control Barrier Function (CBF) Quadratic Program safety filter enforcing forward invariance on unverified deep policy actions.
+- **[[cookbooks/09-dann-sim2real-safety-gate/dann_safety_gate.py|09-dann-sim2real-safety-gate]]**: Sim2Real Domain Adaptation & Critical Mission Safety Gate rejecting ambiguous, high-entropy, or out-of-distribution deep/generative actions.
 ---
 
 ## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices
