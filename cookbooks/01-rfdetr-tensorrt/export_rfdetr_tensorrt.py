@@ -27,9 +27,10 @@ class DummyRFDETRBackbone(nn.Module):
         return logits, boxes
 
 def export_rfdetr_to_onnx(output_path: str = "rf_detr.onnx"):
-    print("[+] Instantiating RF-DETR model...")
-    model = DummyRFDETRBackbone().eval().cuda()
-    dummy_input = torch.randn(1, 3, 640, 640, device="cuda")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"[+] Instantiating RF-DETR model on {device}...")
+    model = DummyRFDETRBackbone().eval().to(device)
+    dummy_input = torch.randn(1, 3, 640, 640, device=device)
 
     print(f"[+] Exporting to ONNX: {output_path}")
     torch.onnx.export(
