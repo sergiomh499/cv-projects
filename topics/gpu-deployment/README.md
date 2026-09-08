@@ -5,9 +5,9 @@ tags:
   - gpu
   - tensorrt
   - vulkan
+  - ncnn
+  - flash-attention
   - cuda
-  - triton
-  - real-time
 updated: 2026-09-08
 aliases:
   - GPU Deployment
@@ -16,25 +16,52 @@ aliases:
 # GPU Deployment Playbook
 
 # Overview
-GPU Deployment focuses on maximizing inference throughput, minimizing end-to-end latency, and optimizing memory efficiency across desktop, workstation, cloud datacenter, and embedded edge graphics processors (e.g., NVIDIA RTX/Datacenter, Jetson Orin, AMD ROCm, and Vulkan-enabled mobile/integrated GPUs).
+GPU Deployment focuses on maximizing inference throughput, minimizing end-to-end latency, and optimizing memory efficiency across desktop workstations, cloud datacenters, and embedded edge systems (NVIDIA RTX/Orin, AMD ROCm, and Vulkan-enabled mobile/integrated GPUs).
 
 Related notes: [[topics/fpga-deployment/README|FPGA Deployment]], [[topics/real-time-systems/README|Real-Time Systems]], [[topics/object-detection/README|Object Detection]].
 
-## SOTA & Research
-- **Recent Breakthroughs (2023–2026)**:
-  - *TensorRT 10.x & TensorRT-LLM* (NVIDIA, 2023 / 2024): Modernized graph compilation engine featuring native dynamic shape compilation without re-building engines, automated FP8 (E4M3/E5M2) execution, and seamless PyTorch integration via `torch.compile(backend="tensorrt")`.
-  - *FlashAttention-2 & FlashAttention-3* (Dao et al., 2023 / 2024) - [arXiv:2307.08691](https://arxiv.org/abs/2307.08691): SOTA exact attention optimization leveraging warp-specialized asynchronous hardware copy instructions on Hopper and Ada Lovelace GPUs, reaching up to 75% theoretical peak FLOPs.
-  - *Vulkan Kompute & NCNN SPIR-V Shaders* (2023 / 2024): Portable, cross-platform shader kernels providing non-CUDA GPU compute across Intel Arc, AMD Radeon, ARM Mali, and Qualcomm Adreno architectures without driver lock-in.
-  - *FasterTransformer / TensorRT Inference Server v2* (NVIDIA, 2023 / 2024): Scalable asynchronous execution queues and zero-copy shared memory IPC mechanisms across multi-model pipelines.
+---
+
+## SOTA & Research (2023–2026 Breakthroughs)
+
+1. **TensorRT 10.x & TensorRT-LLM Execution Engine** (NVIDIA, 2023–2025)
+   - *Key Innovation*: Modernized compilation graph eliminating engine rebuilds for dynamic shapes, automated native FP8 (E4M3 / E5M2) execution on Ada Lovelace and Hopper architectures, and seamless compilation via `torch.compile(backend="tensorrt")`.
+   - [Official Documentation & Code](https://github.com/NVIDIA/TensorRT)
+
+2. **FlashAttention-2 & FlashAttention-3** (Dao et al., Princeton / Stanford, 2023 / 2024)
+   - *Key Innovation*: Re-architects attention computation to optimize GPU SRAM memory hierarchy, utilizing warp-specialized asynchronous hardware copies and FP8 Tensor Cores to achieve up to 75% theoretical peak FLOPs.
+   - [Paper: arXiv:2307.08691](https://arxiv.org/abs/2307.08691) | [Official Code](https://github.com/Dao-AILab/flash-attention)
+
+3. **Tencent NCNN Vulkan Compute Shaders** (2023 / 2024)
+   - *Key Innovation*: High-performance, cross-vendor neural network inference framework utilizing low-overhead Vulkan SPIR-V compute shaders. Provides GPU acceleration across non-CUDA hardware (Intel Arc, AMD Radeon, Qualcomm Adreno, Apple Silicon).
+   - [Official Code](https://github.com/Tencent/ncnn)
+
+4. **Triton Inference Server Architecture v2** (NVIDIA, 2023 / 2024)
+   - *Key Innovation*: Production serving infrastructure with dynamic batching, zero-copy shared memory IPC, concurrent model execution, and multi-GPU routing.
+   - [Official Code](https://github.com/triton-inference-server/server)
+
+---
 
 ### Quantitative SOTA Benchmark Comparison (NVIDIA RTX 4090 / Jetson Orin)
-| Engine / Runtime | Model Architecture | Batch Size | Latency (FP16 ms) | Throughput (FPS) | VRAM Footprint |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TensorRT 10 (CUDA)** | YOLOv8-X (640x640) | 1 | 2.85 ms | 350 FPS | 420 MB |
-| **TensorRT 10 (FP8)** | ViT-Base (224x224) | 32 | 4.10 ms | 7,800 FPS | 1.1 GB |
-| **Triton Server (TRT Engine)**| ResNet-50 | 64 | 3.20 ms | 20,000 FPS | 2.4 GB |
-| **NCNN Vulkan Compute** | YOLOv8-S (640x640) | 1 | 8.40 ms | 119 FPS | 280 MB |
-| **ONNX Runtime (CUDA EP)** | YOLOv8-X (640x640) | 1 | 4.90 ms | 204 FPS | 780 MB |
+| Engine / Runtime | Model Architecture | Batch Size | Latency (FP16 ms) | Throughput (FPS) | VRAM Footprint | License |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TensorRT 10 (CUDA)** | YOLOv8-X (640x640) | 1 | 2.85 ms | 350 FPS | 420 MB | Apache-2.0 |
+| **TensorRT 10 (FP8)** | ViT-Base (224x224) | 32 | 4.10 ms | 7,800 FPS | 1.1 GB | Apache-2.0 |
+| **Triton Server (TRT Engine)**| ResNet-50 | 64 | 3.20 ms | 20,000 FPS | 2.4 GB | BSD-3-Clause |
+| **NCNN Vulkan Compute** | YOLOv8-S (640x640) | 1 | 8.40 ms | 119 FPS | 280 MB | BSD-3-Clause |
+| **ONNX Runtime (CUDA EP)** | YOLOv8-X (640x640) | 1 | 4.90 ms | 204 FPS | 780 MB | MIT |
+
+---
+
+## Commercial Usability & License Audit
+- **Commercial Permissive (Safe)**:
+  - **NVIDIA TensorRT (`NVIDIA/TensorRT`)**: Open-source components are licensed under **Apache-2.0**. Commercial distribution with NVIDIA driver binaries is fully supported and standard industry practice.
+  - **Triton Inference Server (`triton-inference-server/server`)**: **BSD-3-Clause**. Completely free for proprietary cloud/enterprise serving.
+  - **Tencent NCNN (`Tencent/ncnn`)**: **BSD-3-Clause**. Safe for proprietary mobile apps and embedded devices without source disclosure.
+  - **FlashAttention (`Dao-AILab/flash-attention`)**: **BSD-3-Clause**.
+  - **ONNX Runtime (`microsoft/onnxruntime`)**: **MIT**.
+
+---
 
 ## Architecture Alternatives & Trade-offs
 | Runtime Engine | Target Hardware | Precision Support | Ecosystem Strengths | Key Constraints |
@@ -44,14 +71,18 @@ Related notes: [[topics/fpga-deployment/README|FPGA Deployment]], [[topics/real-
 | **ONNX Runtime (CUDA / TensorRT EP)**| Cross-Platform / NVIDIA | FP32, FP16, INT8 | Clean multi-backend API, rapid prototyping | Slight abstraction layer overhead vs pure TensorRT C++ API |
 | **Triton Inference Server** | Cloud Datacenter & Edge Clusters | Multi-backend (TRT, PyTorch, ONNX) | Production routing, dynamic batching, metrics | Overhead for small standalone single-board setups |
 
+---
+
 ## Popular Repos & Integrations
-- **[NVIDIA/TensorRT](https://github.com/NVIDIA/TensorRT)**: Open-source repository for TensorRT parsers, open-source plugins, and deep learning samples.
-- **[triton-inference-server/server](https://github.com/triton-inference-server/server)**: Scalable enterprise serving engine for cloud and edge AI.
-- **[Tencent/ncnn](https://github.com/Tencent/ncnn)**: High-performance neural network inference framework optimized for cross-platform mobile and embedded GPUs via Vulkan.
-- **[Dao-AILab/flash-attention](https://github.com/Dao-AILab/flash-attention)**: Fast, memory-efficient exact attention algorithms for CUDA and PyTorch.
+- **[NVIDIA/TensorRT](https://github.com/NVIDIA/TensorRT)**: Open-source components, plugins, and parsers for high-performance deep learning inference (Apache-2.0).
+- **[triton-inference-server/server](https://github.com/triton-inference-server/server)**: Scalable enterprise serving engine for cloud and edge AI (BSD-3-Clause).
+- **[Tencent/ncnn](https://github.com/Tencent/ncnn)**: High-performance neural network inference framework optimized for cross-platform mobile and embedded GPUs via Vulkan (BSD-3-Clause).
+- **[Dao-AILab/flash-attention](https://github.com/Dao-AILab/flash-attention)**: Fast, memory-efficient exact attention algorithms for CUDA and PyTorch (BSD-3-Clause).
 - **Tooling Integrations**:
   - **FiftyOne**: Connect remote dataset evaluation jobs directly to GPU-accelerated inference endpoints to benchmark mAP vs batch size.
   - **Rerun**: Visualize real-time GPU inference streams, memory throughput, and timing marks over high-speed C++ and Python SDKs.
+
+---
 
 ## End-to-End Pipeline & Workarounds
 1. **Pipeline Stages**:
@@ -64,6 +95,8 @@ Related notes: [[topics/fpga-deployment/README|FPGA Deployment]], [[topics/real-
    - **Pinned Memory (`cudaHostAlloc`) & CUDA Streams**: Allocate page-locked host memory to enable simultaneous bidirectional PCIe DMA transfers overlapping with kernel execution.
    - **Fused Post-Processing Plugins**: Embed bounding box decoding and NMS directly into the TensorRT engine graph using `EfficientNMS_TRT`.
    - **Fixed-Profile Engine Optimization**: Profile and compile the TensorRT engine for specific operational dimensions (`min`, `opt`, and `max` shapes) rather than fully unconstrained dynamic axes.
+
+---
 
 ## Deployment & Real-time Notes
 - **Profiling with Nsight Systems**:

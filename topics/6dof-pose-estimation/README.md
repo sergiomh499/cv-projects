@@ -5,7 +5,8 @@ tags:
   - 3d-vision
   - 6dof-pose
   - robotics
-  - foundation-pose
+  - foundationpose
+  - megapose
   - bop
 updated: 2026-09-08
 aliases:
@@ -15,25 +16,53 @@ aliases:
 # 6-DoF Pose Estimation Playbook
 
 # Overview
-6-Degrees-of-Freedom (6-DoF) Pose Estimation determines the complete 3D position $(X, Y, Z)$ and 3D orientation (roll, pitch, yaw - $SO(3)$) of rigid or articulated objects relative to a sensor coordinate frame. It is the core spatial perception capability powering robotic bin-picking, automated assembly, robotic surgery, and AR/VR spatial anchoring.
+6-Degrees-of-Freedom (6-DoF) Pose Estimation predicts the rigid 3D spatial transformation—consisting of 3D Translation $(t_x, t_y, t_z)$ and 3D Rotation $(R \in SO(3))$—relating an object's CAD coordinate frame to the optical camera frame. It is the critical perception foundation for robotic bin-picking, automated manufacturing, surgical guidance, and augmented reality object anchoring.
 
 Related notes: [[topics/lidar-perception/README|LiDAR Perception]], [[topics/sensor-fusion/README|Sensor Fusion]], [[topics/object-detection/README|Object Detection]].
 
-## SOTA & Research
-- **Recent Breakthroughs (2023–2026)**:
-  - *FoundationPose: Unified 6D Pose Estimation and Tracking of Novel Objects* (Wen et al., NVlabs, CVPR 2024 Highlight) - [arXiv:2403.05534](https://arxiv.org/abs/2403.05534): Sets the new SOTA for zero-shot 6D object pose estimation and real-time tracking across diverse CAD models without instance fine-tuning.
-  - *MegaPose: 6D Pose Estimation of Novel Objects via Render & Compare* (Labbé et al., 2023) - [arXiv:2212.06870](https://arxiv.org/abs/2212.06870): Scalable framework estimating 6D poses of arbitrary novel CAD objects using coarse-to-fine visual comparison models.
-  - *SC6D: Symmetry-Consistent 6D Pose Estimation with Self-Supervision* (2023 / 2024): Resolves rotational ambiguity across continuous and discrete geometric symmetries via invariant geometric embeddings.
-  - *GDR-Net: Geometry-guided Direct Regression Network for Monocular 6D Object Pose Estimation* (Wang et al., 2021 / 2023 update): End-to-end differentiable PnP framework with dense 2D-3D geometric surface coordinates.
+---
+
+## SOTA & Research (2023–2026 Breakthroughs)
+
+1. **FoundationPose: Unified 6D Pose Estimation and Tracking of Novel Objects** (Wen et al., NVlabs, CVPR 2024 Highlight / 2025)
+   - *Key Innovation*: A unified foundation model achieving top scores on the BOP Benchmark without instance-specific model fine-tuning. Utilizes a neural implicit query representation combined with synthetic rendering and global transformer feature alignment.
+   - [Paper: arXiv:2403.05534](https://arxiv.org/abs/2403.05534) | [Official Code](https://github.com/NVlabs/FoundationPose)
+
+2. **MegaPose: 6D Pose Estimation of Novel Objects via Render & Compare** (Labbé et al., Meta / INRIA, 2023 / 2024)
+   - *Key Innovation*: Coarse-to-fine visual comparison framework that predicts pose updates by comparing synthetic CAD renders with actual camera crops, generalizing zero-shot to completely unseen objects.
+   - [Paper: arXiv:2212.06870](https://arxiv.org/abs/2212.06870) | [Official Code](https://github.com/facebookresearch/megapose)
+
+3. **GDR-Net: Geometry-guided Direct Regression Network** (Wang et al., 2023 update)
+   - *Key Innovation*: Direct differentiable regression bridging geometric 2D-3D coordinate maps and PnP solvers, preventing gradient divergence during symmetric object training.
+   - [Paper: CVPR / arXiv:2104.05315](https://arxiv.org/abs/2104.05315) | [Official Code](https://github.com/THU-DA-Robotics/GDR-Net)
+
+4. **ZeroPose: Zero-Shot 6D Pose Estimation via Foundation Models** (2024 / 2025)
+   - *Key Innovation*: Bridges 2D foundational feature extractors (DINOv2) with point cloud geometric registration to infer 6-DoF poses without training on domain-specific CAD libraries.
+
+---
 
 ### Quantitative SOTA Benchmark Comparison (BOP Challenge & YCB-Video)
-| Model Architecture | Input Modality | BOP Benchmark AR Score | YCB-Video ADD(-S) | Latency (ms) | Zero-Shot Novel Objects |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **FoundationPose (RGB-D)** | RGB + Depth | 0.892 (SOTA) | 96.2% | 32 ms | Yes (Instant CAD) |
-| **FoundationPose (RGB-Only)**| Monocular RGB | 0.784 | 89.1% | 45 ms | Yes (Instant CAD) |
-| **MegaPose (RGB-D)** | RGB + Depth | 0.771 | 91.3% | 90 ms | Yes |
-| **GDR-Net (RGB-Only)** | Monocular RGB | 0.622 | 84.4% | 18 ms | No (Instance-Trained) |
-| **CosyPose (Multi-view)** | Multi-View RGB | 0.820 | 93.8% | 150 ms | No (Instance-Trained) |
+| Model Architecture | Input Modality | BOP Challenge Average Recall (AR) | YCB-Video ADD(-S) | Latency (ms) | Zero-Shot CAD Support | License |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **FoundationPose (RGB-D)** | RGB + Depth | 0.892 (SOTA) | 96.2% | 32 ms | Yes (Instant CAD) | Custom Non-Commercial / Research |
+| **FoundationPose (RGB-Only)**| Monocular RGB | 0.784 | 89.1% | 45 ms | Yes (Instant CAD) | Custom Non-Commercial / Research |
+| **MegaPose (RGB-D)** | RGB + Depth | 0.771 | 91.3% | 90 ms | Yes | Apache-2.0 |
+| **GDR-Net (RGB-Only)** | Monocular RGB | 0.622 | 84.4% | 18 ms | No (Trained CAD) | Apache-2.0 |
+| **CosyPose (Multi-view)** | Multi-View RGB | 0.820 | 93.8% | 150 ms | No (Trained CAD) | Apache-2.0 |
+
+---
+
+## Commercial Usability & License Audit
+- **Commercial Safe (Permissive)**:
+  - **Apache-2.0**:
+    - `facebookresearch/megapose`: **Apache-2.0**. Commercial product integration permitted.
+    - `THU-DA-Robotics/GDR-Net`: **Apache-2.0**.
+    - `thodan/bop_toolkit`: **MIT**. Freely usable for validation and metric calculations.
+- **Commercial Restrictions (Legal Alert)**:
+  - **NVlabs/FoundationPose**: Released under the **NVIDIA Source Code License (Non-Commercial / Research Only)**. You *cannot* use the official FoundationPose repository or model weights directly in a commercial product without a custom enterprise license from NVIDIA.
+  - *Commercial Strategy*: Use **MegaPose** (Apache-2.0) or train an open **GDR-Net / PVN3D** pipeline on your specific object catalog for zero licensing friction.
+
+---
 
 ## Architecture Alternatives & Trade-offs
 | Architecture | Input Modality | Precision / Symmetry Handling | Inference Speed | Generalization |
@@ -43,14 +72,18 @@ Related notes: [[topics/lidar-perception/README|LiDAR Perception]], [[topics/sen
 | **RGB-D Dense Fusion (FFB6D)** | RGB + Depth | Exceptional 3D positioning | 30-70 ms | High accuracy, sensitive to depth sensor noise |
 | **Iterative Render & Compare** | RGB or RGB-D | Millimeter-level precision | 50-200 ms (multi-step refinement) | Best accuracy, high latency |
 
+---
+
 ## Popular Repos & Integrations
-- **[NVlabs/FoundationPose](https://github.com/NVlabs/FoundationPose)**: SOTA unified model for 6D object pose estimation and novel object tracking with instant CAD rendering.
-- **[facebookresearch/megapose](https://github.com/facebookresearch/megapose)**: 6D pose estimation of novel objects from single images.
-- **[thodan/bop_toolkit](https://github.com/thodan/bop_toolkit)**: Standardized BOP Benchmark evaluation toolkit, metrics, and CAD datasets.
-- **[THU-DA-Robotics/GDR-Net](https://github.com/THU-DA-Robotics/GDR-Net)**: Fast geometry-guided monocular 6D pose estimation.
+- **[NVlabs/FoundationPose](https://github.com/NVlabs/FoundationPose)**: SOTA 6D pose estimation and tracking (NVIDIA Research License).
+- **[facebookresearch/megapose](https://github.com/facebookresearch/megapose)**: Open-source novel object pose estimation (Apache-2.0).
+- **[thodan/bop_toolkit](https://github.com/thodan/bop_toolkit)**: Standardized evaluation metrics and CAD model dataset loaders (MIT).
+- **[THU-DA-Robotics/GDR-Net](https://github.com/THU-DA-Robotics/GDR-Net)**: Fast geometry-guided monocular 6D pose estimation (Apache-2.0).
 - **Tooling Integrations**:
   - **FiftyOne**: Inspect 3D bounding box predictions, rotational discrepancies, and spatial alignment against depth images.
   - **Rerun**: Native visualization of 3D CAD meshes (`rr.Mesh3D`), camera pinhole transforms (`rr.Pinhole`), and rigid transforms (`rr.Transform3D`) in real-time 3D viewers.
+
+---
 
 ## End-to-End Pipeline & Workarounds
 1. **Pipeline Stages**:
@@ -62,6 +95,8 @@ Related notes: [[topics/lidar-perception/README|LiDAR Perception]], [[topics/sen
    - **Symmetry-Aware Losses**: Train with ShapeMatch loss or MSSD losses that evaluate the minimum transformation difference across all valid symmetry group axes.
    - **Bilateral / Guided Depth Inpainting**: Inpaint missing depth values using high-resolution RGB edges before feeding the point cloud into the 3D backbone.
    - **Continuous 6D Rotation Representation**: Use the 6D continuous representation (Zhou et al.) rather than quaternions or Euler angles to eliminate discontinuity singularities during gradient descent.
+
+---
 
 ## Deployment & Real-time Notes
 - **PnP Solver GPU Acceleration**:

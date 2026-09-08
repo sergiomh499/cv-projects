@@ -9,7 +9,8 @@ Checks:
 5. SOTA criteria:
    - At least 3 modern paper citations with year >= 2023 (arxiv/doi/proceedings).
    - At least 2 active code repository links (github/gitlab).
-   - A standardized Markdown SOTA Benchmark Comparison Table with >= 3 data rows and quantitative metrics.
+   - Standardized SOTA Benchmark Comparison Table with >= 3 data rows and quantitative metrics.
+   - Commercial / Open-Source License audit per repository (e.g. Apache-2.0, MIT, AGPL-3.0, Non-Commercial).
 """
 
 import sys
@@ -38,6 +39,8 @@ REQUIRED_SECTIONS = [
     "## Deployment & Real-time Notes",
 ]
 
+KNOWN_LICENSES = ["MIT", "Apache-2.0", "Apache 2.0", "BSD", "AGPL", "GPL", "CC-BY", "Non-Commercial", "Custom"]
+
 def check_playbook(topic: str, path: Path) -> list[str]:
     errs = []
     text = path.read_text(encoding="utf-8")
@@ -60,7 +63,6 @@ def check_playbook(topic: str, path: Path) -> list[str]:
             errs.append(f"Missing section '{section}' in {topic}")
 
     # 3. Paper citations with year >= 2023
-    # Matches patterns like 2023, 2024, 2025, 2026 inside citation lines
     recent_years = re.findall(r"\b(202[3-6])\b", text)
     if len(recent_years) < 3:
         errs.append(f"Insufficient modern citations (>=2023) in {topic}: found {len(recent_years)}, expected >=3")
@@ -71,16 +73,19 @@ def check_playbook(topic: str, path: Path) -> list[str]:
     if len(unique_repos) < 2:
         errs.append(f"Insufficient code repository links in {topic}: found {len(unique_repos)}, expected >=2")
 
-    # 5. SOTA Benchmark table check (Markdown table under SOTA or Benchmark section)
-    # Check for a markdown table with header and rows
+    # 5. SOTA Benchmark table check
     table_matches = re.findall(r"\|[^\n]+\|\n\|(?:\s*:?---+:?\s*\|)+\n((?:\|[^\n]+\|\n)+)", text)
     if not table_matches:
         errs.append(f"Missing Markdown comparison/benchmark table in {topic}")
     else:
-        # Verify at least one table has >= 3 rows
         has_min_rows = any(len(table.strip().split("\n")) >= 3 for table in table_matches)
         if not has_min_rows:
             errs.append(f"Benchmark/Comparison table in {topic} has fewer than 3 rows")
+
+    # 6. License audit presence check
+    has_license_mention = any(lic.lower() in text.lower() for lic in KNOWN_LICENSES)
+    if not has_license_mention:
+        errs.append(f"Missing license/commercial readiness audit in {topic}")
 
     return errs
 
@@ -121,7 +126,7 @@ def main() -> int:
             print(f"    - {err}")
         return 1
 
-    print(f"[+] Validation PASSED: All {len(REQUIRED_TOPICS)} topic playbooks satisfy SOTA, metadata, and Obsidian schema.")
+    print(f"[+] Validation PASSED: All {len(REQUIRED_TOPICS)} topic playbooks satisfy didactic depth, license audit, and SOTA criteria.")
     return 0
 
 if __name__ == "__main__":

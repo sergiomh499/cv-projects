@@ -5,8 +5,9 @@ tags:
   - video-tracking
   - mot
   - bytetrack
+  - botsort
   - cotracker
-  - real-time
+  - sam2-video
 updated: 2026-09-08
 aliases:
   - Video Tracking
@@ -15,25 +16,60 @@ aliases:
 # Video Tracking Playbook
 
 # Overview
-Video Tracking maintains consistent object identity across sequential video frames despite camera motion, object deformation, lighting fluctuations, and severe occlusion. Tracking spans Multiple Object Tracking (MOT - tracking all detected instances), Single Object Tracking (SOT - following an arbitrary bounding-box prompt), and Point Tracking (dense or sparse physical surface point trajectory tracking).
+Video Tracking maintains consistent identity and spatial trajectories for instances across sequential video frames. The primary paradigms include:
+1. **Multiple Object Tracking (MOT)**: Tracks all detected objects (e.g. pedestrians, vehicles) simultaneously using detection-association pipelines.
+2. **Single Object Tracking (SOT)**: Follows a specific target prompted by an initial bounding box.
+3. **Dense Point Tracking**: Tracks tens of thousands of physical surface points through long video sequences, non-rigid deformation, and occlusions.
 
 Related notes: [[topics/object-detection/README|Object Detection]], [[topics/object-segmentation/README|Object Segmentation]], [[topics/real-time-systems/README|Real-Time Systems]].
 
-## SOTA & Research
-- **Recent Breakthroughs (2023–2026)**:
-  - *CoTracker: It is Better to Track Together: Dense Point Tracking by Jointly Modeling Points and Frames* (Karaev et al., Meta FAIR, 2023 / 2024) - [arXiv:2307.07635](https://arxiv.org/abs/2307.07635): SOTA transformer tracking up to 70,000 points jointly through long occlusions and extreme deformations.
-  - *OC-SORT: Observation-Centric SORT: Rethinking SORT for Robust Multi-Object Tracking* (Cao et al., 2023) - [arXiv:2203.14360](https://arxiv.org/abs/2203.14360): Fixed linear Kalman filter momentum accumulation errors during non-linear occlusion intervals.
-  - *BoT-SORT: Robust Associations Multi-Pedestrian Tracker* (Aharon et al., 2022 / 2023) - [arXiv:2206.14651](https://arxiv.org/abs/2206.14651): Combined Camera Motion Compensation (CMC), optimized Kalman state vectors, and fused appearance ReID embeddings, achieving top ranks on MOT17/MOT20.
-  - *TAPIR: Tracking Any Point with per-frame Initialization and temporal Refinement* (Doersch et al., Google DeepMind, 2023 / 2024) - [arXiv:2306.08637](https://arxiv.org/abs/2306.08637): Fast, robust point tracking capable of tracking physical surface points with occlusion prediction.
+---
+
+## SOTA & Research (2023–2026 Breakthroughs)
+
+1. **CoTracker & CoTracker3: Dense Point Tracking by Jointly Modeling Points and Frames** (Karaev et al., Meta FAIR, 2023–2025)
+   - *Key Innovation*: Joint sliding-window Transformer architecture modeling cross-point and cross-frame attention simultaneously. Eliminates drifting and tracks up to 70,000 points through prolonged multi-second occlusions.
+   - [Paper: arXiv:2307.07635](https://arxiv.org/abs/2307.07635) | [Official Code](https://github.com/facebookresearch/co-tracker)
+
+2. **SAM 2 Video Object Tracking Engine** (Ravi et al., Meta FAIR, 2024 / 2025)
+   - *Key Innovation*: Integrates a streaming spatial-temporal memory bank that stores past frame features, object pointers, and user interaction clicks. Re-identifies targets across severe occlusions and camera cuts with zero-shot generalization.
+   - [Paper: arXiv:2408.00714](https://arxiv.org/abs/2408.00714) | [Official Code](https://github.com/facebookresearch/sam2)
+
+3. **BoT-SORT & OC-SORT** (Aharon et al., 2023 / Cao et al., 2023)
+   - *Key Innovation*: BoT-SORT integrates Camera Motion Compensation (CMC) using image feature matching and combines IoU distance with appearance ReID cosine distances. OC-SORT prevents error accumulation in linear Kalman filters during prolonged non-linear occlusions.
+   - [BoT-SORT Paper](https://arxiv.org/abs/2206.14651) | [OC-SORT Paper](https://arxiv.org/abs/2203.14360)
+
+4. **TAPIR: Tracking Any Point with Per-Frame Initialization** (Doersch et al., Google DeepMind, 2023 / 2024)
+   - *Key Innovation*: Two-stage point tracker that initializes point estimates independently per frame and refines trajectories over temporal windows, running in real-time.
+   - [Paper: arXiv:2306.08637](https://arxiv.org/abs/2306.08637) | [Official Code](https://github.com/google-deepmind/tapnet)
+
+---
 
 ### Quantitative SOTA Benchmark Comparison
-| Tracker | Target Benchmark | HOTA | MOTA | IDF1 | Latency / FPS |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **BoT-SORT** | MOT17 Test | 65.0 | 80.6 | 79.5 | 18.0 FPS (GPU + CMC) |
-| **ByteTrack** | MOT17 Test | 63.1 | 80.3 | 77.3 | 30.0+ FPS (Lightweight) |
-| **OC-SORT** | DanceTrack Test | 55.1 | 89.4 | 54.2 | 28.0 FPS |
-| **CoTracker2** | TAP-Vid Kinetics (Point) | 68.2 (AJ) | - | - | 35.0 FPS (512 points) |
-| **TAPIR** | TAP-Vid Davis (Point) | 67.3 (AJ) | - | - | 22.0 FPS |
+| Tracker Algorithm | Target Benchmark | HOTA | MOTA | IDF1 | Latency / FPS | Open License |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **BoT-SORT** | MOT17 Test | 65.0 | 80.6 | 79.5 | 18.0 FPS (GPU + CMC) | MIT |
+| **ByteTrack** | MOT17 Test | 63.1 | 80.3 | 77.3 | 35.0+ FPS (Lightweight) | MIT |
+| **OC-SORT** | DanceTrack Test | 55.1 | 89.4 | 54.2 | 28.0 FPS | MIT |
+| **SAM 2 Video Engine**| SA-V Video Tracking | 75.0 J&F | - | - | 43.8 FPS (Hiera-B+) | Apache-2.0 |
+| **CoTracker3** | TAP-Vid Kinetics (Points) | 68.2 (AJ)| - | - | 35.0 FPS (512 points) | Apache-2.0 |
+| **TAPIR** | TAP-Vid Davis (Points) | 67.3 (AJ)| - | - | 22.0 FPS | Apache-2.0 |
+
+---
+
+## Commercial Usability & License Audit
+- **Permissive (Safe for Commercial Product Integration)**:
+  - **MIT License**:
+    - `NirAharon/BoT-SORT`: **MIT**. Safe for proprietary commercial integration.
+    - `ifzhang/ByteTrack`: **MIT**. Royalty-free, no copyleft obligations.
+    - `mikel-brostrom/boxmot`: **GNU GPL-3.0** (Note: BoxMOT is GPL-3.0; use individual ByteTrack/BoT-SORT repos directly if building proprietary closed-source applications to avoid GPL viral requirements).
+  - **Apache-2.0**:
+    - `facebookresearch/sam2` (Meta Apache-2.0).
+    - `facebookresearch/co-tracker` (Apache-2.0).
+    - `google-deepmind/tapnet` (Apache-2.0).
+  - *Recommendation*: Pair **ByteTrack** or **BoT-SORT** directly (MIT) with **RF-DETR** or **RT-DETRv2** (Apache-2.0) for a 100% permissively licensed, copyleft-free commercial tracking product.
+
+---
 
 ## Architecture Alternatives & Trade-offs
 | Tracking Paradigm | Algorithms | Latency / Overhead | Robustness to Occlusion | Ideal Deployment |
@@ -43,14 +79,18 @@ Related notes: [[topics/object-detection/README|Object Detection]], [[topics/obj
 | **Dense Point Trackers** | CoTracker, TAPIR | 30-100 ms | Exceptional physical surface fidelity | Video editing, VFX, deformation analysis |
 | **Memory-Prompt Video Trackers** | SAM 2 Video | 25-45 ms | High pixel-accurate mask tracking | Interactive tracking, surgical tool tracking |
 
+---
+
 ## Popular Repos & Integrations
-- **[facebookresearch/co-tracker](https://github.com/facebookresearch/co-tracker)**: Official PyTorch implementation of CoTracker and CoTracker3.
-- **[NirAharon/BoT-SORT](https://github.com/NirAharon/BoT-SORT)**: Official BoT-SORT multi-object tracker with ReID and camera motion compensation.
-- **[ifzhang/ByteTrack](https://github.com/ifzhang/ByteTrack)**: SOTA real-time multi-object tracking implementation.
-- **[mikel-brostrom/boxmot](https://github.com/mikel-brostrom/boxmot)**: Pluggable modular tracking suite packaging ByteTrack, BoT-SORT, DeepOCSORT, and StrongSORT in Python.
+- **[facebookresearch/co-tracker](https://github.com/facebookresearch/co-tracker)**: Official CoTracker repository (Apache-2.0).
+- **[NirAharon/BoT-SORT](https://github.com/NirAharon/BoT-SORT)**: Official BoT-SORT multi-object tracker (MIT).
+- **[ifzhang/ByteTrack](https://github.com/ifzhang/ByteTrack)**: SOTA real-time multi-object tracking implementation (MIT).
+- **[google-deepmind/tapnet](https://github.com/google-deepmind/tapnet)**: Official TAPIR implementation (Apache-2.0).
 - **Tooling Integrations**:
   - **FiftyOne**: Visualize video datasets with synchronized track IDs, color-coded trajectory paths, and ID switch inspection.
   - **Rerun**: Stream live trajectories as 2D/3D historical polyline paths with interactive timeline scrubbing.
+
+---
 
 ## End-to-End Pipeline & Workarounds
 1. **Pipeline Stages**:
@@ -62,6 +102,8 @@ Related notes: [[topics/object-detection/README|Object Detection]], [[topics/obj
    - **Camera Motion Compensation (CMC)**: Extract optical flow or sparse feature matches between frame $t-1$ and $t$ to warp the prior state into current camera coordinates.
    - **Two-Stage Matching (ByteTrack principle)**: First match high-confidence detections ($score > 0.6$); for unassigned tracks, match with low-confidence detections ($0.1 < score < 0.6$) instead of discarding them.
    - **Velocity Direction Consistency**: Penalize association candidates that exhibit instantaneous $180^\circ$ direction reversals.
+
+---
 
 ## Deployment & Real-time Notes
 - **Decoupled Tracker Threading**:
