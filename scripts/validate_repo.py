@@ -2,10 +2,10 @@
 """
 Comprehensive validator for cv-projects repository.
 Checks:
-1. Root README links to all 10 topics.
-2. All 10 topic folders and README.md playbooks exist.
+1. Root README links to all 10 topic playbooks and evolution guides.
+2. All 10 topic folders, README.md playbooks, and EVOLUTION.md guides exist.
 3. YAML frontmatter exists with title and tags (Obsidian compatibility).
-4. All required markdown sections are present.
+4. All required markdown sections are present in playbooks.
 5. SOTA criteria:
    - At least 3 modern paper citations with year >= 2023 (arxiv/doi/proceedings).
    - At least 2 active code repository links (github/gitlab).
@@ -89,6 +89,15 @@ def check_playbook(topic: str, path: Path) -> list[str]:
 
     return errs
 
+def check_evolution(topic: str, path: Path) -> list[str]:
+    errs = []
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        errs.append(f"Missing YAML frontmatter start in {topic}/EVOLUTION.md")
+    if "```mermaid" not in text:
+        errs.append(f"Missing Mermaid diagram in {topic}/EVOLUTION.md")
+    return errs
+
 def main() -> int:
     root = Path(__file__).resolve().parent.parent
     errors = []
@@ -102,23 +111,30 @@ def main() -> int:
     else:
         content = root_readme.read_text(encoding="utf-8")
         for topic in REQUIRED_TOPICS:
-            expected_link = f"topics/{topic}/README.md"
-            if expected_link not in content:
-                errors.append(f"Root README.md is missing link to '{expected_link}'")
+            expected_playbook = f"topics/{topic}/README.md"
+            expected_evolution = f"topics/{topic}/EVOLUTION.md"
+            if expected_playbook not in content:
+                errors.append(f"Root README.md is missing link to '{expected_playbook}'")
+            if expected_evolution not in content:
+                errors.append(f"Root README.md is missing link to '{expected_evolution}'")
 
     # Check each topic
     for topic in REQUIRED_TOPICS:
         topic_dir = root / "topics" / topic
         topic_readme = topic_dir / "README.md"
+        topic_evolution = topic_dir / "EVOLUTION.md"
         if not topic_dir.is_dir():
             errors.append(f"Missing directory: topics/{topic}")
             continue
         if not topic_readme.is_file():
             errors.append(f"Missing playbook: topics/{topic}/README.md")
             continue
+        if not topic_evolution.is_file():
+            errors.append(f"Missing evolution guide: topics/{topic}/EVOLUTION.md")
+            continue
 
-        topic_errs = check_playbook(topic, topic_readme)
-        errors.extend(topic_errs)
+        errors.extend(check_playbook(topic, topic_readme))
+        errors.extend(check_evolution(topic, topic_evolution))
 
     if errors:
         print(f"[-] Validation FAILED with {len(errors)} error(s):")
@@ -126,7 +142,7 @@ def main() -> int:
             print(f"    - {err}")
         return 1
 
-    print(f"[+] Validation PASSED: All {len(REQUIRED_TOPICS)} topic playbooks satisfy didactic depth, license audit, and SOTA criteria.")
+    print(f"[+] Validation PASSED: All {len(REQUIRED_TOPICS)} topic playbooks and evolution guides verified.")
     return 0
 
 if __name__ == "__main__":
