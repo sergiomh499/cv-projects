@@ -69,6 +69,17 @@ Cross-cutting models and multi-task foundation backbones shared across topics:
 
 ---
 
+## 🍳 Production Cookbooks & Runnable Recipes (`cookbooks/`)
+
+Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC, verification, and data quality:
+- **[[cookbooks/01-rfdetr-tensorrt/export_rfdetr_tensorrt.py|01-rfdetr-tensorrt]]**: PyTorch to ONNX export with dynamic batch axes and TensorRT FP16 engine builder script.
+- **[[cookbooks/02-sam2-video-stream/sam2_video_stream.py|02-sam2-video-stream]]**: Real-time temporal video mask propagation with SAM 2 and positive/negative interactive prompt points.
+- **[[cookbooks/03-iceoryx2-zero-copy-ipc/main.rs|03-iceoryx2-zero-copy-ipc]]**: Rust-based sub-microsecond lock-free shared memory transport for 4K video frames.
+- **[[cookbooks/04-cleanlab-dataset-auditing/audit_dataset.py|04-cleanlab-dataset-auditing]]**: Confident Learning implementation estimating joint noise distribution to find corrupted dataset labels.
+- **[[cookbooks/05-alpha-beta-crown-verification/bound_verification.py|05-alpha-beta-crown-verification]]**: Linear relaxation neural network interval bound propagation (IBP) certifying $L_\infty$ robustness.
+- **[[cookbooks/06-mechanistic-cbm-attribution/concept_intervention.py|06-mechanistic-cbm-attribution]]**: Concept Bottleneck Model (CBM) with test-time human-in-the-loop concept intervention.
+---
+
 ## ⚖️ Global Commercial Usability & License Matrix
 
 | Category | Safe for Proprietary Software? | Key Repositories & Models |
