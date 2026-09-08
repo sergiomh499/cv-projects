@@ -150,4 +150,64 @@ When synthetic data (rendered via CARLA, Omniverse, or diffusion inpainting) is 
 - **Clean-Real Holdout Test**: Train on `real + synthetic`, evaluate on a held-out clean-real-only set. Synthetic batches that degrade real-holdout mAP by > 1.5% are rejected.
 - **Confident Learning on Synthetic Labels**: CL applied to renderer-generated labels catches geometry projection errors (e.g., bounding boxes generated from 3D mesh projections that clip occluded objects).
 
+## 7. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Data quality auditing, label noise sanitization, slice discovery, and out-of-distribution (OOD) verification systems have evolved from shallow statistical heuristics on hand-crafted features to cross-validated convolutional ensembles, self-supervised isotropic foundation transformers, and multimodal flow-matching verification engines.
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model / System Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Confident Learning (cleanlab)** (2021) | Algorithmic / Statistical Matrix Estimator | Stratified K-Fold Cross-Validated Base Classifiers (ResNet-50 / ConvNeXt) | Out-of-Sample (OOF) Predicted Probability Aggregator | Calibrated Softmax Posterior Matrix Estimator ($P(\tilde{y} \mid x)$) | Non-Parametric Joint Distribution Matrix ($Q_{\tilde{y}, y^*}$) Counting & Pruning Filter | **K-Fold Compute Bound**: Training $K=5$ independent models across massive dataset splits ($>1\text{M}$ samples); zero extra inference memory footprint once pruned. |
+| **Deep Mahalanobis OOD** (2018–2022) | Pure ConvNet / Statistical Hybrid | Pre-trained ResNet-101 / DenseNet-201 Backbone | Multi-Scale Penultimate Layer Feature Aggregator | Empirical Class-Conditional Gaussian Feature Extractor ($\mathcal{N}(\mu_c, \Sigma)$) | Tied-Covariance Mahalanobis Distance Metric Scoring Head | **Matrix Inversion Bound**: Computing empirical covariance matrix $\Sigma^{-1} \in \mathbb{R}^{d \times d}$ across high-dimensional feature layers ($d=2048$); fast edge execution. |
+| **SRe2L / Dataset Distillation** (2022–2023) | Pure ConvNet / Optimization Framework | ResNet-18 / ConvNeXt-Tiny Teacher & Student Models | Multi-Scale Feature Trajectory Matching Neck | Squeeze-and-Recover Convolutional Residual Blocks | Parametric Synthetic Image Pixel Optimization Decoder (Compressing $1\text{M}$ images to 10/class) | **Training Gradient Graph Bound**: Massive GPU memory during multi-step unrolled trajectory matching; yields ultra-compact datasets for fast edge retraining. |
+| **DINOv2-DataAudit** (2023–2025) | Pure ViT Foundation | Isotropic Vision Transformer (DINOv2 ViT-g/14, 1.1B parameters) | Global LayerNorm + Multi-Token Feature Pooling Neck | Self-Attention Blocks with LayerScale and FlashAttention-2 | Approximate Nearest Neighbors ($k$-NN) Cosine Density Graph Head + Anomaly Score Regressor | **DRAM Indexing & VRAM Bound**: Extracting dense patch tokens requires high VRAM; vector database search ($FAISS$) bottlenecks cluster discovery on edge systems. |
+| **Domino Slice Discovery** (2022–2024) | Hybrid Multi-Modal Transformer | Dual Vision-Language Backbone: CLIP ViT-B/32 + Cross-Modal Text Encoder | Cross-Modal Joint Embedding Space Projection Neck | Error-Slicing Multi-Head Cross-Attention Cluster Blocks | Automated VLM Natural Language Caption Decoder (LLaVA-NeXT / Qwen2-VL) | **Multimodal Latency Bound**: Running HDBSCAN clustering over high-dimensional error embeddings + generating descriptive captions via large autoregressive VLMs. |
+| **GenDataVerifier (FlowAudit)** (2025–2026) | Flow Matching / Generative Foundation | Continuous Flow Matching UNet / Diffusion Transformer (DiT-XL/2) Backbone | Cross-Attention Conditioned Prompt-and-Bounding-Box Neck | Multi-Scale ODE Inverter & Trajectory Velocity Matching Blocks | Likelihood Reconstruction Residual Error Head + Geometry Projection Consistency Filter | **ODE Numerical Solver Bound**: Running 4–16 Euler integration steps per synthetic sample to audit prompt adherence and geometric hallucination errors. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Data Quality Verification Paradigms"]
+        StatAudit["Statistical Confident Learning (cleanlab)"]
+        OODMahal["Geometric Out-of-Distribution (Deep Mahalanobis)"]
+        ViTClust["Foundation Vector Clustering (DINOv2-Audit / Domino)"]
+        GenODE["Generative Trajectory Auditing (GenDataVerifier)"]
+    end
+
+    StatAudit -->|Out-of-Fold Probability Calibration| NoiseClean["Provably Consistent Joint Noise Matrix Estimation Q"]
+    OODMahal -->|Class-Conditional Feature Manifolds| FastOOD["Low-Latency Edge OOD Rejection, Sensitive to Covariance Shrinkage"]
+    ViTClust -->|Isotropic High-Dimensional Semantics| SemanticSlices["Automated Discovery of Underperforming Sub-Populations (Slices)"]
+    GenODE -->|Flow Matching ODE Residuals| HallucinationCatch["Detects Corrupted Physics and Synthetic Label Projection Hallucinations"]
+```
+
+#### 1. Statistical Posterior Calibration vs. Foundation High-Dimensional Geometry
+Early label-noise detection relied on standard convolutional model probabilities. However, under high epistemic uncertainty, cross-entropy overconfidence causes models to output false high-confidence predictions on corrupt samples. Confident Learning overcomes this by estimating self-calibrated thresholds per class:
+
+$$t_j = \frac{1}{|X_{\tilde{y}=j}|} \sum_{x \in X_{\tilde{y}=j}} \hat{P}(\tilde{y}=j \mid x, \mathbf{w})$$
+
+and assigning a sample $x$ to true latent class $y^* = j^*$ if $\hat{P}(\tilde{y}=j^* \mid x) \ge t_{j^*}$.
+
+In contrast, foundation transformer representations (DINOv2) do not rely on supervised classification logits. By learning isotropic feature manifolds without class supervision:
+
+$$\mathcal{L}_{\text{DINO}} = - \sum_{k} P_{\text{teacher}}(k) \log P_{\text{student}}(k)$$
+
+DINOv2 representations group semantically corrupted, blurred, or mislabeled samples into isolated density voids within the 1536-dimensional embedding space, enabling non-parametric $k$-NN outlier detection that outperforms posterior probability auditing on out-of-distribution samples.
+
+#### 2. Numerical Precision & Matrix Conditioning in High-Dimensional OOD
+- **Covariance Inversion Instability**: The Mahalanobis OOD detector computes distance against class centroids $\mu_c$:
+
+  $$M(x) = \min_{c} (\mathbf{z}(x) - \mu_c)^T \mathbf{\Sigma}^{-1} (\mathbf{z}(x) - \mu_c)$$
+
+  When computed across penultimate layer activations with dimension $d = 2048$, the empirical covariance matrix $\mathbf{\Sigma} \in \mathbb{R}^{2048 \times 2048}$ is frequently ill-conditioned (condition number $\kappa(\mathbf{\Sigma}) > 10^7$). Quantizing features to FP16 or INT8 causes catastrophic numerical overflow during Cholesky decomposition. Systems must apply Ledoit-Wolf shrinkage in FP32/FP64:
+
+  $$\mathbf{\Sigma}_{\text{shrunk}} = (1 - \alpha) \mathbf{\Sigma} + \alpha \frac{\text{Tr}(\mathbf{\Sigma})}{d} \mathbf{I}$$
+
+#### 3. Computational Friction in Production Data Engines
+- **K-Fold Retraining Wall**: Running 5-fold cross-validation on a 5-million image autonomous driving perception dataset requires 25 GPU-days of compute on an NVIDIA H100 cluster.
+- **Streaming Vector Indexing**: Performing online vector clustering for anomaly ingestion at 1000 frames/sec requires deploying GPU-accelerated $FAISS$ IVFPQ (Inverted File with Product Quantization) indexes directly in VRAM, introducing a trade-off between index rebuild latency and semantic recall accuracy.
+
+---
+
 Related notes: [[topics/data-quality-and-verification/00-data-quality-and-verification-moc|Data Quality MOC]], [[topics/data-quality-and-verification/02-production-pipeline-and-workarounds|Production Pipeline & Workarounds]], [[topics/safety-verification-and-robustness/00-safety-verification-and-robustness-moc|Safety Verification MOC]].

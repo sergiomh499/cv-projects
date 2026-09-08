@@ -54,23 +54,26 @@ Cross-cutting models and multi-task foundation backbones shared across topics:
 - **[[architectures/3d-pointclouds-and-lidar/bevfusion-and-sparse4d|BEVFusion & Sparse4D: Multi-Modal Camera-LiDAR Sensor Fusion]]**: Unified Bird's-Eye-View (BEV) Transformer (Apache-2.0 / MIT).
 - **[[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer: Dynamic Sparse Window Transformers for 3D LiDAR]]**: Sparse Voxel Transformer (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4: Modern Edge & Workstation Visual Backbones]]**: Modern Pure ConvNet (Inverted Bottleneck & GRN) (Apache-2.0).
+- **[[architectures/backbones-and-edge-efficiency/mambavision-and-vmamba|MambaVision & VMamba: Visual State-Space Foundation Backbones]]**: State-Space Model (Apache-2.0).
 - **[[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh: Ultra-Low-Latency Real-Time Middleware]]**: Lock-Free Shared Memory Inter-Process Communication (IPC) (Apache-2.0 / MIT).
-- **[[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT 10 & Vulkan Kompute: Cross-Platform High-Throughput GPU Inference]]**: Deep Learning Compiler & Cross-Platform Compute Runtimes (Apache-2.0 / NVIDIA Proprietary EULA).
-- **[[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI 3.5 & FINN: Quantized Neural Inference on FPGAs]]**: Reconfigurable Logic (DPU Cores & Dataflow Streaming Engines) (Apache-2.0 / Xilinx EULA).
+- **[[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT 10 & Vulkan 1.3: High-Throughput GPU Inference Runtimes]]**: Deep Learning Compiler & Cross-Platform Compute Runtimes (Apache-2.0 / NVIDIA Proprietary EULA / Apache-2.0 (Vulkan)).
+- **[[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI 3.5 & FINN: Quantized Neural Inference on FPGAs & AI Engines]]**: Reconfigurable Logic (DPU Cores & Dataflow Streaming Engines) (Apache-2.0 / Xilinx EULA).
 - **[[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|AnyGrasp & OpenVLA: Foundation Models for Robotic Visual Guidance]]**: Foundation Vision-Language-Action (VLA) & Dense Grasp Network (Apache-2.0 / Non-Commercial).
 - **[[architectures/multimodal-vlm-and-vla/florence-2|Florence-2: Unified Sequence-to-Sequence Vision Foundation Model]]**: Real-Time Unified (MIT).
 - **[[architectures/multimodal-vlm-and-vla/internvl2-5|InternVL 2.5: High-Resolution Multimodal Vision-Language Foundation Model]]**: Foundation Model (Apache-2.0).
-- **[[architectures/multimodal-vlm-and-vla/pi0-and-diffusion-policy|Pi-0 (π0) & Diffusion Policy: Visuomotor Robot Foundation Policies]]**: Flow Matching & Denoising Diffusion Policy (Apache-2.0).
+- **[[architectures/multimodal-vlm-and-vla/pi0-and-diffusion-policy|Pi-0 (π0), π0.5 & Diffusion Policy: Visuomotor Robot Foundation Models]]**: Flow Matching & Denoising Diffusion Policy (Apache-2.0).
+- **[[architectures/multimodal-vlm-and-vla/qwen2-5-vl|Qwen2.5-VL: Dynamic-Resolution Vision-Language & Visual-Agent Foundation Model]]**: Foundation Model (Apache-2.0).
 - **[[architectures/multimodal-vlm-and-vla/qwen2-vl|Qwen2-VL: Dynamic Resolution Vision-Language Foundation Model]]**: Real-Time Unified (Apache-2.0).
 - **[[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|FoundationPose & MegaPose: 6-DoF Zero-Shot Object Pose Estimation]]**: Foundation 3D Vision Transformer (Render-and-Compare + Score Network) (Custom Non-Commercial (FoundationPose) / Apache-2.0 (MegaPose)).
 - **[[architectures/real-time-detectors-and-segmenters/fastsam-and-mobilesam|FastSAM & MobileSAM]]**: Real-Time Unified (Apache-2.0 / Non-Commercial Analysis).
 - **[[architectures/real-time-detectors-and-segmenters/mask2former|Mask2Former: Masked-Attention Mask Transformer for Universal Image Segmentation]]**: Universal Query Transformer (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/rf-detr|RF-DETR: Real-Time Detection Transformers via Neural Architecture Search]]**: Real-Time Unified (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12: Attention-Centric Real-Time Detection Architecture]]**: Real-Time Unified (AGPL-3.0).
 - **[[architectures/spatial-radiance-and-slam/3dgs-slam-and-monogs|3D Gaussian Splatting SLAM & MonoGS: Real-Time Radiance Field Odometry]]**: Differentiable 3D Gaussian Primitive Optimization (Apache-2.0 / MIT).
 - **[[architectures/spatial-radiance-and-slam/splatam-and-gaussian-splatting|SplaTAM & 3DGS SLAM]]**: Real-Time Unified (Apache-2.0 / Research Analysis).
 - **[[architectures/vision-foundation-models/depth-anything-v2|Depth Anything V2: Metric Depth & Surface Segmentation Foundation Model]]**: Foundation Vision Transformer (DINOv2 Distillation) (Apache-2.0).
 - **[[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3: Self-Supervised Vision Foundation Backbones]]**: Self-Supervised Vision Transformer (ViT) (Apache-2.0).
-- **[[architectures/vision-foundation-models/sam-2|SAM 2 & SAM 2.1: Segment Anything in Images and Videos]]**: Foundation Model (Hierarchical Vision Transformer) (Apache-2.0).
+- **[[architectures/vision-foundation-models/sam-2|SAM 2, SAM 2.1 & SAM 3: Segment Anything in Images, Videos & Open Concepts]]**: Foundation Model (Hierarchical Vision Transformer) (Apache-2.0).
 - **[[architectures/vision-foundation-models/siglip|SigLIP & SigLIP 2: Sigmoid Loss for Vision-Language Alignment]]**: Dual-Encoder Vision-Language Transformer (Apache-2.0).
 - **[[architectures/visual-tracking-and-flow/botsort-and-bytetrack|BoT-SORT & ByteTrack: Real-Time Multi-Object Tracking (MOT)]]**: Tracking-by-Detection (Kalman + ReID + GMC) (MIT / Apache-2.0).
 - **[[architectures/visual-tracking-and-flow/cotracker|CoTracker & CoTracker3: Dense Point Trajectory Transformers]]**: Spatial-Temporal Point Transformer (Apache-2.0).

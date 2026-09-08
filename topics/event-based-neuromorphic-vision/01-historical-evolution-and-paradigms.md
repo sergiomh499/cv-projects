@@ -103,3 +103,64 @@ timeline
     2024 : Loihi 2 Deployment : Intel neuromorphic chip runs event-based object detection at 5 mW.
     2025-2026 : Sony IMX636 Volume Shipping : Mass-market event sensor in robotics, AR/VR, automotive ADAS.
 ```
+
+---
+
+## 5. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Event-based perception architectures have progressed from dense frame reconstruction using recurrent convolutional networks to graph neural networks on asynchronous event clouds, bio-inspired Spiking Neural Networks (SNNs), Spike-driven Transformers, and continuous state-space models.
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model / System Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **E2VID** (2019–2020) | Pure ConvNet / Recurrent CNN | Dense Discretized Event Voxel Grid ($B=5$ bins) | Multi-Scale UNet Skip Connections & Convolutional ResBlocks | Recurrent ConvLSTM / ConvGRU Spatio-Temporal Memory Blocks | Dense Grayscale HDR Intensity Video Reconstruction Head | **Memory Bandwidth Bound**: Discretizing asynchronous events into synchronous dense voxels forfeits microsecond temporal resolution; runs at 30–60 FPS on edge GPUs. |
+| **AsyncEvent-GNN (EventNet)** (2021–2022) | Graph Neural Network / Asynchronous Sparse | Spatio-Temporal Event Stream Graph Backbone ($k$-NN graph on $(x,y,t,p)$) | Asynchronous Message Passing & Edge-Conditioned Graph Neck | Dynamic EdgeConv Graph Convolutional Residual Blocks | Sparse 2D Object Bounding Box & Feature Correspondence Head | **Random Memory Access Bound**: High CPU/GPU memory latency during continuous $k$-NN neighbor search on dynamic irregular event clouds. |
+| **Spike-YOLO / Spik-ResNet** (2022–2024) | Pure Spiking SNN | Event Surface / Spike Rate Tensor Backbone | Multi-Scale Direct Spike Rate Feature Aggregator | Leaky Integrate-and-Fire (LIF) Spiking Residual Stages ($S \in \{0,1\}$) | Multi-Scale Spiking Detection Head (Anchor-Free Object Detection) | **Surrogate Gradient Training Bound**: Binary spike operations eliminate floating-point multiplications ($4.6\,\text{pJ} \to 0.1\,\text{pJ}$); ideal for edge neuromorphic chips. |
+| **Spikformer (Spiking ViT)** (2023–2025) | Pure Spiking Transformer | Spiking Patch Embedding (Conv-LIF Tokenizer, $16\times16$ patches) | Spiking Self-Attention (SSA) Neck (Integer-only additions, zero softmax) | Multi-Stage Spikformer LIF Transformer Encoder Blocks | Neuromorphic Token Classifier / Dense Feature Head | **Spike Rate & Timestep Latency Bound**: Forward pass requires $T=4\text{--}8$ simulation steps; executes at ultra-low dynamic power (<10 mW on neuromorphic silicon). |
+| **Event-Mamba (SS-Event)** (2024–2026) | State-Space Mamba Hybrid | Linearized Asynchronous Event Stream Backbone | Bi-directional Cross-Scan Feature Aggregator ($SSM$) | Continuous-Time State-Space Hidden State Transition Blocks ($h_t \in \mathbb{R}^N$) | 1000+ FPS Continuous Optical Flow & Ego-Motion State Regressor | **Compute & Bandwidth Optimal**: $\mathcal{O}(1)$ inference memory overhead and linear $\mathcal{O}(L)$ temporal sequence scaling; runs at $>500\,\text{FPS}$ on Jetson Orin. |
+| **Loihi-2 / Speck2F Core** (2024–2026) | Hardware Architecture / Neuromorphic ASIC | Asynchronous Event Routing Mesh ($128\text{--}1024$ Cores) | On-Chip Crossbar Synaptic Matrix Aggregator | Hardware-Hardwired Programmable LIF / Resonate-and-Fire Neurons | Direct Asynchronous Spike Port Output ($<10\,\mu\text{s}$ response) | **Crossbar Routing Congestion**: Eliminates clock oscillators entirely; $<5\,\text{mW}$ active power draw; constrained on-chip SRAM memory per neuromorphic core. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Event-Based Perception Paradigms"]
+        VoxelCNN["Voxelized Recurrent CNNs (E2VID)"]
+        SparseGNN["Asynchronous Graph Networks (EventNet)"]
+        SpikeSNN["Spiking Transformers / SNNs (Spikformer / Spike-YOLO)"]
+        SSMamba["Continuous State-Space (Event-Mamba)"]
+    end
+
+    VoxelCNN -->|Dense Voxel Binning| HighFPS["Standard CNN Tooling, Destroys Microsecond Sparsity and Dynamic Range"]
+    SparseGNN -->|Irregular Graph Traversal| NonUniform["Preserves Exact Asynchronous Timestamps, High Memory Latency"]
+    SpikeSNN -->|1-Bit Binary Spiking Dynamics| SubMilliwatt["Multiply-Accumulate (MAC) Replaced by Additions, <10 mW Power"]
+    SSMamba -->|Continuous Linear SSM| RecurrentSOTA["Continuous Temporal State Tracking with O(1) Memory Footprint"]
+```
+
+#### 1. Inductive Bias of Dense Frame Grids vs. Asynchronous Spiking Dynamics
+Traditional vision models impose a synchronous, dense spatial grid inductive prior. Converting event streams $\mathcal{E} = \{(x_k, y_k, t_k, p_k)\}$ into dense voxel grids $V(x, y, t)$ discards the physical nature of event sensors (temporal resolution $< 1\,\mu\text{s}$, sparsity $> 95\%$).
+
+Native Spiking Neural Networks (SNNs) process events via bio-inspired **Leaky Integrate-and-Fire (LIF)** neuronal membrane potential dynamics:
+
+$$\tau_m \frac{d U_i(t)}{dt} = -(U_i(t) - U_{\text{rest}}) + R \sum_j W_{ij} S_j(t)$$
+
+$$S_i(t) = \Theta(U_i(t) - V_{\text{th}}), \qquad U_i(t) \leftarrow U_i(t)(1 - S_i(t)) + U_{\text{reset}} S_i(t)$$
+
+where $\Theta(\cdot)$ is the Heaviside step function. In Spikformer, **Spiking Self-Attention (SSA)** replaces standard softmax floating-point attention:
+
+$$\text{SSA}(Q_S, K_S, V_S) = \text{LIF}\left(\frac{Q_S K_S^T}{\sqrt{d}} V_S\right)$$
+
+Because $Q_S, K_S, V_S \in \{0, 1\}$ are binary spike tensors, matrix multiplications are replaced entirely by integer accumulations, eliminating high-power floating-point Multiply-Accumulate (MAC) units.
+
+#### 2. Numerical Precision & Energy Consumption in Neuromorphic Silicon
+- **MAC vs. AC Silicon Energy**: On a 45nm CMOS process, an FP32 MAC operation consumes $\sim 4.6\,\text{pJ}$, an INT8 MAC consumes $\sim 0.2\,\text{pJ}$, whereas a 1-bit binary Spike Accumulate (AC) operation consumes only **$0.1\,\text{pJ}$** (a $46\times$ energy reduction over FP32).
+- **Surrogate Gradient Optimization**: Because the Heaviside spike activation has a derivative $\frac{d\Theta(x)}{dx} = \delta(x)$ that is zero everywhere except at the origin (where it is infinite), training SNNs requires smooth surrogate gradients:
+
+  $$\sigma'(x) = \frac{1}{\pi (1 + (\alpha x)^2)}$$
+
+  Maintaining FP32 gradients during backpropagation through time (BPTT) is mandatory during GPU training, even though deployment on neuromorphic silicon uses purely 1-bit spike tensors.
+
+#### 3. Runtime Deployment Friction: Event Ingestion vs. GPU Memory Latency
+- **Event Driver Bottleneck**: At peak optical flow speeds, a megapixel DVS sensor (Sony IMX636) outputs up to $1.06\times 10^9$ events/sec ($>8\,\text{GB/s}$ of raw USB3/MIPI packet data). CPU-based decoding of packet timestamps into GPU tensors introduces up to $20\,\text{ms}$ of serialization latency.
+- **Neuromorphic Edge Integration**: Deploying on specialized neuromorphic chips (Intel Loihi 2 / SynSense Speck 2F) enables direct sensor-to-processor asynchronous AER (Address Event Representation) bus coupling, achieving end-to-end perception latencies of **$<500\,\mu\text{s}$** at total system power draws under $15\,\text{mW}$.

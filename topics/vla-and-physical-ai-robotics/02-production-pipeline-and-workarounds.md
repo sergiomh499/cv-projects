@@ -9,6 +9,9 @@ tags:
   - action-chunking
   - ros2
   - openvla
+  - physical-ai
+  - robotics
+  - real-time
 updated: 2026-09-08
 aliases:
   - VLA Production Playbook
@@ -16,119 +19,249 @@ aliases:
 
 # 🛠️ Vision-Language-Action: Production Pipeline & Workarounds
 
-Architecting low-latency physical AI pipelines, action chunk execution, and real-world robot deployment.
+Architecting low-latency physical AI pipelines, dual-loop frequency-isolated execution, lock-free action chunking, and real-time trajectory interpolation for Vision-Language-Action (VLA) models (OpenVLA, $\pi_0$, Octo, RT-2) in industrial manipulation and mobile robotics.
 
-Related notes: [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc|VLA Robotics MOC]].
+Related notes: [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc|VLA Robotics MOC]], [[topics/real-time-systems/02-production-pipeline-and-workarounds|Real-Time Systems Playbook]], [[topics/safety-verification-and-robustness/02-production-pipeline-and-workarounds|Safety Verification Playbook]].
 
 ---
 
-## 1. Production Dual-Loop Execution Pipeline
+## 1. Dual-Loop Frequency-Isolated Execution Architecture
 
-Because 7B VLA models cannot infer at $500\,\text{Hz}$ motor update rates, production robotics decouples perception from motor execution into two frequency-isolated loops:
+Large Vision-Language-Action models (typically 7B to 14B parameters) cannot evaluate autoregressively or run multi-step diffusion denoising at high-rate motor control frequencies ($500\,\text{Hz}$ to $1\,\text{kHz}$). Direct execution of raw model outputs induces severe motor jitter and mechanical instability.
+
+Production physical AI architectures decouple perception and planning from joint torque control into two **frequency-isolated asynchronous execution loops**:
+1. **System 2 (Slow Planning Loop @ 5–10 Hz)**: Evaluates multi-modal vision tokens and natural language instructions to predict a temporal sequence of continuous waypoints (**Action Chunk** $H = 16$ to $64$).
+2. **System 1 (Fast Control Loop @ 500 Hz / 2 ms)**: Evaluates a real-time **Cubic Hermite Spline Interpolator** over the action chunk and executes Cartesian impedance control directly on the robot joint servos via EtherCAT.
 
 ```mermaid
 flowchart TD
-    Camera["Stereo Wrist & Head Cameras: 30 FPS"] --> VLA["System 2: Slow VLA Policy (OpenVLA / pi0) @ 5 Hz"]
-    TaskPrompt["Natural Language: Fold the cloth gently"] --> VLA
-    VLA --> Chunk["Action Chunk Prediction: H = 32 Continuous Waypoints"]
-    Chunk --> TemporalQueue["Thread-Safe Lockless Temporal Trajectory Buffer"]
-    TemporalQueue --> Spline["Cubic Hermite Spline Interpolator @ 500 Hz"]
-    Spline --> LowLevel["System 1: Fast Cartesian Impedance Controller @ 500 Hz"]
-    LowLevel --> RobotHardware["Franka Emika / Universal Robots Joint Servos"]
+    subgraph "Perception & Vision Ingestion Layer"
+        WristCam["Wrist Camera (1080p @ 30 FPS)"] -->|"Zero-Copy DMA-BUF"| GPUBuffer["GPU Unified Pinned Memory"]
+        HeadCam["Stereo Head Camera (1080p @ 30 FPS)"] -->|"Zero-Copy DMA-BUF"| GPUBuffer
+        TaskPrompt["Task Prompt: Pick up the red cylinder and place in bin"] --> LLMTokenizer["Text Tokenizer"]
+    end
+
+    subgraph "System 2: Slow VLA Planning Loop (5 - 10 Hz)"
+        GPUBuffer --> VisionEncoder["SigLIP / DINOv2 Visual Tokenizer"]
+        LLMTokenizer --> VLATransformer["VLA Transformer Backbone (OpenVLA / pi0 Flow Matching)"]
+        VisionEncoder --> VLATransformer
+        VLATransformer --> ActionChunk["Predicted Action Chunk: H = 32 Continuous 7-DoF Waypoints"]
+    end
+
+    subgraph "Lock-Free Temporal Trajectory Bridge"
+        ActionChunk --> SPSCQueue["Cacheline-Aligned Lock-Free SPSC Ring Buffer"]
+    end
+
+    subgraph "System 1: Fast Hard Real-Time Control Loop (500 Hz / 2 ms)"
+        SPSCQueue --> SplineInterp["Cubic Hermite Spline Interpolator (2 ms Cycle)"]
+        SplineInterp --> DesiredState["Target Pose & Velocity: x_des, v_des"]
+        DesiredState --> ImpedanceCtrl["Cartesian Impedance Control Law: tau = J^T (K_p e + K_d e_dot) + g(q)"]
+        ImpedanceCtrl --> CBFSafety["Real-Time Joint Limit & CBF Interceptor (< 50 µs)"]
+        CBFSafety --> Fieldbus["EtherCAT Bus -> Franka / UR Joint Servos (< 2 ms Hard Deadline)"]
+    end
 ```
-
-The key insight: **frequency isolation**. The VLA policy loop operates at $5\,\text{Hz}$ (200 ms budget per inference), while the impedance controller runs at $500\,\text{Hz}$ (2 ms real-time deadline). Between VLA queries, the spline interpolator generates smooth motor commands by evaluating the fitted Hermite polynomial — zero neural network involvement in the inner loop.
-
-### Dual-Loop Frequency Isolation in Detail
-
-**Outer loop (5 Hz — VLA policy)**:
-- Captures wrist + head camera frames
-- Runs VLA forward pass (OpenVLA INT4 ≈ 65 ms, π₀ flow matching ≈ 80 ms for 4 Euler steps)
-- Writes $H = 32$ waypoints to a lock-free ring buffer (producer)
-
-**Inner loop (500 Hz — Cartesian impedance controller)**:
-- Reads current waypoint from ring buffer (consumer, non-blocking)
-- Evaluates Hermite spline to interpolate between waypoints
-- Computes $F_{\text{task}} = K_p(x_{\text{des}} - x) + K_d(\dot{x}_{\text{des}} - \dot{x})$
-- Sends joint torques via EtherCAT at exactly $2\,\text{ms}$ period
-
-The ring buffer must be **lock-free** (using C++ `std::atomic` compare-and-swap) because the 500 Hz RT thread cannot block on a mutex held by the GPU inference thread. A dropped frame in the inner loop causes a real-time violation; a dropped VLA frame only means the robot coasts on the previous chunk for one extra $200\,\text{ms}$ cycle.
 
 ---
 
-## 2. Hard Real-World Production Gotchas & Workarounds
+## 2. Mathematical Foundations: Action Chunking & Cubic Hermite Trajectory Splines
 
-### 1. Action Flickering & Causal Non-Smoothness
+### Action Chunking Representation
+Instead of predicting single-step actions $a_t \in \mathbb{R}^D$, the VLA policy outputs an action chunk vector spanning horizon $H$:
 
-- **Problem**: Querying an unconditioned VLA at every single timestep causes violent arm shudder because successive inferences alternate between multimodal choices (e.g., "grasp from left" vs "grasp from right" with roughly equal probability).
-- **Fix — Action Chunking with Receding Horizon Execution (RHE)**:
-  - Predict a chunk of $H = 32$ future waypoints in a single forward pass.
-  - Execute only the first $K = 8$ steps ($K/500\,\text{Hz} = 16\,\text{ms}$) before the next VLA inference begins in a background CUDA stream.
-  - Blend the outgoing chunk $\{a_t^{(i)}\}$ with the incoming chunk $\{a_t^{(i+1)}\}$ using a **temporal EMA with exponential weighting**:
-    $$a_t = \sum_{i=0}^{N_{\text{active}}} w_i \cdot a_t^{(i)}, \quad w_i \propto \exp\!\left(-\lambda \cdot \text{age}(i)\right)$$
-    where $\text{age}(i)$ is the number of timesteps since chunk $i$ was generated, and $\lambda = 0.2$ empirically. This zero-gap weighting ensures no velocity discontinuity at chunk boundaries.
+$$\mathbf{A}_{t:t+H} = \left[ \mathbf{a}_t, \mathbf{a}_{t+1}, \dots, \mathbf{a}_{t+H-1} \right] \in \mathbb{R}^{H \times D}$$
 
-### 2. Temporal Smoothing with Cubic Hermite Splines
+where each action waypoint $\mathbf{a}_k = \left[ \mathbf{p}_k, \mathbf{q}_k, g_k \right]$ consists of Cartesian position $\mathbf{p} \in \mathbb{R}^3$, orientation quaternion $\mathbf{q} \in \mathbb{S}^3$, and binary/continuous gripper state $g \in [0, 1]$.
 
-Between VLA-produced waypoints $\{(\mathbf{p}_k, \mathbf{v}_k)\}$ at times $\{t_k\}$, the Cubic Hermite Spline interpolates position as:
+---
 
-$$\mathbf{p}(t) = h_{00}(s)\,\mathbf{p}_k + h_{10}(s)\,(t_{k+1}-t_k)\,\mathbf{v}_k + h_{01}(s)\,\mathbf{p}_{k+1} + h_{11}(s)\,(t_{k+1}-t_k)\,\mathbf{v}_{k+1}$$
+### Cubic Hermite Spline Trajectory Interpolation
+To achieve $C^1$-smooth continuous motion between discrete waypoints $\mathbf{p}_0$ at $t_0$ and $\mathbf{p}_1$ at $t_1$, the real-time thread computes the normalized parameter $s = \frac{t - t_0}{t_1 - t_0} \in [0, 1]$:
 
-where $s = (t - t_k)/(t_{k+1} - t_k) \in [0,1]$ and the Hermite basis polynomials are:
-$$h_{00}(s) = 2s^3 - 3s^2 + 1, \quad h_{10}(s) = s^3 - 2s^2 + s$$
-$$h_{01}(s) = -2s^3 + 3s^2, \quad h_{11}(s) = s^3 - s^2$$
+$$\boxed{\mathbf{p}(s) = (2s^3 - 3s^2 + 1)\mathbf{p}_0 + (s^3 - 2s^2 + s)\mathbf{m}_0 + (-2s^3 + 3s^2)\mathbf{p}_1 + (s^3 - s^2)\mathbf{m}_1}$$
 
-Velocity $\dot{\mathbf{p}}(t)$ is obtained analytically by differentiating the basis polynomials — no numerical differentiation, no noise amplification. This delivers **zero-jerk boundary conditions** at waypoint junctions, critical for Franka Emika's torque-based interface which enforces $\|\dddot{q}\| \le 6750\,\text{deg/s}^3$ as a hard safety limit.
+where $\mathbf{m}_0, \mathbf{m}_1$ are endpoint tangent velocity vectors computed via central finite differences:
 
-```python
-import numpy as np
+$$\mathbf{m}_k = \frac{\mathbf{p}_{k+1} - \mathbf{p}_{k-1}}{2}$$
 
-def hermite_spline_eval(p0, p1, v0, v1, dt, s):
-    """Evaluate cubic Hermite spline at normalized parameter s in [0,1]."""
-    h00 = 2*s**3 - 3*s**2 + 1
-    h10 = s**3  - 2*s**2 + s
-    h01 = -2*s**3 + 3*s**2
-    h11 = s**3  - s**2
-    return h00*p0 + h10*dt*v0 + h01*p1 + h11*dt*v1
+---
 
-def hermite_spline_vel(p0, p1, v0, v1, dt, s):
-    """First derivative (velocity) at normalized parameter s."""
-    dh00 = 6*s**2 - 6*s
-    dh10 = 3*s**2 - 4*s + 1
-    dh01 = -6*s**2 + 6*s
-    dh11 = 3*s**2 - 2*s
-    return (dh00*p0 + dh10*dt*v0 + dh01*p1 + dh11*dt*v1) / dt
+### Cartesian Impedance Control Law
+At every $2\,\text{ms}$ control cycle, the Cartesian impedance controller computes joint torque commands $\boldsymbol{\tau} \in \mathbb{R}^n$:
+
+$$\boxed{\boldsymbol{\tau} = \mathbf{J}^T(\mathbf{q}) \left[ \mathbf{K}_p (\mathbf{x}_{\text{des}} - \mathbf{x}(\mathbf{q})) + \mathbf{K}_d (\dot{\mathbf{x}}_{\text{des}} - \mathbf{J}(\mathbf{q})\dot{\mathbf{q}}) \right] + \mathbf{g}(\mathbf{q})}$$
+
+where $\mathbf{J}(\mathbf{q})$ is the robot manipulator Jacobian, $\mathbf{K}_p, \mathbf{K}_d$ are stiffness and damping matrices, and $\mathbf{g}(\mathbf{q})$ is gravity compensation.
+
+---
+
+## 3. Deterministic End-to-End Latency Budget Table
+
+The table below provides execution bounds across both loops in a physical AI robot system.
+
+| Processing Stage | System 2 Planning Loop (10 Hz / 100 ms) | System 1 Control Loop (500 Hz / 2.0 ms) | Direct Teleoperation Mode (100 Hz / 10 ms) | Determinism Mechanism |
+| :--- | :--- | :--- | :--- | :--- |
+| **Camera Ingestion & DMA Transfer** | $12.00\,\text{ms}$ | — | $4.00\,\text{ms}$ | Kernel-bypass DMA-BUF |
+| **Vision Tokenizer (SigLIP FP16)** | $18.50\,\text{ms}$ | — | $2.80\,\text{ms}$ (MobileNetV4) | TensorRT CUDA Stream |
+| **VLA Action Chunking Forward Pass**| $55.00\,\text{ms}$ (OpenVLA INT4) | — | $1.80\,\text{ms}$ (Diffusion Head) | Fixed KV-Cache / CUDA Graph |
+| **Trajectory SPSC Queue Push** | $0.005\,\text{ms}$ ($5\,\mu\text{s}$) | $0.005\,\text{ms}$ | $0.005\,\text{ms}$ | Lock-free atomic exchange |
+| **Hermite Spline Interpolation** | — | $0.045\,\text{ms}$ | $0.020\,\text{ms}$ | AVX2 SIMD vectorization |
+| **Cartesian Impedance Control** | — | $0.180\,\text{ms}$ | $0.180\,\text{ms}$ | Pinocchio rigid body dynamics |
+| **CBF Safety Joint Interceptor** | — | $0.035\,\text{ms}$ | $0.035\,\text{ms}$ | Closed-form barrier projection |
+| **EtherCAT Master Bus Dispatch** | — | $0.120\,\text{ms}$ | $0.120\,\text{ms}$ | SOEM Linux PREEMPT_RT driver |
+| **Total Pipeline Latency (p50 / p99)**| **$85.50\,\text{ms}$ / $92.00\,\text{ms}$** | **$0.385\,\text{ms}$ / $0.420\,\text{ms}$** | **$8.960\,\text{ms}$ / $9.450\,\text{ms}$** | Hard real-time RTOS verified |
+| **Loop Deadline Window** | $\le 100.00\,\text{ms}$ ($10\,\text{Hz}$) | $\le 2.000\,\text{ms}$ ($500\,\text{Hz}$) | $\le 10.000\,\text{ms}$ ($100\,\text{Hz}$) | Headroom margin $\ge 79\%$ on RT loop |
+
+---
+
+## 4. Five Critical Production Edge Traps & Battle-Tested Workarounds
+
+### Trap 1: GPU Thermal Throttling Induced Trajectory Starvation
+- **Failure Mode**: Sustained autoregressive token generation across 7B models on an edge Jetson AGX Orin drives thermal dissipation past $50\,\text{W}$. Dynamic frequency throttling drops the VLA inference rate from $10\,\text{Hz}$ to $2\,\text{Hz}$ ($500\,\text{ms}$ per step). The $500\,\text{Hz}$ controller exhausts the $H=32$ action chunk buffer (spanning $320\,\text{ms}$), causing the robot arm to halt abruptly mid-trajectory.
+- **Production Workaround**:
+  1. Implement **Temporal Trajectory Blending (Rolling Horizon)**: The policy initiates the next inference step at $t = 150\,\text{ms}$, overlapping computation with execution.
+  2. If the SPSC buffer empties, the Hermite interpolator smoothly decays target velocity to zero using an exponential deceleration profile rather than triggering a hard stop.
+
+---
+
+### Trap 2: Sensor Physics Saturation: Wrist Camera High-Speed Motion Blur
+- **Failure Mode**: Rapid robot arm swings create high angular velocity ($>180^\circ/\text{s}$), causing motion blur on rolling-shutter wrist cameras. The visual encoder extracts corrupted feature embeddings, predicting erratic grasp trajectories.
+- **Production Workaround**:
+  1. Deploy global-shutter CMOS sensors for all wrist-mounted cameras with fixed low exposure times ($t_{\text{exp}} \le 2\,\text{ms}$) and active LED illumination.
+  2. In software, evaluate a Laplacian variance sharpness metric $\sigma_{\text{Laplace}}^2$. If blur is detected, freeze wrist token updates and rely on fixed head cameras until velocity drops.
+
+---
+
+### Trap 3: Dynamic Memory Fragmentation from Variable Prompt KV-Caches
+- **Failure Mode**: Feeding variable-length natural language task prompts (e.g., changing from 5 tokens to 80 tokens) triggers dynamic memory reallocation of Transformer Key-Value (KV) cache tensors in VRAM, causing $100$–$250\,\text{ms}$ memory allocation spikes.
+- **Production Workaround**:
+  Pad all language instructions to a fixed token length ($N_{\text{tokens}} = 64$) at the tokenizer stage. Allocate static, non-resizable KV-cache tensors during engine initialization.
+
+---
+
+### Trap 4: Thread Race Conditions Across the Dual-Loop Boundary
+- **Failure Mode**: Using mutex locks between the 10 Hz Python/C++ VLA thread and the 500 Hz real-time control thread causes priority inversion, stalling the 500 Hz EtherCAT cycle and triggering motor drive emergency fault trips.
+- **Production Workaround**:
+  Use a **Single-Producer Single-Consumer (SPSC) Lock-Free Circular Array** with cacheline-padded atomic indices (`alignas(64)`), guaranteeing non-blocking reads on the real-time core.
+
+---
+
+### Trap 5: Quantization Precision Loss on Continuous End-Effector Trajectories
+- **Failure Mode**: Uniform INT4 quantization of VLA models causes coordinate regression heads to output discretized stepped trajectories (staircase artifacts), degrading delicate insertion success rates by $>40\%$.
+- **Production Workaround**:
+  Deploy **SmoothQuant / AWQ with Mixed Precision**:
+  Quantize the large multi-modal transformer backbone (attention projections and MLP layers) to INT4/FP8, while preserving the final action prediction head and coordinate decoders in full FP16/FP32 precision.
+
+---
+
+## 5. Concrete Runnable Implementation Blueprint
+
+The production-grade C++20 snippet below demonstrates the lock-free Single-Producer Single-Consumer (SPSC) trajectory buffer, cubic Hermite spline interpolation, and 500 Hz real-time execution loop.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <atomic>
+#include <chrono>
+#include <thread>
+#include <cmath>
+#include <array>
+
+// 7-DoF Waypoint: 3D Position + 3D Orientation (Euler) + Gripper
+struct Waypoint {
+    double x, y, z;
+    double roll, pitch, yaw;
+    double gripper;
+};
+
+// SPSC Cacheline-Aligned Lock-Free Queue
+template <typename T, size_t Capacity>
+class LockFreeTrajectoryQueue {
+    static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be power of 2");
+    alignas(64) std::atomic<size_t> head_{0};
+    alignas(64) std::atomic<size_t> tail_{0};
+    alignas(64) std::array<T, Capacity> buffer_;
+
+public:
+    bool Push(const T& item) {
+        const size_t current_tail = tail_.load(std::memory_order_relaxed);
+        const size_t current_head = head_.load(std::memory_order_acquire);
+        if ((current_tail - current_head) >= Capacity) {
+            return false; // Buffer Full
+        }
+        buffer_[current_tail & (Capacity - 1)] = item;
+        tail_.store(current_tail + 1, std::memory_order_release);
+        return true;
+    }
+
+    bool Pop(T& item) {
+        const size_t current_head = head_.load(std::memory_order_relaxed);
+        const size_t current_tail = tail_.load(std::memory_order_acquire);
+        if (current_head == current_tail) {
+            return false; // Buffer Empty
+        }
+        item = buffer_[current_head & (Capacity - 1)];
+        head_.store(current_head + 1, std::memory_order_release);
+        return true;
+    }
+};
+
+class HermiteSplineInterpolator {
+public:
+    // Evaluate Cubic Hermite Spline: p(s) = (2s^3 - 3s^2 + 1)p0 + (s^3 - 2s^2 + s)m0 + (-2s^3 + 3s^2)p1 + (s^3 - s^2)m1
+    static Waypoint Interpolate(const Waypoint& p0, const Waypoint& p1,
+                                const Waypoint& m0, const Waypoint& m1, double s)
+    {
+        double s2 = s * s;
+        double s3 = s2 * s;
+
+        double h00 = 2.0 * s3 - 3.0 * s2 + 1.0;
+        double h10 = s3 - 2.0 * s2 + s;
+        double h01 = -2.0 * s3 + 3.0 * s2;
+        double h11 = s3 - s2;
+
+        Waypoint out;
+        out.x = h00 * p0.x + h10 * m0.x + h01 * p1.x + h11 * m1.x;
+        out.y = h00 * p0.y + h10 * m0.y + h01 * p1.y + h11 * m1.y;
+        out.z = h00 * p0.z + h10 * m0.z + h01 * p1.z + h11 * m1.z;
+        out.roll = p0.roll + s * (p1.roll - p0.roll);
+        out.pitch = p0.pitch + s * (p1.pitch - p0.pitch);
+        out.yaw = p0.yaw + s * (p1.yaw - p0.yaw);
+        out.gripper = p0.gripper;
+        return out;
+    }
+};
+
+int main() {
+    LockFreeTrajectoryQueue<Waypoint, 64> queue;
+
+    // Simulate System 2 VLA Producer pushing an action chunk
+    std::cout << "[System 2] Pushing VLA Action Chunk (Waypoints)..." << std::endl;
+    Waypoint w0{0.40, 0.00, 0.20, 0.0, 3.14, 0.0, 1.0};
+    Waypoint w1{0.45, 0.10, 0.15, 0.0, 3.14, 0.0, 1.0};
+    queue.Push(w0);
+    queue.Push(w1);
+
+    // Simulate System 1 500 Hz Real-Time Interpolation Loop
+    std::cout << "[System 1] Running 500 Hz Trajectory Interpolation..." << std::endl;
+    Waypoint m0{0.05, 0.10, -0.05, 0.0, 0.0, 0.0, 0.0};
+    Waypoint m1{0.05, 0.10, -0.05, 0.0, 0.0, 0.0, 0.0};
+
+    for (int step = 0; step <= 10; ++step) {
+        double s = step / 10.0; // Interpolate across 10 steps (20 ms)
+        Waypoint interp = HermiteSplineInterpolator::Interpolate(w0, w1, m0, m1, s);
+        std::cout << "  [t = " << (step * 2) << " ms] Pos: ("
+                  << interp.x << ", " << interp.y << ", " << interp.z << ")" << std::endl;
+    }
+
+    return 0;
+}
 ```
 
-### 3. High Inference Latency on Edge Workstations
+---
 
-- **Problem**: Full FP16 inference of OpenVLA (7B) takes $\sim 280\,\text{ms}$ on an RTX 4090, violating the 200 ms VLA budget.
-- **Fix**: Apply **INT4 AWQ (Activation-aware Weight Quantization)** with W4A16 to the vision-language backbone, combined with FlashAttention-2 and CUDA graph capture for the static computation graph. Measured results:
-  - FP16 baseline: $278\,\text{ms}$
-  - INT8 SmoothQuant: $142\,\text{ms}$
-  - **INT4 AWQ + FlashAttn-2: $62\,\text{ms}$ ($>16\,\text{Hz}$ inference)**
-  - Quality degradation: SimplerEnv score drops from 56.3% to 54.8% — within acceptable tolerance.
+## 6. Summary & Physical AI Deployment Rules
 
-```python
-# INT4 AWQ quantization of OpenVLA backbone (requires autoawq)
-from awq import AutoAWQForCausalLM
-
-model = AutoAWQForCausalLM.from_pretrained("openvla/openvla-7b")
-quant_config = {"zero_point": True, "q_group_size": 128, "w_bit": 4, "version": "GEMM"}
-model.quantize(tokenizer, quant_config=quant_config)
-model.save_quantized("openvla-7b-awq-int4")
-# Inference: ~62ms on RTX 4090, vs 278ms for FP16
-```
-
-### 4. Out-of-Distribution Motor Runaways
-
-- **Problem**: A visual anomaly or sudden lighting change causes the VLA to emit unphysical joint velocities ($>2\,\text{m/s}$ Cartesian tip speed), immediately shattering hardware gearboxes or injuring co-workers.
-- **Fix**: An **Operational Space Saturation Layer** implemented in C++ executes *before* joint inverse kinematics, in the 500 Hz RT loop:
-
-$$\|v_{\text{command}}\| \le v_{\text{certified\_max}} \quad (0.35\,\text{m/s per ISO/TS 15066})$$
-
-Any Cartesian command exceeding the certified collaborative robot speed is clamped by scaling the entire 6D twist uniformly, preserving motion direction while bounding magnitude. Acceleration envelopes are enforced similarly:
-
-$$\|\dot{v}_{\text{command}}\| \le a_{\text{max}} = 8.0\,\text{m/s}^2$$
-
-This layer never blocks — it executes in $<5\,\mu\text{s}$ on the RT core and is the last defense before hardware actuation.
+1. **Decouple Policy from Control**: Never send raw VLA model outputs directly to joint actuators; run System 2 planning at 5–10 Hz and System 1 impedance control at 500 Hz.
+2. **Lock-Free Communication**: Bridge asynchronous execution loops using cacheline-aligned SPSC ring buffers to prevent real-time thread priority inversion.
+3. **Smooth Action Chunks**: Apply cubic Hermite spline interpolation over predicted waypoints to ensure continuous velocity and torque profiles.
+4. **Mixed Precision for Actions**: Retain full precision on continuous coordinate regression heads while quantizing transformer backbones to INT4/FP8.

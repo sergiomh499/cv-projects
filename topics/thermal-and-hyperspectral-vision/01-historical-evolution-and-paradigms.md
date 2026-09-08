@@ -118,4 +118,63 @@ where $Z(x,y)$ is per-pixel metric depth estimated from RGB via Depth Anything V
 
 Standard optical calibration boards are invisible in LWIR (glass blocks IR). The production solution: a **PLA-printed or aluminum checkerboard heated to 50–60°C**, which appears as a high-contrast alternating pattern in both RGB (via paint contrast) and thermal (via emissivity/temperature contrast). Reprojection error after optimization: typically < 0.5 px RMS across both modalities.
 
+---
+
+## 5. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Thermal infrared (LWIR/MWIR) and Hyperspectral Imaging (HSI) perception architectures have transitioned from classical geometric simplex unmixing (N-FINDR) and spectral-spatial 3D convolutional networks to dual-stream cross-modal attention networks, spectral vision transformers, and continuous state-space models (Mamba).
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model / System Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **N-FINDR + FCLS Unmixing** (Winter, 1999–2018) | Geometric Convex Optimization | Contiguous Spectral Radiance Vector ($B=200\text{--}400$ bands) | Maximum-Volume Simplex Inscription Neck | Fully Constrained Non-Negative Least Squares (FCLS) Solver | Per-Pixel Fractional Material Abundance Maps ($a_k(x,y)$) | **Simplex Inversion Latency**: Sensitive to non-linear scattering and atmospheric absorption; compute-intensive for real-time edge processing. |
+| **DeepSpectral-3DCNN** (2018–2022) | Spectral-Spatial 3D ConvNet | 3D Convolutional Spectral-Spatial Backbone ($K_h \times K_w \times K_\lambda$) | 3D-to-2D Dimensionality Reduction & Feature Pyramid Neck | 3D Convolutional Residual Stages with BatchNorm | Dense Pixel-Level Material Classification & Anomaly Detection Head | **3D Convolution Parameter Explosion**: Computing 3D convolutions across hundreds of spectral channels consumes massive memory bandwidth on edge GPUs. |
+| **MFNet / RTFNet** (2019–2023) | Dual-Stream RGB-Thermal ConvNet | Two-Branch Backbone: ResNet-152 (RGB) + Dedicated 14-bit Thermal ResNet | Spatial Attention Fusion & Cross-Spectral Residual Neck | Fused Multi-Scale Convolutional Feature Stages | Real-Time Day/Night 2D Semantic Segmentation Head | **Parallax & Dynamic Range Bound**: Fast edge inference (~40 FPS on Jetson Xavier); sensitive to uncalibrated spatial parallax between optical and thermal lenses. |
+| **SpectralFormer (HSI-ViT)** (2022–2024) | Pure Vision Transformer | Pixel-Wise Spectral Patch Embedding & Tokenizer ($1\times1$ & $3\times3$ tokens) | Spectral-Spatial Self-Attention (SSA) Neck | Multi-Layer Transformer Blocks with Cross-Spectral Attention | Fine-Grained Material Identification & Sub-Pixel Target Head | **Quadratic Token Memory Complexity**: Cross-spectral attention across hundreds of bands causes high VRAM memory footprint; requires patch token pruning on edge SoCs. |
+| **TherA / UniCD** (2024–2026) | Physics-Informed Foundation | Dual-Stream ConvNeXt-Large / DINOv2 Backbone (14-bit Radiometric Flux + RGB) | Differentiable Scene-Based NUC & Emissivity Separation Neck | Physics-Guided Cross-Attention Spatial-Thermal Encoder | Dual Head: Thermodynamic Temperature ($T \in \mathbb{R}^+$ in Kelvin) + 2D Detection Head | **DRAM Bandwidth & Radiometric Calibration**: Preserves absolute radiometry; eliminates mechanical calibration blackouts; runs at 30 FPS on Jetson Orin. |
+| **Hyper-Mamba (SS-HSI)** (2025–2026) | State-Space Mamba Hybrid | Continuous Spectral Band Sequence 1D+2D Selective Scan Backbone | Bi-directional Spectral-Spatial Cross-Scan Aggregator | Linear Selective State-Space ($SSM$) Hidden Parameter Blocks | Real-Time 60 FPS Hyperspectral Unmixing & Target Recognition Head | **SRAM Cache Friendly**: $\mathcal{O}(B \cdot H \cdot W)$ linear complexity scales seamlessly to 400+ spectral channels; fits easily into edge mobile platform budgets. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Thermal & Hyperspectral Perception Paradigms"]
+        SimplexGeo["Geometric Simplex Unmixing (N-FINDR)"]
+        Conv3D["Spectral-Spatial 3D CNNs (DeepSpectral)"]
+        DualStream["Cross-Modal RGB-T CNNs (MFNet / RTFNet)"]
+        SSMambaHSI["State-Space Models (Hyper-Mamba)"]
+    end
+
+    SimplexGeo -->|Convex Geometry Search| PureEndmembers["Linear Mixture Modeling, High Mathematical Interpretability, High CPU Cost"]
+    Conv3D -->|Volumetric Convolutions| High3D["Captures Local Spectral-Spatial Correlations, Parameter Explosion in 3D Filters"]
+    DualStream -->|Cross-Spectral Residual Fusion| DayNightSafe["All-Weather Day/Night Robustness, Real-Time Inference on Edge Devices"]
+    SSMambaHSI -->|Linear Selective State Transitions| LinearBands["Scales Linearly Across 400+ Spectral Channels at 60 FPS on Embedded SoCs"]
+```
+
+#### 1. Spectral Correlation Continuity vs. Spatial Locality Inductive Biases
+Standard vision models operate on discrete 3-channel RGB representations. In contrast, Hyperspectral Imaging (HSI) provides continuous spectral reflectance curves $\rho(\lambda)$ across hundreds of narrow contiguous channels (e.g. $400\text{--}1000\,\text{nm}$).
+
+2D CNNs treat spectral channels as unstructured feature depth, failing to exploit the continuous physical correlation of electromagnetic absorption bands. While 3D CNNs model spectral continuity via $K_\lambda \times K_h \times K_w$ convolutional filters:
+
+$$(I * W)_{x,y,\lambda} = \sum_{i,j,k} I(x-i, y-j, \lambda-k) W(i,j,k)$$
+
+they suffer from parameter explosion and high computational cost $\mathcal{O}(H \times W \times B \times K_h \times K_w \times K_\lambda \times C_{\text{in}} \times C_{\text{out}})$.
+
+State-space architectures (**Hyper-Mamba**) treat the spectral dimension as a continuous 1D physical system traversed via selective state-space scans, maintaining an evolving hidden state $h_\lambda \in \mathbb{R}^N$ that captures long-range chemical absorption signatures with linear computational complexity $\mathcal{O}(B \cdot H \cdot W)$.
+
+#### 2. Radiometric Dynamic Range: 14-Bit Raw Sensor ADC vs. 8-Bit Quantization
+- **Preserving Thermal Gradients**: Uncooled VOx microbolometers capture 14-bit or 16-bit raw digital data representing radiometric flux. A standard 8-bit quantization compresses a $100\,\text{K}$ scene range into 256 bins ($\sim 0.4\,\text{K/bin}$), completely washing out subtle human skin temperature differentials ($\Delta T < 50\,\text{mK}$).
+- **Custom Non-Linear Radiometric Scaling**: Modern thermal backbones ingest raw 14-bit data directly, applying a learned or histogram-equalized non-linear tone mapping function:
+
+  $$\tilde{I}(x,y) = \frac{\log(1 + \gamma \cdot I_{14\text{-bit}}(x,y))}{\log(1 + \gamma \cdot I_{\max})}$$
+
+  Intermediate layers maintain FP16 or custom per-channel INT8 scales to preserve fine thermal edges around cold background obstacles.
+
+#### 3. Real-Time Ingestion Friction on Edge Systems
+- **Hyperspectral Datacube Throughput**: A 256-band HSI sensor operating at $1024 \times 1024$ resolution at 30 FPS generates **$1.5\,\text{GB/s}$** of raw streaming data. Processing this volume on embedded platforms (Jetson AGX Orin) requires zero-copy DMA buffers mapped directly from FPGA acquisition boards to GPU memory.
+- **Parallax Compensation in RGB-T Fusion**: Due to the physical baseline offset between RGB and thermal lenses ($3\text{--}8\,\text{cm}$), rigid homography projection fails for near-field objects. State-of-the-art networks integrate dense depth-guided warping modules to align cross-spectral features before spatial attention fusion.
+
+---
+
 Related notes: [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspectral-vision-moc|Thermal Vision MOC]], [[topics/thermal-and-hyperspectral-vision/02-production-pipeline-and-workarounds|Production Pipeline & Workarounds]], [[topics/sensor-fusion/04-classical-and-hybrid-methods|Sensor Fusion Classical Foundations]].

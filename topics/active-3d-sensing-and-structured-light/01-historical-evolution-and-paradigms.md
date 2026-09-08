@@ -99,3 +99,61 @@ Understanding where each sensor fits in the deployment landscape is critical for
 - **Key limitation**: Multi-frame acquisition ($\sim 500\,\text{ms}$ per point cloud) prohibits use with moving objects; requires controlled ambient lighting (no sunlight).
 
 The D435/D455 vs. Zivid axis encapsulates the fundamental trade-off in active 3D: **speed and robustness vs. metrological precision**.
+
+---
+
+## 4. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Active 3D perception and depth sensing architectures have transitioned from fixed-function correlator ASICs and heuristic semi-global matching (SGM) to 3D cost-volume convolutional networks, cross-modal spatio-temporal transformers, and continuous state-space neural metrology decoders.
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model / System Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **PrimeSense / Kinect v1** (2010) | Hardware Architecture / ASIC Pipeline | Custom CMOS IR Sensor Readout | Fixed-function Normalized Cross-Correlation (NCC) ASIC Pipeline | Hardwired Block Correlator Matrix matching reference speckle pattern | Direct Fixed Disparity-to-Depth LUT mapping ($640\times480$ at 30 FPS) | **Zero Flexibility / Zero Compute**: Sub-watt power (<2.5W); zero ML overhead; fails completely in outdoor sunlight and ambient speckle interference. |
+| **ActiveStereoNet (ASN)** (2018) | Hybrid 2D-3D ConvNet | Siamese 2D ResNet-18 Sub-network on Active IR stereo pairs | Correlation / 3D Cost Volume Aggregator ($D \times \frac{H}{2} \times \frac{W}{2}$) | 3D Convolutional Residual Filtering Stages ($3\times3\times3$ convs) | Soft ArgMax Continuous Disparity Regressor + Sub-pixel Refinement ConvNet | **Memory Bandwidth Bound**: 3D convolutions on cost volumes require significant VRAM footprint; requires edge GPU acceleration (Jetson Xavier/Orin). |
+| **PS-FCN (Phase-Shift FCN)** (2020) | Pure ConvNet | Dilated Convolutional 2D ResNet Backbone | Multi-Scale Feature Pyramid Network (FPN) with Skip Connections | Dilated Convolutional Blocks (Receptive Field $>64\times64$) | Dual-Branch Dense Conv Head: Wrapped Phase $\phi(x,y)$ Regressor + Fringe Order $k(x,y)$ Classifier | **Receptive Field Bound**: High-frequency fringe ambiguity; runs in real-time (~60 FPS) on embedded GPUs for sub-millimeter manufacturing inspection. |
+| **DeepToF / MPI-Net** (2019–2021) | Pure ConvNet | Multi-frequency raw correlation frame encoder ($I_0, I_1, I_2, I_3$ at 20/60/80 MHz) | Spatial-Temporal Concatenation with Feature Pyramid Neck | 2D/3D Residual Convolutional Blocks with LeakyReLU | Dense Depth Map Regressor + Multi-Path Scattering Confidence Estimator Head | **Compute Bound**: High-resolution iToF deconvolution requires multi-frequency raw frame inputs; mitigates multipath scattering in concave corners. |
+| **ToF-Transformer** (2023) | Hybrid CNN-Transformer | Multi-Scale ConvNeXt Patch Tokenizer on multi-frequency phase maps | Deformable Multi-Scale Cross-Attention Neck | Windowed Multi-Head Self-Attention (W-MSA) Transformer Blocks | Continuous Depth Distribution Query Decoder + Geometric Boundary Refiner | **Attention Computation Bound**: Captures long-range non-local multi-bounce light paths across large indoor scenes; demands modern Tensor Core GPUs. |
+| **SPAD-DepthMaster** (2024) | Hybrid CNN-Point Transformer | Dual Backbone: Temporal 1D SPAD Histogram ConvNet + High-Res 2D RGB Guidance Backbone | Cross-Modal Bilateral Feature Fusion & Guided Anisotropic Filtering Neck | Sparse Voxel/Point Transformer Encoder on valid photon timestamps | Guided Depth Super-Resolution Query Decoder (Upscaling $32\times32$ SPAD to $1920\times1080$ RGB-D) | **DRAM Bandwidth Bound**: Resolves severe SPAD photon pile-up distortion; high-throughput point-to-pixel memory alignment limits edge battery life. |
+| **UniPhase-Mamba** (2025–2026) | State-Space Mamba Hybrid | 2D Visual State Space (VSSM) Selective Scan Backbone on 16-channel fringe projections | Bi-directional Cross-Scan AXI Stream Aggregator | Linear Selective State-Space ($SSM$) Hidden State Progression Blocks | Sub-Micron Metric Continuous Surface Normal & Unwrapped Phase Head | **SRAM Cache Friendly**: $\mathcal{O}(N)$ linear complexity enables $120\,\text{FPS}$ real-time metrology on Jetson AGX Orin with $<8\,\text{GB}$ VRAM footprint. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Active 3D Sensing Architectural Paradigms"]
+        ASIC["Hardwired ASIC Correlators (PrimeSense / RealSense D4)"]
+        CostVol3D["3D Cost Volume Networks (ActiveStereoNet)"]
+        TransHybrid["Cross-Modal Transformers (ToF-Transformer / SPAD-DepthMaster)"]
+        SSMMamba["State-Space Models (UniPhase-Mamba)"]
+    end
+
+    ASIC -->|Deterministic Matching| FastASIC["Sub-Watt Power (<2.5W), Fixed Function, Zero Multi-Path Correction"]
+    CostVol3D -->|Volumetric Regularization| Metric3D["High Geometric Precision, High VRAM Consumption (3D Convolutions)"]
+    TransHybrid -->|Global Non-Local Attention| LongRangeMPI["Resolves Non-Local Multi-Bounce Scattering, Quadratic Memory Bottleneck"]
+    SSMMamba -->|Linear Selective Memory| LinearMetrology["Sub-Micron Metrological Precision at 120 FPS, O(N) Complexity"]
+```
+
+#### 1. Inductive Bias of Local Epipolar Geometry vs. Global Non-Local Scattering
+Active 3D reconstruction fundamentally balances deterministic local geometric matching against global non-local radiance scattering. In classical structured light and active stereo (ASN), local convolutional inductive bias enforces epipolar constraints along rectified scanlines:
+
+$$\text{Cost}(x, y, d) = \langle \mathbf{f}_{\text{left}}(x, y), \; \mathbf{f}_{\text{right}}(x - d, y) \rangle$$
+
+However, in indirect Time-of-Flight (iToF), the physical signal received at pixel $(x,y)$ is corrupted by global **Multi-Path Interference (MPI)**:
+
+$$I_{\text{meas}}(\omega) = \alpha_{\text{direct}} e^{-j \omega \frac{2 Z(x,y)}{c}} + \int_{\Omega} \alpha_{\text{indirect}}(p') e^{-j \omega \frac{d(\text{emitter}, p') + d(p', (x,y))}{c}} \, dp'$$
+
+Local convolutional kernels ($3\times3, 5\times5$) fail to capture the global non-local integration over scene geometry $\Omega$. Transformer architectures (ToF-Transformer) and 2D State-Space models (UniPhase-Mamba) dynamically attend to distant specular surfaces and concave corners across the entire field of view, mathematically decoupling direct path photons from multi-bounce diffuse returns.
+
+#### 2. Numerical Precision & Metric Quantization Sensitivity
+- **Phase Arithmetic Quantization**: Phase unwrapping models compute $\Phi(x,y) = 2\pi k(x,y) + \phi(x,y)$. In multi-frequency heterodyne architectures, quantizing intermediate phase activations to standard INT8 introduces phase truncation errors $\Delta \phi > 0.05\,\text{rad}$. Because metric depth is scaled by the synthetic wavelength:
+
+  $$\Delta Z = \frac{c \cdot \Delta \phi}{4\pi f_{\text{mod}}}$$
+
+  at $f_{\text{mod}} = 20\,\text{MHz}$ ($\Lambda = 7.5\,\text{m}$), a small rounding artifact flips the integer fringe order $k(x,y) \to k(x,y) \pm 1$, causing catastrophic metric depth steps of exactly $\pm 3.75\,\text{meters}$. Consequently, phase estimation heads must maintain FP16 or FP32 numerical precision.
+- **Sub-Byte SPAD Processing**: SPAD direct-ToF arrays process discrete photon arrival timestamps. Temporal 1D histograms can be quantized to INT4/INT8 during initial feature extraction, but the cross-modal bilateral guidance neck must preserve floating-point weights to avoid spatial aliasing along fine object silhouettes.
+
+#### 3. Runtime Deployment Friction on Embedded Hardware
+- **3D Convolution Latency**: Constructing a 3D cost volume ($64 \times 128 \times 256 \times 320$) in active stereo models consumes over $1.5\,\text{GB}$ of memory bandwidth per frame. Compiling these operators via TensorRT requires specialized 3D cuDNN kernel fusion to avoid memory bus saturation.
+- **Sensor-to-SoC Ingestion Bandwidth**: Raw iToF sensors emitting 4-phase correlation frames at 3 frequencies generate $12 \times 1080\text{p}$ raw 12-bit frames per depth point cloud ($>3.2\,\text{GB/s}$). Deploying deep active vision pipelines requires hardware MIPI-CSI2 virtual channels with direct DMA transfers into unified LPDDR5X memory to meet 30–60 FPS robotics control deadlines.

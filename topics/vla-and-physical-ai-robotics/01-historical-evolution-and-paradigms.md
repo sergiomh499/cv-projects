@@ -102,3 +102,63 @@ A critical and often underappreciated design decision is the **action chunk hori
 - **Long horizon ($H = 64$)**: Used in quadruped locomotion (Isaac Lab). Policy only queries the brain every $1.28\,\text{s}$ — during which the robot runs fully open-loop. Efficient but catastrophic if a contact disturbance occurs mid-chunk.
 
 The theoretical variance of the final action in a chunk grows as $\sigma^2 H$ under a constant noise model, meaning long-horizon chunks accumulate more trajectory error. Production systems apply **Receding Horizon Execution (RHE)**: predict $H$ steps, execute only the first $K < H$, overlap with the next inference, and blend transitions using cubic Hermite spline interpolation (see [[topics/vla-and-physical-ai-robotics/02-production-pipeline-and-workarounds|Production Pipeline]]).
+
+---
+
+## 5. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Vision-Language-Action (VLA) and Physical AI manipulation architectures have evolved from direct single-step convolutional behavioral cloning to tokenized autoregressive robotics transformers (RT-1, OpenVLA), score-based diffusion policies, continuous flow matching foundations (π₀), and selective state-space memory models.
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model / System Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **BC-Z / Conv-IL** (Jang et al., 2021–2022) | Pure ConvNet Behavioral Cloning | Multi-View ResNet-18 / ResNet-50 Convolutional Stages | Flattened Spatial Vector Concatenation Neck | Task-Conditioned MLP Residual Layers (FiLM Embedding) | Direct Single-Step Joint Velocity Regression Head ($\Delta a_t \in \mathbb{R}^7$) | **Mode Collapse & Covariate Shift**: Regressing a single deterministic action causes catastrophic failure on multimodal human demonstrations; runs at $>100\,\text{FPS}$ on edge CPUs. |
+| **RT-1** (Brohan et al., 2022) | Hybrid CNN-Transformer | EfficientNet-B3 Multi-View Visual Backbone | TokenLearner Module (Compressing 81 spatial tokens to 8 tokens) | Multi-Layer Transformer Decoder with Cross-Attention to Natural Language | Discretized 256-Bin Action Token Classification Head | **Sequential Token Generation Latency**: Generating 7-DoF actions token-by-token limits inference to ~3–5 Hz; high memory footprint for multi-frame history. |
+| **Diffusion Policy (DP)** (Chi et al., 2023–2024) | Denoising Diffusion Model | Multi-Camera ResNet-18 or ViT-B/16 Backbone | 1D Temporal UNet or Transformer Cross-Attention Conditioning | Denoising Score-Matching Network (Predicting $\epsilon_\theta(a_k, k, c)$) | Multi-Step Continuous Action Trajectory Chunk Head ($H = 16$ steps) | **Diffusion Step Latency**: Expresses complex multimodal action distributions; requires 10–100 denoising iterations ($100\text{--}500\,\text{ms}$), challenging 50 Hz edge control. |
+| **OpenVLA (7B)** (Kim et al., 2024–2025) | Multimodal Foundation VLA | Prismatic Vision Backbone (SigLIP-SO400M + DINOv2-Patch14 Fusion) | Multi-Layer Perceptron (MLP) Vision-to-Language Projector Neck | Pretrained Llama-2 / Qwen-2 7B Autoregressive Transformer Backbone | Discretized 256-Bin Action Token Decoder Head | **KV-Cache Footprint & Token Latency**: Massive zero-shot semantic generalization; 7B parameter footprint requires 16GB VRAM (INT4 quantization required for Jetson AGX Orin). |
+| **π₀ (Physical Intelligence)** (2024–2026) | Flow Matching Foundation VLA | PaliGemma 3B Vision-Language Backbone (SigLIP-400M + Gemma-2 2B) | Action Chunk Cross-Attention Routing Neck | Continuous Flow Matching (CFM) Vector Field Velocity Predictor ($v_\theta$) | Continuous Action Chunk ODE Integrator ($H = 32$ steps at 50 Hz via 4 Euler steps) | **ODE Solver Compute Bound**: State-of-the-art dexterous manipulation across diverse robots; generates smooth 50 Hz trajectories with high dexterity. |
+| **Mamba-VLA / Action-SSM** (2025–2026) | State-Space Mamba VLA | Dual-Stream 2D Visual Mamba (VSSM) + 1D Proprioception Backbone | Bi-directional Cross-Scan Temporal State Aggregator | Selective State-Space ($SSM$) Temporal Memory Blocks ($\mathcal{O}(1)$ KV Cache) | Real-Time Continuous Joint Torque & Velocity Decoder | **SRAM Cache Friendly**: Eliminates the autoregressive KV-cache bottleneck; maintains constant memory consumption over indefinite execution horizons at $>100\,\text{Hz}$. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Vision-Language-Action Architectural Paradigms"]
+        DirectBC["Direct Regression (BC-Z)"]
+        AutoRegToken["Autoregressive Tokenizers (RT-1 / OpenVLA)"]
+        DiffPolicy["Diffusion Policies (Chi et al. DP)"]
+        FlowMatch["Continuous Flow Matching (Physical Intelligence pi0)"]
+    end
+
+    DirectBC -->|Mean-Squared Error Regression| ModeCollapse["Averages Multi-Modal Demonstrations, Catastrophic In-Between Actions"]
+    AutoRegToken -->|Discretized Action Tokens| Discretization["Captures Multi-Modal Distributions, Slow Token-by-Token Autoregression"]
+    DiffPolicy -->|Iterative Score Denoising| MultiModalSmooth["Smooth Continuous Trajectories, High Denoising Step Count (10-100 steps)"]
+    FlowMatch -->|Straight Probability Paths| FastODE["Straight Vector Field Integration (4 Euler Steps), Real-Time 50 Hz Control"]
+```
+
+#### 1. Inductive Bias: Discretized Tokens vs. Denoising Diffusion vs. Continuous Flow Matching
+Modeling robotic action distributions $p(a \mid o)$ presents a fundamental challenge: human physical demonstrations are inherently **multimodal** (e.g., navigating left or right around an obstacle).
+- **Direct MSE Regression** ($\mathcal{L} = \|a - \hat{a}\|^2$) averages conflicting trajectories, driving the robot directly into the obstacle (mode collapse).
+- **Discrete Action Tokenization (RT-1, OpenVLA)** bins continuous joint commands into 256 categorical tokens:
+
+  $$\mathcal{L}_{\text{token}} = - \sum_{d=1}^D \log P(a_t^{(d)} = k \mid o_t, a_t^{(<d)})$$
+
+  While this represents arbitrary multimodal distributions, sequential autoregressive decoding requires $D$ forward passes per action step, introducing severe latency jitter.
+- **Continuous Flow Matching (π₀)** models actions via continuous-time ordinary differential equations (ODEs):
+
+  $$\frac{d x_t}{dt} = v_\theta(x_t, t, c), \qquad x_1 = x_0 + \int_0^1 v_\theta(x_t, t, c) \, dt$$
+
+  By training the vector field $v_\theta$ along straight linear probability paths $x_t = (1 - t)x_0 + t x_1$ with $x_0 \sim \mathcal{N}(0, \mathbf{I})$, π₀ integrates from Gaussian noise to clean action chunks in as few as **4 Euler integration steps**, sustaining real-time $50\,\text{Hz}$ closed-loop manipulation.
+
+#### 2. Numerical Precision & KV-Cache Footprint in VLA Robotics
+- **VLA Model Size vs. Robot VRAM**: A 7B parameter VLA (OpenVLA) stored in FP16 consumes $14\,\text{GB}$ of VRAM for static model weights alone, exceeding the memory of edge robotic controllers (e.g. Jetson Orin Nano 8GB).
+- **Quantization Trade-offs (W4A16 vs. FP8)**: Quantizing the transformer backbone to INT4 (AWQ/GPTQ) or FP8 reduces memory footprint to $\sim 4.2\,\text{GB}$ while retaining $98.5\%$ of task success rate. However, the action projection head must remain in FP16/FP32: sub-millimeter gripper positioning demands continuous floating-point precision to avoid jerky joint movements.
+
+#### 3. Real-Time Deployment Friction in Closed-Loop Physical AI
+- **The 50 Hz Control Requirement**: Dexterous robotic hands and dynamic manipulation require control updates every $20\,\text{ms}$ ($50\,\text{Hz}$). If a large VLA model requires $250\,\text{ms}$ per forward pass, the robot must execute open-loop during the latency gap.
+- **Action Chunking & Receding Horizon Execution (RHE)**: To bridge the compute-bandwidth gap, foundation models predict an action chunk $\mathbf{A}_{t:t+H} \in \mathbb{R}^{H \times D}$ ($H=32$). An edge microcontroller interpolates between chunks via cubic splines while the GPU concurrently computes the next chunk, achieving continuous, jitter-free physical motion.
+
+---
+
+Related notes: [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc|VLA MOC]], [[topics/vla-and-physical-ai-robotics/02-production-pipeline-and-workarounds|Production Pipeline & Workarounds]], [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance MOC]].

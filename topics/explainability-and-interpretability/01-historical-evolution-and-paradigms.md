@@ -147,4 +147,65 @@ With $m = 16{,}384$ SAE features for a 768-dimensional ViT layer, each active fe
 | Integrated Gradients | Completeness axiom verification | **Exact (by construction)** | Pixel attribution |
 | SAE features | Causal ablation (clamp feature to 0) | **High (causal circuit)** | Semantic concepts |
 
+---
+
+## 5. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Explainability and interpretability architectures have progressed from post-hoc gradient-based pixel saliency maps to inherently interpretable concept bottleneck models (CBMs), layer-wise attention propagation in vision transformers, and unsupervised mechanistic sparse autoencoders (SAEs).
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model / System Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Grad-CAM / Grad-CAM++** (2017–2018) | Post-Hoc Gradient / Saliency Wrapper | Standard Convolutional Stages (VGG-16 / ResNet-50) | Penultimate Conv Feature Map Extractor | Backward Gradient Pooling ($\alpha_k^c = \frac{1}{Z}\sum \frac{\partial Y^c}{\partial A^k}$) | Weighted Linear Combination + ReLU 2D Heatmap Head | **Backward Pass Latency**: Requires backward gradient computation at inference; unfaithful to internal reasoning circuits; low edge compute efficiency. |
+| **Concept Bottleneck Model (CBM)** (2020–2022) | Pure ConvNet / Interpretable Bottleneck | ResNet-18 / ResNet-50 Convolutional Stages | Global Average Pooling & Linear Concept Projection Neck | Supervised Multi-Concept Encoder ($k=112\text{--}300$ concepts) | Transparent Linear / Sparse Generalized Additive Model ($y = \mathbf{W}\mathbf{c} + b$) | **Concept Annotation Bottleneck**: Requires exhaustive human-annotated concept labels during training; zero latency overhead at edge inference. |
+| **Post-Hoc CBM (PCBM / Label-Free CBM)** (2022–2024) | Foundation ViT + Hybrid | Pretrained Frozen Vision Foundation Backbone (CLIP ViT-B/16 or DINOv2) | Concept Text Bank Cross-Modal Embedding Projection Neck | Concept Ridge Regression & Coordinate Alignment Encoder | Sparse Generalized Linear / ElasticNet Classification Head | **Feature Storage Bound**: Eliminates human concept annotation bottleneck; requires high-dimensional text-image cosine distance evaluation at runtime. |
+| **Transformer-Attribution (Chefer et al.)** (2021–2023) | Pure ViT Attribution Engine | Vision Transformer (ViT-B/16 / ViT-L/14) Patch Backbone | Layer Relevance Propagation (LRP) Cross-Attention Neck | Conservative Gradient-Weighted Attention Rollout Encoder | Dense Pixel-Level Token Relevance & Attribution Map Head | **Quadratic Attention Matrix Storage**: Computing $B \times H \times N \times N$ attention gradient matrices consumes massive GPU VRAM during multi-layer rollout. |
+| **Mechanistic Sparse Autoencoder (SAE-Vision)** (2024–2026) | Unsupervised Sparse Dictionary Foundation | Frozen Foundation Vision Transformer (DINOv2 / CLIP ViT-L/14) Intermediate Layers | High-Dimensional Linear Expansion Layer ($d=1024 \to M=16{,}384$) | TopK / JumpReLU Sparse Encoder ($L_0 \approx 32\text{--}64$ active latents) | Monosemantic Visual Dictionary Reconstruction Decoder ($W_{\text{dec}} \in \mathbb{R}^{d \times M}$) | **High-Dimensional VRAM Bound**: Massive dictionary expansion ($16\text{k}\text{--}65\text{k}$ features) requires dedicated Tensor Core GPU memory during inference. |
+| **Concept-Mamba (Interpretable SSM)** (2025–2026) | State-Space Mamba Hybrid | 2D Visual State Space (VSSM) Continuous Backbone | Disentangled Hidden State Projection Aggregator ($h_t \in \mathbb{R}^N$) | Linear Time-Varying State-Space Parameterization ($\mathbf{A}, \mathbf{B}, \mathbf{C}$) | Inherently Interpretable Causal State-Attribution Head | **SRAM Cache Friendly**: $\mathcal{O}(L)$ linear time complexity and constant memory state tracking; provides real-time causal explanations on edge robotics. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Explainability & Interpretability Paradigms"]
+        PostHoc["Post-Hoc Saliency (Grad-CAM / Integrated Gradients)"]
+        ConceptBottleneck["Concept Bottlenecks (CBM / PCBM)"]
+        TransAttribution["Attention Rollout (Chefer ViT LRP)"]
+        MechSAE["Mechanistic Interpretability (Vision SAEs)"]
+    end
+
+    PostHoc -->|Gradient Path Integration| Unfaithful["High Computational Latency (Backward Pass), Often Unfaithful to True Circuits"]
+    ConceptBottleneck -->|Explicit Intermediate Concepts| HumanIntervene["Enables Real-Time Human Expert Concept Interventions, Zero Inference Cost"]
+    TransAttribution -->|Layer Relevance Propagation| DeepRelevance["Faithfully Tracks Token-to-Token Cross-Attention Interactions Across Layers"]
+    MechSAE -->|Sparse Dictionary Learning| Monosemantic["Disentangles Polysemantic Latents into Thousands of Single-Concept Neurons"]
+```
+
+#### 1. Inductive Bias of Post-Hoc Saliency vs. Inherent Architectural Bottlenecks
+Post-hoc saliency methods wrap an unconstrained black-box neural network and compute attributions via first-order gradient approximations:
+
+$$\text{Saliency}_i(x) = \left| \frac{\partial f_c(x)}{\partial x_i} \right|$$
+
+As demonstrated by the ROAR (Remove and Retrain) benchmark, such post-hoc heatmaps frequently suffer from gradient saturation and reflect low-level image edge filters rather than internal model decision logic.
+
+In contrast, **Concept Bottleneck Models (CBMs)** constrain the model architecture into an inherently interpretable two-stage functional decomposition:
+
+$$x \xrightarrow{g} \mathbf{c} \in [0, 1]^k \xrightarrow{h} \hat{y} \in \mathbb{R}^C, \qquad \hat{y}_c = \sum_{j=1}^k w_{c,j} c_j + b_c$$
+
+This structural inductive bias provides exact, linear transparency: if the concept predictor $g(x)$ indicates $\hat{c}_{\text{wing\_color\_red}} = 0.92$, the human engineer can inspect the scalar weight $w_{\text{Scarlet\_Tanager}, j}$ directly and verify the quantitative causal contribution to the final classification.
+
+#### 2. Numerical Precision & Gradient Stability in Axiomatic Attribution
+- **Quadrature Numerical Drift**: Integrated Gradients approximates the continuous path integral via $m$-step Gauss-Legendre quadrature:
+
+  $$\text{IG}_i(x) = (x_i - x'_i) \times \sum_{k=1}^m w_k \frac{\partial F(x' + \frac{k}{m}(x - x'))}{\partial x_i}$$
+
+  Evaluating this integral under INT8 or FP16 quantized weights causes severe gradient underflow in saturating activation regimes ($\text{GELU} / \text{LayerNorm}$ tails), violating the **Completeness Axiom** ($\sum_i \text{IG}_i(x) \neq F(x) - F(x')$) by over 18%. Verification workflows must run gradient attribution in FP32.
+- **TopK Sparsity in Vision SAEs**: In Mechanistic Sparse Autoencoders, the hidden dimension $M$ is expanded $16\times - 64\times$ beyond the latent width $d$. Enforcing exact sparsity via $\text{TopK}$ activation ($K=32$) keeps memory bus bandwidth bounded during dictionary reconstruction.
+
+#### 3. Computational Friction at Edge Deployment
+- **Runtime Overhead of Explanation**: Post-hoc methods (Integrated Gradients with $m=50$ steps) increase inference latency by **$50\times - 100\times$**, rendering them impossible to run inside 30 FPS autonomous driving control loops.
+- **Zero-Cost Explanations via CBMs & SAE Probing**: In contrast, CBMs and pre-trained Sparse Autoencoder probes execute in a single forward pass with zero backward passes, emitting both the final prediction and the semantic concept attribution vector within a $<5\,\text{ms}$ execution budget on Jetson Orin.
+
+---
+
 Related notes: [[topics/explainability-and-interpretability/00-explainability-and-interpretability-moc|Explainability MOC]], [[topics/explainability-and-interpretability/02-production-pipeline-and-workarounds|Production Pipeline & Workarounds]], [[topics/data-quality-and-verification/00-data-quality-and-verification-moc|Data Quality MOC]].
