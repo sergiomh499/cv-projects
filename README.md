@@ -42,6 +42,7 @@ A curated research engineering knowledge base, didactic repository, and producti
 | **14. Safety & Robustness** | [[topics/safety-verification-and-robustness/00-safety-verification-and-robustness-moc\|Safety Verification MOC]] ([Directory](topics/safety-verification-and-robustness/README.md)) | $\alpha,\beta$-CROWN, ISO 21448 / ISO/PAS 8800, Control Barrier Functions | `Verified-Intelligence/alpha-beta-CROWN` | <100 $\mu$s CBF Filter | **GPL-3.0 / Apache-2.0** |
 | **15. Explainability & Interpretability** | [[topics/explainability-and-interpretability/00-explainability-and-interpretability-moc\|Explainability MOC]] ([Directory](topics/explainability-and-interpretability/README.md)) | Mechanistic CBMs, Sparse Autoencoders, Faithfulness Saliency | `jacobgil/pytorch-grad-cam`, `yewsiang/ConceptBottleneck` | 12 ms Attribution | **MIT / Apache-2.0** |
 | **16. Event-Based Neuromorphic Vision** | [[topics/event-based-neuromorphic-vision/00-event-based-neuromorphic-vision-moc\|Event Vision MOC]] ([Directory](topics/event-based-neuromorphic-vision/README.md)) | Prophesee Metavision 5.x, Spikformers, ESVO, Benosman Flow | `prophesee-ai/metavision_sdk`, `fangwei123456/spikingjelly` | <1 $\mu$s Temporal Res (>120 dB) | **Apache-2.0** |
+| **17. Thermal & Hyperspectral Vision** | [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspectral-vision-moc\|Thermal Vision MOC]] ([Directory](topics/thermal-and-hyperspectral-vision/README.md)) | TherA, UniCD, Frequency-Guided Cross-Attention, VOx Microbolometers | `FLIR/flirpy`, `spectral/spectral` | 800 FPS NUC (<1.5 ms) | **MIT / Apache-2.0** |
 ---
 
 ## 🏛️ Central Architecture Vault (`architectures/`)
@@ -79,13 +80,14 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/04-cleanlab-dataset-auditing/audit_dataset.py|04-cleanlab-dataset-auditing]]**: Confident Learning implementation estimating joint noise distribution to find corrupted dataset labels.
 - **[[cookbooks/05-alpha-beta-crown-verification/bound_verification.py|05-alpha-beta-crown-verification]]**: Linear relaxation neural network interval bound propagation (IBP) certifying $L_\infty$ robustness.
 - **[[cookbooks/06-mechanistic-cbm-attribution/concept_intervention.py|06-mechanistic-cbm-attribution]]**: Concept Bottleneck Model (CBM) with test-time human-in-the-loop concept intervention.
+- **[[cookbooks/07-neuromorphic-event-flow/event_flow.py|07-neuromorphic-event-flow]]**: Asynchronous Surface of Active Events (SAE) optical flow estimation via local plane fitting in $\mathcal{O}(1)$ time.
 ---
 
 ## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices
 
 Dedicated deep engineering and didactic theoretical references:
 - **[[docs/critical-scenarios-hardware-matrix.md|Critical Scenarios Hardware Benchmarking & Acceleration Matrix]]**: Comparative evaluation across **AMD Versal AI Edge Gen 2 (AIE-ML v2 / NPU IP with Vitis AI 5.x)**, **CoreAVI DO-178C / DO-254 DAL-A Vulkan SC**, **NVIDIA Jetson AGX Orin Industrial**, **NVIDIA RTX 4090**, and **AMD Alveo U50 / Xilinx Kria**.
-- **[[docs/formal-mathematical-proofs.md|Formal Mathematical Proofs & Derivations Appendix]]**: Exact didactic step-by-step proofs for **Nagumo's Theorem (Forward Invariance of CBFs)**, **The Liu & Layland 69.3% Rate-Monotonic Schedulability Bound**, **Uniqueness of Lloyd Shapley's 4 Attribution Axioms**, and **The SVD Singular Value Constraints of the Essential Matrix ($\sigma_1=\sigma_2, \sigma_3=0$)**.
+- **[[docs/edge-ai-quantization-playbook.md|Edge-AI Quantization Playbook: PTQ vs QAT, Mixed-Precision & Outlier Suppression]]**: Production guide covering SmoothQuant mathematical outlier suppression, TensorRT 10 explicit Q/DQ compilation, and AMD Vitis AI 5.x / Quark NPU workflows.
 ---
 
 ## ⚖️ Global Commercial Usability & License Matrix
