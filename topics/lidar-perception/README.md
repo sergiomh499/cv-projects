@@ -86,7 +86,7 @@ Related notes: [[topics/sensor-fusion/README|Sensor Fusion]], [[topics/6dof-pose
 1. **Pipeline Stages**:
    - Packet capture (UDP Ethernet) -> Motion deskewing (ego-motion compensation via IMU) -> ROI cropping / ground plane removal -> Voxelization / Pillarization -> 3D Backbone (SparseConv) -> BEV Dense Flattening -> Center Head -> 3D NMS.
 2. **Common Traps & Edge Cases**:
-   - *Motion Distortion (Skew)*: Rotating LiDAR beams take 50-100 ms to complete a single $360^\circ$ sweep; during vehicle motion, points appear smeared or warped.
+   - *Motion Distortion (Skew)*: Rotating LiDAR beams take 50-100 ms to complete a single $360^\circ$ swee[EVOLUTION](topics/lidar-perception/EVOLUTION.md)p; during vehicle motion, points appear smeared or warped.
    - *Sparsity at Range*: Point density drops quadratically with distance ($1/r^2$), leaving distant objects represented by only 2-5 points.
    - *Adverse Weather (Rain, Fog, Dust)*: Atmospheric backscatter produces thousands of false-positive floating points near the sensor.
 3. **Engineering Workarounds**:
