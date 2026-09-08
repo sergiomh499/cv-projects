@@ -80,6 +80,13 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/06-mechanistic-cbm-attribution/concept_intervention.py|06-mechanistic-cbm-attribution]]**: Concept Bottleneck Model (CBM) with test-time human-in-the-loop concept intervention.
 ---
 
+## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices
+
+Dedicated deep engineering and didactic theoretical references:
+- **[[docs/critical-scenarios-hardware-matrix.md|Critical Scenarios Hardware Benchmarking & Acceleration Matrix]]**: Comparative evaluation across **AMD Versal AI Edge Gen 2 (AIE-ML v2 / NPU IP with Vitis AI 5.x)**, **CoreAVI DO-178C / DO-254 DAL-A Vulkan SC**, **NVIDIA Jetson AGX Orin Industrial**, **NVIDIA RTX 4090**, and **AMD Alveo U50 / Xilinx Kria**.
+- **[[docs/formal-mathematical-proofs.md|Formal Mathematical Proofs & Derivations Appendix]]**: Exact didactic step-by-step proofs for **Nagumo's Theorem (Forward Invariance of CBFs)**, **The Liu & Layland 69.3% Rate-Monotonic Schedulability Bound**, **Uniqueness of Lloyd Shapley's 4 Attribution Axioms**, and **The SVD Singular Value Constraints of the Essential Matrix ($\sigma_1=\sigma_2, \sigma_3=0$)**.
+---
+
 ## ⚖️ Global Commercial Usability & License Matrix
 
 | Category | Safe for Proprietary Software? | Key Repositories & Models |
