@@ -1,24 +1,27 @@
 ---
-title: Object Classification Historical Evolution & Backbones
+title: Object Classification - Historical Evolution & Backbones
+type: evolution-guide
+domain: Object Classification
 tags:
-  - computer-vision
-  - classification
-  - architecture-evolution
+  - evolution
+  - history
+  - architecture
   - resnet
   - transformers
   - clip
   - dinov3
-  - didactic
+  - classification
 updated: 2026-09-08
 aliases:
   - Classification Evolution
+  - Object Classification History
 ---
 
-# Object Classification: Historical Evolution & Backbone Lineage
+# 📜 Object Classification: Historical Evolution & Backbone Lineage
 
 A didactic guide charting the evolution of visual feature extraction: from handcrafted texture descriptors to the deep residual revolution, the rise of Vision Transformers (ViT), modern modernized ConvNets (ConvNeXt), and self-supervised foundation backbones (CLIP to DINOv3).
 
-Related notes: [[topics/object-classification/README|Object Classification Playbook]], [[topics/gpu-deployment/README|GPU Deployment]].
+Related notes: [[topics/object-classification/00-object-classification-moc|Object Classification MOC]], [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]].
 
 ---
 
