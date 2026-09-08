@@ -47,7 +47,7 @@ LiDAR (Light Detection and Ranging) systems emit pulsed laser beams to capture p
 Key technical requirements include:
 - Ingesting multi-gigabit/s UDP raw packet point streams under strict latency bounds ($<100\text{ ms}$).
 - Structuring unordered, sparse 3D point sets into voxels or pillar columns.
-- Modern sparse window attention architectures ([[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer]]) deployable via TensorRT without custom CUDA non-standard layers.
+- Modern sparse window attention architectures ([[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer]]) deployable via TensorRT without custom CUDA non-standard layers.
 
 ---
 
@@ -58,7 +58,7 @@ Key technical requirements include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Voxelization Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **DSVT & FlatFormer** | Dynamic Sparse Window Transformer | Replaces SpConv with hardware-friendly dense window attention | **Apache-2.0** | [[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]] |
+| **DSVT & FlatFormer** | Dynamic Sparse Window Transformer | Replaces SpConv with hardware-friendly dense window attention | **Apache-2.0** | [[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]] |
 | **OpenPCDet Toolbox** | Unified 3D Framework | Industry-standard modular codebase for point cloud models | **Apache-2.0** | [[resources/ecosystem-tools|Ecosystem Tools]] |
 
 ---
@@ -93,7 +93,7 @@ LiDAR (Light Detection and Ranging) systems emit pulsed laser beams to capture p
 Key technical requirements include:
 - Ingesting multi-gigabit/s UDP raw packet point streams under strict latency bounds ($<100\text{ ms}$).
 - Structuring unordered, sparse 3D point sets into voxels or pillar columns.
-- Modern sparse window attention architectures ([[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer]]) deployable via TensorRT without custom CUDA non-standard layers.
+- Modern sparse window attention architectures ([[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer]]) deployable via TensorRT without custom CUDA non-standard layers.
 
 ---
 
@@ -106,7 +106,7 @@ Key technical requirements include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Voxelization Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **DSVT & FlatFormer** | Dynamic Sparse Window Transformer | Replaces SpConv with hardware-friendly dense window attention | **Apache-2.0** | [[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]] |
+| **DSVT & FlatFormer** | Dynamic Sparse Window Transformer | Replaces SpConv with hardware-friendly dense window attention | **Apache-2.0** | [[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]] |
 | **OpenPCDet Toolbox** | Unified 3D Framework | Industry-standard modular codebase for point cloud models | **Apache-2.0** | [[resources/ecosystem-tools|Ecosystem Tools]] |
 
 ---

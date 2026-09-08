@@ -18,7 +18,7 @@ aliases:
 > **Obsidian Users**: Access the unified Map of Content at [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]].
 
 ## 📌 Executive Brief
-Sensor Fusion unifies complementary physical sensing modalities—Cameras (dense semantics), LiDAR (metric 3D geometry), and Radar (direct Doppler velocity)—to overcome the physical failure modes of any single sensor. The domain has evolved to unified **Bird's-Eye-View (BEV) multi-modal transformers** ([[architectures/real-time-unified/bevfusion-and-sparse4d|BEVFusion & Sparse4D]]) executing under 45 ms.
+Sensor Fusion unifies complementary physical sensing modalities—Cameras (dense semantics), LiDAR (metric 3D geometry), and Radar (direct Doppler velocity)—to overcome the physical failure modes of any single sensor. The domain has evolved to unified **Bird's-Eye-View (BEV) multi-modal transformers** ([[architectures/3d-pointclouds-and-lidar/bevfusion-and-sparse4d|BEVFusion & Sparse4D]]) executing under 45 ms.
 
 ---
 
@@ -45,7 +45,7 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 | **Sensor Fusion MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-sensor-fusion-moc.md) <br> `[[topics/sensor-fusion/00-sensor-fusion-moc|00-sensor-fusion-moc]]` |
 | **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from late EKF tracking to PointPainting, Lift-Splat-Shoot (LSS), and BEVFusion | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/sensor-fusion/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
 | **Production Pipeline & Workarounds** | `Playbook` | IEEE 1588 PTP microsecond sync, thermal calibration drift, ISO 26262 safety fallbacks | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/sensor-fusion/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
-| **BEVFusion & Sparse4D Deep-Dive** | `Architecture Vault` | Multi-modal BEV perception with hardware-accelerated coordinate caching and 4D anchor queries | [Open BEVFusion/Sparse4D](../../architectures/real-time-unified/bevfusion-and-sparse4d.md) <br> `[[architectures/real-time-unified/bevfusion-and-sparse4d|bevfusion-and-sparse4d]]` |
+| **BEVFusion & Sparse4D Deep-Dive** | `Architecture Vault` | Multi-modal BEV perception with hardware-accelerated coordinate caching and 4D anchor queries | [Open BEVFusion/Sparse4D](../../architectures/3d-pointclouds-and-lidar/bevfusion-and-sparse4d.md) <br> `[[architectures/3d-pointclouds-and-lidar/bevfusion-and-sparse4d|bevfusion-and-sparse4d]]` |
 
 ---
 

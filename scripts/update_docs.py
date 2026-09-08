@@ -32,6 +32,8 @@ def scan_vault(repo_root: Path):
     architectures = []
     arch_root = repo_root / "architectures"
     for md_file in sorted(arch_root.glob("**/*.md")):
+        if md_file.stem in ("README", "00-architectures-moc"):
+            continue
         content = md_file.read_text(encoding="utf-8")
         fm = parse_frontmatter(content)
         rel_path = md_file.relative_to(repo_root)

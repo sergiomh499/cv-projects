@@ -119,3 +119,61 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d}}\right)
 where $Q = W_Q \mathbf{g}_1$ and $K = V = W_K \mathbf{g}_2$. The output is a feature map where each pixel in frame 1 holds a weighted blend of all frame 2 features — the weights are the matching probabilities. Converting to flow: $\mathbf{f}(\mathbf{x}_1) = \mathbf{x}_2^* - \mathbf{x}_1$ where $\mathbf{x}_2^* = \text{argmax}_{\mathbf{x}_2} \text{softmax}(Q(\mathbf{x}_1) \cdot K(\mathbf{x}_2)^T / \sqrt{d})$.
 
 **KITTI-2015 benchmark**: GMFlow F1-all = 9.32% (2022 release), vs. RAFT's 5.10%. GMFlow trades $\sim 4\,\text{pp}$ accuracy for $3\times$ faster inference ($8\,\text{ms}$ vs. $24\,\text{ms}$ at $480\times640$ on RTX 3090).
+
+---
+
+## 5. Intensive Architectural Taxonomy: Convolutional vs Transformer vs Hybrid Sub-Modules
+
+Optical flow and 3D scene flow estimation have evolved from coarse-to-fine pyramidal image warping to 4D all-pairs correlation pyramids with recurrent neural optimizers, global cross-attention transformers, and unified multi-modal correspondence engines.
+
+### Comparative Sub-Module Architectural Matrix
+
+| Model Name & Year | Architectural Paradigm | Backbone Sub-Module | Neck / Feature Aggregator | Encoder Sub-Module | Decoder / Head Sub-Module | Primary Bottleneck & Edge Suitability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **FlowNet / FlowNet 2.0** (2015–2017) | Pure ConvNet | Stacked 6-stage Convolutional Encoders ($1/2$ to $1/64$ downsampling) | Intermediate 1D/2D Correlation Layer (Limited search radius $d=20$) | Standard Convolutional Blocks with ReLU | Multi-Stage Transposed Convolutional (Up-Convolution) Decoder predicting coarse-to-fine flow fields | **Compute & Parameter Bound**: FlowNet 2.0 cascades multiple sub-networks (160M params); heavy memory footprint; struggles with fine boundaries and small fast-moving objects. |
+| **PWC-Net** (2018) | Hierarchical Pyramidal ConvNet | 6-Level Convolutional Feature Pyramid ($1/2$ to $1/64$) | Feature Warping Layer (Warps frame 2 features using upsampled flow $\mathbf{f}^{l+1}$) | Cost Volume Layer (Local $4\times4$ neighborhood cost volume per scale) | Multi-Scale Dense Convolutional Flow Estimator + Context Network (Dilated Convs) | **Memory Bandwidth & Warping Bound**: Lightweight (~8.7M params); real-time (~30 FPS); failure propagation: if coarse pyramid levels miscalculate large displacements, finer levels cannot recover. |
+| **RAFT** (2020) | Hybrid Conv-Recurrent Optimizer | Dual 6-layer Residual CNN Encoders ($1/8$ feature resolution; 256 channels) | 4D All-Pairs Multi-Scale Correlation Pyramid ($C^1, C^2, C^4, C^8$) | Convolutional Residual Feature & Context Encoders | Recurrent ConvGRU Optimizer ($T=12$ iterative updates) + Learned Convex Spatial Upsampling ($8\times8$ neighborhood grid) | **DRAM Bandwidth & Iteration Bound**: Gold standard in flow accuracy; building the 4D correlation volume creates high DRAM traffic ($O(H^2W^2)$); deployable on Jetson Orin at ~20–30 FPS with $T=8$. |
+| **GMA (Global Motion Aggregation)** (2021) | Hybrid Conv-Transformer | Shared 6-layer Residual CNN Feature/Context Backbone | 4D All-Pairs Correlation Pyramid Neck | Self-Attention Feature Aggregator (Computes global token similarity over context features) | ConvGRU Recurrent Optimizer conditioned on Global Motion Vectors + Convex Upsampler | **Compute Bound**: Resolves flow estimation behind heavy occlusions by aggregating motion from co-moving visible regions; adds ~15% latency over standard RAFT. |
+| **GMFlow** (2022) | Pure / Hybrid Transformer Matcher | ResNet-like Convolutional Feature Extractor ($1/8$ resolution) | None (Direct feature flattening and projection) | Global Cross-Attention Transformer Matcher ($Q=W_Q \mathbf{g}_1, K=W_K \mathbf{g}_2$) | Direct Softmax Probability Regression Head (Evaluates expected flow via argmax expectation) | **Compute & Memory Optimized**: Single-pass forward inference (bypasses iterative GRU updates); $3\times$ faster than RAFT (~8 ms on RTX 3090); ideal for embedded edge execution. |
+| **FlowFormer / FlowFormer++** (2022–2023) | Hybrid Transformer Cost Volume | Convolutional Feature Tokenizer ($1/8$ resolution) | Cost Volume Transformer: Cost Memory Encoder + Cost Query Decoder | Multi-Head Self-Attention over Cost Tokens | Recurrent Cost-Guided Flow Refinement Head with Dynamic Windowed Attention | **KV-Cache & Compute Bound**: Highest accuracy on Sintel and KITTI; tokenized 4D cost volume consumes high GPU memory; unsuited for low-power edge microcontrollers without pruning. |
+| **UniMatch** (2023) | Unified Foundation Matcher | Multi-Scale CNN / Hierarchical ViT Backbone | Unified Multi-Scale Cross-Attention Matcher | Dual-Feature Transformer Interaction Blocks (Cross-Scale Attention) | Unified Regression Head: Shared weights predicting Optical Flow, Stereo Disparity, and Monocular Depth | **Memory Bandwidth Balanced**: SOTA across three distinct vision domains; unified single-model deployment simplifies automotive perception pipelines. |
+| **CamLiFlow / SceneFlowNet** (2022–2024) | Multi-Modal 3D Flow Hybrid | Dual Backbone: 2D CNN (Camera RGB) + 3D Sparse SpConv (LiDAR Point Cloud) | Bidirectional 2D-3D Cross-Attention Correlation Module | Interleaved 2D Convolutional and 3D Sparse Voxel Layers | Multi-Scale Recurrent 3D Scene Flow Update Head (Predicts 3D displacement vectors $\mathbf{D} \in \mathbb{R}^3$) | **Compute & Synchronization Bound**: True metric 3D scene flow; high computational complexity; requires synchronized camera-LiDAR hardware queues. |
+
+### Didactic Architectural Trade-Off Analysis
+
+```mermaid
+flowchart TD
+    subgraph Paradigms ["Architectural Paradigms in Optical & Scene Flow"]
+        Pyr_Warp["Pyramidal Feature Warping (PWC-Net / FlowNet2)"]
+        Rec_Corr["Recurrent 4D Correlation Volumes (RAFT / GMA)"]
+        Trans_Match["Global Transformer Matching (GMFlow / UniMatch)"]
+    end
+
+    Pyr_Warp -->|Coarse-to-Fine Warping| FastWarp["Lightweight Parameters, Low FLOPs per Scale"]
+    Pyr_Warp -->|Error Cascading| BreakWarp["Irrecoverable Tracking Failure on Large Displacements (>50px)"]
+
+    Rec_Corr -->|All-Pairs 4D Cost Pyramid| RobustSearch["Global Search Radius: Solves Large Displacements & Occlusion"]
+    Rec_Corr -->|Iterative ConvGRU Updates| LatencyT["Latency Scales Linearly with Optimization Iterations $O(T)$"]
+
+    Trans_Match -->|Single-Pass Cross-Attention| DirectSoftmax["Non-Iterative $O(1)$ Forward Pass, 3x-5x Faster on Edge Accelerators"]
+    Trans_Match -->|Softmax Smoothing| BlurryEdges["Softmax Expectation Struggles with Sharp Motion Discontinuities"]
+```
+
+#### 1. Pyramidal Warping vs. 4D Correlation Pyramids vs. Global Cross-Attention
+- **Coarse-to-Fine Warping (PWC-Net)** was designed to overcome large displacements by downsampling images into multi-level pyramids, computing small local cost volumes, and warping finer-level features with upsampled coarse flow. However, if small or thin objects (e.g. bicycle spokes, wires) disappear at coarse $1/32$ or $1/64$ resolutions, the warping error cascades down the entire pyramid, producing catastrophic tracking failures.
+- **4D All-Pairs Correlation Volumes (RAFT)** eliminate image warping entirely. By computing the full pairwise inner product between all $H/8 \times W/8$ feature tokens across both frames:
+  $$C(\mathbf{x}_1, \mathbf{x}_2) = \langle \mathbf{g}_1(\mathbf{x}_1), \mathbf{g}_2(\mathbf{x}_2) \rangle \in \mathbb{R}^{(H/8 \times W/8) \times (H/8 \times W/8)}$$
+  the network retains a complete, unwarped global correspondence matrix.
+- **Global Cross-Attention Matching (GMFlow)** formulates optical flow as direct attention-based correspondence. Rather than iteratively querying a cost volume, cross-attention computes a global probability distribution over all destination pixels, deriving the flow field directly as a single expected coordinate displacement:
+  $$\mathbf{f}(\mathbf{x}_1) = \sum_{\mathbf{x}_2} \text{softmax}\left(\frac{Q(\mathbf{x}_1) K(\mathbf{x}_2)^T}{\sqrt{d}}\right) \mathbf{x}_2 - \mathbf{x}_1$$
+
+#### 2. Recurrent Optimization (ConvGRU) vs. Non-Iterative Forward Passes
+- **Iterative Recurrent Refinement (RAFT, GMA)** treats flow estimation as a learned unrolled gradient descent loop. At each iteration $t \in [1, \dots, T]$:
+  $$\Delta \mathbf{f}^{t+1} = \text{ConvGRU}\left(\mathbf{h}^t, [\text{Lookup}(C, \mathbf{f}^t), \mathbf{f}^t, \text{Context}]\right)$$
+  While running $T=12\text{--}24$ iterations yields sub-pixel precision, the latency scales linearly with $T$ ($24\,\text{ms}$ at $T=12$).
+- **Single-Pass Transformers (GMFlow)** execute in a single non-iterative forward pass ($O(1)$ time complexity), reducing inference latency to $<8\,\text{ms}$ on modern edge GPUs.
+
+#### 3. Edge Deployment & Memory Bandwidth Constraints
+- **4D Correlation Memory Traffic**: A $480\times640$ frame pair produces a 4D tensor with $23\times10^6$ floating-point values. Reading and pooling this tensor during recurrent lookups creates a memory bandwidth bottleneck on embedded SoCs.
+- **Fixed-Point Quantization**: Quantizing optical flow networks to INT8 requires preserving high precision in the flow displacement registers. Fractional pixel movements ($0.05\text{--}0.25\,\text{px}$) are easily rounded to zero under coarse uniform INT8 quantization, necessitating FP16 or mixed-precision execution for the final flow accumulation stages.
+

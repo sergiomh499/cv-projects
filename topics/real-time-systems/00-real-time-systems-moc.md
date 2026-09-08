@@ -47,7 +47,7 @@ Real-Time Computer Vision and Perception Systems operate under strict temporal d
 Key technical requirements include:
 - Incurring zero unbounded latencies ($\le 33\text{ ms}$ for 30 FPS cameras, $\le 10\text{ ms}$ for high-speed robotics).
 - Eliminating Linux kernel scheduling jitter using the **PREEMPT_RT** real-time patch.
-- Zero-copy shared memory IPC ([[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh]]) delivering sub-microsecond point cloud and video frame transfers.
+- Zero-copy shared memory IPC ([[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh]]) delivering sub-microsecond point cloud and video frame transfers.
 - Hardware timestamp telemetry to detect latency anomalies across sensor-to-actuator control loops.
 
 ---
@@ -59,8 +59,8 @@ Key technical requirements include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Framework / Engine | Operational Domain | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **Eclipse Iceoryx2** | Lock-Free Shared Memory IPC | Pure Rust/C++ pointer-passing architecture delivering sub-microsecond latency ($<1\mu\text{s}$) | **Apache-2.0 / MIT** | [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
-| **Eclipse Zenoh** | Zero-Overhead Pub/Sub | Replaces heavy DDS discovery with 5-byte wire protocol for robotics | **Apache-2.0** | [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
+| **Eclipse Iceoryx2** | Lock-Free Shared Memory IPC | Pure Rust/C++ pointer-passing architecture delivering sub-microsecond latency ($<1\mu\text{s}$) | **Apache-2.0 / MIT** | [[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
+| **Eclipse Zenoh** | Zero-Overhead Pub/Sub | Replaces heavy DDS discovery with 5-byte wire protocol for robotics | **Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
 
 ---
 
@@ -93,7 +93,7 @@ Real-Time Computer Vision and Perception Systems operate under strict temporal d
 Key technical requirements include:
 - Incurring zero unbounded latencies ($\le 33\text{ ms}$ for 30 FPS cameras, $\le 10\text{ ms}$ for high-speed robotics).
 - Eliminating Linux kernel scheduling jitter using the **PREEMPT_RT** real-time patch.
-- Zero-copy shared memory IPC ([[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh]]) delivering sub-microsecond point cloud and video frame transfers.
+- Zero-copy shared memory IPC ([[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh]]) delivering sub-microsecond point cloud and video frame transfers.
 - Hardware timestamp telemetry to detect latency anomalies across sensor-to-actuator control loops.
 
 ---
@@ -107,8 +107,8 @@ Key technical requirements include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Framework / Engine | Operational Domain | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **Eclipse Iceoryx2** | Lock-Free Shared Memory IPC | Pure Rust/C++ pointer-passing architecture delivering sub-microsecond latency ($<1\mu\text{s}$) | **Apache-2.0 / MIT** | [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
-| **Eclipse Zenoh** | Zero-Overhead Pub/Sub | Replaces heavy DDS discovery with 5-byte wire protocol for robotics | **Apache-2.0** | [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
+| **Eclipse Iceoryx2** | Lock-Free Shared Memory IPC | Pure Rust/C++ pointer-passing architecture delivering sub-microsecond latency ($<1\mu\text{s}$) | **Apache-2.0 / MIT** | [[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
+| **Eclipse Zenoh** | Zero-Overhead Pub/Sub | Replaces heavy DDS discovery with 5-byte wire protocol for robotics | **Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
 
 ---
 

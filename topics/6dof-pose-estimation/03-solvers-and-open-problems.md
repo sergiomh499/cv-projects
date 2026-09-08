@@ -19,7 +19,7 @@ aliases:
 
 A deep systems analysis of 6-DoF pose estimation pipelines, direct geometry vs. iterative render-and-compare refinement, NVIDIA Isaac ROS TensorRT deployment, and unsolved frontiers on the BOP Challenge leaderboard.
 
-Related notes: [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|6-DoF Pose MOC]], [[architectures/real-time-unified/foundationpose-and-megapose|FoundationPose & MegaPose Deep-Dive]].
+Related notes: [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|6-DoF Pose MOC]], [[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|FoundationPose & MegaPose Deep-Dive]].
 
 ---
 

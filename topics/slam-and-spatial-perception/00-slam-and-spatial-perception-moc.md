@@ -47,7 +47,7 @@ Simultaneous Localization and Mapping (SLAM) allows autonomous platforms (mobile
 Key evolutionary paradigms include:
 - **Sparse Feature & Direct Visual SLAM**: ORB-SLAM3, DSO, and bundle adjustment.
 - **LiDAR SLAM**: Direct iterative closest point (FAST-LIO2, LIO-SAM) paired with high-rate IMU pre-integration.
-- **Radiance Field SLAM (3DGS / NeRF)**: Dense, photo-realistic mapping via differentiable 3D Gaussian splatting ([[architectures/real-time-unified/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]]).
+- **Radiance Field SLAM (3DGS / NeRF)**: Dense, photo-realistic mapping via differentiable 3D Gaussian splatting ([[architectures/spatial-radiance-and-slam/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]]).
 
 ---
 
@@ -58,7 +58,7 @@ Key evolutionary paradigms include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / Framework | SLAM Modality | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **3DGS SLAM & MonoGS** | Visual-Dense 3DGS | Photorealistic dense map optimization via differentiable Gaussian rasterization | **Apache-2.0 / MIT** | [[architectures/real-time-unified/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]] |
+| **3DGS SLAM & MonoGS** | Visual-Dense 3DGS | Photorealistic dense map optimization via differentiable Gaussian rasterization | **Apache-2.0 / MIT** | [[architectures/spatial-radiance-and-slam/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]] |
 | **FAST-LIO2** | Direct LiDAR-Inertial | Incremental k-d tree (ik-d tree) updating sparse points without re-building | **GPL-2.0 / Academic**| [[topics/lidar-perception/00-lidar-perception-moc|LiDAR MOC]] |
 
 ---
@@ -92,7 +92,7 @@ Simultaneous Localization and Mapping (SLAM) allows autonomous platforms (mobile
 Key evolutionary paradigms include:
 - **Sparse Feature & Direct Visual SLAM**: ORB-SLAM3, DSO, and bundle adjustment.
 - **LiDAR SLAM**: Direct iterative closest point (FAST-LIO2, LIO-SAM) paired with high-rate IMU pre-integration.
-- **Radiance Field SLAM (3DGS / NeRF)**: Dense, photo-realistic mapping via differentiable 3D Gaussian splatting ([[architectures/real-time-unified/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]]).
+- **Radiance Field SLAM (3DGS / NeRF)**: Dense, photo-realistic mapping via differentiable 3D Gaussian splatting ([[architectures/spatial-radiance-and-slam/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]]).
 
 ---
 
@@ -105,7 +105,7 @@ Key evolutionary paradigms include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / Framework | SLAM Modality | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **3DGS SLAM & MonoGS** | Visual-Dense 3DGS | Photorealistic dense map optimization via differentiable Gaussian rasterization | **Apache-2.0 / MIT** | [[architectures/real-time-unified/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]] |
+| **3DGS SLAM & MonoGS** | Visual-Dense 3DGS | Photorealistic dense map optimization via differentiable Gaussian rasterization | **Apache-2.0 / MIT** | [[architectures/spatial-radiance-and-slam/3dgs-slam-and-monogs|3DGS SLAM & MonoGS]] |
 | **FAST-LIO2** | Direct LiDAR-Inertial | Incremental k-d tree (ik-d tree) updating sparse points without re-building | **GPL-2.0 / Academic**| [[topics/lidar-perception/00-lidar-perception-moc|LiDAR MOC]] |
 
 ---

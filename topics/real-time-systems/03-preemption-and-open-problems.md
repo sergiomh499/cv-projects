@@ -20,7 +20,7 @@ aliases:
 
 A deep systems analysis of Linux `PREEMPT_RT` determinism, lock-free zero-copy IPC (`Iceoryx2`), next-generation robot middleware (`Zenoh` / `rmw_zenoh`), and unsolved scheduling interference bottlenecks in real-time robotic systems.
 
-Related notes: [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Systems MOC]], [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]].
+Related notes: [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Systems MOC]], [[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]].
 
 ---
 

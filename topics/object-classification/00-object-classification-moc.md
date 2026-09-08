@@ -58,9 +58,9 @@ This Map of Content connects the historical evolution, production playbooks, and
 ### 🔬 Core Architecture Deep-Dives (Central Architecture Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Deep-Dive Note |
 | :--- | :--- | :--- | :---: | :---: |
-| **DINOv2 & DINOv3** | Self-Supervised ViT | Multi-crop student-teacher self-distillation with iBOT masked modeling | **Apache-2.0** | [[architectures/foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3 Deep-Dive]] |
-| **SigLIP & SigLIP 2**| Vision-Language Dual Encoder | Pairwise binary sigmoid loss eliminating cross-GPU all-gather bottlenecks | **Apache-2.0** | [[architectures/foundation-models/siglip|SigLIP & SigLIP 2 Deep-Dive]] |
-| **ConvNeXt V2 & MobileNetV4** | Modernized ConvNet | Global Response Normalization (GRN) and Universal Inverted Bottlenecks (UIB) | **Apache-2.0** | [[architectures/real-time-unified/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4 Deep-Dive]] |
+| **DINOv2 & DINOv3** | Self-Supervised ViT | Multi-crop student-teacher self-distillation with iBOT masked modeling | **Apache-2.0** | [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3 Deep-Dive]] |
+| **SigLIP & SigLIP 2**| Vision-Language Dual Encoder | Pairwise binary sigmoid loss eliminating cross-GPU all-gather bottlenecks | **Apache-2.0** | [[architectures/vision-foundation-models/siglip|SigLIP & SigLIP 2 Deep-Dive]] |
+| **ConvNeXt V2 & MobileNetV4** | Modernized ConvNet | Global Response Normalization (GRN) and Universal Inverted Bottlenecks (UIB) | **Apache-2.0** | [[architectures/backbones-and-edge-efficiency/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4 Deep-Dive]] |
 
 ---
 
@@ -108,9 +108,9 @@ This Map of Content connects the historical evolution, production playbooks, and
 ### 🔬 Core Architecture Deep-Dives (Central Architecture Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Deep-Dive Note |
 | :--- | :--- | :--- | :---: | :---: |
-| **DINOv2 & DINOv3** | Self-Supervised ViT | Multi-crop student-teacher self-distillation with iBOT masked modeling | **Apache-2.0** | [[architectures/foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3 Deep-Dive]] |
-| **SigLIP & SigLIP 2**| Vision-Language Dual Encoder | Pairwise binary sigmoid loss eliminating cross-GPU all-gather bottlenecks | **Apache-2.0** | [[architectures/foundation-models/siglip|SigLIP & SigLIP 2 Deep-Dive]] |
-| **ConvNeXt V2 & MobileNetV4** | Modernized ConvNet | Global Response Normalization (GRN) and Universal Inverted Bottlenecks (UIB) | **Apache-2.0** | [[architectures/real-time-unified/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4 Deep-Dive]] |
+| **DINOv2 & DINOv3** | Self-Supervised ViT | Multi-crop student-teacher self-distillation with iBOT masked modeling | **Apache-2.0** | [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3 Deep-Dive]] |
+| **SigLIP & SigLIP 2**| Vision-Language Dual Encoder | Pairwise binary sigmoid loss eliminating cross-GPU all-gather bottlenecks | **Apache-2.0** | [[architectures/vision-foundation-models/siglip|SigLIP & SigLIP 2 Deep-Dive]] |
+| **ConvNeXt V2 & MobileNetV4** | Modernized ConvNet | Global Response Normalization (GRN) and Universal Inverted Bottlenecks (UIB) | **Apache-2.0** | [[architectures/backbones-and-edge-efficiency/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4 Deep-Dive]] |
 
 ---
 

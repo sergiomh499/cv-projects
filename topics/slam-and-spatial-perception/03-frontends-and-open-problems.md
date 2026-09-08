@@ -19,7 +19,7 @@ aliases:
 
 An in-depth systems examination of visual/LiDAR odometry frontends, nonlinear least-squares factor graph optimization backends, geometric degeneracy failure modes, and unsolved challenges in dense spatial perception.
 
-Related notes: [[topics/slam-and-spatial-perception/00-slam-and-spatial-perception-moc|SLAM MOC]], [[architectures/real-time-unified/3dgs-slam-and-monogs|3DGS SLAM & MonoGS Deep-Dive]].
+Related notes: [[topics/slam-and-spatial-perception/00-slam-and-spatial-perception-moc|SLAM MOC]], [[architectures/spatial-radiance-and-slam/3dgs-slam-and-monogs|3DGS SLAM & MonoGS Deep-Dive]].
 
 ---
 

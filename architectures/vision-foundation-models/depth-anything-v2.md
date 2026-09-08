@@ -57,6 +57,36 @@ Where $\mathcal{L}_{\text{grad}}$ penalizes discrepancies between the spatial se
 
 ---
 
+## Granular Component-by-Component Architectural Breakdown
+
+### Architectural Taxonomy & Structural Elements
+
+| Architectural Stage | Component Identity | Structural Specification & Type | Attention / Conv Mechanics | Receptive Field & Resolution |
+| :--- | :--- | :--- | :--- | :--- |
+| **Architectural Paradigm** | **Pure Vision Transformer + DPT Decoder** | Isotropic Vision Transformer Encoder with Dense Prediction Transformer (DPT) Reassembly | Global quadratic Multi-Head Self-Attention + Multi-scale Conv RefineNet | Full image field ($H \times W \times 3$) to dense per-pixel metric depth ($H \times W \times 1$) |
+| **Backbone** | **Isotropic ViT (DINOv2 Pre-trained)** | Patch Embedding Conv ($14\times 14$, stride 14) + $L \in \{12, 24\}$ Transformer Layers | Global MHSA with LayerScale ($D \in \{384, 768, 1024\}$ for Small/Base/Large) | Isotropic patch token grid ($H/14 \times W/14$) across all layers |
+| **Neck / Aggregator** | **DPT Feature Reassembly Module** | 4-Stage Multi-Scale Reassembly via $1\times 1$ and $3\times 3$ Convolutions | Feature slicing at layers $[3, 6, 9, 12]$ (ViT-S/B) or $[6, 12, 18, 24]$ (ViT-L) + Spatial Resampling | Hierarchical pyramids at $1/4, 1/8, 1/16, 1/32$ resolution |
+| **Encoder** | **DINOv2 Visual Token Encoder** | Pure Transformer Encoder with Pre-LayerNorm | Global Self-Attention with FlashAttention-2 kernels + MLP feed-forward blocks | Full pairwise patch interaction ($\mathcal{O}(N^2)$ where $N = HW/196$) |
+| **Decoder / Head** | **Convolutional RefineNet & Depth Head** | Cascaded Residual Convolutional Units (RCU) + Fusion Blocks | $3\times 3$ Convolutions + Bilinear Upsampling + $1\times 1$ Linear Regression Head | Reconstructs full resolution ($H \times W$) with boundary gradient supervision |
+
+### Structural Deep-Dive: From Patch Tokens to Continuous Depth Maps
+1. **Backbone**: Input RGB images ($H \times W \times 3$) are converted into flat patch tokens using a non-overlapping $14\times 14$ convolutional stem. The sequence of $N = \frac{H}{14} \times \frac{W}{14}$ tokens plus a learnable `[CLS]` token is processed through $L$ identical isotropic Transformer blocks with constant hidden dimension $D$ ($384$ for ViT-S, $768$ for ViT-B, $1024$ for ViT-L).
+2. **Neck / Feature Aggregator (DPT Reassembly)**: Rather than using only the final layer, DPT extracts activations from 4 equidistant intermediate encoder depths:
+   $$\{t_1, t_2, t_3, t_4\} = \{E_{L/4}, E_{L/2}, E_{3L/4}, E_L\}$$
+   Each token set is projected from dimension $D$ to $\{48, 96, 192, 384\}$ (for ViT-S) and spatially resampled via transposed convolutions to form standard multi-scale feature pyramids ($1/4, 1/8, 1/16, 1/32$).
+3. **Encoder**: The backbone functions as a pure transformer encoder without convolutional downsampling stages, leveraging DINOv2 self-supervised weights which preserve high spatial frequency information and surface normals.
+4. **Decoder / Prediction Head**: Progressive RefineNet blocks merge the coarsest $1/32$ feature map upwards with finer pyramid levels using Residual Convolutional Units (RCUs). A final $3\times 3$ convolution projects the merged $1/4$ resolution feature map to full resolution ($H \times W$) followed by a $1\times 1$ depth projection producing continuous inverse or metric depth values.
+
+### Parameter & Computational Latency Distribution
+
+| Stage / Subsystem | Parameter Share (%) | Inference Latency (%) | Computational Complexity ($\text{FLOPs}$) | Dominant Hardware Bottleneck |
+| :--- | :--- | :--- | :--- | :--- |
+| **Isotropic ViT Backbone** | ~85% | ~76% | $\mathcal{O}(N^2 D + N D^2)$ (Global Quadratic Attention) | GPU Matrix Multipliers (GEMM bound) |
+| **DPT Reassembly Neck** | ~8% | ~12% | $\mathcal{O}(H W D / 14)$ (Conv Projections & Upsampling) | Memory bandwidth & tensor transposition |
+| **RefineNet Decoder Blocks** | ~5% | ~8% | $\mathcal{O}(H W C_{\text{fusion}})$ (Residual Conv Units) | Cache bandwidth & Conv2D memory access |
+| **Depth Prediction Head** | ~2% | ~4% | $\mathcal{O}(H W)$ ($1\times 1$ Final Conv Projection) | Memory copy & activation latency |
+---
+
 ## 3. Quantitative SOTA Benchmark Profile
 
 | Model Variant | Backbone | Rel Error (NYUv2) | $\delta < 1.25$ Accuracy | TensorRT FP16 Latency | Open License |

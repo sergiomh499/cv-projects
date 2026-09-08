@@ -19,7 +19,7 @@ aliases:
 
 A deep systems investigation into point cloud voxelization, hardware-friendly sparse transformers, 3D Occupancy Networks (OccNet), cross-sensor domain shift, and unsolved research frontiers in autonomous LiDAR perception.
 
-Related notes: [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perception MOC]], [[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]].
+Related notes: [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perception MOC]], [[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]].
 
 ---
 

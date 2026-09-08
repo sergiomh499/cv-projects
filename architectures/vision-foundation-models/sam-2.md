@@ -65,6 +65,34 @@ During inference on frame $t$, the decoder queries the memory bank using cross-a
 
 ---
 
+## Granular Component-by-Component Architectural Breakdown
+
+### Architectural Taxonomy & Structural Elements
+
+| Architectural Stage | Component Identity | Structural Specification & Type | Attention / Conv Mechanics | Receptive Field & Resolution |
+| :--- | :--- | :--- | :--- | :--- |
+| **Architectural Paradigm** | **Hybrid Vision Transformer (Video / Image)** | Streaming Spatial-Temporal Memory ViT + Promptable Query Decoder | Multi-scale local windowed self-attention + memory cross-attention | Full image / multi-frame temporal stream ($T \times H \times W$) |
+| **Backbone** | **Hierarchical Hiera ViT** | 4-Stage Hierarchical Transformer ($C_1, C_2, C_3, C_4$) | Non-shifted local windowed MHSA with $7\times 7$ conv stem (stride 4) | $1/4, 1/8, 1/16, 1/32$ scale ($C \in \{96, 192, 384, 768\}$ on Base+) |
+| **Neck / Aggregator** | **FPN Feature Projector & Memory Neck** | Lateral $1\times 1$ Convolutions + Residual Downsampling Blocks | $1\times 1$ Conv projection to 256-dim channels + $3\times 3$ Conv stride 2 downsampling | Unified $256$-dim feature maps across pyramid levels |
+| **Encoder** | **Memory & Prompt Encoder** | Multi-Scale Memory Attention + Fourier Positional Embedder | Bidirectional cross-attention over streaming FIFO feature buffer ($N=6\dots 8$ frames) + Object pointers | Global temporal context + sparse point/box prompt tokens |
+| **Decoder / Head** | **Two-Way Transformer Mask Decoder** | Lightweight Promptable Mask Transformer + Conv Upsampler | 2-way cross-attention (prompts $\leftrightarrow$ image features) + transposed convs ($2\times$ upsample) + IoU MLP | Output binary/probabilistic instance masks at $1/4$ resolution $\to$ full-res logits |
+
+### Structural Deep-Dive: From Patch Embedding to Memory Decoding
+1. **Backbone**: SAM 2 replaces the isotropic ViT of SAM 1 with a hierarchical **Hiera** engine. Input frames ($H \times W \times 3$) pass through an initial overlapping patch projection ($7\times 7$ convolution with stride 4) producing stage $C_1$ ($H/4 \times W/4 \times 96$). Subsequent stages $C_2, C_3, C_4$ apply non-shifted windowed Multi-Head Self-Attention with kernel pooling between stages, keeping memory linear with spatial resolution.
+2. **Neck / Feature Aggregator**: The feature pyramid projector standardizes the 4 multi-scale Hiera stages to a constant $D=256$ channel depth using $1\times 1$ convolutions. For video streaming, a convolutional memory encoder compresses mask probability logits and feature maps via residual stride-2 downsampling into the spatial memory representation.
+3. **Encoder**: Operates on two distinct token modalities: (a) prompt embeddings generated via learned positional encodings for point/box coordinates, and (b) spatial-temporal memory embeddings stored in a FIFO cache ($N$ recent frames plus conditioning keyframes), attended to through causal multi-head cross-attention.
+4. **Decoder / Prediction Head**: A stacked two-way cross-attention Transformer decoder updates prompt queries with image context and vice versa. The updated queries modulate per-pixel feature maps via a dot-product mask generation layer, followed by a sequence of $2\times$ transposed convolutions for spatial reconstruction and small 3-layer MLP heads predicting mask IoU confidence and object presence.
+
+### Parameter & Computational Latency Distribution
+
+| Stage / Subsystem | Parameter Share (%) | Inference Latency (%) | Computational Complexity ($\text{FLOPs}$) | Dominant Hardware Bottleneck |
+| :--- | :--- | :--- | :--- | :--- |
+| **Hiera Vision Backbone** | ~65% | ~55% | $\mathcal{O}(H W D)$ (Local Windowed MHSA) | Tensor Core compute & arithmetic intensity |
+| **Memory Bank & Aggregation Neck** | ~15% | ~20% | $\mathcal{O}(N_{\text{mem}} \cdot H W \cdot D)$ (FIFO Memory Cross-Attn) | VRAM bandwidth & FIFO memory access |
+| **Prompt Encoder & Two-Way Decoder** | ~12% | ~18% | $\mathcal{O}(N_{\text{prompts}} \cdot N_{\text{tokens}} \cdot D)$ | Memory bus latency on small tensor ops |
+| **Mask Upsampling & Prediction Heads** | ~8% | ~7% | $\mathcal{O}(H W C)$ (Conv2D Transposed Upsampling) | Memory bandwidth bound |
+---
+
 ## 3. Quantitative SOTA Benchmark Profile
 
 | Model Variant | Backbone | SA-V Video J&F (Tracking) | Zero-Shot Image AP (COCO) | Latency (FP16 ms, A100) | Throughput (FPS) | Open License |

@@ -45,8 +45,8 @@ aliases:
 
 ## 📌 Domain Overview & Scope
 Video Tracking maintains consistent spatial, semantic, and instance identity across continuous image sequences despite severe occlusions, viewpoint changes, motion blur, and camera ego-motion. The domain has bifurcated into two major operational paradigms:
-1. **Real-Time Multiple Object Tracking (MOT)**: Tracking-by-detection pairing high-frame-rate 2D detectors with lightweight CPU Kalman filters and appearance ReID matching ([[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack]]).
-2. **Dense Physical Trajectory & Mask Propagation**: End-to-end transformers predicting continuous point trajectories ([[architectures/transformer-detectors/cotracker|CoTracker3]]) and promptable video mask propagation ([[architectures/foundation-models/sam-2|SAM 2]]).
+1. **Real-Time Multiple Object Tracking (MOT)**: Tracking-by-detection pairing high-frame-rate 2D detectors with lightweight CPU Kalman filters and appearance ReID matching ([[architectures/visual-tracking-and-flow/botsort-and-bytetrack|BoT-SORT & ByteTrack]]).
+2. **Dense Physical Trajectory & Mask Propagation**: End-to-end transformers predicting continuous point trajectories ([[architectures/visual-tracking-and-flow/cotracker|CoTracker3]]) and promptable video mask propagation ([[architectures/vision-foundation-models/sam-2|SAM 2]]).
 
 ---
 
@@ -57,9 +57,9 @@ Video Tracking maintains consistent spatial, semantic, and instance identity acr
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Tracking Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **BoT-SORT & ByteTrack** | Bounding Box MOT | Global Motion Compensation (GMC) + Two-stage low-score association | **MIT** | [[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack]] |
-| **CoTracker & CoTracker3** | Dense Point Trajectory | Spatial-temporal cross-point attention tracking 70k points with occlusion flags | **Apache-2.0** | [[architectures/transformer-detectors/cotracker|CoTracker Deep-Dive]] |
-| **SAM 2 (Video Engine)** | Promptable Mask Tracking | Spatial-temporal streaming memory bank with 44 FPS mask propagation | **Apache-2.0** | [[architectures/foundation-models/sam-2|SAM 2 Video Engine]] |
+| **BoT-SORT & ByteTrack** | Bounding Box MOT | Global Motion Compensation (GMC) + Two-stage low-score association | **MIT** | [[architectures/visual-tracking-and-flow/botsort-and-bytetrack|BoT-SORT & ByteTrack]] |
+| **CoTracker & CoTracker3** | Dense Point Trajectory | Spatial-temporal cross-point attention tracking 70k points with occlusion flags | **Apache-2.0** | [[architectures/visual-tracking-and-flow/cotracker|CoTracker Deep-Dive]] |
+| **SAM 2 (Video Engine)** | Promptable Mask Tracking | Spatial-temporal streaming memory bank with 44 FPS mask propagation | **Apache-2.0** | [[architectures/vision-foundation-models/sam-2|SAM 2 Video Engine]] |
 
 ---
 
@@ -89,8 +89,8 @@ Video Tracking maintains consistent spatial, semantic, and instance identity acr
 
 ## 📌 Domain Overview & Scope
 Video Tracking maintains consistent spatial, semantic, and instance identity across continuous image sequences despite severe occlusions, viewpoint changes, motion blur, and camera ego-motion. The domain has bifurcated into two major operational paradigms:
-1. **Real-Time Multiple Object Tracking (MOT)**: Tracking-by-detection pairing high-frame-rate 2D detectors with lightweight CPU Kalman filters and appearance ReID matching ([[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack]]).
-2. **Dense Physical Trajectory & Mask Propagation**: End-to-end transformers predicting continuous point trajectories ([[architectures/transformer-detectors/cotracker|CoTracker3]]) and promptable video mask propagation ([[architectures/foundation-models/sam-2|SAM 2]]).
+1. **Real-Time Multiple Object Tracking (MOT)**: Tracking-by-detection pairing high-frame-rate 2D detectors with lightweight CPU Kalman filters and appearance ReID matching ([[architectures/visual-tracking-and-flow/botsort-and-bytetrack|BoT-SORT & ByteTrack]]).
+2. **Dense Physical Trajectory & Mask Propagation**: End-to-end transformers predicting continuous point trajectories ([[architectures/visual-tracking-and-flow/cotracker|CoTracker3]]) and promptable video mask propagation ([[architectures/vision-foundation-models/sam-2|SAM 2]]).
 
 ---
 
@@ -103,9 +103,9 @@ Video Tracking maintains consistent spatial, semantic, and instance identity acr
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Tracking Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **BoT-SORT & ByteTrack** | Bounding Box MOT | Global Motion Compensation (GMC) + Two-stage low-score association | **MIT** | [[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack]] |
-| **CoTracker & CoTracker3** | Dense Point Trajectory | Spatial-temporal cross-point attention tracking 70k points with occlusion flags | **Apache-2.0** | [[architectures/transformer-detectors/cotracker|CoTracker Deep-Dive]] |
-| **SAM 2 (Video Engine)** | Promptable Mask Tracking | Spatial-temporal streaming memory bank with 44 FPS mask propagation | **Apache-2.0** | [[architectures/foundation-models/sam-2|SAM 2 Video Engine]] |
+| **BoT-SORT & ByteTrack** | Bounding Box MOT | Global Motion Compensation (GMC) + Two-stage low-score association | **MIT** | [[architectures/visual-tracking-and-flow/botsort-and-bytetrack|BoT-SORT & ByteTrack]] |
+| **CoTracker & CoTracker3** | Dense Point Trajectory | Spatial-temporal cross-point attention tracking 70k points with occlusion flags | **Apache-2.0** | [[architectures/visual-tracking-and-flow/cotracker|CoTracker Deep-Dive]] |
+| **SAM 2 (Video Engine)** | Promptable Mask Tracking | Spatial-temporal streaming memory bank with 44 FPS mask propagation | **Apache-2.0** | [[architectures/vision-foundation-models/sam-2|SAM 2 Video Engine]] |
 
 ---
 

@@ -19,7 +19,7 @@ aliases:
 
 A deep systems analysis of multi-modal Bird's-Eye-View (BEV) fusion, Unified Autonomous Driving (UniAD) perception-to-planning stacks, generative world models, and unsolved causal ambiguity challenges in autonomous mobility.
 
-Related notes: [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]], [[architectures/real-time-unified/bevfusion-and-sparse4d|BEVFusion & Sparse4D Deep-Dive]].
+Related notes: [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]], [[architectures/3d-pointclouds-and-lidar/bevfusion-and-sparse4d|BEVFusion & Sparse4D Deep-Dive]].
 
 ---
 

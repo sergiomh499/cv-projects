@@ -19,7 +19,7 @@ aliases:
 
 A deep systems investigation into bridging high-latency vision foundation policies with high-rate motor controllers, addressing phase lag instabilities, kinematics singularities, and the unsolved frontiers of Vision-Language-Action (VLA) manipulation.
 
-Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance MOC]], [[architectures/real-time-unified/pi0-and-diffusion-policy|π0 & Diffusion Policy Deep-Dive]].
+Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance MOC]], [[architectures/multimodal-vlm-and-vla/pi0-and-diffusion-policy|π0 & Diffusion Policy Deep-Dive]].
 
 ---
 
@@ -70,7 +70,7 @@ $$A_{t:t+H} = \{a_t, a_{t+1}, \dots, a_{t+H}\}$$
   - **Deformable Media**: Towels, rubber tubes, wiring harnesses (where non-rigid deformations alter physics dynamics unpredictably).
   - **Specular / Transparent Objects**: Glass beakers, clear plastic bottles, polished chrome tools (where depth sensors return zero return points).
 - **Recent Frontier Solutions (2024–2026)**:
-  - Integrating dense optical trajectory tracking ([[architectures/transformer-detectors/cotracker|CoTracker3]]) directly into the policy observation space to track physical surface deformations in real time.
+  - Integrating dense optical trajectory tracking ([[architectures/visual-tracking-and-flow/cotracker|CoTracker3]]) directly into the policy observation space to track physical surface deformations in real time.
 
 ---
 

@@ -20,7 +20,7 @@ aliases:
 
 A deep systems investigation into foundation classification backbones, self-supervised distillation mechanics, out-of-distribution (OOD) uncertainty calibration, and unsolved research frontiers in visual representation learning.
 
-Related notes: [[topics/object-classification/00-object-classification-moc|Object Classification MOC]], [[architectures/foundation-models/dinov2-and-dinov3|DINOv2/v3 Deep-Dive]], [[architectures/real-time-unified/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4]].
+Related notes: [[topics/object-classification/00-object-classification-moc|Object Classification MOC]], [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2/v3 Deep-Dive]], [[architectures/backbones-and-edge-efficiency/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4]].
 
 ---
 

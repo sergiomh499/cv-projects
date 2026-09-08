@@ -18,7 +18,7 @@ aliases:
 
 A deep engineering examination of mask decoder architectures, sub-pixel boundary degradation, real-time panoptic fusion conflicts, and unresolved frontiers in pixel-level vision.
 
-Related notes: [[topics/object-segmentation/00-object-segmentation-moc|Object Segmentation MOC]], [[architectures/foundation-models/sam-2|SAM 2 & 2.1 Deep-Dive]].
+Related notes: [[topics/object-segmentation/00-object-segmentation-moc|Object Segmentation MOC]], [[architectures/vision-foundation-models/sam-2|SAM 2 & 2.1 Deep-Dive]].
 
 ---
 

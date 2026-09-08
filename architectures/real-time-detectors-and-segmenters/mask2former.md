@@ -63,6 +63,39 @@ $$\mathcal{M}(x, y) = \begin{cases} 0 & \text{if } (x, y) \text{ is inside the b
 
 ---
 
+## Granular Component-by-Component Architectural Breakdown
+
+### Architectural Taxonomy & Structural Elements
+
+| Architectural Stage | Component Identity | Structural Specification & Type | Attention / Conv Mechanics | Receptive Field & Resolution |
+| :--- | :--- | :--- | :--- | :--- |
+| **Architectural Paradigm** | **Universal Query Mask Transformer** | Hybrid Pixel Backbone + Deformable Pixel Decoder + Masked Cross-Attention | Multi-Scale Deformable Attention + Foreground-Masked Cross-Attention | Image ($H \times W \times 3$) to $N$ unified mask proposals and class logits |
+| **Backbone** | **Hierarchical ResNet / Swin** | ResNet-50/101 or Swin-T/S/B/L ($C_2-C_5$ stages) | $7\times 7$ Conv stem / $4\times 4$ Patch Partition + Shifted Window MHSA | Multi-scale feature pyramids at $1/4, 1/8, 1/16, 1/32$ spatial strides |
+| **Neck / Aggregator** | **Multi-Scale Pixel Decoder** | MSDeformAttn Feature Fusion + Upsampling FPN | Multi-scale deformable attention over $1/8, 1/16, 1/32$ + $1\times 1$ Conv lateral projections | Generates high-resolution $1/4$ per-pixel embedding $\mathcal{F}_{\text{pixel}} \in \mathbb{R}^{D \times \frac{H}{4} \times \frac{W}{4}}$ |
+| **Encoder** | **Deformable Pixel Encoder** | Multi-Scale Deformable Self-Attention Layers | Linear deformable sampling ($\mathcal{O}(N_{\text{pix}} \cdot K)$ where $K=4$ sample points per head) | Aggregates multi-resolution spatial context across all pyramid scales |
+| **Decoder / Head** | **Masked-Attention Transformer Decoder** | Stacked 9/12-Layer Query Decoder ($N=100$ or $200$ queries) | Masked Cross-Attention (constrained by prior layer binary mask) + Self-Attention | $N$ object queries attend exclusively to localized foreground regions |
+
+### Structural Deep-Dive: Universal Segmentation Pipeline
+1. **Backbone**: Images ($H \times W \times 3$) are processed by a hierarchical backbone (ResNet or Swin Transformer) outputting four feature levels: $C_2$ ($1/4$), $C_3$ ($1/8$), $C_4$ ($1/16$), and $C_5$ ($1/32$).
+2. **Neck / Feature Aggregator (Pixel Decoder)**: Multi-Scale Deformable Attention (MSDeformAttn) layers fuse feature maps $C_3, C_4, C_5$ across scales without quadratic cost. The fused features are progressively upsampled via $2\times$ bilinear interpolation and merged with $C_2$ via $1\times 1$ convolutions to yield a dense per-pixel feature map $\mathcal{F}_{\text{pixel}}$ at $1/4$ resolution ($D=256$ channels).
+3. **Encoder**: The deformable pixel decoder functions as a multi-scale spatial encoder, projecting multi-resolution tokens ($1/8, 1/16, 1/32$) into the transformer decoder in a round-robin interleaved sequence.
+4. **Decoder / Prediction Head**: 
+   - A sequence of $L=9$ or $L=12$ Transformer decoder blocks updates $N$ learned query vectors ($Q \in \mathbb{R}^{N \times D}$).
+   - Cross-attention is modulated by the binarized mask prediction $\mathcal{M}^{(l-1)}$ from layer $l-1$, restricting key-value attention strictly to the predicted object silhouette.
+   - **Mask Prediction**: Dynamic dot product between updated queries and high-resolution per-pixel embeddings:
+     $$\text{Mask}_i = \sigma\left( Q_i \cdot \mathcal{F}_{\text{pixel}} \right) \in [0, 1]^{\frac{H}{4} \times \frac{W}{4}}$$
+   - **Class Prediction**: A linear projection matrix predicts class probabilities $P_i \in \mathbb{R}^{K+1}$ including the $\varnothing$ (no-object) background class, trained with Hungarian bipartite matching.
+
+### Parameter & Computational Latency Distribution
+
+| Stage / Subsystem | Parameter Share (%) | Inference Latency (%) | Computational Complexity ($\text{FLOPs}$) | Dominant Hardware Bottleneck |
+| :--- | :--- | :--- | :--- | :--- |
+| **Pixel Backbone (Swin-L / ResNet-50)** | ~45% | ~40% | $\mathcal{O}(H W C)$ (Hierarchical Conv / Swin Window MHSA) | GEMM compute bound |
+| **Multi-Scale Pixel Decoder** | ~35% | ~35% | $\mathcal{O}(N_{\text{pix}} \cdot K \cdot D)$ (MSDeformAttn + Upsampling) | Memory bandwidth & deformable gather |
+| **Masked Transformer Decoder (9 Layers)**| ~18% | ~20% | $\mathcal{O}(L \cdot (N_{\text{queries}} \cdot N_{\text{masked\_pix}} \cdot D + N_{\text{queries}}^2 D))$ | Matrix multiplication & mask indexing |
+| **Per-Pixel Dot Product & Heads** | ~2% | ~5% | $\mathcal{O}(N_{\text{queries}} \cdot \frac{H}{4} \frac{W}{4} \cdot D)$ (Batch Matrix Multiplication) | High-res Tensor Core GEMM |
+---
+
 ## 3. Quantitative SOTA Benchmark Profile
 
 | Task | Benchmark Dataset | Metric | Score | Latency (A100 FP16) | Backbone |

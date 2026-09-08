@@ -18,7 +18,7 @@ aliases:
 > **Obsidian Users**: Access the unified Map of Content at [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perception MOC]].
 
 ## 📌 Executive Brief
-LiDAR perception processes high-bandwidth 3D point cloud streams (2.5M points/sec) to provide metric 3D object detection, semantic segmentation, and SLAM/odometry invariant to lighting variations. Modern paradigms have advanced from hand-crafted voxelization to **Dynamic Sparse Window Transformers** ([[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer]]) deployable natively on TensorRT without non-standard SpConv operations.
+LiDAR perception processes high-bandwidth 3D point cloud streams (2.5M points/sec) to provide metric 3D object detection, semantic segmentation, and SLAM/odometry invariant to lighting variations. Modern paradigms have advanced from hand-crafted voxelization to **Dynamic Sparse Window Transformers** ([[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|DSVT & FlatFormer]]) deployable natively on TensorRT without non-standard SpConv operations.
 
 ---
 
@@ -45,7 +45,7 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 | **LiDAR Perception MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-lidar-perception-moc.md) <br> `[[topics/lidar-perception/00-lidar-perception-moc|00-lidar-perception-moc]]` |
 | **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from PointNet symmetric pooling to Submanifold SpConv, 2D Pillars, and dynamic sparse window transformers | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/lidar-perception/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
 | **Production Pipeline & Workarounds** | `Playbook` | AF_XDP zero-copy networking, IMU motion deskewing, rain backscatter filtering | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/lidar-perception/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
-| **DSVT & FlatFormer Deep-Dive** | `Architecture Vault` | Dynamic sparse window attention compiling natively to TensorRT without SpConv | [Open DSVT/FlatFormer](../../architectures/real-time-unified/dsvt-and-flatformer.md) <br> `[[architectures/real-time-unified/dsvt-and-flatformer|dsvt-and-flatformer]]` |
+| **DSVT & FlatFormer Deep-Dive** | `Architecture Vault` | Dynamic sparse window attention compiling natively to TensorRT without SpConv | [Open DSVT/FlatFormer](../../architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer.md) <br> `[[architectures/3d-pointclouds-and-lidar/dsvt-and-flatformer|dsvt-and-flatformer]]` |
 
 ---
 

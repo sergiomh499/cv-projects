@@ -28,5 +28,8 @@ def all_markdown_files(repo_root) -> list[Path]:
 
 @pytest.fixture(scope="session")
 def architecture_files(repo_root) -> list[Path]:
-    """All .md files under architectures/."""
-    return sorted((repo_root / "architectures").rglob("*.md"))
+    """All individual architecture model .md files under architectures/."""
+    return sorted(
+        f for f in (repo_root / "architectures").rglob("*.md")
+        if f.stem not in ("README", "00-architectures-moc")
+    )
