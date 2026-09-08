@@ -91,6 +91,10 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/09-dann-sim2real-safety-gate/dann_safety_gate.py|09-dann-sim2real-safety-gate]]**: Sim2Real Domain Adaptation & Critical Mission Safety Gate rejecting ambiguous, high-entropy, or out-of-distribution deep/generative actions.
 - **[[cookbooks/10-contrastive-sim2real-alignment/contrastive_alignment.py|10-contrastive-sim2real-alignment]]**: Supervised Contrastive Learning (SupCon / InfoNCE) projecting synthetic UE5 and scarce real physical crops into a unified domain-invariant manifold.
 - **[[cookbooks/11-multi-sensor-cross-calibration/cross_calibration.py|11-multi-sensor-cross-calibration]]**: Multi-sensor extrinsic cross-calibration (Horn SVD procrustes solver) and sub-pixel metric depth parallax projection between RGB and Thermal/ToF.
+- **[[cookbooks/12-bytetrack-two-stage-association/bytetrack_association.py|12-bytetrack-two-stage-association]]**: ByteTrack two-stage data association algorithm matching high-confidence detections first, then associating low-confidence occluded detections to preserve track continuity.
+- **[[cookbooks/13-epnp-analytical-pose-solver/epnp_solver.py|13-epnp-analytical-pose-solver]]**: Efficient Perspective-n-Point (EPnP) analytical $O(n)$ 6-DoF pose solver using 4 virtual control points, SVD nullspace kernel estimation, and Kabsch alignment.
+- **[[cookbooks/14-bev-voxel-pooling-projection/bev_pooling.py|14-bev-voxel-pooling-projection]]**: Camera-to-Bird's-Eye-View (BEV) voxel pooling projection (Lift-Splat-Shoot / BEVFusion style) unprojecting camera frustums into vehicle ego frame and voxelizing into BEV grids.
+- **[[cookbooks/15-realtime-rms-edf-scheduler/realtime_scheduler.py|15-realtime-rms-edf-scheduler]]**: Hard real-time multi-task perception pipeline task scheduler implementing Rate Monotonic (RMS) and Earliest Deadline First (EDF) with Liu & Layland schedulability bounds.
 ---
 
 ## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices

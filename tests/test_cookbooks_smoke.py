@@ -62,6 +62,25 @@ def test_cb11_cross_calibration():
     result = _run(_script("11-multi-sensor-cross-calibration", "cross_calibration.py"))
     assert result.returncode == 0, result.stderr
 
+def test_cb12_bytetrack_association():
+    result = _run(_script("12-bytetrack-two-stage-association", "bytetrack_association.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb13_epnp_solver():
+    result = _run(_script("13-epnp-analytical-pose-solver", "epnp_solver.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb14_bev_pooling():
+    result = _run(_script("14-bev-voxel-pooling-projection", "bev_pooling.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb15_realtime_scheduler():
+    result = _run(_script("15-realtime-rms-edf-scheduler", "realtime_scheduler.py"))
+    assert result.returncode == 0, result.stderr
+
 
 # ---------------------------------------------------------------------------
 # PyTorch-dependent cookbooks — skip gracefully if torch is absent
