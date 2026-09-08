@@ -42,10 +42,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **GPU Deployment MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-gpu-deployment-moc.md) <br> `[[topics/gpu-deployment/00-gpu-deployment-moc\|00-gpu-deployment-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from early GPGPU shaders to CUDA, roofline memory models, FlashAttention, and CUDA Graphs | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/gpu-deployment/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | Synchronous `cudaMemcpy` traps, double-buffered CUDA streams, CUDA Graph replay, and NVIDIA MPS | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/gpu-deployment/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **TensorRT & Vulkan Deep-Dive** | `Architecture Vault` | Comprehensive breakdown of layer fusion, FP8 formats, and cross-vendor Vulkan shaders | [Open TensorRT/Vulkan](../../architectures/real-time-unified/tensorrt-and-vulkan.md) <br> `[[architectures/real-time-unified/tensorrt-and-vulkan\|tensorrt-and-vulkan]]` |
+| **GPU Deployment MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-gpu-deployment-moc.md) <br> `[[topics/gpu-deployment/00-gpu-deployment-moc|00-gpu-deployment-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from early GPGPU shaders to CUDA, roofline memory models, FlashAttention, and CUDA Graphs | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/gpu-deployment/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | Synchronous `cudaMemcpy` traps, double-buffered CUDA streams, CUDA Graph replay, and NVIDIA MPS | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/gpu-deployment/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **TensorRT & Vulkan Deep-Dive** | `Architecture Vault` | Comprehensive breakdown of layer fusion, FP8 formats, and cross-vendor Vulkan shaders | [Open TensorRT/Vulkan](../../architectures/real-time-unified/tensorrt-and-vulkan.md) <br> `[[architectures/real-time-unified/tensorrt-and-vulkan|tensorrt-and-vulkan]]` |
 
 ---
 

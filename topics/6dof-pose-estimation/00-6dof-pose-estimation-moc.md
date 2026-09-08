@@ -38,8 +38,8 @@ The field has transitioned from per-object dense keypoint predictors (PVNet, Den
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **FoundationPose** | Foundation 3D ViT | Zero-shot pose estimation and 32 ms tracking from untextured CAD mesh | ⚠️ **Non-Commercial** | [[architectures/real-time-unified/foundationpose-and-megapose\|FoundationPose Deep-Dive]] |
-| **MegaPose** | Iterative Refinement Network | Multi-view render-and-compare transformer for novel object categories | **Apache-2.0** | [[architectures/real-time-unified/foundationpose-and-megapose\|MegaPose Deep-Dive]] |
+| **FoundationPose** | Foundation 3D ViT | Zero-shot pose estimation and 32 ms tracking from untextured CAD mesh | ⚠️ **Non-Commercial** | [[architectures/real-time-unified/foundationpose-and-megapose|FoundationPose Deep-Dive]] |
+| **MegaPose** | Iterative Refinement Network | Multi-view render-and-compare transformer for novel object categories | **Apache-2.0** | [[architectures/real-time-unified/foundationpose-and-megapose|MegaPose Deep-Dive]] |
 
 ---
 

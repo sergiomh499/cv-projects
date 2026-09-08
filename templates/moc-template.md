@@ -25,8 +25,8 @@ A high-level executive synthesis of the perception domain, hardware constraints,
 ### 🔬 In-Depth Model & Architecture Notes
 | Model / System | Architecture Class | Primary Innovation | License | Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **Model A** | Transformer / CNN | ... | Apache-2.0 | [[{{domain_path}}/models/model-a\|Model A Deep-Dive]] |
-| **Model B** | Foundation Model | ... | MIT | [[{{domain_path}}/models/model-b\|Model B Deep-Dive]] |
+| **Model A** | Transformer / CNN | ... | Apache-2.0 | [[{{domain_path}}/models/model-a|Model A Deep-Dive]] |
+| **Model B** | Foundation Model | ... | MIT | [[{{domain_path}}/models/model-b|Model B Deep-Dive]] |
 
 ---
 

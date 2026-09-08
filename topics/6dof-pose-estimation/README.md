@@ -42,10 +42,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **6-DoF Pose Estimation MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-6dof-pose-estimation-moc.md) <br> `[[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc\|00-6dof-pose-estimation-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from SIFT-PnP solvers to PVNet directional voting, render-and-compare, and zero-shot transformers | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/6dof-pose-estimation/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | RGB-D sensor ingestion, ADD-S rotational symmetry loss, depth inpainting, GPU-ICP refinement | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/6dof-pose-estimation/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **FoundationPose & MegaPose Deep-Dive** | `Architecture Vault` | Foundation zero-shot 6-DoF estimation and 32 ms tracking from untextured CAD models | [Open FoundationPose/MegaPose](../../architectures/real-time-unified/foundationpose-and-megapose.md) <br> `[[architectures/real-time-unified/foundationpose-and-megapose\|foundationpose-and-megapose]]` |
+| **6-DoF Pose Estimation MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-6dof-pose-estimation-moc.md) <br> `[[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|00-6dof-pose-estimation-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from SIFT-PnP solvers to PVNet directional voting, render-and-compare, and zero-shot transformers | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/6dof-pose-estimation/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | RGB-D sensor ingestion, ADD-S rotational symmetry loss, depth inpainting, GPU-ICP refinement | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/6dof-pose-estimation/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **FoundationPose & MegaPose Deep-Dive** | `Architecture Vault` | Foundation zero-shot 6-DoF estimation and 32 ms tracking from untextured CAD models | [Open FoundationPose/MegaPose](../../architectures/real-time-unified/foundationpose-and-megapose.md) <br> `[[architectures/real-time-unified/foundationpose-and-megapose|foundationpose-and-megapose]]` |
 
 ---
 

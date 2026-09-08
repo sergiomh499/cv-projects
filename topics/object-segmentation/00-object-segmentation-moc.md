@@ -38,10 +38,10 @@ This Map of Content connects the historical evolution, production playbooks, and
 ### 🔬 Core Architecture Deep-Dives (Central Architecture Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Deep-Dive Note |
 | :--- | :--- | :--- | :---: | :---: |
-| **SAM 2 & SAM 2.1** | Foundation Model (Hiera ViT) | Streaming spatial-temporal memory bank, 44 FPS video propagation | **Apache-2.0** | [[architectures/foundation-models/sam-2\|SAM 2 & 2.1 Deep-Dive]] |
-| **Depth Anything V2** | Foundation DINOv2 Distillation | Metric-scale monocular depth & surface segmentation via synthetic distillation | **Apache-2.0** | [[architectures/foundation-models/depth-anything-v2\|Depth Anything V2 Deep-Dive]] |
-| **Mask2Former** | Universal Query Transformer | Masked cross-attention unifying semantic, instance, and panoptic segmentation | **Apache-2.0** | [[architectures/real-time-unified/mask2former\|Mask2Former Deep-Dive]] |
-| **YOLO-Seg Lineage** | Prototype Matrix CNN | Real-time proto-mask matrix multiplication at 60–120 FPS | **AGPL-3.0** | [[topics/object-detection/models/yolo-lineage\|YOLO-Seg Deep-Dive]] |
+| **SAM 2 & SAM 2.1** | Foundation Model (Hiera ViT) | Streaming spatial-temporal memory bank, 44 FPS video propagation | **Apache-2.0** | [[architectures/foundation-models/sam-2|SAM 2 & 2.1 Deep-Dive]] |
+| **Depth Anything V2** | Foundation DINOv2 Distillation | Metric-scale monocular depth & surface segmentation via synthetic distillation | **Apache-2.0** | [[architectures/foundation-models/depth-anything-v2|Depth Anything V2 Deep-Dive]] |
+| **Mask2Former** | Universal Query Transformer | Masked cross-attention unifying semantic, instance, and panoptic segmentation | **Apache-2.0** | [[architectures/real-time-unified/mask2former|Mask2Former Deep-Dive]] |
+| **YOLO-Seg Lineage** | Prototype Matrix CNN | Real-time proto-mask matrix multiplication at 60–120 FPS | **AGPL-3.0** | [[topics/object-detection/models/yolo-lineage|YOLO-Seg Deep-Dive]] |
 
 ---
 

@@ -38,8 +38,8 @@ Key technical requirements include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Voxelization Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **DSVT & FlatFormer** | Dynamic Sparse Window Transformer | Replaces SpConv with hardware-friendly dense window attention | **Apache-2.0** | [[architectures/real-time-unified/dsvt-and-flatformer\|DSVT & FlatFormer Deep-Dive]] |
-| **OpenPCDet Toolbox** | Unified 3D Framework | Industry-standard modular codebase for point cloud models | **Apache-2.0** | [[resources/ecosystem-tools\|Ecosystem Tools]] |
+| **DSVT & FlatFormer** | Dynamic Sparse Window Transformer | Replaces SpConv with hardware-friendly dense window attention | **Apache-2.0** | [[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer Deep-Dive]] |
+| **OpenPCDet Toolbox** | Unified 3D Framework | Industry-standard modular codebase for point cloud models | **Apache-2.0** | [[resources/ecosystem-tools|Ecosystem Tools]] |
 
 ---
 

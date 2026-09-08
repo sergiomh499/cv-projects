@@ -42,10 +42,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **SLAM & Spatial Perception MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-slam-and-spatial-perception-moc.md) <br> `[[topics/slam-and-spatial-perception/00-slam-and-spatial-perception-moc\|00-slam-and-spatial-perception-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from EKF-SLAM to PTAM thread separation, DSO direct tracking, and 3D Gaussian splatting | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/slam-and-spatial-perception/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | IMU continuous pre-integration, monocular scale drift fixes, degeneracy eigenvalue checks | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/slam-and-spatial-perception/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **3DGS SLAM & MonoGS Deep-Dive** | `Architecture Vault` | Differentiable photometric Gaussian optimization for dense real-time spatial odometry | [Open 3DGS SLAM](../../architectures/real-time-unified/3dgs-slam-and-monogs.md) <br> `[[architectures/real-time-unified/3dgs-slam-and-monogs\|3dgs-slam-and-monogs]]` |
+| **SLAM & Spatial Perception MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-slam-and-spatial-perception-moc.md) <br> `[[topics/slam-and-spatial-perception/00-slam-and-spatial-perception-moc|00-slam-and-spatial-perception-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from EKF-SLAM to PTAM thread separation, DSO direct tracking, and 3D Gaussian splatting | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/slam-and-spatial-perception/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | IMU continuous pre-integration, monocular scale drift fixes, degeneracy eigenvalue checks | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/slam-and-spatial-perception/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **3DGS SLAM & MonoGS Deep-Dive** | `Architecture Vault` | Differentiable photometric Gaussian optimization for dense real-time spatial odometry | [Open 3DGS SLAM](../../architectures/real-time-unified/3dgs-slam-and-monogs.md) <br> `[[architectures/real-time-unified/3dgs-slam-and-monogs|3dgs-slam-and-monogs]]` |
 
 ---
 

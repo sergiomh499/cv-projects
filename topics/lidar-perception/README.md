@@ -42,10 +42,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **LiDAR Perception MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-lidar-perception-moc.md) <br> `[[topics/lidar-perception/00-lidar-perception-moc\|00-lidar-perception-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from PointNet symmetric pooling to Submanifold SpConv, 2D Pillars, and dynamic sparse window transformers | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/lidar-perception/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | AF_XDP zero-copy networking, IMU motion deskewing, rain backscatter filtering | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/lidar-perception/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **DSVT & FlatFormer Deep-Dive** | `Architecture Vault` | Dynamic sparse window attention compiling natively to TensorRT without SpConv | [Open DSVT/FlatFormer](../../architectures/real-time-unified/dsvt-and-flatformer.md) <br> `[[architectures/real-time-unified/dsvt-and-flatformer\|dsvt-and-flatformer]]` |
+| **LiDAR Perception MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-lidar-perception-moc.md) <br> `[[topics/lidar-perception/00-lidar-perception-moc|00-lidar-perception-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from PointNet symmetric pooling to Submanifold SpConv, 2D Pillars, and dynamic sparse window transformers | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/lidar-perception/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | AF_XDP zero-copy networking, IMU motion deskewing, rain backscatter filtering | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/lidar-perception/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **DSVT & FlatFormer Deep-Dive** | `Architecture Vault` | Dynamic sparse window attention compiling natively to TensorRT without SpConv | [Open DSVT/FlatFormer](../../architectures/real-time-unified/dsvt-and-flatformer.md) <br> `[[architectures/real-time-unified/dsvt-and-flatformer|dsvt-and-flatformer]]` |
 
 ---
 

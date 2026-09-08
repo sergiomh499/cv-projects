@@ -44,13 +44,13 @@ topics/object-detection/
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **Object Detection MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-object-detection-moc.md) <br> `[[topics/object-detection/00-object-detection-moc\|00-object-detection-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Complete didactic breakdown across the 3 historical eras with 4 Mermaid diagrams | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/object-detection/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | Sensor ingestion, TensorRT pipelines, SAHI tiling & CUDA streaming workarounds | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/object-detection/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **RF-DETR Deep-Dive** | `Model Guide` | DINOv2 distillation, SuperNet NAS, sub-6ms latency (Apache-2.0) | [Open RF-DETR](models/rf-detr.md) <br> `[[topics/object-detection/models/rf-detr\|models/rf-detr]]` |
-| **RT-DETRv2 / v3 Deep-Dive** | `Model Guide` | CCFM hybrid encoders, operator cleanup, hierarchical supervision (Apache-2.0) | [Open RT-DETR](models/rt-detr.md) <br> `[[topics/object-detection/models/rt-detr\|models/rt-detr]]` |
-| **YOLO Lineage Deep-Dive** | `Model Guide` | YOLOv10, YOLO11, and flagship YOLO26; dual-label assignments, AGPL-3.0 audit | [Open YOLO](models/yolo-lineage.md) <br> `[[topics/object-detection/models/yolo-lineage\|models/yolo-lineage]]` |
-| **Grounding DINO Deep-Dive** | `Model Guide` | Multi-modal cross-attention, zero-shot open-vocabulary queries (Apache-2.0) | [Open Grounding DINO](models/grounding-dino.md) <br> `[[topics/object-detection/models/grounding-dino\|models/grounding-dino]]` |
+| **Object Detection MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-object-detection-moc.md) <br> `[[topics/object-detection/00-object-detection-moc|00-object-detection-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Complete didactic breakdown across the 3 historical eras with 4 Mermaid diagrams | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/object-detection/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | Sensor ingestion, TensorRT pipelines, SAHI tiling & CUDA streaming workarounds | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/object-detection/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **RF-DETR Deep-Dive** | `Model Guide` | DINOv2 distillation, SuperNet NAS, sub-6ms latency (Apache-2.0) | [Open RF-DETR](models/rf-detr.md) <br> `[[topics/object-detection/models/rf-detr|models/rf-detr]]` |
+| **RT-DETRv2 / v3 Deep-Dive** | `Model Guide` | CCFM hybrid encoders, operator cleanup, hierarchical supervision (Apache-2.0) | [Open RT-DETR](models/rt-detr.md) <br> `[[topics/object-detection/models/rt-detr|models/rt-detr]]` |
+| **YOLO Lineage Deep-Dive** | `Model Guide` | YOLOv10, YOLO11, and flagship YOLO26; dual-label assignments, AGPL-3.0 audit | [Open YOLO](models/yolo-lineage.md) <br> `[[topics/object-detection/models/yolo-lineage|models/yolo-lineage]]` |
+| **Grounding DINO Deep-Dive** | `Model Guide` | Multi-modal cross-attention, zero-shot open-vocabulary queries (Apache-2.0) | [Open Grounding DINO](models/grounding-dino.md) <br> `[[topics/object-detection/models/grounding-dino|models/grounding-dino]]` |
 
 ---
 

@@ -31,10 +31,10 @@ This Map of Content connects the historical evolution, production playbooks, and
 ### 🔬 In-Depth Model & Architecture Notes
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Deep-Dive Note |
 | :--- | :--- | :--- | :---: | :---: |
-| **RF-DETR** | Transformer + DINOv2 | Weight-sharing NAS over DINOv2 backbone for real-time edge | **Apache-2.0** | [[topics/object-detection/models/rf-detr\|RF-DETR Deep-Dive]] |
-| **RT-DETRv2 / v3**| Transformer (CCFM) | NMS-free, hybrid encoder, hierarchical dense positive supervision | **Apache-2.0** | [[topics/object-detection/models/rt-detr\|RT-DETR Deep-Dive]] |
-| **YOLO Lineage** | Real-Time CNN | Evolution from YOLOv1 to YOLOv10, YOLO11, and flagship YOLO26 | **AGPL-3.0** | [[topics/object-detection/models/yolo-lineage\|YOLO Lineage Deep-Dive]] |
-| **Grounding DINO** | Vision-Language OVD | 3-stage visual-text cross-attention for zero-shot open-vocabulary | **Apache-2.0** | [[topics/object-detection/models/grounding-dino\|Grounding DINO Deep-Dive]] |
+| **RF-DETR** | Transformer + DINOv2 | Weight-sharing NAS over DINOv2 backbone for real-time edge | **Apache-2.0** | [[topics/object-detection/models/rf-detr|RF-DETR Deep-Dive]] |
+| **RT-DETRv2 / v3**| Transformer (CCFM) | NMS-free, hybrid encoder, hierarchical dense positive supervision | **Apache-2.0** | [[topics/object-detection/models/rt-detr|RT-DETR Deep-Dive]] |
+| **YOLO Lineage** | Real-Time CNN | Evolution from YOLOv1 to YOLOv10, YOLO11, and flagship YOLO26 | **AGPL-3.0** | [[topics/object-detection/models/yolo-lineage|YOLO Lineage Deep-Dive]] |
+| **Grounding DINO** | Vision-Language OVD | 3-stage visual-text cross-attention for zero-shot open-vocabulary | **Apache-2.0** | [[topics/object-detection/models/grounding-dino|Grounding DINO Deep-Dive]] |
 
 ---
 

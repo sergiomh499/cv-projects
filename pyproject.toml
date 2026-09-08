@@ -20,7 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pre-commit>=3.6.0",
-    "commitzen>=3.13.0",
+    "commitizen>=3.13.0",
     "pytest>=7.4.0",
     "ruff>=0.2.0",
 ]

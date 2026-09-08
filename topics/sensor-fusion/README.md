@@ -42,10 +42,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **Sensor Fusion MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-sensor-fusion-moc.md) <br> `[[topics/sensor-fusion/00-sensor-fusion-moc\|00-sensor-fusion-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from late EKF tracking to PointPainting, Lift-Splat-Shoot (LSS), and BEVFusion | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/sensor-fusion/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | IEEE 1588 PTP microsecond sync, thermal calibration drift, ISO 26262 safety fallbacks | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/sensor-fusion/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **BEVFusion & Sparse4D Deep-Dive** | `Architecture Vault` | Multi-modal BEV perception with hardware-accelerated coordinate caching and 4D anchor queries | [Open BEVFusion/Sparse4D](../../architectures/real-time-unified/bevfusion-and-sparse4d.md) <br> `[[architectures/real-time-unified/bevfusion-and-sparse4d\|bevfusion-and-sparse4d]]` |
+| **Sensor Fusion MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-sensor-fusion-moc.md) <br> `[[topics/sensor-fusion/00-sensor-fusion-moc|00-sensor-fusion-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from late EKF tracking to PointPainting, Lift-Splat-Shoot (LSS), and BEVFusion | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/sensor-fusion/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | IEEE 1588 PTP microsecond sync, thermal calibration drift, ISO 26262 safety fallbacks | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/sensor-fusion/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **BEVFusion & Sparse4D Deep-Dive** | `Architecture Vault` | Multi-modal BEV perception with hardware-accelerated coordinate caching and 4D anchor queries | [Open BEVFusion/Sparse4D](../../architectures/real-time-unified/bevfusion-and-sparse4d.md) <br> `[[architectures/real-time-unified/bevfusion-and-sparse4d|bevfusion-and-sparse4d]]` |
 
 ---
 

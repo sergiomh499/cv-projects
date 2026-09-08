@@ -39,8 +39,8 @@ Key focus areas include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Framework / Engine | Target Platforms | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **TensorRT 10** | NVIDIA Desktop / Jetson | FP8 quantization, FlashAttention fusion, CUDA Graph compilation | **Apache-2.0 / EULA** | [[architectures/real-time-unified/tensorrt-and-vulkan\|TensorRT & Vulkan Deep-Dive]] |
-| **Vulkan / NCNN** | Cross-Platform (AMD, Intel, ARM) | SPIR-V compute shaders for cross-vendor GPU execution | **BSD-3 / Apache-2.0** | [[architectures/real-time-unified/tensorrt-and-vulkan\|TensorRT & Vulkan Deep-Dive]] |
+| **TensorRT 10** | NVIDIA Desktop / Jetson | FP8 quantization, FlashAttention fusion, CUDA Graph compilation | **Apache-2.0 / EULA** | [[architectures/real-time-unified/tensorrt-and-vulkan|TensorRT & Vulkan Deep-Dive]] |
+| **Vulkan / NCNN** | Cross-Platform (AMD, Intel, ARM) | SPIR-V compute shaders for cross-vendor GPU execution | **BSD-3 / Apache-2.0** | [[architectures/real-time-unified/tensorrt-and-vulkan|TensorRT & Vulkan Deep-Dive]] |
 
 ---
 

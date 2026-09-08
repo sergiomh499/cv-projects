@@ -36,8 +36,8 @@ Visual Guidance translates real-time visual streams into physical robot control 
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Operational Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **OpenVLA & Octo** | Vision-Language-Action (VLA) | Autoregressive tokenization mapping visual tokens to 7-DoF joint actions | **Apache-2.0** | [[architectures/real-time-unified/anygrasp-and-openvla\|OpenVLA & AnyGrasp Deep-Dive]] |
-| **AnyGrasp & GraspNet** | Dense 6-DoF Grasp Network | Evaluates billions of candidate grasps directly on dense point clouds | **Research / Non-Commercial** | [[architectures/real-time-unified/anygrasp-and-openvla\|OpenVLA & AnyGrasp Deep-Dive]] |
+| **OpenVLA & Octo** | Vision-Language-Action (VLA) | Autoregressive tokenization mapping visual tokens to 7-DoF joint actions | **Apache-2.0** | [[architectures/real-time-unified/anygrasp-and-openvla|OpenVLA & AnyGrasp Deep-Dive]] |
+| **AnyGrasp & GraspNet** | Dense 6-DoF Grasp Network | Evaluates billions of candidate grasps directly on dense point clouds | **Research / Non-Commercial** | [[architectures/real-time-unified/anygrasp-and-openvla|OpenVLA & AnyGrasp Deep-Dive]] |
 
 ---
 

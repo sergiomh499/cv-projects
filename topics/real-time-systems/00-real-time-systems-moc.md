@@ -39,8 +39,8 @@ Key technical requirements include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Framework / Engine | Operational Domain | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **Eclipse Iceoryx2** | Lock-Free Shared Memory IPC | Pure Rust/C++ pointer-passing architecture delivering sub-microsecond latency ($<1\mu\text{s}$) | **Apache-2.0 / MIT** | [[architectures/real-time-unified/iceoryx2-and-zenoh\|Iceoryx2 & Zenoh Deep-Dive]] |
-| **Eclipse Zenoh** | Zero-Overhead Pub/Sub | Replaces heavy DDS discovery with 5-byte wire protocol for robotics | **Apache-2.0** | [[architectures/real-time-unified/iceoryx2-and-zenoh\|Iceoryx2 & Zenoh Deep-Dive]] |
+| **Eclipse Iceoryx2** | Lock-Free Shared Memory IPC | Pure Rust/C++ pointer-passing architecture delivering sub-microsecond latency ($<1\mu\text{s}$) | **Apache-2.0 / MIT** | [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
+| **Eclipse Zenoh** | Zero-Overhead Pub/Sub | Replaces heavy DDS discovery with 5-byte wire protocol for robotics | **Apache-2.0** | [[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh Deep-Dive]] |
 
 ---
 

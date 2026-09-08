@@ -38,8 +38,8 @@ The field has evolved from heuristic Extended Kalman Filters (EKF) and late trac
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Fusion Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **BEVFusion (MIT)** | Multi-Modal BEV Transformer | Fast GPU BEV pooling with pre-computed coordinate caching ($8.8\times$ faster) | **Apache-2.0** | [[architectures/real-time-unified/bevfusion-and-sparse4d\|BEVFusion Deep-Dive]] |
-| **Sparse4D** | Sparse Temporal Anchor Queries | Replaces dense 3D grids with adaptive 4D anchor queries through space/time | **Apache-2.0** | [[architectures/real-time-unified/bevfusion-and-sparse4d\|Sparse4D Deep-Dive]] |
+| **BEVFusion (MIT)** | Multi-Modal BEV Transformer | Fast GPU BEV pooling with pre-computed coordinate caching ($8.8\times$ faster) | **Apache-2.0** | [[architectures/real-time-unified/bevfusion-and-sparse4d|BEVFusion Deep-Dive]] |
+| **Sparse4D** | Sparse Temporal Anchor Queries | Replaces dense 3D grids with adaptive 4D anchor queries through space/time | **Apache-2.0** | [[architectures/real-time-unified/bevfusion-and-sparse4d|Sparse4D Deep-Dive]] |
 
 ---
 

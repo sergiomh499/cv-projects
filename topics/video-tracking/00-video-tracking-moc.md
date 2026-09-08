@@ -36,9 +36,9 @@ Video Tracking maintains consistent spatial, semantic, and instance identity acr
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Tracking Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **BoT-SORT & ByteTrack** | Bounding Box MOT | Global Motion Compensation (GMC) + Two-stage low-score association | **MIT** | [[architectures/real-time-unified/botsort-and-bytetrack\|BoT-SORT & ByteTrack]] |
-| **CoTracker & CoTracker3** | Dense Point Trajectory | Spatial-temporal cross-point attention tracking 70k points with occlusion flags | **Apache-2.0** | [[architectures/transformer-detectors/cotracker\|CoTracker Deep-Dive]] |
-| **SAM 2 (Video Engine)** | Promptable Mask Tracking | Spatial-temporal streaming memory bank with 44 FPS mask propagation | **Apache-2.0** | [[architectures/foundation-models/sam-2\|SAM 2 Video Engine]] |
+| **BoT-SORT & ByteTrack** | Bounding Box MOT | Global Motion Compensation (GMC) + Two-stage low-score association | **MIT** | [[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack]] |
+| **CoTracker & CoTracker3** | Dense Point Trajectory | Spatial-temporal cross-point attention tracking 70k points with occlusion flags | **Apache-2.0** | [[architectures/transformer-detectors/cotracker|CoTracker Deep-Dive]] |
+| **SAM 2 (Video Engine)** | Promptable Mask Tracking | Spatial-temporal streaming memory bank with 44 FPS mask propagation | **Apache-2.0** | [[architectures/foundation-models/sam-2|SAM 2 Video Engine]] |
 
 ---
 

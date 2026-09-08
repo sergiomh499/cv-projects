@@ -43,10 +43,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **Visual Guidance & Robotics MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-visual-guidance-and-robotics-moc.md) <br> `[[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc\|00-visual-guidance-and-robotics-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from IBVS/PBVS visual servoing to contact grasp nets and autoregressive VLA models | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/visual-guidance-and-robotics/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | Action chunking, damped least-squares inverse kinematics, and control barrier function safety shields | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/visual-guidance-and-robotics/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **OpenVLA & AnyGrasp Deep-Dive** | `Architecture Vault` | Detailed breakdown of autoregressive action tokenization and dense 6-DoF grasp synthesis | [Open OpenVLA/AnyGrasp](../../architectures/real-time-unified/anygrasp-and-openvla.md) <br> `[[architectures/real-time-unified/anygrasp-and-openvla\|anygrasp-and-openvla]]` |
+| **Visual Guidance & Robotics MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-visual-guidance-and-robotics-moc.md) <br> `[[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|00-visual-guidance-and-robotics-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from IBVS/PBVS visual servoing to contact grasp nets and autoregressive VLA models | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/visual-guidance-and-robotics/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | Action chunking, damped least-squares inverse kinematics, and control barrier function safety shields | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/visual-guidance-and-robotics/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **OpenVLA & AnyGrasp Deep-Dive** | `Architecture Vault` | Detailed breakdown of autoregressive action tokenization and dense 6-DoF grasp synthesis | [Open OpenVLA/AnyGrasp](../../architectures/real-time-unified/anygrasp-and-openvla.md) <br> `[[architectures/real-time-unified/anygrasp-and-openvla|anygrasp-and-openvla]]` |
 
 ---
 

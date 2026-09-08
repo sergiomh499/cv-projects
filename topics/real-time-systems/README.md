@@ -43,10 +43,10 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 
 | Note Title | Document Type | Description | Link |
 | :--- | :---: | :--- | :---: |
-| **Real-Time Systems MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-real-time-systems-moc.md) <br> `[[topics/real-time-systems/00-real-time-systems-moc\|00-real-time-systems-moc]]` |
-| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from OpenCV loops to ROS 1/2, PREEMPT_RT priority inheritance, and pointer-exchange IPC | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/real-time-systems/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
-| **Production Pipeline & Workarounds** | `Playbook` | Page fault traps, `mlockall` virtual memory locking, `isolcpus` core pinning, C-state disabling | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/real-time-systems/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
-| **Iceoryx2 & Zenoh Deep-Dive** | `Architecture Vault` | Lock-free shared memory pointer passing with sub-microsecond transport latency | [Open Iceoryx2/Zenoh](../../architectures/real-time-unified/iceoryx2-and-zenoh.md) <br> `[[architectures/real-time-unified/iceoryx2-and-zenoh\|iceoryx2-and-zenoh]]` |
+| **Real-Time Systems MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-real-time-systems-moc.md) <br> `[[topics/real-time-systems/00-real-time-systems-moc|00-real-time-systems-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from OpenCV loops to ROS 1/2, PREEMPT_RT priority inheritance, and pointer-exchange IPC | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/real-time-systems/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | Page fault traps, `mlockall` virtual memory locking, `isolcpus` core pinning, C-state disabling | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/real-time-systems/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **Iceoryx2 & Zenoh Deep-Dive** | `Architecture Vault` | Lock-free shared memory pointer passing with sub-microsecond transport latency | [Open Iceoryx2/Zenoh](../../architectures/real-time-unified/iceoryx2-and-zenoh.md) <br> `[[architectures/real-time-unified/iceoryx2-and-zenoh|iceoryx2-and-zenoh]]` |
 
 ---
 
