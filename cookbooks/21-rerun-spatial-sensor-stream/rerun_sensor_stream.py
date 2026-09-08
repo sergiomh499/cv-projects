@@ -412,10 +412,19 @@ def run_spatial_stream_pipeline(
         t = frame_idx * dt
         time_ns = int(t * 1e9)
 
-        # Set Timelines
-        logger.set_time_nanos("sensor_time", time_ns)
-        logger.set_time_sequence("frame_idx", frame_idx)
+        # Set Timelines defensively across Rerun versions
+        if hasattr(logger, "set_time_nanos"):
+            logger.set_time_nanos("sensor_time", time_ns)
+        elif hasattr(logger, "set_time_seconds"):
+            logger.set_time_seconds("sensor_time", t)
+        elif hasattr(logger, "set_time"):
+            try:
+                logger.set_time("sensor_time", duration=t)
+            except Exception:
+                pass
 
+        if hasattr(logger, "set_time_sequence"):
+            logger.set_time_sequence("frame_idx", frame_idx)
         # 1. Update Ego Odometry in World Frame
         pos_ego, quat_ego, speed, yaw_rate = sim.step_odometry(t)
         R_world_ego = quaternion_to_rotation_matrix(quat_ego)
