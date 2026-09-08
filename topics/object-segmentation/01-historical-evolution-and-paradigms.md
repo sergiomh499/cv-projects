@@ -1,23 +1,26 @@
 ---
-title: Object Segmentation Historical Evolution & Foundational Architectures
+title: Object Segmentation - Historical Evolution & Foundational Architectures
+type: evolution-guide
+domain: Object Segmentation
 tags:
-  - computer-vision
-  - segmentation
-  - architecture-evolution
+  - evolution
+  - history
+  - architecture
   - unet
   - sam
   - mask-rcnn
-  - didactic
+  - segmentation
 updated: 2026-09-08
 aliases:
   - Segmentation Evolution
+  - Object Segmentation History
 ---
 
-# Object Segmentation: Historical Evolution & Paradigms
+# 📜 Object Segmentation: Historical Evolution & Paradigm Shifts
 
 A didactic deep-dive charting the history of image segmentation: from classical thresholding and Graph Cuts to FCN, U-Net, Mask R-CNN, prototype-based real-time segmentation, and modern foundation models (SAM 1 to SAM 2.1 & Depth Anything V2).
 
-Related notes: [[topics/object-segmentation/README|Object Segmentation Playbook]], [[topics/object-detection/README|Object Detection]].
+Related notes: [[topics/object-segmentation/00-object-segmentation-moc|Object Segmentation MOC]], [[topics/object-detection/00-object-detection-moc|Object Detection MOC]].
 
 ---
 
