@@ -7,7 +7,6 @@ tags:
   - sota
   - obsidian-vault
   - licenses
-  - architecture-evolution
   - index
 updated: 2026-09-08
 aliases:
@@ -15,78 +14,60 @@ aliases:
   - CV Projects
 ---
 
-# Computer Vision & Perception Projects Knowledge Hub
+# 🧠 Computer Vision & Perception Projects Knowledge Hub
 
-A curated, didactic engineering repository and cookbook covering latest research, historical evolutions, end-to-end pipelines, trade-off analyses, and production deployment strategies for **Computer Vision (CV)**, **Machine Learning (ML)**, **Sensor Fusion**, and **Real-Time Systems**.
+A curated research engineering knowledge base, didactic repository, and production playbook vault covering end-to-end computer vision, multi-modal sensor fusion, edge deployment (CUDA/Vulkan/FPGA), and microsecond real-time robotics.
 
-Focuses on rigorous, state-of-the-art architectures (2023–2026) with demonstrable performance, verified open-source codebases, comprehensive license audits for commercial product readiness, and multi-backend acceleration across **NVIDIA CUDA / TensorRT**, **Vulkan Compute**, and **FPGA (AMD/Xilinx Vitis AI & FINN)**. Fully indexed and compatible with **Obsidian** for visual graph exploration and bidirectional knowledge browsing.
-
----
-
-## 🧭 Repository Structure & Obsidian Map
-
-```text
-cv-projects/
-├── topics/                     # Comprehensive domain playbooks & historical evolutions
-│   ├── object-detection/       # README.md (Playbook) & EVOLUTION.md (YOLOv1->YOLO26 & DETR)
-│   ├── object-segmentation/    # README.md (Playbook) & EVOLUTION.md (U-Net, SAM 2, Depth V2)
-│   ├── object-classification/  # README.md (Playbook) & EVOLUTION.md (ResNet to DINOv3, SigLIP)
-│   ├── video-tracking/         # README.md (Playbook) & EVOLUTION.md (SORT, ByteTrack, CoTracker)
-│   ├── 6dof-pose-estimation/   # README.md (Playbook) & EVOLUTION.md (PnP, Symmetry, FoundationPose)
-│   ├── lidar-perception/       # README.md (Playbook) & EVOLUTION.md (PointNet, SpConv, DSVT)
-│   ├── sensor-fusion/          # README.md (Playbook) & EVOLUTION.md (Late, Early, BEVFusion, UniAD)
-│   ├── fpga-deployment/        # README.md (Playbook) & EVOLUTION.md (DPU vs Streaming Dataflow)
-│   ├── gpu-deployment/         # README.md (Playbook) & EVOLUTION.md (Memory Wall & FlashAttention)
-│   └── real-time-systems/      # README.md (Playbook) & EVOLUTION.md (Zero-Copy Iceoryx 2 & RT)
-├── templates/
-│   └── topic-template.md       # Standard playbook schema and contribution guide
-├── resources/
-│   └── ecosystem-tools.md      # FiftyOne, Rerun, CVAT, OpenMMLab, inference runtimes
-├── scripts/
-│   └── validate_repo.py        # Automated repository integrity, SOTA & license validator
-├── pyproject.toml              # UV-managed Python environment, dependencies & tools
-└── .pre-commit-config.yaml     # Pre-commit hooks (ruff, commitzen, formatters)
-```
+| **1. Object Detection** | [[topics/object-detection/00-object-detection-moc\|Detection MOC]] ([Directory](topics/object-detection/README.md)) | RF-DETR, RT-DETRv2/v3, YOLOv10-26, Grounding DINO | `roboflow/rf-detr`, `lyuwenyu/RT-DETR` | 5.2 ms (53.8% AP) | **Apache-2.0** |
+| **2. Object Segmentation** | [[topics/object-segmentation/00-object-segmentation-moc\|Segmentation MOC]] ([Directory](topics/object-segmentation/README.md)) | SAM 2.1, Depth Anything V2, Mask2Former | `facebookresearch/sam2`, `DepthAnything` | 22.8 ms (44 FPS) | **Apache-2.0** |
+| **3. Object Classification** | [[topics/object-classification/00-object-classification-moc\|Classification MOC]] ([Directory](topics/object-classification/README.md)) | DINOv2/v3, SigLIP 2, ConvNeXt V2, MobileNetV4 | `facebookresearch/dinov2`, `google/big_vision` | 0.85 ms (82.3% Top-1) | **Apache-2.0** |
+| **4. Video Tracking** | [[topics/video-tracking/00-video-tracking-moc\|Tracking MOC]] ([Directory](topics/video-tracking/README.md)) | BoT-SORT, ByteTrack, CoTracker3, SAM 2 | `ifzhang/ByteTrack`, `facebookresearch/co-tracker` | 1.2 ms (80.3 MOTA) | **MIT / Apache-2.0** |
+| **5. 6-DoF Pose Estimation**| [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc\|6-DoF Pose MOC]] ([Directory](topics/6dof-pose-estimation/README.md)) | FoundationPose, MegaPose, GDR-Net | `NVlabs/FoundationPose`, `facebookresearch/megapose` | 32.0 ms (96.2% ADD-S) | **Apache-2.0** (MegaPose) |
+| **6. LiDAR Perception** | [[topics/lidar-perception/00-lidar-perception-moc\|LiDAR MOC]] ([Directory](topics/lidar-perception/README.md)) | DSVT, FlatFormer, PointPillars, CenterPoint | `Haiyang-W/DSVT`, `open-mmlab/OpenPCDet` | 27.0 ms (78.9% mAP) | **Apache-2.0** |
+| **7. Sensor Fusion** | [[topics/sensor-fusion/00-sensor-fusion-moc\|Sensor Fusion MOC]] ([Directory](topics/sensor-fusion/README.md)) | MIT BEVFusion, Sparse4D v3, UniAD | `mit-han-lab/bevfusion`, `HorizonRobotics/Sparse4D` | 41.0 ms (72.9% NDS) | **Apache-2.0** |
+| **8. FPGA Deployment** | [[topics/fpga-deployment/00-fpga-deployment-moc\|FPGA MOC]] ([Directory](topics/fpga-deployment/README.md)) | AMD Vitis AI 3.5, FINN & Brevitas (QNN) | `Xilinx/Vitis-AI`, `Xilinx/finn` | 0.68 ms (1,450 FPS) | **Apache-2.0 / EULA** |
+| **9. GPU Deployment** | [[topics/gpu-deployment/00-gpu-deployment-moc\|GPU Deployment MOC]] ([Directory](topics/gpu-deployment/README.md)) | TensorRT 10 (FP8), Vulkan NCNN, FlashAttention | `NVIDIA/TensorRT`, `Tencent/ncnn` | 0.25 ms (ResNet-50) | **Apache-2.0 / BSD** |
+| **10. Real-Time Systems** | [[topics/real-time-systems/00-real-time-systems-moc\|Real-Time MOC]] ([Directory](topics/real-time-systems/README.md)) | Linux PREEMPT_RT, Eclipse Iceoryx2, Zenoh | `eclipse-iceoryx/iceoryx2`, `eclipse-zenoh/zenoh` | <1 $\mu$s Zero-Copy | **Apache-2.0 / MIT** |
 
 ---
 
-## 📚 Playbooks, Historical Guides & Topic Catalog
+## 🏛️ Central Architecture Vault (`architectures/`)
 
-| # | Topic Domain | SOTA Models (2023–2026) | Commercial License Audit | Production Playbook | Historical Evolution & Architecture Guide |
-| :---: | :--- | :--- | :--- | :---: | :---: |
-| 1 | **Object Detection** | RF-DETR, RT-DETRv2/v3, YOLOv10/YOLO26 | Apache-2.0 (RF-DETR, RT-DETR), AGPL-3.0 (YOLO) | [Playbook](topics/object-detection/README.md) | [Evolution & Lineage](topics/object-detection/EVOLUTION.md) |
-| 2 | **Object Segmentation** | SAM 2/2.1, Depth Anything V2, Mask2Former | Apache-2.0 (SAM 2, Mask2Former, Depth Anything) | [Playbook](topics/object-segmentation/README.md) | [Evolution & Lineage](topics/object-segmentation/EVOLUTION.md) |
-| 3 | **Object Classification** | DINOv3/v2, SigLIP 2, ConvNeXt V2, MobileNetV4 | Apache-2.0 (timm, DINOv2, SigLIP, ConvNeXt) | [Playbook](topics/object-classification/README.md) | [Evolution & Lineage](topics/object-classification/EVOLUTION.md) |
-| 4 | **Video Tracking** | CoTracker3, BoT-SORT, ByteTrack, TAPIR | MIT (BoT-SORT, ByteTrack), Apache-2.0 (CoTracker) | [Playbook](topics/video-tracking/README.md) | [Evolution & Lineage](topics/video-tracking/EVOLUTION.md) |
-| 5 | **6-DoF Pose Estimation** | FoundationPose, MegaPose, GDR-Net | Apache-2.0 (MegaPose, GDR-Net), Non-Commercial (FoundationPose) | [Playbook](topics/6dof-pose-estimation/README.md) | [Evolution & Lineage](topics/6dof-pose-estimation/EVOLUTION.md) |
-| 6 | **LiDAR Perception** | DSVT, FlatFormer, CenterPoint, SpConv 2.x | Apache-2.0 (OpenPCDet, FlatFormer, SpConv) | [Playbook](topics/lidar-perception/README.md) | [Evolution & Lineage](topics/lidar-perception/EVOLUTION.md) |
-| 7 | **Sensor Fusion** | BEVFusion, Sparse4D v3, UniAD, PointPainting | Apache-2.0 (BEVFusion, Sparse4D, UniAD) | [Playbook](topics/sensor-fusion/README.md) | [Evolution & Lineage](topics/sensor-fusion/EVOLUTION.md) |
-| 8 | **FPGA Deployment** | Vitis AI 3.5 DPU, FINN v0.10, Brevitas QAT | Apache-2.0 (Vitis-AI, FINN, Brevitas) | [Playbook](topics/fpga-deployment/README.md) | [Evolution & Lineage](topics/fpga-deployment/EVOLUTION.md) |
-| 9 | **GPU Deployment** | TensorRT 10, FlashAttention-2/3, Vulkan NCNN | Apache-2.0 (TensorRT), BSD-3 (Triton, NCNN) | [Playbook](topics/gpu-deployment/README.md) | [Evolution & Lineage](topics/gpu-deployment/EVOLUTION.md) |
-| 10 | **Real-Time Systems** | Iceoryx 2 (Rust), ROS 2 Jazzy, PREEMPT_RT | Apache-2.0 / MIT (Iceoryx 2, ROS 2) | [Playbook](topics/real-time-systems/README.md) | [Evolution & Lineage](topics/real-time-systems/EVOLUTION.md) |
-
----
-
-## 🛠️ Commercial Product Readiness & Licensing Quick-Guide
-
-When developing commercial computer vision products, licensing compliance is paramount to avoid proprietary IP contamination:
-
-- **100% Commercial-Safe (Permissive: Apache-2.0, MIT, BSD-3-Clause)**:
-  - Can be embedded into closed-source binaries, cloud SaaS backends, and firmware without forced source-code disclosure.
-  - *Recommended Stack*: **RF-DETR / RT-DETRv2** (Detection), **SAM 2 / Depth Anything V2** (Segmentation), **timm + ConvNeXt V2** (Classification), **ByteTrack / BoT-SORT** (Tracking), **MegaPose** (6-DoF), **OpenPCDet** (LiDAR), **MIT BEVFusion** (Sensor Fusion), **TensorRT / NCNN** (GPU), **Iceoryx 2** (Real-Time IPC).
-- **Copyleft (AGPL-3.0, GPL-3.0)**:
-  - Requires open-sourcing the entire caller product under the same license if distributed or accessed over a network.
-  - *Watch Out*: **Ultralytics YOLOv8/v10/YOLO26** (AGPL-3.0), **BoxMOT** (GPL-3.0). Use with an enterprise commercial license or choose permissive alternatives listed above.
-- **Non-Commercial / Research-Only**:
-  - Prohibits all revenue-generating or product usage.
-  - *Watch Out*: **FoundationPose** (NVIDIA Source Code License - Research Only). Use **MegaPose** (Apache-2.0) instead for commercial robotics.
+Cross-cutting models and multi-task foundation backbones shared across topics:
+- **[[architectures/foundation-models/sam-2|SAM 2 & 2.1]]**: Promptable image segmentation and 44 FPS video tracking memory bank (Apache-2.0).
+- **[[architectures/foundation-models/depth-anything-v2|Depth Anything V2]]**: Continuous metric depth and geometric surface parsing (Apache-2.0).
+- **[[architectures/foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3]]**: Self-supervised dense representations for detection, classification, and depth (Apache-2.0).
+- **[[architectures/foundation-models/siglip|SigLIP & SigLIP 2]]**: Sigmoid binary loss for zero-shot open-vocabulary alignment (Apache-2.0).
+- **[[architectures/real-time-unified/mask2former|Mask2Former]]**: Unified query transformer for semantic, instance, and panoptic segmentation (Apache-2.0).
+- **[[architectures/real-time-unified/botsort-and-bytetrack|BoT-SORT & ByteTrack]]**: Production real-time multi-object tracking with motion compensation (MIT).
+- **[[architectures/transformer-detectors/cotracker|CoTracker3]]**: Dense spatial-temporal point trajectory transformer tracking 70k points (Apache-2.0).
+- **[[architectures/real-time-unified/foundationpose-and-megapose|FoundationPose & MegaPose]]**: Zero-shot CAD-driven 6-DoF object pose tracking (Apache-2.0 / NVIDIA).
+- **[[architectures/real-time-unified/dsvt-and-flatformer|DSVT & FlatFormer]]**: Dynamic sparse window transformers compiling natively to TensorRT without SpConv (Apache-2.0).
+- **[[architectures/real-time-unified/bevfusion-and-sparse4d|BEVFusion & Sparse4D]]**: Camera-LiDAR Bird's-Eye-View fusion with fast coordinate caching (Apache-2.0).
+- **[[architectures/real-time-unified/vitis-ai-and-finn|Vitis AI & FINN]]**: Quantized neural network acceleration on FPGAs (Apache-2.0).
+- **[[architectures/real-time-unified/tensorrt-and-vulkan|TensorRT 10 & Vulkan]]**: Deep learning compilation, FP8, and vendor-agnostic compute shaders (Apache-2.0 / BSD).
+- **[[architectures/real-time-unified/iceoryx2-and-zenoh|Iceoryx2 & Zenoh]]**: Zero-copy shared memory IPC delivering sub-microsecond latency (Apache-2.0 / MIT).
 
 ---
 
-## 🧪 Repository Verification
+## ⚖️ Global Commercial Usability & License Matrix
 
-Run the comprehensive validator checking relative links, section schema, modern SOTA citations, benchmark tables, and commercial license audits:
+| Category | Safe for Proprietary Software? | Key Repositories & Models |
+| :--- | :---: | :--- |
+| **Permissive (Apache-2.0 / MIT / BSD)** | **YES** | `rf-detr`, `RT-DETR (v2/v3)`, `SAM 2`, `Depth-Anything-V2`, `DINOv2/v3`, `SigLIP`, `ConvNeXt-V2`, `ByteTrack`, `BoT-SORT`, `CoTracker3`, `MegaPose`, `DSVT`, `OpenPCDet`, `BEVFusion`, `Sparse4D`, `Vitis-AI`, `FINN`, `TensorRT`, `ncnn`, `iceoryx2`, `zenoh` |
+| **Copyleft Warning (AGPL-3.0 / GPL-3.0)** | ⚠️ **NO** | `Ultralytics YOLOv8 / YOLO11` (AGPL-3.0), `DeepSORT` (GPL-3.0). Using AGPL-3.0 over network APIs requires open-sourcing the caller. Standardize on **RF-DETR** or **RT-DETRv2/v3** to avoid legal risk. |
+| **Non-Commercial / Research-Only** | ⛔ **NO** | `NVlabs/FoundationPose` (NVIDIA Source Code License). For commercial 6-DoF pose estimation, standardize on **MegaPose** (Apache-2.0). |
+
+---
+
+## 🚀 Environment Setup & Validation
+
+This project is configured with `uv` for deterministic dependency management.
 
 ```bash
-python scripts/validate_repo.py
+# Sync dependencies
+uv sync
+
+# Run repository schema and link validator
+uv run python scripts/validate_repo.py
 ```

@@ -1,101 +1,65 @@
 ---
-title: FPGA Deployment Playbook
+title: FPGA Deployment Master Index & Directory
 tags:
-  - hardware-deployment
+  - computer-vision
   - fpga
-  - vitis-ai
-  - finn
-  - brevitas
-  - edge-ai
+  - index
+  - sota
+  - models
+  - playbooks
 updated: 2026-09-08
 aliases:
-  - FPGA Deployment
+  - FPGA Deployment Playbook
+  - FPGA Index
 ---
 
-# FPGA Deployment Playbook
+# FPGA Deployment: Master Index & Domain Guide
 
-# Overview
-FPGA (Field-Programmable Gate Array) Deployment targets reconfigurable hardware logic for deterministic, low-jitter, high-throughput, and power-efficient computer vision inference. FPGAs dominate industrial line-scan inspection, aerospace, automotive ADAS, and robotics where millisecond OS jitter cannot be tolerated and direct hardware interfaces (MIPI-CSI, GigE Vision, PCIe DMA) are required.
+> **Obsidian Users**: Access the unified Map of Content at [[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment MOC]].
 
-Related notes: [[topics/gpu-deployment/README|GPU Deployment]], [[topics/real-time-systems/README|Real-Time Systems]].
-
----
-
-## SOTA & Research (2023–2026 Breakthroughs)
-
-1. **AMD / Xilinx Vitis AI 3.5 & DPU Architecture Updates** (AMD / Xilinx, 2023 / 2024)
-   - *Key Innovation*: Coarse-grained Deep Learning Processing Unit (DPU) overlays optimized for Versal AI Core and Zynq UltraScale+ MPSoCs. Supports transformer attention layers, depthwise separable convolutions, and mixed INT8/INT16 arithmetic without full bitstream re-synthesis.
-   - [Official Documentation & Code](https://github.com/Xilinx/Vitis-AI)
-
-2. **FINN v0.10: Dataflow Accelerator Compiler for Quantized Neural Networks** (Blott et al., AMD Research, 2023 / 2024)
-   - *Key Innovation*: End-to-end framework compiling PyTorch QNNs into dedicated streaming hardware pipelines on FPGA fabric. Dedicates individual on-chip FIFO pipelines per layer, enabling microsecond deterministic inference.
-   - [Paper: ACM TRETS / arXiv:2109.11299](https://arxiv.org/abs/2109.11299) | [Official Code](https://github.com/Xilinx/finn)
-
-3. **Brevitas: Quantization-Aware Training in PyTorch** (Papadimitriou et al., 2023 / 2024)
-   - *Key Innovation*: Standard library modeling non-standard bitwidths (1-bit, 2-bit, 4-bit, 8-bit) directly inside PyTorch autograd graphs, ensuring simulated quantization matches bit-exact FPGA execution.
-   - [Official Code](https://github.com/Xilinx/brevitas)
-
-4. **Logic-Net & LUTNet: Deep Learning via Direct Logic Synthesis** (Wang et al., 2023 / 2024)
-   - *Key Innovation*: Replaces expensive digital signal processor (DSP) multipliers with native 6-input FPGA Look-Up Tables (LUTs), achieving line-rate classification at sub-millisecond speeds.
+## 📌 Executive Brief
+Field-Programmable Gate Arrays (FPGAs) provide deterministic low latency, sub-microsecond jitter, and high power efficiency for edge computer vision in robotics, defense, and industrial automation. Deployments center on coarse-grained instruction-driven DPU overlays (**Vitis AI 3.5**) for rapid turnaround and spatial dataflow streaming (**FINN**) for ultra-low latency sub-byte quantized networks.
 
 ---
 
-### Quantitative SOTA Benchmark Comparison (FPGA Edge Hardware)
-| Toolchain / Accelerator | Target Board | Precision | Throughput (FPS) | Latency (ms) | Power Consumption | Open License |
+## 🧭 Topic Organization & File Structure
+
+```text
+topics/fpga-deployment/
+├── 00-fpga-deployment-moc.md                     # 🗺️ Master Map of Content & Cross-Domain Hub
+├── 01-historical-evolution-and-paradigms.md       # 📜 Historical Evolution (RTL -> HLS -> DPU Overlays -> FINN)
+├── 02-production-pipeline-and-workarounds.md      # 🛠️ Production Pipeline, Operator Traps & DMA-BUF Workarounds
+└── README.md                                     # 🧭 Master Directory Index for Git / Web Browsers
+
+architectures/                                    # 🔬 Shared Multi-Task Architecture Vault
+└── real-time-unified/
+    └── vitis-ai-and-finn.md                      # Vitis AI 3.5 & FINN: Quantized Neural Inference on FPGAs (Apache-2.0)
+```
+
+---
+
+## 📚 Navigation Directory
+
+| Note Title | Document Type | Description | Link |
+| :--- | :---: | :--- | :---: |
+| **FPGA Deployment MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-fpga-deployment-moc.md) <br> `[[topics/fpga-deployment/00-fpga-deployment-moc\|00-fpga-deployment-moc]]` |
+| **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from RTL VHDL/Verilog to Vivado HLS, DPU processor overlays, and sub-byte LUT-Net | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/fpga-deployment/01-historical-evolution-and-paradigms\|01-historical-evolution-and-paradigms]]` |
+| **Production Pipeline & Workarounds** | `Playbook` | DPU operator fallback traps, CMA memory pool sizing, direct DMA-BUF zero-copy ingestion | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/fpga-deployment/02-production-pipeline-and-workarounds\|02-production-pipeline-and-workarounds]]` |
+| **Vitis AI & FINN Deep-Dive** | `Architecture Vault` | Detailed breakdown of DPU instruction overlays vs. spatial dataflow streaming pipelines | [Open Vitis AI/FINN](../../architectures/real-time-unified/vitis-ai-and-finn.md) <br> `[[architectures/real-time-unified/vitis-ai-and-finn\|vitis-ai-and-finn]]` |
+
+---
+
+## 📊 Summary SOTA Benchmark Comparison (FPGA Platforms)
+| Framework | Target Silicon | Architecture | Quantization | Throughput (FPS) | Latency (ms) | Board Power |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **FINN Streaming (ResNet-50)** | AMD Alveo U250 | 2-bit W / 2-bit A | 4,200 FPS | 0.24 ms | 75 W | Apache-2.0 |
-| **Vitis AI DPU (YOLOv8-S)** | Kria KV260 SOM | INT8 | 58.0 FPS | 17.2 ms | 7.5 W | Apache-2.0 |
-| **Vitis AI DPU (ResNet-50)** | Zynq UltraScale+ ZU9EG | INT8 | 185.0 FPS | 5.4 ms | 15 W | Apache-2.0 |
-| **FINN Streaming (MobileNetV1)** | PYNQ-Z1 (Z-7020) | 1-bit W / 2-bit A | 1,150 FPS | 0.87 ms | 2.5 W | Apache-2.0 |
+| **Vitis AI 3.5** | Kria KV260 | ResNet-50 | INT8 | 105.0 FPS | 9.5 ms | 10 W |
+| **Vitis AI 3.5** | Kria KV260 | YOLOv8-Nano | INT8 | 85.0 FPS | 11.7 ms | 11 W |
+| **Vitis AI 3.5** | Alveo V70 (PCIe) | ResNet-50 | INT8 | 2,850.0 FPS | 0.35 ms | 75 W |
+| **FINN** | Kria KV260 | CNV ConvNet | 2-bit (QNN) | **1,450.0 FPS**| **0.68 ms** | 7 W |
 
 ---
 
-## Commercial Usability & License Audit
-- **Commercial Permissive (Safe)**:
-  - **AMD / Xilinx Vitis AI (`Xilinx/Vitis-AI`)**: Licensed under **Apache-2.0**. Commercial product deployment on Kria SOMs and Zynq MPSoCs is completely royalty-free.
-  - **FINN (`Xilinx/finn`)**: Licensed under **Apache-2.0**.
-  - **Brevitas (`Xilinx/brevitas`)**: Licensed under **Apache-2.0**.
-  - *Commercial Strategy*: All standard toolchains in the AMD/Xilinx FPGA ecosystem are under permissive Apache-2.0 terms, posing zero open-source IP contamination risk for closed-source commercial firmware.
-
----
-
-## Architecture Alternatives & Trade-offs
-| FPGA Architecture Paradigm | Implementation Style | Latency & Jitter | Flexibility / Model Updates | Ideal Target |
-| :--- | :--- | :--- | :--- | :--- |
-| **Streaming Dataflow (FINN)** | Dedicated pipeline stage per layer | Lowest latency (<1 ms, deterministic) | Low (requires bitstream re-synthesis per model change) | Line-rate triggers, high-speed sorting |
-| **Instruction-Set DPU Overlay (Vitis AI)** | General-purpose tensor processor on FPGA | Low-to-Moderate (3-10 ms) | High (swapping models is as easy as loading an `.xmodel` file) | Embedded edge vision, multi-model robotics |
-| **Hybrid CPU-FPGA SoC (Zynq, Kria)** | Preprocessing in FPGA fabric, inference on DPU/ARM | Flexible system design | High | Complete autonomous perception edge boxes |
-
----
-
-## Popular Repos & Integrations
-- **[Xilinx/Vitis-AI](https://github.com/Xilinx/Vitis-AI)**: Official development stack for hardware-accelerated AI inference on AMD/Xilinx platforms (Apache-2.0).
-- **[Xilinx/finn](https://github.com/Xilinx/finn)**: Fast, scalable Quantized Neural Network streaming compiler for FPGAs (Apache-2.0).
-- **[Xilinx/brevitas](https://github.com/Xilinx/brevitas)**: Premier PyTorch library for Quantization-Aware Training (QAT) supporting ultra-low precision targets (Apache-2.0).
-- **Tooling Integrations**:
-  - **FiftyOne**: Compare model accuracy discrepancies between floating-point PyTorch baseline and integer-quantized FPGA simulated outputs.
-  - **Rerun**: Visualize low-latency detections and sensor feeds transmitted over UDP/Ethernet directly from the FPGA edge board.
-
----
-
-## End-to-End Pipeline & Workarounds
-1. **Pipeline Stages**:
-   - PyTorch Model Definition -> Quantization-Aware Training (Brevitas QAT) -> Model Export (ONNX) -> Vitis AI Quantizer & Compiler -> Target Compilation (`.xmodel` or Vivado HLS IP core) -> Bitstream deployment on Zynq/Kria MPSoC -> Hardware runtime execution (VART / XRT).
-2. **Common Traps & Edge Cases**:
-   - *Unsupported Operators*: Complex activations (SiLU/GELU), non-standard pooling, or dynamic reshaping often cannot map to DPU hardware and fall back to slow ARM CPU emulation.
-   - *DSP Slice Exhaustion*: Models with high channel counts without aggressive channel pruning exhaust available DSP multipliers.
-   - *Memory Bandwidth Saturation*: Repeatedly fetching intermediate activation maps from external DDR RAM creates thermal and latency bottlenecks.
-3. **Engineering Workarounds**:
-   - **Operator Replacement**: Swap SiLU with hard-sigmoid/ReLU or LeakyReLU during model design, which map directly to FPGA LUTs.
-   - **Channel Pruning & Distillation**: Prune redundant filters with tools like PyTorch Pruning before quantization to reduce DSP requirements by 50%.
-   - **Layer Fusion**: Keep intermediate feature maps in on-chip UltraRAM (URAM) caches between back-to-back convolution and pooling layers to eliminate DDR round-trips.
-
----
-
-## Deployment & Real-time Notes
-- **Vitis AI Runtime (VART)**:
-  - Use VART C++ API for direct zero-copy buffer sharing between hardware video capture DMA blocks and the DPU input tensor buffer.
-- **Quantization Calibration**:
-  - Perform Post-Training Quantization (PTQ) calibration with at least 1,000 diverse representative images covering extreme lighting and noise conditions.
-- **Thermal & Clock Throttling**:
-  - Monitor FPGA junction temperature (`xbutil` on Alveo, or sysfs on Zynq/Kria) to ensure clock frequencies do not throttle under continuous sustained inference.
+## ⚖️ Commercial Usability Quick-Audit
+- **Commercial Permissive**:
+  - `Xilinx/Vitis-AI`: **Apache-2.0** runtime; DPU IP cores royalty-free under AMD Xilinx EULA.
+  - `Xilinx/finn` & `Xilinx/brevitas`: **Apache-2.0**.
