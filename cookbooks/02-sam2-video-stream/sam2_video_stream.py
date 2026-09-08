@@ -9,9 +9,8 @@ Features:
 - Propagates mask across temporal frames at 44 FPS using the spatial-temporal memory bank.
 """
 
-import sys
 import numpy as np
-import torch
+
 
 def simulate_sam2_video_tracking():
     print("[+] Initializing SAM 2 Streaming Video Predictor...")
@@ -24,7 +23,7 @@ def simulate_sam2_video_tracking():
     # Synthetic point prompt on Frame 0: (x=640, y=360), label=1 (positive prompt)
     prompt_point = np.array([[640, 360]], dtype=np.float32)
     prompt_label = np.array([1], dtype=np.int32)
-    print(f"[+] Injected prompt on Frame 0: Point {prompt_point[0]} (Target Object)")
+    print(f"[+] Injected prompt on Frame 0: Point {prompt_point[0]} (Target Object, label {prompt_label[0]})")
 
     print("\n[⚡ Streaming Frame Mask Propagation (Simulated)]")
     for frame_idx in range(num_frames):

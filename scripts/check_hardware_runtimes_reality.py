@@ -6,8 +6,8 @@ Inspects:
 2. Explains the step-by-step physical test commands for CUDA/TensorRT, Vulkan SC, and Vitis AI.
 """
 
-import subprocess
 import shutil
+import subprocess
 
 
 def check_local_vulkan() -> None:

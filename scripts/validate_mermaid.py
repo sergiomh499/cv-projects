@@ -6,10 +6,10 @@ Invokes the official JS Mermaid parser via bun/node if available,
 and performs static structural heuristics to ensure diagrams do not fail.
 """
 
-import sys
 import re
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent

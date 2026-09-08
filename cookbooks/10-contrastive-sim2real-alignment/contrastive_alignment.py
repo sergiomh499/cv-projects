@@ -142,7 +142,7 @@ def main() -> None:
     # Optimize Contrastive Alignment
     print("[+] Training Contrastive Sim2Real Projection (50 epochs)...")
     for epoch in range(50):
-        loss = aligner.train_alignment_step(x_syn, y_syn, x_real, y_real, learning_rate=0.01)
+        _loss = aligner.train_alignment_step(x_syn, y_syn, x_real, y_real, learning_rate=0.01)
 
     # Evaluate Post-Alignment Cosine Similarity
     z_syn_post = aligner.embed_synthetic(x_syn)

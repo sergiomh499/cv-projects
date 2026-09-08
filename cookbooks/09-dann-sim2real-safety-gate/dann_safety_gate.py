@@ -120,7 +120,7 @@ def main() -> None:
     np.random.seed(42)
 
     # 1. Setup Adapter & Safety Gate
-    adapter = Sim2RealFeatureAdapter(feature_dim=8, num_classes=3)
+    _adapter = Sim2RealFeatureAdapter(feature_dim=8, num_classes=3)
     safety_gate = CriticalSafetyGate(
         entropy_threshold=0.65, confidence_threshold=0.80, max_domain_shift=2.5
     )

@@ -53,7 +53,7 @@ class Sim2RealLatentVisualizer:
         # Plot real samples with uppercase marker 'R'
         for pt, label in zip(coords_real, labels_real):
             r, c = to_grid(pt[0], pt[1])
-            grid[r][c] = f"R"
+            grid[r][c] = "R"
 
         lines = ["+" + "-" * width + "+"]
         for row in grid:

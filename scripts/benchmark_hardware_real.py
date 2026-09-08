@@ -7,9 +7,9 @@ Executes REAL, live hardware benchmarks on available local system devices (CPU, 
 - Clearly states hardware telemetry directly from the host.
 """
 
-import sys
-import time
 import subprocess
+import time
+
 import numpy as np
 
 

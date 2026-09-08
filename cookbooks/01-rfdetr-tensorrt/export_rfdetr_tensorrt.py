@@ -8,9 +8,9 @@ Steps:
 3. Provides automated trtexec build command with layer fusion and FP16.
 """
 
-import sys
 import torch
-import torch.nn as nn
+from torch import nn
+
 
 class DummyRFDETRBackbone(nn.Module):
     """Minimal representation of RF-DETR DINOv2 backbone with 2D detection heads."""
@@ -27,7 +27,7 @@ class DummyRFDETRBackbone(nn.Module):
         return logits, boxes
 
 def export_rfdetr_to_onnx(output_path: str = "rf_detr.onnx"):
-    print(f"[+] Instantiating RF-DETR model...")
+    print("[+] Instantiating RF-DETR model...")
     model = DummyRFDETRBackbone().eval().cuda()
     dummy_input = torch.randn(1, 3, 640, 640, device="cuda")
 
@@ -45,17 +45,17 @@ def export_rfdetr_to_onnx(output_path: str = "rf_detr.onnx"):
         },
         opset_version=17
     )
-    print(f"[✓] ONNX export completed successfully.")
+    print("[✓] ONNX export completed successfully.")
     
     print("\n[🚀 TensorRT 10 Compilation Command]")
     print(f"trtexec --onnx={output_path} \\")
-    print(f"        --saveEngine=rf_detr_fp16.engine \\")
-    print(f"        --fp16 \\")
-    print(f"        --optShapes=images:1x3x640x640 \\")
-    print(f"        --minShapes=images:1x3x640x640 \\")
-    print(f"        --maxShapes=images:8x3x640x640 \\")
-    print(f"        --builderOptimizationLevel=5 \\")
-    print(f"        --useCudaGraph")
+    print("        --saveEngine=rf_detr_fp16.engine \\")
+    print("        --fp16 \\")
+    print("        --optShapes=images:1x3x640x640 \\")
+    print("        --minShapes=images:1x3x640x640 \\")
+    print("        --maxShapes=images:8x3x640x640 \\")
+    print("        --builderOptimizationLevel=5 \\")
+    print("        --useCudaGraph")
 
 if __name__ == "__main__":
     export_rfdetr_to_onnx()

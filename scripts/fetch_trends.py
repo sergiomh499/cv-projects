@@ -8,16 +8,14 @@ Usage:
     python scripts/fetch_trends.py [--query QUERY] [--domain DOMAIN] [--max-results 5] [--scaffold]
 """
 
-import sys
-import os
-import re
-import json
 import argparse
-import urllib.request
+import re
+import sys
 import urllib.parse
+import urllib.request
 import xml.etree.ElementTree as ET
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 # Domain query keywords for automated tracking
 DOMAIN_QUERIES = {

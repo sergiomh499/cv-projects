@@ -4,8 +4,8 @@ Comprehensive validator for cv-projects repository.
 Verifies all 12 topic domains, shared architectures, Obsidian schemas, and relative links.
 """
 
-import sys
 import re
+import sys
 from pathlib import Path
 
 REQUIRED_TOPICS = [

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Shared pytest fixtures for cv-projects test suite."""
-import pytest
 from pathlib import Path
+
+import pytest
 
 
 @pytest.fixture(scope="session")

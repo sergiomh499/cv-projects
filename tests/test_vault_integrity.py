@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """Vault integrity tests: topic structure, README sections, wiki-links, architecture frontmatter."""
 import re
-import pytest
-from pathlib import Path
-
 
 EXPECTED_TOPICS = {
     "object-detection",

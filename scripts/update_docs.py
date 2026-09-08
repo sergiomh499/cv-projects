@@ -9,11 +9,11 @@ Usage:
     python scripts/update_docs.py [--check] [--fix]
 """
 
-import sys
-import re
 import argparse
+import re
+import sys
 from pathlib import Path
-from datetime import date
+
 
 def parse_frontmatter(content: str) -> dict:
     if not content.startswith("---"):
@@ -68,7 +68,7 @@ def main():
     parser = argparse.ArgumentParser(description="Synchronize repository docs and triggers.")
     parser.add_argument("--check", action="store_true", help="Check if docs need synchronization.")
     parser.add_argument("--fix", action="store_true", default=True, help="Automatically synchronize and update.")
-    args = parser.parse_args()
+    _args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parent.parent
     print(f"[+] Scanning vault at: {repo_root}")

@@ -3,9 +3,9 @@
 import shutil
 import subprocess
 import sys
-import pytest
 from pathlib import Path
 
+import pytest
 
 _REPO = Path(__file__).parent.parent.resolve()
 _COOKBOOKS = _REPO / "cookbooks"
