@@ -1,0 +1,46 @@
+[project]
+name = "cv-projects"
+version = "0.1.0"
+description = "Curated Knowledge & Playbooks for CV, ML, AI Research, Sensor Fusion, and Deployment (CUDA/Vulkan/FPGA)"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "fiftyone>=0.23.0",
+    "rerun-sdk>=0.18.0",
+    "numpy>=1.24.0",
+    "opencv-python-headless>=4.8.0",
+    "scipy>=1.11.0",
+    "pydantic>=2.5.0",
+    "rich>=13.7.0",
+    "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.6.0",
+    "commitzen>=3.13.0",
+    "pytest>=7.4.0",
+    "ruff>=0.2.0",
+]
+deployment = [
+    "onnx>=1.15.0",
+    "onnxruntime-gpu>=1.17.0",
+]
+
+[tool.commitzen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_scheme = "semver"
+version_provider = "pep621"
+update_changelog_on_bump = true
+major_version_zero = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

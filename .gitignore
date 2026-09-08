@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# PyTorch / Models / Weights
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+*.tflite
+*.safetensors
+*.bin
+weights/
+checkpoints/
+
+# FiftyOne & Data
+~/.fiftyone/
+fiftyone/
+data/
+raw_data/
+datasets/
+
+# Rerun logs
+*.rrd
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs and debug
+runs/
+wandb/
+logs/
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
