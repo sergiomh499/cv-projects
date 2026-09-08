@@ -1,22 +1,25 @@
 ---
-title: Object Detection Historical Evolution & Architectural Lineage
+title: Object Detection - Historical Evolution & Paradigms
+type: evolution-guide
+domain: Object Detection
 tags:
-  - computer-vision
+  - evolution
+  - history
+  - architecture
+  - yolo
+  - detr
   - object-detection
-  - architecture-evolution
-  - yolo-lineage
-  - detr-lineage
-  - didactic
 updated: 2026-09-08
 aliases:
   - Detection Evolution
+  - Object Detection History
 ---
 
-# Object Detection: Historical Evolution, Paradigms & Architectural Lineage
+# 📜 Object Detection: Historical Evolution & Paradigm Shifts
 
 A didactic guide dissecting how 2D object detection evolved from hand-crafted sliding-window filters to anchor-based two-stage detectors, the complete YOLO revolution (YOLOv1 through YOLO11 & YOLO26), and modern set-prediction Transformers (DETR to RF-DETR).
 
-Related notes: [[topics/object-detection/README|Object Detection Playbook]], [[topics/gpu-deployment/README|GPU Deployment]].
+Related notes: [[topics/object-detection/00-object-detection-moc|Object Detection MOC]], [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]].
 
 ---
 
