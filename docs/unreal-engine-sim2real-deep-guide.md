@@ -103,6 +103,12 @@ In extreme low-data regimes, adversarial training can suffer from discriminator 
 $$\mathcal{W}_c(\mu_{\text{syn}}, \mu_{\text{real}}) = \min_{T \ge 0} \sum_{i, j} T_{ij} \cdot \|z_i^{\text{syn}} - z_j^{\text{real}}\|_2^2 + \tau_1 \text{KL}(T \mathbf{1} \| \mu_{\text{syn}}) + \tau_2 \text{KL}(T^T \mathbf{1} \| \mu_{\text{real}})$$
 This allows partial distribution matching, ignoring synthetic outlier scenarios that have no physical counterpart in the small real validation dataset.
 
+### 3. Supervised Contrastive Sim2Real Alignment (SupCon / InfoNCE):
+When a tiny pool of labeled real samples ($10-20$ samples per class) is available, Supervised Contrastive Learning pulls synthetic and real representations of the same semantic class together into a tight cluster while forcing apart negative distractors:
+$$\mathcal{L}_{\text{SupCon}} = - \sum_{i \in I} \frac{1}{|P(i)|} \sum_{p \in P(i)} \log \frac{\exp(z_i \cdot z_p / \tau)}{\sum_{a \in A(i)} \exp(z_i \cdot z_a / \tau)}$$
+- Where anchor $i$ is from Unreal Engine, and positive matches $p \in P(i)$ include both other synthetic views AND the scarce real camera crops.
+- **Result**: Directly expands the cross-domain margin from negative to positive ($>1.0$), ensuring zero-shot inference on physical cameras. (See runnable implementation: `cookbooks/10-contrastive-sim2real-alignment/contrastive_alignment.py`).
+
 ---
 
 ## 4. Production Step-by-Step Execution Plan

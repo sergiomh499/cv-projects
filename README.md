@@ -85,6 +85,7 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/07-neuromorphic-event-flow/event_flow.py|07-neuromorphic-event-flow]]**: Asynchronous Surface of Active Events (SAE) optical flow estimation via local plane fitting in $\mathcal{O}(1)$ time.
 - **[[cookbooks/08-control-barrier-filter/cbf_qp_filter.py|08-control-barrier-filter]]**: Real-time Control Barrier Function (CBF) Quadratic Program safety filter enforcing forward invariance on unverified deep policy actions.
 - **[[cookbooks/09-dann-sim2real-safety-gate/dann_safety_gate.py|09-dann-sim2real-safety-gate]]**: Sim2Real Domain Adaptation & Critical Mission Safety Gate rejecting ambiguous, high-entropy, or out-of-distribution deep/generative actions.
+- **[[cookbooks/10-contrastive-sim2real-alignment/contrastive_alignment.py|10-contrastive-sim2real-alignment]]**: Supervised Contrastive Learning (SupCon / InfoNCE) projecting synthetic UE5 and scarce real physical crops into a unified domain-invariant manifold.
 ---
 
 ## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices
