@@ -378,7 +378,12 @@ def run_spatial_stream_pipeline(
         Pinhole_cls = rr.Pinhole
         Image_cls = rr.Image
         Boxes3D_cls = rr.Boxes3D
-        Scalar_cls = rr.Scalar
+        if hasattr(rr, "Scalar"):
+            Scalar_cls = rr.Scalar
+        elif hasattr(rr, "Scalars"):
+            Scalar_cls = rr.Scalars
+        else:
+            Scalar_cls = MockScalar
         logger: Any = rr
     else:
         logger = StandaloneSpatialLogger("cookbook_rerun_sensor_stream")
