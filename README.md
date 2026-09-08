@@ -97,6 +97,7 @@ Dedicated deep engineering and didactic theoretical references:
 - **[[docs/edge-ai-quantization-playbook.md|Edge-AI Quantization Playbook: PTQ vs QAT, Mixed-Precision & Outlier Suppression]]**: Production guide covering SmoothQuant mathematical outlier suppression, TensorRT 10 explicit Q/DQ compilation, and AMD Vitis AI 5.x / Quark NPU workflows.
 - **[[docs/unreal-engine-sim2real-deep-guide.md|Unreal Engine Sim2Real Deep Guide: Synthetic Generation, Domain Randomization & Low-Real-Data Adaptation]]**: Complete architectural blueprint for training with massive UE5 Nanite/Lumen synthetic worlds and certifying against strictly isolated, scarce physical validation sets via DANN and Optimal Transport.
 - **[[docs/hardware-runtimes-and-certification-reality.md|Hardware Perception & Inference Reality: CUDA, TensorRT, Vulkan, Vulkan SC & Vitis AI]]**: Ground-truth engineering guide detailing how each runtime actually executes, how each is tested, and the exact compilation workflows.
+- **[[docs/hardware-runtimes/00-hardware-runtimes-moc.md|Modular Hardware Perception Runtimes Hub]]**: Dedicated deep guides for [[docs/hardware-runtimes/01-cuda-tensorrt-runtime|01. CUDA & TensorRT]], [[docs/hardware-runtimes/02-vulkan-compute-runtime|02. Vulkan 1.3 Compute]], [[docs/hardware-runtimes/03-vulkan-sc-safety-runtime|03. Vulkan SC & CoreAVI (DO-178C/ISO 26262)]], and [[docs/hardware-runtimes/04-vitis-ai-versal-npu-runtime|04. AMD Vitis AI & Versal NPU]].
 ---
 
 ## ⚖️ Global Commercial Usability & License Matrix
