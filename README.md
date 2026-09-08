@@ -43,6 +43,7 @@ A curated research engineering knowledge base, didactic repository, and producti
 | **15. Explainability & Interpretability** | [[topics/explainability-and-interpretability/00-explainability-and-interpretability-moc\|Explainability MOC]] ([Directory](topics/explainability-and-interpretability/README.md)) | Mechanistic CBMs, Sparse Autoencoders, Faithfulness Saliency | `jacobgil/pytorch-grad-cam`, `yewsiang/ConceptBottleneck` | 12 ms Attribution | **MIT / Apache-2.0** |
 | **16. Event-Based Neuromorphic Vision** | [[topics/event-based-neuromorphic-vision/00-event-based-neuromorphic-vision-moc\|Event Vision MOC]] ([Directory](topics/event-based-neuromorphic-vision/README.md)) | Prophesee Metavision 5.x, Spikformers, ESVO, Benosman Flow | `prophesee-ai/metavision_sdk`, `fangwei123456/spikingjelly` | <1 $\mu$s Temporal Res (>120 dB) | **Apache-2.0** |
 | **17. Thermal & Hyperspectral Vision** | [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspectral-vision-moc\|Thermal Vision MOC]] ([Directory](topics/thermal-and-hyperspectral-vision/README.md)) | TherA, UniCD, Frequency-Guided Cross-Attention, VOx Microbolometers | `FLIR/flirpy`, `spectral/spectral` | 800 FPS NUC (<1.5 ms) | **MIT / Apache-2.0** |
+| **18. Active 3D Sensing & Structured Light** | [[topics/active-3d-sensing-and-structured-light/00-active-3d-sensing-and-structured-light-moc\|Active 3D Sensing MOC]] ([Directory](topics/active-3d-sensing-and-structured-light/README.md)) | Sinusoidal Phase Profilometry, Indirect/Direct ToF SPAD, RealSense | `IntelRealSense/librealsense`, `isl-org/Open3D` | <10 $\mu$m Metrology (90 FPS) | **Apache-2.0 / MIT** |
 ---
 
 ## 🏛️ Central Architecture Vault (`architectures/`)
@@ -81,6 +82,7 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/05-alpha-beta-crown-verification/bound_verification.py|05-alpha-beta-crown-verification]]**: Linear relaxation neural network interval bound propagation (IBP) certifying $L_\infty$ robustness.
 - **[[cookbooks/06-mechanistic-cbm-attribution/concept_intervention.py|06-mechanistic-cbm-attribution]]**: Concept Bottleneck Model (CBM) with test-time human-in-the-loop concept intervention.
 - **[[cookbooks/07-neuromorphic-event-flow/event_flow.py|07-neuromorphic-event-flow]]**: Asynchronous Surface of Active Events (SAE) optical flow estimation via local plane fitting in $\mathcal{O}(1)$ time.
+- **[[cookbooks/08-control-barrier-filter/cbf_qp_filter.py|08-control-barrier-filter]]**: Real-time Control Barrier Function (CBF) Quadratic Program safety filter enforcing forward invariance on unverified deep policy actions.
 ---
 
 ## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices
@@ -88,6 +90,7 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 Dedicated deep engineering and didactic theoretical references:
 - **[[docs/critical-scenarios-hardware-matrix.md|Critical Scenarios Hardware Benchmarking & Acceleration Matrix]]**: Comparative evaluation across **AMD Versal AI Edge Gen 2 (AIE-ML v2 / NPU IP with Vitis AI 5.x)**, **CoreAVI DO-178C / DO-254 DAL-A Vulkan SC**, **NVIDIA Jetson AGX Orin Industrial**, **NVIDIA RTX 4090**, and **AMD Alveo U50 / Xilinx Kria**.
 - **[[docs/edge-ai-quantization-playbook.md|Edge-AI Quantization Playbook: PTQ vs QAT, Mixed-Precision & Outlier Suppression]]**: Production guide covering SmoothQuant mathematical outlier suppression, TensorRT 10 explicit Q/DQ compilation, and AMD Vitis AI 5.x / Quark NPU workflows.
+- **[[docs/unreal-engine-sim2real-deep-guide.md|Unreal Engine Sim2Real Deep Guide: Synthetic Generation, Domain Randomization & Low-Real-Data Adaptation]]**: Complete architectural blueprint for training with massive UE5 Nanite/Lumen synthetic worlds and certifying against strictly isolated, scarce physical validation sets via DANN and Optimal Transport.
 ---
 
 ## ⚖️ Global Commercial Usability & License Matrix

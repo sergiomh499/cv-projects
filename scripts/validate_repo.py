@@ -26,6 +26,7 @@ REQUIRED_TOPICS = [
     "explainability-and-interpretability",
     "event-based-neuromorphic-vision",
     "thermal-and-hyperspectral-vision",
+    "active-3d-sensing-and-structured-light",
 ]
 
 def check_yaml_frontmatter(content: str, filepath: Path) -> list[str]:
