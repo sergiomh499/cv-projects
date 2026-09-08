@@ -250,7 +250,7 @@ trtexec --onnx=exports/sam2_decoder.onnx \
    - In continuous $24/7$ robotic inspection, an unconstrained memory bank will eventually exhaust GPU VRAM.
    - Configure a strict cyclic FIFO window (`memory_bank_size = 8`) and periodically consolidate prompt conditioning keyframes to bound VRAM consumption to a constant **$2.4\text{ GB}$**.
 2. **Zero-Copy DMA-BUF Ingestion**:
-   - Pair SAM 2.1 with [[architectures/hardware-and-acceleration-runtimes/iceoryx2-and-zenoh|Iceoryx2 Zero-Copy Shared Memory]] to stream $1080\text{p}$ camera frames directly into the Hiera image embedding pipeline without host CPU memory copies.
+   - Pair SAM 2.1 with [[architectures/hardware-and-acceleration-runtimes/iceoryx2-ipc|Iceoryx2 Zero-Copy Shared Memory]] to stream $1080\text{p}$ camera frames directly into the Hiera image embedding pipeline without host CPU memory copies.
 
 ---
 

@@ -19,7 +19,7 @@ aliases:
 > **Obsidian Users**: Access the unified Map of Content at [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance & Robotics MOC]].
 
 ## 📌 Executive Brief
-Visual Guidance translates real-time visual streams into physical robot control commands, trajectory waypoints, and manipulation grasps. The domain has evolved from handcrafted visual servoing to **Vision-Language-Action (VLA) foundation models** ([[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|OpenVLA & AnyGrasp]]) that map natural language and camera frames directly into continuous 7-DoF robot motor control.
+Visual Guidance translates real-time visual streams into physical robot control commands, trajectory waypoints, and manipulation grasps. The domain has evolved from handcrafted visual servoing to **Vision-Language-Action (VLA) foundation models** ([[architectures/multimodal-vlm-and-vla/openvla|OpenVLA & AnyGrasp]]) that map natural language and camera frames directly into continuous 7-DoF robot motor control.
 
 ---
 
@@ -46,7 +46,7 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 | **Visual Guidance & Robotics MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-visual-guidance-and-robotics-moc.md) <br> `[[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|00-visual-guidance-and-robotics-moc]]` |
 | **Historical Evolution & Paradigms** | `Evolution Guide` | Progression from IBVS/PBVS visual servoing to contact grasp nets and autoregressive VLA models | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/visual-guidance-and-robotics/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
 | **Production Pipeline & Workarounds** | `Playbook` | Action chunking, damped least-squares inverse kinematics, and control barrier function safety shields | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/visual-guidance-and-robotics/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
-| **OpenVLA & AnyGrasp Deep-Dive** | `Architecture Vault` | Detailed breakdown of autoregressive action tokenization and dense 6-DoF grasp synthesis | [Open OpenVLA/AnyGrasp](../../architectures/multimodal-vlm-and-vla/anygrasp-and-openvla.md) <br> `[[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|anygrasp-and-openvla]]` |
+| **OpenVLA & AnyGrasp Deep-Dive** | `Architecture Vault` | Detailed breakdown of autoregressive action tokenization and dense 6-DoF grasp synthesis | [Open OpenVLA/AnyGrasp](../../architectures/multimodal-vlm-and-vla/anygrasp-and-openvla.md) <br> `[[architectures/multimodal-vlm-and-vla/openvla|anygrasp-and-openvla]]` |
 
 ---
 

@@ -47,7 +47,7 @@ aliases:
 - Surgical tool tracking and robotic surgery guidance.
 - Augmented reality virtual asset rendering and spatial anchoring.
 
-The field has transitioned from per-object dense keypoint predictors (PVNet, DenseFusion) to zero-shot foundation models driven by 3D CAD meshes ([[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|FoundationPose & MegaPose]]).
+The field has transitioned from per-object dense keypoint predictors (PVNet, DenseFusion) to zero-shot foundation models driven by 3D CAD meshes ([[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose & MegaPose]]).
 
 ---
 
@@ -58,8 +58,8 @@ The field has transitioned from per-object dense keypoint predictors (PVNet, Den
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **FoundationPose** | Foundation 3D ViT | Zero-shot pose estimation and 32 ms tracking from untextured CAD mesh | ⚠️ **Non-Commercial** | [[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|FoundationPose Deep-Dive]] |
-| **MegaPose** | Iterative Refinement Network | Multi-view render-and-compare transformer for novel object categories | **Apache-2.0** | [[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|MegaPose Deep-Dive]] |
+| **FoundationPose** | Foundation 3D ViT | Zero-shot pose estimation and 32 ms tracking from untextured CAD mesh | ⚠️ **Non-Commercial** | [[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose Deep-Dive]] |
+| **MegaPose** | Iterative Refinement Network | Multi-view render-and-compare transformer for novel object categories | **Apache-2.0** | [[architectures/pose-and-robotics-manipulation/foundationpose|MegaPose Deep-Dive]] |
 
 ---
 
@@ -93,7 +93,7 @@ The field has transitioned from per-object dense keypoint predictors (PVNet, Den
 - Surgical tool tracking and robotic surgery guidance.
 - Augmented reality virtual asset rendering and spatial anchoring.
 
-The field has transitioned from per-object dense keypoint predictors (PVNet, DenseFusion) to zero-shot foundation models driven by 3D CAD meshes ([[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|FoundationPose & MegaPose]]).
+The field has transitioned from per-object dense keypoint predictors (PVNet, DenseFusion) to zero-shot foundation models driven by 3D CAD meshes ([[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose & MegaPose]]).
 
 ---
 
@@ -106,8 +106,8 @@ The field has transitioned from per-object dense keypoint predictors (PVNet, Den
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **FoundationPose** | Foundation 3D ViT | Zero-shot pose estimation and 32 ms tracking from untextured CAD mesh | ⚠️ **Non-Commercial** | [[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|FoundationPose Deep-Dive]] |
-| **MegaPose** | Iterative Refinement Network | Multi-view render-and-compare transformer for novel object categories | **Apache-2.0** | [[architectures/pose-and-robotics-manipulation/foundationpose-and-megapose|MegaPose Deep-Dive]] |
+| **FoundationPose** | Foundation 3D ViT | Zero-shot pose estimation and 32 ms tracking from untextured CAD mesh | ⚠️ **Non-Commercial** | [[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose Deep-Dive]] |
+| **MegaPose** | Iterative Refinement Network | Multi-view render-and-compare transformer for novel object categories | **Apache-2.0** | [[architectures/pose-and-robotics-manipulation/foundationpose|MegaPose Deep-Dive]] |
 
 ---
 

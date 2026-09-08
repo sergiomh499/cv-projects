@@ -26,7 +26,7 @@ aliases:
 For years, real-time object detection in computer vision was governed almost exclusively by dense convolutional architectures—most notably the YOLO family (from YOLOv1 through [[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12]]). While Detection Transformers (DETR, Deformable DETR, RT-DETR) solved the fundamental limitation of heuristic Non-Maximum Suppression (NMS) by framing object detection as direct bipartite set prediction, they suffered from significant latency, memory, and convergence hurdles when deployed on edge hardware.
 
 **RF-DETR** (*Roboflow Detection Transformer*, ICLR 2026 / arXiv:2511.09554) introduces a paradigm shift in real-time object detection by harmonizing three core pillars:
-1. **Self-Supervised Vision Foundation Backbone**: Instead of training lightweight convolutional backbones from scratch on standard ImageNet classification labels, RF-DETR directly distills representations from self-supervised [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2]] vision transformers. This provides dense, semantically rich, fine-grained patch representations with unprecedented out-of-distribution robustness.
+1. **Self-Supervised Vision Foundation Backbone**: Instead of training lightweight convolutional backbones from scratch on standard ImageNet classification labels, RF-DETR directly distills representations from self-supervised [[architectures/vision-foundation-models/dinov2|DINOv2]] vision transformers. This provides dense, semantically rich, fine-grained patch representations with unprecedented out-of-distribution robustness.
 2. **Weight-Sharing Neural Architecture Search (NAS)**: Rather than hand-tuning individual model variants, RF-DETR trains a single weight-sharing SuperNet across depth, channel width, and attention heads. A multi-objective evolutionary algorithm searches this space to extract Pareto-optimal sub-networks spanning Nano, Small, Medium, Large, and 2XLarge configurations.
 3. **NMS-Free End-to-End Latency**: By eliminating heuristic Non-Maximum Suppression (NMS) post-processing, inference latency is strictly deterministic ($\mathcal{O}(1)$ post-processing overhead) and immune to crowd-scene latency degradation.
 
@@ -103,7 +103,7 @@ flowchart LR
 ### A. DINOv2 Foundation Feature Adaptation
 Standard real-time detectors extract feature hierarchies through sequential $3 \times 3$ convolutional stages (P3, P4, P5). However, classification-pretrained CNN backbones tend to drop subtle edge textures and high-frequency spatial details required for small-object localization.
 
-RF-DETR extracts intermediate feature tokens from frozen or LoRA-fine-tuned [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2]] vision transformers. Given an input image $I \in \mathbb{R}^{3 \times H \times W}$ partitioned into patches of size $p \times p$ (where $p=14$), the sequence length is $N = (H/14) \times (W/14)$. To construct a standard multi-scale feature pyramid $\{P_3, P_4, P_5\}$, RF-DETR applies a lightweight convolutional-transposed adapter:
+RF-DETR extracts intermediate feature tokens from frozen or LoRA-fine-tuned [[architectures/vision-foundation-models/dinov2|DINOv2]] vision transformers. Given an input image $I \in \mathbb{R}^{3 \times H \times W}$ partitioned into patches of size $p \times p$ (where $p=14$), the sequence length is $N = (H/14) \times (W/14)$. To construct a standard multi-scale feature pyramid $\{P_3, P_4, P_5\}$, RF-DETR applies a lightweight convolutional-transposed adapter:
 1. **$P_3$ ($8 \times$ downsampling equivalent, $H/8 \times W/8$)**: Computed via transposed convolution $2 \times$ upsampling on the $14 \times 14$ ViT patch tokens.
 2. **$P_4$ ($16 \times$ downsampling equivalent, $H/16 \times W/16$)**: Computed via bilinear interpolation and $1 \times 1$ projection from the raw patch tokens.
 3. **$P_5$ ($32 \times$ downsampling equivalent, $H/32 \times W/32$)**: Computed via strided $3 \times 3$ convolution ($s=2$) from $P_4$.
@@ -200,7 +200,7 @@ Standard COCO metrics favor models overfitted to typical consumer camera photos.
 | **RT-DETRv2-L**| $53.4\%$ | $47.5\%$ | $28.4\%$ | $60\text{ epochs}$ |
 | **RF-DETR-Large**| **$56.5\%$** | **$58.4\%$** ($+10.3\text{ pp}$) | **$38.7\%$** ($+9.7\text{ pp}$) | **$15\text{ epochs}$** |
 
-The $+10.3\%$ gain on RF100-VL directly stems from the self-supervised [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2]] representations, which capture geometric invariant structures rather than class-specific semantic shortcuts.
+The $+10.3\%$ gain on RF100-VL directly stems from the self-supervised [[architectures/vision-foundation-models/dinov2|DINOv2]] representations, which capture geometric invariant structures rather than class-specific semantic shortcuts.
 
 ---
 
@@ -405,7 +405,7 @@ graph TD
 - **Small Object Detection**: The dense geometric patch representations from DINOv2 preserve subtle pixel features that typical convolutional strided pooling layers discard.
 
 ### When to Prefer CNN / Area-Attention Alternatives:
-- **Microcontrollers & Low-Power NPUs (Ambarella, Rockchip, Hailo)**: While TensorRT executes deformable cross-attention efficiently on NVIDIA Tensor Cores, non-NVIDIA NPU toolchains frequently lack native multi-scale deformable attention hardware intrinsics. For these targets, [[architectures/backbones-and-edge-efficiency/convnext-and-mobilenet|MobileNetV4]] or [[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12]] provides easier graph lowering.
+- **Microcontrollers & Low-Power NPUs (Ambarella, Rockchip, Hailo)**: While TensorRT executes deformable cross-attention efficiently on NVIDIA Tensor Cores, non-NVIDIA NPU toolchains frequently lack native multi-scale deformable attention hardware intrinsics. For these targets, [[architectures/backbones-and-edge-efficiency/convnext-v2|MobileNetV4]] or [[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12]] provides easier graph lowering.
 
 ---
 
@@ -413,9 +413,9 @@ graph TD
 
 - **Related Architectures**:
   - [[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12: Attention-Centric Real-Time Detection]]
-  - [[architectures/vision-foundation-models/dinov2-and-dinov3|DINOv2 & DINOv3 Vision Foundation Models]]
-  - [[architectures/real-time-detectors-and-segmenters/fastsam-and-mobilesam|FastSAM & MobileSAM Edge Segmenters]]
-  - [[architectures/backbones-and-edge-efficiency/convnext-and-mobilenet|ConvNeXt V2 & MobileNetV4]]
+  - [[architectures/vision-foundation-models/dinov2|DINOv2 & DINOv3 Vision Foundation Models]]
+  - [[architectures/real-time-detectors-and-segmenters/fastsam|FastSAM & MobileSAM Edge Segmenters]]
+  - [[architectures/backbones-and-edge-efficiency/convnext-v2|ConvNeXt V2 & MobileNetV4]]
 - **Topic Deep Dives**:
   - [[topics/object-detection/00-object-detection-moc|Object Detection MOC]]
   - [[topics/object-detection/models/rf-detr|RF-DETR In-Depth Production Guide]]

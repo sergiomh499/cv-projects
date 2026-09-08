@@ -45,7 +45,7 @@ aliases:
 Visual Guidance translates real-time visual streams into physical robot control commands, trajectory waypoints, and end-effector manipulation actions. Key application domains include:
 - Visual Servoing (PBVS & IBVS) for precision docking and drone landing.
 - Dense 6-DoF grasp synthesis on unstructured physical objects.
-- End-to-end **Vision-Language-Action (VLA) foundation policies** ([[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|AnyGrasp & OpenVLA]]) that directly predict continuous robotic joint velocities from natural language instructions.
+- End-to-end **Vision-Language-Action (VLA) foundation policies** ([[architectures/multimodal-vlm-and-vla/openvla|AnyGrasp & OpenVLA]]) that directly predict continuous robotic joint velocities from natural language instructions.
 
 ---
 
@@ -56,8 +56,8 @@ Visual Guidance translates real-time visual streams into physical robot control 
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Operational Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **OpenVLA & Octo** | Vision-Language-Action (VLA) | Autoregressive tokenization mapping visual tokens to 7-DoF joint actions | **Apache-2.0** | [[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|OpenVLA & AnyGrasp Deep-Dive]] |
-| **AnyGrasp & GraspNet** | Dense 6-DoF Grasp Network | Evaluates billions of candidate grasps directly on dense point clouds | **Research / Non-Commercial** | [[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|OpenVLA & AnyGrasp Deep-Dive]] |
+| **OpenVLA & Octo** | Vision-Language-Action (VLA) | Autoregressive tokenization mapping visual tokens to 7-DoF joint actions | **Apache-2.0** | [[architectures/multimodal-vlm-and-vla/openvla|OpenVLA & AnyGrasp Deep-Dive]] |
+| **AnyGrasp & GraspNet** | Dense 6-DoF Grasp Network | Evaluates billions of candidate grasps directly on dense point clouds | **Research / Non-Commercial** | [[architectures/multimodal-vlm-and-vla/openvla|OpenVLA & AnyGrasp Deep-Dive]] |
 
 ---
 
@@ -89,7 +89,7 @@ Visual Guidance translates real-time visual streams into physical robot control 
 Visual Guidance translates real-time visual streams into physical robot control commands, trajectory waypoints, and end-effector manipulation actions. Key application domains include:
 - Visual Servoing (PBVS & IBVS) for precision docking and drone landing.
 - Dense 6-DoF grasp synthesis on unstructured physical objects.
-- End-to-end **Vision-Language-Action (VLA) foundation policies** ([[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|AnyGrasp & OpenVLA]]) that directly predict continuous robotic joint velocities from natural language instructions.
+- End-to-end **Vision-Language-Action (VLA) foundation policies** ([[architectures/multimodal-vlm-and-vla/openvla|AnyGrasp & OpenVLA]]) that directly predict continuous robotic joint velocities from natural language instructions.
 
 ---
 
@@ -102,8 +102,8 @@ Visual Guidance translates real-time visual streams into physical robot control 
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Operational Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **OpenVLA & Octo** | Vision-Language-Action (VLA) | Autoregressive tokenization mapping visual tokens to 7-DoF joint actions | **Apache-2.0** | [[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|OpenVLA & AnyGrasp Deep-Dive]] |
-| **AnyGrasp & GraspNet** | Dense 6-DoF Grasp Network | Evaluates billions of candidate grasps directly on dense point clouds | **Research / Non-Commercial** | [[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|OpenVLA & AnyGrasp Deep-Dive]] |
+| **OpenVLA & Octo** | Vision-Language-Action (VLA) | Autoregressive tokenization mapping visual tokens to 7-DoF joint actions | **Apache-2.0** | [[architectures/multimodal-vlm-and-vla/openvla|OpenVLA & AnyGrasp Deep-Dive]] |
+| **AnyGrasp & GraspNet** | Dense 6-DoF Grasp Network | Evaluates billions of candidate grasps directly on dense point clouds | **Research / Non-Commercial** | [[architectures/multimodal-vlm-and-vla/openvla|OpenVLA & AnyGrasp Deep-Dive]] |
 
 ---
 

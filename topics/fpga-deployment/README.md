@@ -45,7 +45,7 @@ architectures/                                    # 🔬 Shared Multi-Task Archi
 | **FPGA Deployment MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-fpga-deployment-moc.md) <br> `[[topics/fpga-deployment/00-fpga-deployment-moc|00-fpga-deployment-moc]]` |
 | **Historical Evolution & Paradigms** | `Evolution Guide` | Evolution from RTL VHDL/Verilog to Vivado HLS, DPU processor overlays, and sub-byte LUT-Net | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/fpga-deployment/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
 | **Production Pipeline & Workarounds** | `Playbook` | DPU operator fallback traps, CMA memory pool sizing, direct DMA-BUF zero-copy ingestion | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/fpga-deployment/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
-| **Vitis AI & FINN Deep-Dive** | `Architecture Vault` | Detailed breakdown of DPU instruction overlays vs. spatial dataflow streaming pipelines | [Open Vitis AI/FINN](../../architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn.md) <br> `[[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|vitis-ai-and-finn]]` |
+| **Vitis AI & FINN Deep-Dive** | `Architecture Vault` | Detailed breakdown of DPU instruction overlays vs. spatial dataflow streaming pipelines | [Open Vitis AI/FINN](../../architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn.md) <br> `[[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|vitis-ai-and-finn]]` |
 
 ---
 

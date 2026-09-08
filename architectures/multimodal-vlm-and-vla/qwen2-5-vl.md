@@ -404,7 +404,7 @@ graph TD
 
 ### When to Prefer Specialized Alternatives:
 - **Sub-10ms Real-Time Object Bounding Box Streams**: For industrial conveyor belts, autonomous drone flight, or high-FPS robotics control loops, use dedicated real-time detectors like [[architectures/real-time-detectors-and-segmenters/rf-detr|RF-DETR]] or [[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12]].
-- **Embodied Robotics Trajectory Control**: For direct 6-DoF or 7-DoF end-effector trajectory generation, pair Qwen2.5-VL high-level visual planning with a specialized low-level policy model like [[architectures/multimodal-vlm-and-vla/pi0-and-diffusion-policy|pi0 & Diffusion Policy]] or [[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|OpenVLA]].
+- **Embodied Robotics Trajectory Control**: For direct 6-DoF or 7-DoF end-effector trajectory generation, pair Qwen2.5-VL high-level visual planning with a specialized low-level policy model like [[architectures/multimodal-vlm-and-vla/pi0|pi0 & Diffusion Policy]] or [[architectures/multimodal-vlm-and-vla/openvla|OpenVLA]].
 
 ---
 
@@ -414,8 +414,8 @@ graph TD
   - [[architectures/multimodal-vlm-and-vla/qwen2-vl|Qwen2-VL Dynamic Resolution Foundation Model]]
   - [[architectures/multimodal-vlm-and-vla/internvl2-5|InternVL 2.5 High-Resolution VLM]]
   - [[architectures/multimodal-vlm-and-vla/florence-2|Florence-2 Unified Vision Foundation Model]]
-  - [[architectures/multimodal-vlm-and-vla/pi0-and-diffusion-policy|pi0 & Diffusion Policy Robotics Foundation]]
-  - [[architectures/multimodal-vlm-and-vla/anygrasp-and-openvla|AnyGrasp & OpenVLA Robotic Perception]]
+  - [[architectures/multimodal-vlm-and-vla/pi0|pi0 & Diffusion Policy Robotics Foundation]]
+  - [[architectures/multimodal-vlm-and-vla/openvla|AnyGrasp & OpenVLA Robotic Perception]]
 - **Topic Deep Dives**:
   - [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance & Robotics MOC]]
   - [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]]

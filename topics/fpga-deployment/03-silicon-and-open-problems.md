@@ -20,7 +20,7 @@ aliases:
 
 A deep systems analysis of reconfigurable neural acceleration, Versal AI Engine (AIE-ML v2) architectures, memory-centric LUT-Net compilation, and unresolved deployment gaps in production FPGA Edge AI.
 
-Related notes: [[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment MOC]], [[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI & FINN Deep-Dive]].
+Related notes: [[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment MOC]], [[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|Vitis AI & FINN Deep-Dive]].
 
 ---
 

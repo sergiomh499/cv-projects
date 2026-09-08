@@ -20,7 +20,7 @@ aliases:
 
 A deep systems investigation into modern four-layer GPU inference stacks, FlashAttention-3 Hopper/Blackwell hardware utilization, sub-byte FP8/FP4 precision formats, and unsolved deployment bottlenecks.
 
-Related notes: [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]], [[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT 10 & Vulkan Deep-Dive]].
+Related notes: [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]], [[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT 10 & Vulkan Deep-Dive]].
 
 ---
 

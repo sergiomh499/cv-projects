@@ -20,7 +20,7 @@ aliases:
 
 A deep systems analysis of Multi-Object Tracking (MOT) association heuristics, dense point tracking scalability, long-term cross-camera re-identification (Re-ID), and unsolved research frontiers in visual tracking.
 
-Related notes: [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]], [[architectures/visual-tracking-and-flow/cotracker|CoTracker3 Deep-Dive]], [[architectures/visual-tracking-and-flow/botsort-and-bytetrack|BoT-SORT & ByteTrack]].
+Related notes: [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]], [[architectures/visual-tracking-and-flow/cotracker|CoTracker3 Deep-Dive]], [[architectures/visual-tracking-and-flow/bytetrack|BoT-SORT & ByteTrack]].
 
 ---
 

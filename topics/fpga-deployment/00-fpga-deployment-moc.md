@@ -53,8 +53,8 @@ Key hardware platforms include AMD/Xilinx Zynq UltraScale+ MPSoCs, Kria KV260/KR
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | System / Framework | Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **AMD Xilinx Vitis AI 3.5** | Instruction-Driven DPU | Overlay DPU cores executing compiled xmodel instructions without resynthesis | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI & FINN Deep-Dive]] |
-| **FINN & Brevitas** | Spatial Dataflow Streaming | Compiles quantized neural networks (1-4 bit) into dedicated hardware LUT pipelines | **Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI & FINN Deep-Dive]] |
+| **AMD Xilinx Vitis AI 3.5** | Instruction-Driven DPU | Overlay DPU cores executing compiled xmodel instructions without resynthesis | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|Vitis AI & FINN Deep-Dive]] |
+| **FINN & Brevitas** | Spatial Dataflow Streaming | Compiles quantized neural networks (1-4 bit) into dedicated hardware LUT pipelines | **Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|Vitis AI & FINN Deep-Dive]] |
 
 ---
 
@@ -97,8 +97,8 @@ Key hardware platforms include AMD/Xilinx Zynq UltraScale+ MPSoCs, Kria KV260/KR
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | System / Framework | Paradigm | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **AMD Xilinx Vitis AI 3.5** | Instruction-Driven DPU | Overlay DPU cores executing compiled xmodel instructions without resynthesis | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI & FINN Deep-Dive]] |
-| **FINN & Brevitas** | Spatial Dataflow Streaming | Compiles quantized neural networks (1-4 bit) into dedicated hardware LUT pipelines | **Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-and-finn|Vitis AI & FINN Deep-Dive]] |
+| **AMD Xilinx Vitis AI 3.5** | Instruction-Driven DPU | Overlay DPU cores executing compiled xmodel instructions without resynthesis | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|Vitis AI & FINN Deep-Dive]] |
+| **FINN & Brevitas** | Spatial Dataflow Streaming | Compiles quantized neural networks (1-4 bit) into dedicated hardware LUT pipelines | **Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|Vitis AI & FINN Deep-Dive]] |
 
 ---
 

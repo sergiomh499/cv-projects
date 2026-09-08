@@ -49,7 +49,9 @@ graph TD
 
 ---
 
-## 🔗 Related Architecture Links
+## 🔗 Related Vault & Architecture Links
+- [[hardware/README|Hardware Platforms & Silicon Acceleration Vault]]
+- [[frameworks/README|Software Frameworks, Compilers & Inference Runtimes Vault]]
 - [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]]
 - [[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment MOC]]
 - [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Systems MOC]]

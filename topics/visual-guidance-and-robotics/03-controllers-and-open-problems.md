@@ -19,7 +19,7 @@ aliases:
 
 A deep systems investigation into bridging high-latency vision foundation policies with high-rate motor controllers, addressing phase lag instabilities, kinematics singularities, and the unsolved frontiers of Vision-Language-Action (VLA) manipulation.
 
-Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance MOC]], [[architectures/multimodal-vlm-and-vla/pi0-and-diffusion-policy|π0 & Diffusion Policy Deep-Dive]].
+Related notes: [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance MOC]], [[architectures/multimodal-vlm-and-vla/pi0|π0 & Diffusion Policy Deep-Dive]].
 
 ---
 

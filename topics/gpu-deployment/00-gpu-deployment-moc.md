@@ -45,7 +45,7 @@ aliases:
 GPU Deployment focuses on maximizing inference throughput, minimizing end-to-end latency, and optimizing memory efficiency across desktop workstations, cloud datacenters, and embedded edge graphics processors (NVIDIA RTX/Blackwell, Jetson Orin, AMD ROCm, Apple Silicon, and Vulkan mobile GPUs).
 
 Key focus areas include:
-- Graph optimization and kernel fusion engines ([[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT 10 & Vulkan Kompute]]).
+- Graph optimization and kernel fusion engines ([[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT 10 & Vulkan Kompute]]).
 - Sub-byte quantization: FP16, INT8 PTQ/QAT, and FP8 formats.
 - Overcoming CPU launch latency via **CUDA Graphs**.
 - Multi-stream concurrency and Triton Inference Server clustering.
@@ -59,8 +59,8 @@ Key focus areas include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Framework / Engine | Target Platforms | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **TensorRT 10** | NVIDIA Desktop / Jetson | FP8 quantization, FlashAttention fusion, CUDA Graph compilation | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT & Vulkan Deep-Dive]] |
-| **Vulkan / NCNN** | Cross-Platform (AMD, Intel, ARM) | SPIR-V compute shaders for cross-vendor GPU execution | **BSD-3 / Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT & Vulkan Deep-Dive]] |
+| **TensorRT 10** | NVIDIA Desktop / Jetson | FP8 quantization, FlashAttention fusion, CUDA Graph compilation | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT & Vulkan Deep-Dive]] |
+| **Vulkan / NCNN** | Cross-Platform (AMD, Intel, ARM) | SPIR-V compute shaders for cross-vendor GPU execution | **BSD-3 / Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT & Vulkan Deep-Dive]] |
 
 ---
 
@@ -92,7 +92,7 @@ Key focus areas include:
 GPU Deployment focuses on maximizing inference throughput, minimizing end-to-end latency, and optimizing memory efficiency across desktop workstations, cloud datacenters, and embedded edge graphics processors (NVIDIA RTX/Blackwell, Jetson Orin, AMD ROCm, Apple Silicon, and Vulkan mobile GPUs).
 
 Key focus areas include:
-- Graph optimization and kernel fusion engines ([[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT 10 & Vulkan Kompute]]).
+- Graph optimization and kernel fusion engines ([[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT 10 & Vulkan Kompute]]).
 - Sub-byte quantization: FP16, INT8 PTQ/QAT, and FP8 formats.
 - Overcoming CPU launch latency via **CUDA Graphs**.
 - Multi-stream concurrency and Triton Inference Server clustering.
@@ -108,8 +108,8 @@ Key focus areas include:
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Framework / Engine | Target Platforms | Primary Innovation | License | Dedicated Note Link |
 | :--- | :--- | :--- | :---: | :---: |
-| **TensorRT 10** | NVIDIA Desktop / Jetson | FP8 quantization, FlashAttention fusion, CUDA Graph compilation | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT & Vulkan Deep-Dive]] |
-| **Vulkan / NCNN** | Cross-Platform (AMD, Intel, ARM) | SPIR-V compute shaders for cross-vendor GPU execution | **BSD-3 / Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-and-vulkan|TensorRT & Vulkan Deep-Dive]] |
+| **TensorRT 10** | NVIDIA Desktop / Jetson | FP8 quantization, FlashAttention fusion, CUDA Graph compilation | **Apache-2.0 / EULA** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT & Vulkan Deep-Dive]] |
+| **Vulkan / NCNN** | Cross-Platform (AMD, Intel, ARM) | SPIR-V compute shaders for cross-vendor GPU execution | **BSD-3 / Apache-2.0** | [[architectures/hardware-and-acceleration-runtimes/tensorrt-runtime|TensorRT & Vulkan Deep-Dive]] |
 
 ---
 
