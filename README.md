@@ -52,12 +52,20 @@ A curated research engineering knowledge base, didactic repository, and producti
 
 Dedicated landmark architectures and foundation models (each in an independent reference document):
 - **[[architectures/3d-pointclouds-and-lidar/bevfusion|BEVFusion: Multi-Task Multi-Sensor Camera-LiDAR Fusion in Bird's-Eye View]]**: Unified Multi-Modal Bird's-Eye-View (BEV) Network (Apache-2.0).
+- **[[architectures/3d-pointclouds-and-lidar/centerpoint|CenterPoint: Center-based 3D Object Detection and Tracking]]**: Center-Based Anchor-Free 3D Detection and Tracking Network (MIT).
 - **[[architectures/3d-pointclouds-and-lidar/dsvt|DSVT: Dynamic Sparse Voxel Transformer for 3D LiDAR Object Detection]]**: Dynamic Sparse Window Voxel Transformer (Apache-2.0).
 - **[[architectures/3d-pointclouds-and-lidar/flatformer|FlatFormer: Equal-Work Grouping 3D Voxel Transformer for Real-Time Point Cloud Perception]]**: Equal-Work Group Voxel Transformer (Apache-2.0).
+- **[[architectures/3d-pointclouds-and-lidar/pointpillars|PointPillars: Fast Encoders for Object Detection from Point Clouds]]**: 2D Pillar-Based 3D Object Detection Network (Apache-2.0).
+- **[[architectures/3d-pointclouds-and-lidar/pv-rcnn|PV-RCNN: Point-Voxel Feature Set Abstraction for 3D Object Detection]]**: Two-Stage Point-Voxel Hybrid 3D Detection Network (Apache-2.0).
 - **[[architectures/3d-pointclouds-and-lidar/sparse4d|Sparse4D: Multi-Camera Temporal 4D Sparse Object Detection and Tracking]]**: Sparse 4D Temporal Deformable Transformer (Apache-2.0).
+- **[[architectures/3d-pointclouds-and-lidar/stream-petr|StreamPETR: Exploring Object-Centric Temporal Modeling for Multi-View 3D Object Detection]]**: Object-Centric Streaming 3D Transformer (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/convnext-v2|ConvNeXt V2: Co-designing Pure ConvNets and Masked Autoencoders with Global Response Normalization]]**: Modern Pure ConvNet (Inverted Bottleneck & GRN) (Apache-2.0).
+- **[[architectures/backbones-and-edge-efficiency/efficientnet-v2|EfficientNetV2: Smaller Models and Faster Training with Fused-MBConv and Progressive Learning]]**: Efficient ConvNet with Fused-MBConv & Progressive Learning (Apache-2.0).
+- **[[architectures/backbones-and-edge-efficiency/fastvit|FastViT: A Fast Hybrid Vision Transformer using Structural Reparameterization]]**: Hybrid Vision Transformer (RepMixer & RepConv) (Apple Sample Code / Research).
 - **[[architectures/backbones-and-edge-efficiency/mambavision|MambaVision: Hybrid Visual State-Space and Transformer Foundation Backbone]]**: Hybrid State-Space Model (SSM) & Vision Transformer (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/mobilenetv4|MobileNetV4: Universal Models for Efficient On-Device Computer Vision]]**: Universal Inverted Bottleneck (UIB) & Mobile-MQA (Apache-2.0).
+- **[[architectures/backbones-and-edge-efficiency/repvgg|RepVGG: Making VGG-style ConvNets Great Again via Structural Reparameterization]]**: Structurally Reparameterized Plain ConvNet (Multi-Branch Training, Single-Path Inference) (Apache-2.0).
+- **[[architectures/backbones-and-edge-efficiency/swin-transformer|Swin Transformer: Hierarchical Vision Transformer using Shifted Windows]]**: Hierarchical Vision Transformer (Shifted Window Self-Attention) (MIT).
 - **[[architectures/backbones-and-edge-efficiency/vmamba|VMamba: Visual State-Space Model with 2D Selective Scan (SS2D)]]**: Visual State-Space Model (SS2D) (Apache-2.0).
 - **[[architectures/hardware-and-acceleration-runtimes/finn-qnn|FINN & Brevitas: Dataflow Streaming Synthesis for Quantized Neural Networks on FPGAs]]**: Spatial Dataflow Streaming & MVTU Logic Synthesis (Apache-2.0).
 - **[[architectures/hardware-and-acceleration-runtimes/iceoryx2-ipc|Iceoryx2: Ultra-Low-Latency Zero-Copy Shared Memory IPC Middleware for Robotics & Vision]]**: Lock-Free Shared Memory Inter-Process Communication (IPC) (Apache-2.0 / MIT).
@@ -65,16 +73,24 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/hardware-and-acceleration-runtimes/vitis-ai-dpu|Vitis AI 3.5: DPU Hardware Overlays & AI Engine Execution on FPGAs & ACAPs]]**: Instruction-Driven DPU Overlay & AI Engine Vector Tiles (Apache-2.0 / Xilinx EULA).
 - **[[architectures/hardware-and-acceleration-runtimes/vulkan-runtime|Vulkan 1.3 Compute: Vendor-Agnostic Cross-Platform GPU Inference Runtime]]**: Open Cross-Platform GPU Compute Runtime (Apache-2.0).
 - **[[architectures/hardware-and-acceleration-runtimes/zenoh-router|Zenoh: Ultra-Low-Overhead Micro-Broker & Edge-to-Cloud Middleware for Robotics & Perception]]**: Distributed Micro-Broker & Key-Expression Router (Apache-2.0 / EPL-2.0).
+- **[[architectures/multimodal-vlm-and-vla/act|Action Chunking with Transformers (ACT): Bimanual Visuomotor Policy with C-VAE & Temporal Ensembling]]**: Conditional Variational Autoencoder (C-VAE) Visuomotor Transformer Policy (MIT).
 - **[[architectures/multimodal-vlm-and-vla/anygrasp|AnyGrasp: Zero-Shot Dense 6-DoF Robotic Grasp Pose Detection]]**: Dense Point Cloud 6-DoF Grasp Detection Network (Custom / Research Non-Commercial).
 - **[[architectures/multimodal-vlm-and-vla/diffusion-policy|Diffusion Policy: Visuomotor Robot Control via Denoising Diffusion Models]]**: Denoising Diffusion Probabilistic Model (DDPM / DDIM) (MIT).
 - **[[architectures/multimodal-vlm-and-vla/florence-2|Florence-2: Unified Sequence-to-Sequence Vision Foundation Model]]**: Real-Time Unified (MIT).
 - **[[architectures/multimodal-vlm-and-vla/internvl2-5|InternVL 2.5: High-Resolution Multimodal Vision-Language Foundation Model]]**: Foundation Model (Apache-2.0).
+- **[[architectures/multimodal-vlm-and-vla/llava-onevision|LLaVA-OneVision: Unified Visual Representation for Single-Image, Multi-Image, and Video Tasks]]**: Any-Resolution Multi-Modal Large Language Model (VLM) (Apache-2.0).
 - **[[architectures/multimodal-vlm-and-vla/openvla|OpenVLA: Open-Source 7B Vision-Language-Action Foundation Model]]**: Autoregressive Vision-Language-Action (VLA) Transformer (Apache-2.0).
+- **[[architectures/multimodal-vlm-and-vla/palme|PaLM-E: An Embodied Multimodal Language Model]]**: Embodied Multimodal Large Language Model (VLM / VLA Planner) (Proprietary (Google Research Reference Architecture)).
 - **[[architectures/multimodal-vlm-and-vla/pi0|Physical Intelligence π0 (Pi-Zero): Flow Matching Vision-Language-Action Foundation Model]]**: Flow Matching Vision-Language-Action Policy (Apache-2.0).
 - **[[architectures/multimodal-vlm-and-vla/qwen2-5-vl|Qwen2.5-VL: Dynamic-Resolution Vision-Language & Visual-Agent Foundation Model]]**: Foundation Model (Apache-2.0).
 - **[[architectures/multimodal-vlm-and-vla/qwen2-vl|Qwen2-VL: Dynamic Resolution Vision-Language Foundation Model]]**: Real-Time Unified (Apache-2.0).
+- **[[architectures/multimodal-vlm-and-vla/rt-2|RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control]]**: Autoregressive Vision-Language-Action (VLA) Model (Proprietary (Google DeepMind Reference Architecture)).
+- **[[architectures/pose-and-robotics-manipulation/cosypose|CosyPose: Consistent Multi-View Multi-Object 6D Pose Estimation with Global Scene Graph Optimization]]**: Iterative Render-and-Compare Refiner with Global Multi-View Scene Graph Bundle Adjustment (Apache-2.0).
+- **[[architectures/pose-and-robotics-manipulation/dexnet|Dex-Net: Deep Grasping via Robust Surface Normals, Grasp Quality Convolutional Neural Networks (GQ-CNN), and Antipodal Wrench Spaces]]**: Grasp Quality Convolutional Neural Network (GQ-CNN) with Robust Quasi-Static Wrench Space Physics (BSD-2-Clause).
 - **[[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose: Unified 6D Pose Estimation and Tracking for Novel Objects]]**: Foundation Render-and-Compare Vision Transformer (Custom Non-Commercial (NVIDIA)).
+- **[[architectures/pose-and-robotics-manipulation/giga|GIGA: Affordance Learning for Grasping in Clutter via Neural Implicit Representations]]**: Joint Implicit Geometry Reconstruction and 6-DoF Grasp Affordance Field (Neural Implicit Field) (MIT).
 - **[[architectures/pose-and-robotics-manipulation/megapose|MegaPose: 6D Pose Estimation of Novel Objects with Differentiable Render-and-Compare Refinement]]**: Coarse-to-Fine Render-and-Compare 6D Pose Refiner (Apache-2.0).
+- **[[architectures/pose-and-robotics-manipulation/posecnn|PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes]]**: Multi-Task Decoupled 6D Pose Estimation Network (Segmentation + Center Voting + Quaternion Regression) (MIT).
 - **[[architectures/real-time-detectors-and-segmenters/bisenetv2|BiSeNet V2: Bilateral Segmentation Network for Real-Time Semantic Segmentation]]**: Real-Time Segmentation (MIT).
 - **[[architectures/real-time-detectors-and-segmenters/d-fine|D-FINE: Redefine Regression Task for Real-Time Object Detection]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/ddrnet|DDRNet: Deep Dual-Resolution Networks for Real-Time and Accurate Semantic Segmentation]]**: Real-Time Segmentation (Apache-2.0).
@@ -108,16 +124,29 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/real-time-detectors-and-segmenters/yolox|YOLOX: High-Performance Anchor-Free YOLO with Dynamic Optimal Transport Assignment]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/spatial-radiance-and-slam/3d-gaussian-splatting|3D Gaussian Splatting: Real-Time Radiance Field Rendering via Point-Based Primitives]]**: Explicit Differentiable Gaussian Rasterization (Custom / Non-Commercial (Inria / Max Planck)).
 - **[[architectures/spatial-radiance-and-slam/3dgs-slam|3DGS-SLAM: Real-Time Dense Radiance Field Tracking & Mapping with 3D Gaussians]]**: Differentiable 3D Gaussian Primitive Optimization (MIT).
+- **[[architectures/spatial-radiance-and-slam/droid-slam|DROID-SLAM: Deep Visual SLAM for Monocular, Stereo, and RGB-D Cameras]]**: Recurrent Deep Optical Flow & Dense Bundle Adjustment (BSD-2-Clause).
+- **[[architectures/spatial-radiance-and-slam/gaussian-splatting-slam|Gaussian Splatting SLAM: Real-Time Dense Tracking and Mapping with 3D Gaussians]]**: Real-Time Differentiable 3D Gaussian Tracking and Mapping (Custom / Research-Only (Imperial College London)).
+- **[[architectures/spatial-radiance-and-slam/instant-ngp|Instant-NGP: Instant Neural Graphics Primitives with Multiresolution Hash Encoding]]**: Multiresolution Hash Grid & Fully-Fused Neural Representation (Custom / NVIDIA Source Code License (Non-Commercial Research)).
 - **[[architectures/spatial-radiance-and-slam/monogs|MonoGS: Monocular 3D Gaussian Splatting SLAM with Geometric Depth Priors]]**: Monocular Differentiable Radiance Field Optimization (Apache-2.0).
+- **[[architectures/spatial-radiance-and-slam/nerf|NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis]]**: Continuous Implicit Coordinate Neural Radiance Field (Custom / Research-Only (UC Berkeley / Google Research)).
 - **[[architectures/spatial-radiance-and-slam/splatam|SplaTAM: Dense RGB-D SLAM with Explicit 3D Gaussian Radiance Fields]]**: Differentiable 3D Gaussian Optimization (MIT).
+- **[[architectures/vision-foundation-models/clip|CLIP: Learning Transferable Visual Models From Natural Language Supervision]]**: Contrastive Dual-Encoder Vision-Language Foundation Model (MIT).
 - **[[architectures/vision-foundation-models/depth-anything-v2|Depth Anything V2: Metric Depth & Surface Segmentation Foundation Model]]**: Foundation Vision Transformer (DINOv2 Distillation) (Apache-2.0).
+- **[[architectures/vision-foundation-models/depth-anything|Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data]]**: Monocular Foundation Vision Transformer (Semi-Supervised Distillation) (Apache-2.0).
 - **[[architectures/vision-foundation-models/dinov2|DINOv2: Learning Robust Visual Features with Self-Supervised Vision Transformers]]**: Self-Supervised Isotropic Vision Transformer (ViT) (Apache-2.0).
 - **[[architectures/vision-foundation-models/dinov3|DINOv3: Hierarchical Multimodal Vision Foundation Model with 2D-RoPE and Dense Pre-Training]]**: Hierarchical Vision Transformer with 2D-RoPE (Apache-2.0).
+- **[[architectures/vision-foundation-models/eva-02|EVA-02: A Visual Representation for Pre-training with Masked Image Modeling]]**: Masked Image Modeling Vision Transformer with CLIP Tokenizer Guidance (Apache-2.0).
+- **[[architectures/vision-foundation-models/marigold|Marigold: Repurposing Diffusion-Based Image Generators for Monocular Depth Estimation]]**: Generative Latent Diffusion Foundation Model for Depth (Apache-2.0).
+- **[[architectures/vision-foundation-models/sam-2-1|SAM 2.1: Segment Anything in Images and Videos 2.1]]**: Hierarchical Vision Foundation Model & Video Memory Transformer (Apache-2.0).
 - **[[architectures/vision-foundation-models/sam-2|SAM 2, SAM 2.1 & SAM 3: Segment Anything in Images, Videos & Open Concepts]]**: Foundation Model (Hierarchical Vision Transformer) (Apache-2.0).
 - **[[architectures/vision-foundation-models/siglip|SigLIP & SigLIP 2: Sigmoid Loss for Vision-Language Alignment]]**: Dual-Encoder Vision-Language Transformer (Apache-2.0).
 - **[[architectures/visual-tracking-and-flow/botsort|BoT-SORT: Robust Multi-Object Tracking with Motion Compensation and Re-Identification]]**: Tracking-by-Detection (Kalman + ReID + GMC) (MIT).
 - **[[architectures/visual-tracking-and-flow/bytetrack|ByteTrack: Multi-Object Tracking by Associating Every Detection Box]]**: Tracking-by-Detection (Two-Stage Bipartite Matching) (MIT).
 - **[[architectures/visual-tracking-and-flow/cotracker|CoTracker & CoTracker3: Dense Point Trajectory Transformers]]**: Spatial-Temporal Point Transformer (Apache-2.0).
+- **[[architectures/visual-tracking-and-flow/deepsort|DeepSORT: Simple Online and Realtime Tracking with a Deep Association Metric]]**: Tracking-by-Detection (Kalman Filter + Deep ReID Matching Cascade) (GPL-3.0).
+- **[[architectures/visual-tracking-and-flow/oc-sort|OC-SORT: Observation-Centric SORT for Robust Multi-Object Tracking]]**: Tracking-by-Detection (Observation-Centric Kalman Association) (MIT).
+- **[[architectures/visual-tracking-and-flow/raft|RAFT: Recurrent All-Pairs Field Transforms for Optical Flow]]**: Recurrent Correlation Flow Network (ConvGRU + 4D Correlation Volume) (BSD-3-Clause).
+- **[[architectures/visual-tracking-and-flow/tapir|TAPIR: Tracking Any Point with Per-Frame Initialization and Temporal Refinement]]**: Two-Stage Point Tracker (Matching + Temporal Refinement) (Apache-2.0).
 
 ---
 
