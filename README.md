@@ -96,6 +96,7 @@ Dedicated deep engineering and didactic theoretical references:
 - **[[docs/critical-scenarios-hardware-matrix.md|Critical Scenarios Hardware Benchmarking & Acceleration Matrix]]**: Comparative evaluation across **AMD Versal AI Edge Gen 2 (AIE-ML v2 / NPU IP with Vitis AI 5.x)**, **CoreAVI DO-178C / DO-254 DAL-A Vulkan SC**, **NVIDIA Jetson AGX Orin Industrial**, **NVIDIA RTX 4090**, and **AMD Alveo U50 / Xilinx Kria**.
 - **[[docs/edge-ai-quantization-playbook.md|Edge-AI Quantization Playbook: PTQ vs QAT, Mixed-Precision & Outlier Suppression]]**: Production guide covering SmoothQuant mathematical outlier suppression, TensorRT 10 explicit Q/DQ compilation, and AMD Vitis AI 5.x / Quark NPU workflows.
 - **[[docs/unreal-engine-sim2real-deep-guide.md|Unreal Engine Sim2Real Deep Guide: Synthetic Generation, Domain Randomization & Low-Real-Data Adaptation]]**: Complete architectural blueprint for training with massive UE5 Nanite/Lumen synthetic worlds and certifying against strictly isolated, scarce physical validation sets via DANN and Optimal Transport.
+- **[[docs/hardware-runtimes-and-certification-reality.md|Hardware Perception & Inference Reality: CUDA, TensorRT, Vulkan, Vulkan SC & Vitis AI]]**: Ground-truth engineering guide detailing how each runtime actually executes, how each is tested, and the exact compilation workflows.
 ---
 
 ## ⚖️ Global Commercial Usability & License Matrix
