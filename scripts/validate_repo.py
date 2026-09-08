@@ -1,15 +1,7 @@
 #!/usr/bin/env python3
 """
 Comprehensive validator for cv-projects repository.
-Checks:
-1. Root README links to all 10 topic playbooks.
-2. All 10 topic folders exist and contain:
-   - README.md (Domain Master Index)
-   - 00-*-moc.md (Map of Content note for Obsidian)
-   - 01-historical-evolution-and-paradigms.md (Evolution guide)
-   - 02-production-pipeline-and-workarounds.md (Production playbook)
-3. YAML Frontmatter exists with title, tags, and Obsidian compatibility.
-4. Architectures vault contains shared multi-task foundation models.
+Verifies all 12 topic domains, shared architectures, Obsidian schemas, and relative links.
 """
 
 import sys
@@ -27,15 +19,8 @@ REQUIRED_TOPICS = [
     "fpga-deployment",
     "gpu-deployment",
     "real-time-systems",
-]
-
-MANDATORY_SECTIONS = [
-    "# Overview",
-    "## SOTA & Research",
-    "## Architecture Alternatives & Trade-offs",
-    "## Popular Repos & Integrations",
-    "## End-to-End Pipeline & Workarounds",
-    "## Deployment & Real-time Notes",
+    "slam-and-spatial-perception",
+    "visual-guidance-and-robotics",
 ]
 
 def check_yaml_frontmatter(content: str, filepath: Path) -> list[str]:
@@ -78,10 +63,10 @@ def main() -> int:
         errors.append("architectures/ directory is missing!")
     else:
         arch_files = list(arch_vault.glob("**/*.md"))
-        if len(arch_files) < 5:
-            errors.append(f"architectures/ contains only {len(arch_files)} models (expected >= 5)")
+        if len(arch_files) < 10:
+            errors.append(f"architectures/ contains only {len(arch_files)} models (expected >= 10)")
 
-    # 3. Validate each of the 10 topics
+    # 3. Validate each of the required topics
     for topic in REQUIRED_TOPICS:
         topic_dir = repo_root / "topics" / topic
         if not topic_dir.exists():
