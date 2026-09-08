@@ -20,6 +20,8 @@ aliases:
 
 # 🤖 Vision-Language-Action & Physical AI Robotics MOC
 
+> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Vision-Language-Action & Physical AI Robotics**
+
 ## Overview
 Vision-Language-Action (VLA) models unify high-level semantic language understanding and open-world visual perception directly with continuous, high-frequency physical motor control ($\Delta x, \Delta y, \Delta z, \Delta\theta, \text{gripper}$). Moving beyond discrete tokens, modern VLAs leverage **diffusion policies** and **flow matching** ($\pi_0$, OpenVLA, Octo) to execute dexterous robotic manipulation.
 
@@ -52,3 +54,13 @@ graph TD
 ## 🔗 Cross-Domain Obsidian Links
 - Deeply integrates with [[topics/visual-guidance-and-robotics/00-visual-guidance-and-robotics-moc|Visual Guidance & Robotics MOC]].
 - Enforces certified boundaries via [[topics/safety-verification-and-robustness/00-safety-verification-and-robustness-moc|Safety Verification MOC]].
+
+---
+
+## 📂 All Notes in This Domain
+
+```dataview
+TABLE type AS "Note Type", updated AS "Last Updated", status AS "Status"
+WHERE contains(file.folder, "topics/vla-and-physical-ai-robotics")
+SORT file.name ASC
+```

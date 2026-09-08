@@ -21,6 +21,34 @@ aliases:
 
 # 🗺️ Sensor Fusion MOC (Map of Content)
 
+> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Sensor Fusion
+tags:
+  - moc
+  - computer-vision
+  - sensor-fusion
+  - multi-modal
+  - bevfusion
+  - sparse4d
+  - nuscenes
+  - sota
+status: evergreen
+updated: 2026-09-08
+aliases:
+  - Sensor Fusion MOC
+  - Sensor Fusion Hub
+  - Multi-Modal MOC
+---
+
+# 🗺️ Sensor Fusion MOC (Map of Content)
+
+## 📌 Domain Overview & Scope
+Sensor Fusion unifies complementary physical sensing modalities to overcome the fundamental vulnerabilities of individual sensors:
+- **Cameras**: Dense visual texture, fine color, and semantic classification (degraded by nighttime darkness, direct sun glare, and inclement weather).
+- **LiDAR**: Metric 3D spatial geometry and ranging invariant to ambient light (degraded by airborne backscatter in fog and heavy rain).
+- **Radar**: Direct Doppler velocity vector measurements and penetration through adverse weather.
+
+The field has evolved from heuristic Extended Kalman Filters (EKF) and late track fusion to end-to-end **Bird**
+
 ## 📌 Domain Overview & Scope
 Sensor Fusion unifies complementary physical sensing modalities to overcome the fundamental vulnerabilities of individual sensors:
 - **Cameras**: Dense visual texture, fine color, and semantic classification (degraded by nighttime darkness, direct sun glare, and inclement weather).
@@ -32,8 +60,10 @@ The field has evolved from heuristic Extended Kalman Filters (EKF) and late trac
 ---
 
 ## 🧭 Navigation & Knowledge Graph
-- **Historical Lineage & Evolution**: [[topics/sensor-fusion/01-historical-evolution-and-paradigms|Sensor Fusion: Historical Evolution & Paradigms]]
-- **Production Implementation Playbook**: [[topics/sensor-fusion/02-production-pipeline-and-workarounds|Sensor Fusion: Production Pipeline, Time Sync Traps & Fallback Workarounds]]
+- **Historical Lineage & Evolution**: [[topics/sensor-fusion/01-historical-evolution-and-paradigms|01 Historical Evolution And Paradigms]]
+- **Production Implementation Playbook**: [[topics/sensor-fusion/02-production-pipeline-and-workarounds|02 Production Pipeline And Workarounds]]
+- **Modern Architecture & Open Problems**: [[topics/sensor-fusion/03-uniad-and-open-problems|03 Uniad And Open Problems]]
+- **Classical, Geometric & Hybrid Baselines**: [[topics/sensor-fusion/04-classical-and-hybrid-methods|04 Classical And Hybrid Methods]]
 
 ### 🔬 Core Architecture Deep-Dives (Central Vault)
 | Model / System | Fusion Paradigm | Primary Innovation | License | Dedicated Note Link |
@@ -65,3 +95,13 @@ The field has evolved from heuristic Extended Kalman Filters (EKF) and late trac
 - [[topics/object-detection/00-object-detection-moc|Object Detection MOC]]
 - [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perception MOC]]
 - [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Systems MOC]]
+
+---
+
+## 📂 All Notes in This Domain
+
+```dataview
+TABLE type AS "Note Type", updated AS "Last Updated", status AS "Status"
+WHERE contains(file.folder, "topics/sensor-fusion")
+SORT file.name ASC
+```

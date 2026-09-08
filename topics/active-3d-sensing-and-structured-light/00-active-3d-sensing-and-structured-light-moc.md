@@ -20,6 +20,8 @@ aliases:
 
 # 🔦 Active 3D Sensing & Structured Light MOC
 
+> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Active 3D Sensing & Structured Light**
+
 ## Overview
 Active 3D Sensing projects structured photonic patterns (infrared dot matrices, sinusoidal phase-shift fringes) or emits amplitude-modulated continuous-wave (AMCW) light pulses to recover metric sub-millimeter 3D depth. Unlike passive stereo that collapses on textureless surfaces (white walls, metal sheets), active illumination forces synthetic spatial contrast.
 
@@ -52,3 +54,13 @@ graph TD
 ## 🔗 Cross-Domain Obsidian Links
 - Complements [[topics/6dof-pose-estimation/00-6dof-pose-estimation-moc|6-DoF Pose Estimation MOC]] for high-precision robotic bin picking ($<0.5\text{ mm}$ point clouds).
 - Bridges with [[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perception MOC]] for near-range high-density geometric reconstruction.
+
+---
+
+## 📂 All Notes in This Domain
+
+```dataview
+TABLE type AS "Note Type", updated AS "Last Updated", status AS "Status"
+WHERE contains(file.folder, "topics/active-3d-sensing-and-structured-light")
+SORT file.name ASC
+```

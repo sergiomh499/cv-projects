@@ -21,6 +21,32 @@ aliases:
 
 # 🗺️ Object Segmentation MOC (Map of Content)
 
+> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Object Segmentation
+tags:
+  - moc
+  - computer-vision
+  - segmentation
+  - semantic-segmentation
+  - instance-segmentation
+  - panoptic-segmentation
+  - sam2
+  - sota
+status: evergreen
+updated: 2026-09-08
+aliases:
+  - Object Segmentation MOC
+  - Segmentation Hub
+  - Segmentation MOC
+---
+
+# 🗺️ Object Segmentation MOC (Map of Content)
+
+## 📌 Domain Overview & Scope
+Object Segmentation partitions visual scenes down to individual pixel coordinates. It branches into:
+1. **Semantic Segmentation**: Assigns a semantic class category (e.g., road, sky, vehicle) to every pixel in the image.
+2. **Instance Segmentation**: Detects and delineates individual object boundaries (e.g., Person #1, Person #2).
+3. **Panoptic Segmentation**: Unifies background**
+
 ## 📌 Domain Overview & Scope
 Object Segmentation partitions visual scenes down to individual pixel coordinates. It branches into:
 1. **Semantic Segmentation**: Assigns a semantic class category (e.g., road, sky, vehicle) to every pixel in the image.
@@ -32,8 +58,10 @@ This Map of Content connects the historical evolution, production playbooks, and
 ---
 
 ## 🧭 Navigation & Knowledge Graph
-- **Historical Lineage & Evolution**: [[topics/object-segmentation/01-historical-evolution-and-paradigms|Object Segmentation: Historical Lineage & Paradigms]]
-- **Production Implementation Playbook**: [[topics/object-segmentation/02-production-pipeline-and-workarounds|Object Segmentation: Production Pipeline, Traps & Workarounds]]
+- **Historical Lineage & Evolution**: [[topics/object-segmentation/01-historical-evolution-and-paradigms|01 Historical Evolution And Paradigms]]
+- **Production Implementation Playbook**: [[topics/object-segmentation/02-production-pipeline-and-workarounds|02 Production Pipeline And Workarounds]]
+- **Modern Architecture & Open Problems**: [[topics/object-segmentation/03-decoders-and-open-problems|03 Decoders And Open Problems]]
+- **Classical, Geometric & Hybrid Baselines**: [[topics/object-segmentation/04-classical-and-hybrid-methods|04 Classical And Hybrid Methods]]
 
 ### 🔬 Core Architecture Deep-Dives (Central Architecture Vault)
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Deep-Dive Note |
@@ -70,3 +98,13 @@ This Map of Content connects the historical evolution, production playbooks, and
 - [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]]
 - [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]]
 - [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]]
+
+---
+
+## 📂 All Notes in This Domain
+
+```dataview
+TABLE type AS "Note Type", updated AS "Last Updated", status AS "Status"
+WHERE contains(file.folder, "topics/object-segmentation")
+SORT file.name ASC
+```

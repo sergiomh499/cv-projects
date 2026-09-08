@@ -20,6 +20,8 @@ aliases:
 
 # 🌊 Optical Flow & Scene Flow Perception MOC
 
+> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Optical & Scene Flow Perception**
+
 ## Overview
 Optical Flow ($2\text{D}$ pixel displacement vectors $(u, v)$) and Scene Flow ($3\text{D}$ velocity vectors $(v_x, v_y, v_z)$) capture dense continuous motion across physical reality. While tracking follows discrete bounding boxes, flow fields reveal full non-rigid object deformations, fluid dynamics, camera ego-motion, and independent moving object (IMO) segmentation.
 
@@ -52,3 +54,13 @@ graph TD
 ## 🔗 Cross-Domain Obsidian Links
 - Crucial for [[topics/video-tracking/00-video-tracking-moc|Video Tracking MOC]] motion compensation.
 - Directly informs [[topics/slam-and-spatial-perception/00-slam-and-spatial-perception-moc|SLAM & Spatial Perception MOC]] for visual odometry.
+
+---
+
+## 📂 All Notes in This Domain
+
+```dataview
+TABLE type AS "Note Type", updated AS "Last Updated", status AS "Status"
+WHERE contains(file.folder, "topics/optical-and-scene-flow-perception")
+SORT file.name ASC
+```
