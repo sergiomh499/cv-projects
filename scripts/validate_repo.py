@@ -24,6 +24,7 @@ REQUIRED_TOPICS = [
     "data-quality-and-verification",
     "safety-verification-and-robustness",
     "explainability-and-interpretability",
+    "event-based-neuromorphic-vision",
 ]
 
 def check_yaml_frontmatter(content: str, filepath: Path) -> list[str]:
