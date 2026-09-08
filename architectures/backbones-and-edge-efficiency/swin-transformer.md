@@ -663,7 +663,7 @@ if __name__ == "__main__":
 - **[[architectures/backbones-and-edge-efficiency/mambavision|MambaVision]]**: A hybrid Mamba-Transformer architecture integrating self-attention only at the final stages while using SSM mixers in earlier layers.
 - **[[architectures/vision-foundation-models/dinov2|DINOv2]]**: Standard global ViT pre-trained via self-supervised distillation, requiring higher compute at high resolutions but generating dense, patch-level semantic features.
 - **[[architectures/real-time-detectors-and-segmenters/segformer|SegFormer]]**: An overlapping patch merge transformer for dense prediction that uses spatial reduction attention (SRA) instead of shifted windows.
-- **[[topics/object-detection/models/rt-detr|RT-DETR]]**: Real-time DETR detector leveraging efficient hybrid encoders to replace Swin backbones for low-latency edge object detection.
+- **[[architectures/real-time-detectors-and-segmenters/rt-detr|RT-DETR]]**: Real-time DETR detector leveraging efficient hybrid encoders to replace Swin backbones for low-latency edge object detection.
 - **[[architectures/backbones-and-edge-efficiency/fastvit|FastViT]]**: Edge-optimized hybrid vision transformer using structural reparameterization for real-time mobile NPU inference.
 
 ---

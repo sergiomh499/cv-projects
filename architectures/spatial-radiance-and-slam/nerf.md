@@ -225,7 +225,7 @@ $$\mathcal{L}_{\text{total}} = \sum_{\mathbf{r} \in \mathcal{R}} \left[ \left\| 
 
 ### Novel View Synthesis on Standard Datasets
 
-| Dataset / Scene | Metric | NeRF (Mildenhall 2020) | NV (Lombardi 2019) | SRN (Sitzmann 2019) | [[architectures/spatial-radiance-and-slam/instant-ngp|Instant-NGP]] (2022) | [[3d-gaussian-splatting|3DGS]] (2023) |
+| Dataset / Scene | Metric | NeRF (Mildenhall 2020) | NV (Lombardi 2019) | SRN (Sitzmann 2019) | [[architectures/spatial-radiance-and-slam/instant-ngp|Instant-NGP]] (2022) | [[architectures/spatial-radiance-and-slam/3d-gaussian-splatting|3DGS]] (2023) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Synthetic Blender (8 scenes)** | **PSNR $\uparrow$** | **31.01 dB** | 26.05 dB | 22.26 dB | 33.18 dB | **33.32 dB** |
 | | **SSIM $\uparrow$** | **0.947** | 0.893 | 0.846 | 0.963 | **0.969** |
@@ -613,7 +613,7 @@ timeline
 ### Direct Comparative Analysis
 
 - **vs. [[architectures/spatial-radiance-and-slam/instant-ngp|Instant-NGP]]**: Instant-NGP replaces NeRF's large 8-layer coordinate MLP and harmonic positional encoding with a multiresolution spatial hash table coupled to a tiny 2-layer fused MLP. While NeRF requires 20-30 hours of training per scene, Instant-NGP converges in 5-15 seconds while delivering equal or superior reconstruction fidelity.
-- **vs. [[3d-gaussian-splatting|3D Gaussian Splatting (3DGS)]]**: 3DGS completely abandons continuous volumetric ray marching in favor of explicit anisotropic 3D Gaussian primitives projected via local affine approximations. NeRF renders at 0.05 FPS (seconds per frame), whereas 3DGS achieves $>130\text{ FPS}$ at $1080\text{p}$ with zero volumetric ray marching overhead.
+- **vs. [[architectures/spatial-radiance-and-slam/3d-gaussian-splatting|3D Gaussian Splatting (3DGS)]]**: 3DGS completely abandons continuous volumetric ray marching in favor of explicit anisotropic 3D Gaussian primitives projected via local affine approximations. NeRF renders at 0.05 FPS (seconds per frame), whereas 3DGS achieves $>130\text{ FPS}$ at $1080\text{p}$ with zero volumetric ray marching overhead.
 - **vs. [[architectures/spatial-radiance-and-slam/splatam|SplaTAM]] & [[architectures/spatial-radiance-and-slam/gaussian-splatting-slam|Gaussian Splatting SLAM]]**: NeRF was designed for offline novel view synthesis with pre-computed offline camera poses (from COLMAP SfM). Modern SLAM frameworks extend radiance concepts to real-time online camera tracking and dense mapping without prior poses.
 - **vs. Foundation Priors ([[architectures/vision-foundation-models/depth-anything-v2|Depth Anything V2]] / [[architectures/visual-tracking-and-flow/cotracker|CoTracker]])**: Monocular NeRF extensions frequently leverage zero-shot depth priors to regularize ill-posed single-view radiance fields and resolve scale ambiguities.
 

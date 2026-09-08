@@ -16,8 +16,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let node = NodeBuilder::new().create::<ipc::Service>()?;
 
     // Declare a shared-memory publish-subscribe service
+    let service_name = ServiceName::new("CameraVideoStream")?;
     let service = node
-        .service_builder("CameraVideoStream".try_into()?)
+        .service_builder(&service_name)
         .publish_subscribe::<ImageBuffer>()
         .open_or_create()?;
 

@@ -106,7 +106,7 @@ def test_playbook_readmes_have_required_sections(topic_dirs):
 
 # Wikilink: must look like a file path (contains letters, slashes, hyphens, dots).
 # Exclude numeric-only, ellipsis, and other non-path false positives.
-_WIKILINK_RE = re.compile(r"\[\[([A-Za-z][^\]|#]*?)(?:[|#][^\]]*)?\]\]")
+_WIKILINK_RE = re.compile(r"\[\[([A-Za-z0-9][A-Za-z0-9_\-\./]*?)(?:\\?[|#][^\]]*)?\]\]")
 
 
 def test_no_broken_wiki_links(all_markdown_files, repo_root):

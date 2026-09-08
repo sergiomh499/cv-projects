@@ -418,7 +418,7 @@ graph TD
   - [[architectures/backbones-and-edge-efficiency/convnext-v2|ConvNeXt V2 & MobileNetV4]]
 - **Topic Deep Dives**:
   - [[topics/object-detection/00-object-detection-moc|Object Detection MOC]]
-  - [[topics/object-detection/models/rf-detr|RF-DETR In-Depth Production Guide]]
+  - [[topics/object-detection/README|Object Detection Playbook]]
   - [[topics/real-time-systems/00-real-time-systems-moc|Real-Time Systems MOC]]
   - [[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC]]
 - **Official Code & Resources**:

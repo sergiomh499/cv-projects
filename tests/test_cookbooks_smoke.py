@@ -82,6 +82,50 @@ def test_cb15_realtime_scheduler():
     assert result.returncode == 0, result.stderr
 
 
+def test_cb16_tensorrt_cuda_graphs():
+    result = _run(_script("16-tensorrt-cuda-graphs", "engine_cuda_graphs.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb17_amd_quark_versal_ptq():
+    result = _run(_script("17-amd-quark-versal-ptq", "quark_versal_ptq.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb18_3dgs_lie_slam():
+    result = _run(_script("18-3dgs-lie-slam", "3dgs_lie_slam.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb19_raft_optical_flow():
+    result = _run(_script("19-raft-optical-flow", "raft_optical_flow.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb20_act_trajectory_chunking():
+    result = _run(_script("20-act-trajectory-chunking", "act_trajectory_chunking.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb21_rerun_spatial_sensor_stream():
+    result = _run(_script("21-rerun-spatial-sensor-stream", "rerun_sensor_stream.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb22_fiftyone_dataset_auditing():
+    result = _run(_script("22-fiftyone-dataset-auditing", "fiftyone_auditing.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb23_onnxruntime_iobinding():
+    result = _run(_script("23-onnxruntime-iobinding", "ort_iobinding.py"))
+    assert result.returncode == 0, result.stderr
+
+
+def test_cb24_vulkan_sc_safety_critical():
+    result = _run(_script("24-vulkan-sc-safety-critical", "vulkan_sc_pipeline.py"))
+    assert result.returncode == 0, result.stderr
+
 # ---------------------------------------------------------------------------
 # PyTorch-dependent cookbooks — skip gracefully if torch is absent
 # ---------------------------------------------------------------------------

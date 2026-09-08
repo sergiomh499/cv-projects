@@ -1,0 +1,11 @@
+[package]
+name = "iceoryx2-zero-copy-ipc"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "iceoryx2-zero-copy-ipc"
+path = "main.rs"
+
+[dependencies]
+iceoryx2 = "0.6"
