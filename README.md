@@ -45,6 +45,7 @@ A curated research engineering knowledge base, didactic repository, and producti
 | **17. Thermal & Hyperspectral Vision** | [[topics/thermal-and-hyperspectral-vision/00-thermal-and-hyperspectral-vision-moc\|Thermal Vision MOC]] ([Directory](topics/thermal-and-hyperspectral-vision/README.md)) | TherA, UniCD, Frequency-Guided Cross-Attention, VOx Microbolometers | `FLIR/flirpy`, `spectral/spectral` | 800 FPS NUC (<1.5 ms) | **MIT / Apache-2.0** |
 | **18. Active 3D Sensing & Structured Light** | [[topics/active-3d-sensing-and-structured-light/00-active-3d-sensing-and-structured-light-moc\|Active 3D Sensing MOC]] ([Directory](topics/active-3d-sensing-and-structured-light/README.md)) | Sinusoidal Phase Profilometry, Indirect/Direct ToF SPAD, RealSense | `IntelRealSense/librealsense`, `isl-org/Open3D` | <10 $\mu$m Metrology (90 FPS) | **Apache-2.0 / MIT** |
 | **19. Vision-Language-Action & Physical AI** | [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc\|VLA Robotics MOC]] ([Directory](topics/vla-and-physical-ai-robotics/README.md)) | $\pi_0$, OpenVLA, Octo, Continuous Flow Matching, Cartesian Impedance | `openvla/openvla`, `huggingface/lerobot` | 50 Hz Control (20 ms) | **Apache-2.0 / MIT** |
+| **20. Optical Flow & Scene Flow Perception** | [[topics/optical-and-scene-flow-perception/00-optical-and-scene-flow-perception-moc\|Optical Flow MOC]] ([Directory](topics/optical-and-scene-flow-perception/README.md)) | GMFlow, UniMatch, RAFT, 3D Point Scene Flow, Horn-Schunck Variational | `princeton-vl/RAFT`, `haofeixu/gmflow` | >60 FPS GMFlow (<15 ms) | **MIT / Apache-2.0** |
 ---
 
 ## 🏛️ Central Architecture Vault (`architectures/`)
@@ -86,6 +87,7 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/08-control-barrier-filter/cbf_qp_filter.py|08-control-barrier-filter]]**: Real-time Control Barrier Function (CBF) Quadratic Program safety filter enforcing forward invariance on unverified deep policy actions.
 - **[[cookbooks/09-dann-sim2real-safety-gate/dann_safety_gate.py|09-dann-sim2real-safety-gate]]**: Sim2Real Domain Adaptation & Critical Mission Safety Gate rejecting ambiguous, high-entropy, or out-of-distribution deep/generative actions.
 - **[[cookbooks/10-contrastive-sim2real-alignment/contrastive_alignment.py|10-contrastive-sim2real-alignment]]**: Supervised Contrastive Learning (SupCon / InfoNCE) projecting synthetic UE5 and scarce real physical crops into a unified domain-invariant manifold.
+- **[[cookbooks/11-multi-sensor-cross-calibration/cross_calibration.py|11-multi-sensor-cross-calibration]]**: Multi-sensor extrinsic cross-calibration (Horn SVD procrustes solver) and sub-pixel metric depth parallax projection between RGB and Thermal/ToF.
 ---
 
 ## 📐 Formal Mathematical Proofs & Hardware Acceleration Matrices

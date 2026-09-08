@@ -28,6 +28,7 @@ REQUIRED_TOPICS = [
     "thermal-and-hyperspectral-vision",
     "active-3d-sensing-and-structured-light",
     "vla-and-physical-ai-robotics",
+    "optical-and-scene-flow-perception",
 ]
 
 def check_yaml_frontmatter(content: str, filepath: Path) -> list[str]:
