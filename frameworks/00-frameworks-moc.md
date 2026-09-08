@@ -41,9 +41,8 @@ graph TD
     Compilers --> VKSC["[[frameworks/vulkan-sc|Vulkan SC 2.0 (ASIL-D / DAL A)]]"]
     Compilers --> OV["[[frameworks/openvino|Intel OpenVINO 2025/2026]]"]
     Compilers --> Triton["[[frameworks/triton-inference-server|NVIDIA Triton Server]]"]
-    Compilers --> Vitis["[[frameworks/vitis-ai|AMD Vitis AI 3.5]]"]
     Compilers --> Quark["[[frameworks/quark|AMD Quark Quantization]]"]
-    Compilers --> TVM["[[frameworks/apache-tvm|Apache TVM Unity & Relax]]"]
+    Compilers --> Vitis["[[frameworks/vitis-ai|AMD Vitis AI (3.5, 5.x, 6.x)]]"]
 
     Middleware --> Ice2["[[frameworks/iceoryx2|Eclipse Iceoryx2]]"]
     Middleware --> Zenoh["[[frameworks/zenoh|Eclipse Zenoh & Zenoh-Pico]]"]
@@ -63,7 +62,7 @@ graph TD
 
 1. **Inference Engines & Compilers**:
    - [[frameworks/tensorrt|NVIDIA TensorRT 10.x]] (AOT compilation, dynamic shapes, timing cache, IPluginV3, NVFP4)
-   - [[frameworks/onnxruntime|ONNX Runtime 1.20+]] (Execution Providers architecture, BFC allocator, zero-copy IOBinding)
+   - [[frameworks/vitis-ai|AMD Vitis AI (3.5, 5.0, 6.2)]] (XIR 3.0 compiler, Versal Gen 2 AIE-ML v2, FP8/FP16/BF16/INT4)
    - [[frameworks/vulkan|Vulkan Compute 1.3/1.4]] (SPIR-V shader compilation, explicit VkDeviceMemory, DMA-BUF)
    - [[frameworks/vulkan-sc|Vulkan SC 2.0 Safety Critical]] (ISO 26262 ASIL-D, DO-178C DAL A, Offline Pipeline Compiler PCC)
    - [[frameworks/openvino|Intel OpenVINO 2025/2026]] (nGraph IR, Level Zero NPU driver, heterogeneous scheduling)

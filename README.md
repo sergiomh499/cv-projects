@@ -119,6 +119,10 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 
 ## ⚡ Hardware Platforms & Silicon Acceleration Vault (`hardware/`)
 
+---
+
+## ⚡ Hardware Platforms & Silicon Acceleration Vault (`hardware/`)
+
 Dedicated silicon guides covering compute, memory, and functional safety (each in an independent document):
 
 - **[[hardware/amd-versal-ai-edge-gen1|AMD Versal AI Edge Gen 1: Architecture, AIE-ML v1 & Heterogeneous Compute]]**: FPGA & ACAP Compute Platforms.

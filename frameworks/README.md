@@ -42,7 +42,7 @@ graph TD
     Compilers --> VKSC["[[frameworks/vulkan-sc|Vulkan SC 2.0 Safety Critical]]"]
     Compilers --> OV["[[frameworks/openvino|Intel OpenVINO 2025/2026]]"]
     Compilers --> Triton["[[frameworks/triton-inference-server|NVIDIA Triton Inference Server]]"]
-    Compilers --> Vitis["[[frameworks/vitis-ai|AMD Vitis AI 3.5]]"]
+    Compilers --> Vitis["[[frameworks/vitis-ai|AMD Vitis AI (3.5, 5.x, 6.x)]]"]
     Compilers --> Quark["[[frameworks/quark|AMD Quark Quantization]]"]
     Compilers --> TVM["[[frameworks/apache-tvm|Apache TVM Unity & Relax]]"]
 
@@ -68,9 +68,8 @@ graph TD
 | **[[frameworks/onnxruntime|ONNX Runtime 1.20+]]** | Multi-Backend Inference | Pluggable Execution Providers (EP), graph partitioning, constant folding | BFC Memory Arena Allocator, zero-copy `IOBinding` | CPU, CUDA, TensorRT, OpenVINO, DirectML, QNN, CoreML | C++, Python, C#, Java, Rust | Real-time safe via deterministic execution provider routing |
 | **[[frameworks/vulkan|Vulkan Compute]]** | Cross-Vendor GPGPU | SPIR-V compute shaders, command buffer recording, pipeline caches | Explicit `VkDeviceMemory`, zero-copy DMA-BUF sharing | Cross-vendor GPUs (NVIDIA, AMD, Intel, ARM Mali, Adreno) | C, C++, Rust | High-throughput, cross-platform shader execution |
 | **[[frameworks/vulkan-sc|Vulkan SC 2.0]]** | Safety-Critical Compute | Offline Pipeline Compiler (`pcc`), static execution graphs, no runtime allocations | Fixed memory reservations, strictly bounded command memory | Certified GPUs (NVIDIA DRIVE, CoreAVI AMD, NXP) | C, C++ | Certified to ISO 26262 ASIL-D and DO-178C DAL A |
-| **[[frameworks/openvino|Intel OpenVINO]]** | Heterogeneous Inference | nGraph intermediate representation, model optimizer, NPU plugin | Level Zero zero-copy memory, unified USM memory pointers | Intel CPUs (Xeon AMX), iGPUs, Arc GPUs, NPU 4 & NPU 5 | C++, Python, C | Sub-watt deterministic NPU execution on mobile and edge |
+| **[[frameworks/vitis-ai|AMD Vitis AI (3.5 / 5.x / 6.2)]]** | FPGA / SoC Inference | XIR 3.0 compiler, Versal Gen 2 AIE-ML v2 mapping, Quark FP8/INT4 | AXI DMA / AXI-Stream FIFOs, contiguous physical memory | AMD Versal AI Edge Gen 1/2, Zynq UltraScale+, Alveo | C++, Python | Hard real-time deterministic hardware pipeline execution |
 | **[[frameworks/triton-inference-server|Triton Inference Server]]** | High-Throughput Serving | Dynamic batching, model pipelining (BLS), concurrent model instances | POSIX / CUDA IPC shared memory, zero-copy host-device transfers | GPUs (NVIDIA), CPUs (x86_64, ARM64) | C++, Python, HTTP/gRPC API | Enterprise-grade QoS, strict latency bounding via timeouts |
-| **[[frameworks/vitis-ai|AMD Vitis AI 3.5]]** | FPGA / SoC Inference | XIR compiler, DPUCZDX8G/DPUCVDX8G overlay mapping, custom operators | AXI DMA / AXI-Stream FIFOs, contiguous physical memory | AMD Versal AI Edge Gen 1/2, Zynq UltraScale+, Alveo | C++, Python | Hard real-time deterministic hardware pipeline execution |
 | **[[frameworks/quark|AMD Quark]]** | Sub-Byte Quantization | Advanced calibration (AWQ, SmoothQuant, GPTQ), MXFP6, MXFP4, INT4 | In-place weight transformation, layerwise tensor scaling | AMD Versal AIE-ML v2, ROCm GPUs, CPUs | Python, C++ | Lossless sub-byte compression for LLMs and vision backbones |
 | **[[frameworks/apache-tvm|Apache TVM & Relax]]** | Multi-Target ML Compiler | Relax IR, TensorIR (TIR) schedule primitives, MetaSchedule auto-tuning | Unified Virtual Memory, minimal runtime footprint (<1MB) | WebGPU, Vulkan, CUDA, LLVM, MicroTVM microcontrollers | Python, C++, Rust | Suitable for bare-metal safety systems and MCUs |
 | **[[frameworks/iceoryx2|Eclipse Iceoryx2]]** | High-Rate Robotics IPC | Lock-free SPMC/MPSC shared memory ring buffer, wait-free read borrowing | Zero-copy borrowed memory via POSIX shared memory / memfd | Linux, QNX, macOS, Windows (x86_64, ARM64, RISC-V) | Rust, C, C++ | Sub-100ns latency, ASIL-D ready architecture |
@@ -91,7 +90,7 @@ graph TD
 - **Inference Compilers & Engines**:
   - [[frameworks/tensorrt|NVIDIA TensorRT 10.x]]
   - [[frameworks/onnxruntime|ONNX Runtime 1.20+]]
-  - [[frameworks/vulkan|Vulkan Compute 1.3/1.4]]
+  - [[frameworks/vitis-ai|AMD Vitis AI (3.5, 5.x, 6.2)]]
   - [[frameworks/vulkan-sc|Vulkan SC 2.0 Safety Critical]]
   - [[frameworks/openvino|Intel OpenVINO 2025/2026]]
   - [[frameworks/triton-inference-server|NVIDIA Triton Inference Server]]
