@@ -21,6 +21,9 @@ REQUIRED_TOPICS = [
     "real-time-systems",
     "slam-and-spatial-perception",
     "visual-guidance-and-robotics",
+    "data-quality-and-verification",
+    "safety-verification-and-robustness",
+    "explainability-and-interpretability",
 ]
 
 def check_yaml_frontmatter(content: str, filepath: Path) -> list[str]:
