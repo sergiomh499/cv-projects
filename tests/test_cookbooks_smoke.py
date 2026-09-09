@@ -126,6 +126,10 @@ def test_cb24_vulkan_sc_safety_critical():
     result = _run(_script("24-vulkan-sc-safety-critical", "vulkan_sc_pipeline.py"))
     assert result.returncode == 0, result.stderr
 
+def test_cb25_depth_unprojection_pcd():
+    result = _run(_script("25-depth-anything-v2-metric-unprojection", "unproject_depth_pcd.py"))
+    assert result.returncode == 0, result.stderr
+
 # ---------------------------------------------------------------------------
 # PyTorch-dependent cookbooks — skip gracefully if torch is absent
 # ---------------------------------------------------------------------------

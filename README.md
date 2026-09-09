@@ -193,16 +193,20 @@ Self-contained, runnable recipes demonstrating state-of-the-art deployment, IPC,
 - **[[cookbooks/13-epnp-analytical-pose-solver/epnp_solver.py|13-epnp-analytical-pose-solver]]**: Efficient Perspective-n-Point (EPnP) analytical $O(n)$ 6-DoF pose solver using 4 virtual control points, SVD nullspace kernel estimation, and Kabsch alignment.
 - **[[cookbooks/14-bev-voxel-pooling-projection/bev_pooling.py|14-bev-voxel-pooling-projection]]**: Camera-to-Bird's-Eye-View (BEV) voxel pooling projection (Lift-Splat-Shoot / BEVFusion style) unprojecting camera frustums into vehicle ego frame and voxelizing into BEV grids.
 - **[[cookbooks/15-realtime-rms-edf-scheduler/realtime_scheduler.py|15-realtime-rms-edf-scheduler]]**: Hard real-time multi-task perception pipeline task scheduler implementing Rate Monotonic (RMS) and Earliest Deadline First (EDF) with Liu & Layland schedulability bounds.
----
+- **[[cookbooks/16-tensorrt-cuda-graphs/engine_cuda_graphs.py|16-tensorrt-cuda-graphs]]**: TensorRT 10 engine execution with CUDA Graphs eliminating CPU driver launch overhead.
+- **[[cookbooks/17-amd-quark-versal-ptq/quark_versal_ptq.py|17-amd-quark-versal-ptq]]**: AMD Quark Post-Training Quantization (AWQ, FP8/INT4) for AMD Versal Gen 2 AIE-ML v2 accelerators.
+- **[[cookbooks/18-3dgs-lie-slam/3dgs_lie_slam.py|18-3dgs-lie-slam]]**: 3D Gaussian Splatting dense RGB-D SLAM with analytical Lie algebra $\mathfrak{se}(3)$ camera tracking.
+- **[[cookbooks/19-raft-optical-flow/raft_optical_flow.py|19-raft-optical-flow]]**: RAFT optical flow engine with 4D correlation volume indexing and recurrent ConvGRU updates.
+- **[[cookbooks/20-act-trajectory-chunking/act_trajectory_chunking.py|20-act-trajectory-chunking]]**: Action Chunking with Transformers (ACT) C-VAE bimanual visuomotor policy with 50 Hz temporal ensembling.
+- **[[cookbooks/21-rerun-spatial-sensor-stream/rerun_sensor_stream.py|21-rerun-spatial-sensor-stream]]**: High-throughput multi-modal spatial sensor streaming to Rerun.io WebGPU/desktop visualizer.
+- **[[cookbooks/22-fiftyone-dataset-auditing/fiftyone_auditing.py|22-fiftyone-dataset-auditing]]**: FiftyOne visual dataset curation, quality auditing, and vector embedding similarity search.
+- **[[cookbooks/23-onnxruntime-iobinding/ort_iobinding.py|23-onnxruntime-iobinding]]**: ONNX Runtime zero-copy IOBinding across TensorRT, CUDA, QNN, and OpenVINO execution providers.
+- **[[cookbooks/24-vulkan-sc-safety-critical/vulkan_sc_pipeline.py|24-vulkan-sc-safety-critical]]**: Vulkan SC 2.0 safety-critical deterministic compute pipeline with offline PCC pipeline compilation.
+- **[[cookbooks/25-depth-anything-v2-metric-unprojection/unproject_depth_pcd.py|25-depth-anything-v2-metric-unprojection]]**: Monocular dense depth unprojection to metric colored 3D point cloud with surface normal estimation and PLY export.
 
 ---
 
 ## ⚡ Hardware Platforms & Silicon Acceleration Vault (`hardware/`)
-
----
-
-## ⚡ Hardware Platforms & Silicon Acceleration Vault (`hardware/`)
-
 Dedicated silicon guides covering compute, memory, and functional safety (each in an independent document):
 
 - **[[hardware/amd-versal-ai-edge-gen1|AMD Versal AI Edge Gen 1: Architecture, AIE-ML v1 & Heterogeneous Compute]]**: FPGA & ACAP Compute Platforms.

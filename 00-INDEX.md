@@ -36,7 +36,7 @@ flowchart TD
     Root --> P2["🏛️ 2. ARCHITECTURES VAULT<br>100 SOTA Landmark Models"]:::pillar
     Root --> P3["⚙️ 3. FRAMEWORKS VAULT<br>18 Software Runtimes"]:::pillar
     Root --> P4["⚡ 4. HARDWARE VAULT<br>20 Edge & Cloud Platforms"]:::pillar
-    Root --> P5["🍳 5. COOKBOOKS VAULT<br>24 Runnable Production Scripts"]:::pillar
+    Root --> P5["🍳 5. COOKBOOKS VAULT<br>25 Runnable Production Scripts"]:::pillar
     Root --> P6["🧬 6. TECHNIQUES VAULT<br>Algorithmic Mechanics & Math"]:::pillar
 
     click P1 "topics/00-topics-moc" "Open Topics Vault MOC"
@@ -53,7 +53,7 @@ flowchart TD
 | **2. Architectures Vault** | [[architectures/00-architectures-moc\|Central Architecture MOC]] | 98 Dedicated Landmark & 2026 SOTA Model Documents | YOLO26, RT-DETRv4, SAM 2.1, D-FINE, RF-DETR, 3DGS |
 | **3. Frameworks Vault** | [[frameworks/00-frameworks-moc\|Software Frameworks MOC]] | 18 Production Inference, Training & IPC Toolchains | TensorRT 10, ONNX Runtime, Vulkan SC, Iceoryx2, Zenoh |
 | **4. Hardware Vault** | [[hardware/00-hardware-moc\|Hardware Platforms MOC]] | 20 Edge SoCs, Automotive Drives, NPUs & FPGAs | NVIDIA Orin/Thor, AMD Versal Gen 2, Intel NPU |
-| **5. Cookbooks Vault** | [[cookbooks/00-cookbooks-moc\|Runnable Cookbooks MOC]] | 24 Standalone, Pure-Python/Rust Verified Scripts | CUDA Graphs, Quark PTQ, Lie SLAM, Rerun, FiftyOne |
+| **5. Cookbooks Vault** | [[cookbooks/00-cookbooks-moc\|Runnable Cookbooks MOC]] | 25 Standalone, Pure-Python/Rust Verified Scripts | CUDA Graphs, Quark PTQ, Lie SLAM, Rerun, FiftyOne, Depth PCD |
 | **6. Techniques Vault** | [[techniques/00-techniques-moc\|Techniques MOC]] | Foundational Operators, Transforms & Math Formulations | Fourier Adaptation, DCNv4, Hypergraphs, GRL, Direct Regression |
 
 ---
@@ -67,8 +67,9 @@ flowchart TD
 
 ### 🤖 Looking for Physical AI & Robotics?
 - Vision-Language-Action (VLA): [[architectures/multimodal-vlm-and-vla/rt-2|RT-2]], [[architectures/multimodal-vlm-and-vla/openvla|OpenVLA]], [[architectures/multimodal-vlm-and-vla/pi0|π₀ (Pi-Zero)]], [[architectures/multimodal-vlm-and-vla/palme|PaLM-E]]
-- Manipulation Trajectories: [[architectures/multimodal-vlm-and-vla/act|ACT]], [[architectures/multimodal-vlm-and-vla/diffusion-policy|Diffusion Policy]], [[architectures/multimodal-vlm-and-vla/anygrasp|AnyGrasp]]
-- 6-DoF Object Pose: [[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose]], [[architectures/pose-and-robotics-manipulation/megapose|MegaPose]], [[architectures/pose-and-robotics-manipulation/cosypose|CosyPose]]
+- Manipulation Trajectories: [[architectures/multimodal-vlm-and-vla/act|ACT]], [[architectures/multimodal-vlm-and-vla/diffusion-policy|Diffusion Policy]], [[architectures/pose-and-robotics-manipulation/contact-graspnet|Contact-GraspNet]], [[architectures/multimodal-vlm-and-vla/anygrasp|AnyGrasp]]
+- 6-DoF Object Pose & Tracking: [[architectures/pose-and-robotics-manipulation/bundlesdf|BundleSDF]], [[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose]], [[architectures/pose-and-robotics-manipulation/megapose|MegaPose]], [[architectures/pose-and-robotics-manipulation/cosypose|CosyPose]]
+- Optical Flow & Dense Tracking: [[architectures/visual-tracking-and-flow/sea-raft|SEA-RAFT]], [[architectures/visual-tracking-and-flow/raft|RAFT]], [[architectures/visual-tracking-and-flow/cotracker|CoTracker]], [[architectures/visual-tracking-and-flow/bytetrack|ByteTrack]]
 
 ### 🚗 Looking for Autonomous Driving & 3D Spatial Perception?
 - 3D Point Clouds & Sensor Fusion: [[architectures/3d-pointclouds-and-lidar/bevfusion|BEVFusion]], [[architectures/3d-pointclouds-and-lidar/dsvt|DSVT]], [[architectures/3d-pointclouds-and-lidar/centerpoint|CenterPoint]], [[architectures/3d-pointclouds-and-lidar/sparse4d|Sparse4D]]

@@ -18,11 +18,11 @@ aliases:
 
 # 🍳 Runnable Cookbooks Vault & Production Reference Scripts MOC
 
-The **Cookbooks Vault** contains 24 standalone, production-structured implementation scripts in Python and Rust. Every cookbook is engineered with zero-failure execution: each script executes directly (`python <script>.py` or `cargo check`), incorporates numerical assertions, logs hardware diagnostics, and includes a pure CPU/NumPy fallback when physical hardware accelerators or proprietary SDKs are absent.
+The **Cookbooks Vault** contains 25 standalone, production-structured implementation scripts in Python and Rust. Every cookbook is engineered with zero-failure execution: each script executes directly (`python <script>.py` or `cargo check`), incorporates numerical assertions, logs hardware diagnostics, and includes a pure CPU/NumPy fallback when physical hardware accelerators or proprietary SDKs are absent.
 
 ---
 
-## 🗂️ Master Catalog of the 24 Runnable Cookbooks
+## 🗂️ Master Catalog of the 25 Runnable Cookbooks
 
 | # | Domain Focus | Directory Path | Main Script | Technology Stack | Hardware Target |
 | :-: | :--- | :--- | :--- | :--- | :--- |
@@ -50,6 +50,7 @@ The **Cookbooks Vault** contains 24 standalone, production-structured implementa
 | 22 | **Dataset Curation** | `cookbooks/22-fiftyone-dataset-auditing/` | `fiftyone_auditing.py` | FiftyOne, Embedding Search | Desktop / Browser GUI |
 | 23 | **Cross-Platform EP** | `cookbooks/23-onnxruntime-iobinding/` | `ort_iobinding.py` | ONNX Runtime 1.20+, IOBinding | TensorRT / QNN / OpenVINO |
 | 24 | **Safety-Critical Compute**| `cookbooks/24-vulkan-sc-safety-critical/` | `vulkan_sc_pipeline.py` | Vulkan SC 2.0, PCC Offline AOT | ISO 26262 ASIL-D / DO-178C |
+| 25 | **Depth & 3D Pointclouds** | `cookbooks/25-depth-anything-v2-metric-unprojection/` | `unproject_depth_pcd.py` | NumPy, PinholeCamera, PLY | Embedded CPU / Edge |
 
 ---
 
