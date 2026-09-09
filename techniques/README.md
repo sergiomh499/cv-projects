@@ -90,12 +90,14 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Poisson Surface Reconstruction** | 3D Geometry & Meshing | Screened Poisson equation $\Delta \chi = \nabla \cdot \mathbf{V} + \alpha \sum (\chi(\mathbf{p}_i) - 0.5)^2$ extracting watertight manifold meshes | [[techniques/poisson-surface-reconstruction-screened\|Poisson Surface Reconstruction Guide]] |
 | **Model Predictive Control (MPC)** | Robotics & Physical AI | Receding horizon dynamic quadratic program $\min \frac{1}{2} \mathbf{e}^T \mathbf{Q} \mathbf{e} + \frac{1}{2} \mathbf{u}^T \mathbf{R} \mathbf{u}$ with actuator saturation constraints | [[techniques/model-predictive-control-and-trajectory-optimization\|Model Predictive Control & Trajectory Optimization Guide]] |
 | **Zero-Copy IPC & Shared Memory** | Real-Time Systems & Edge | POSIX shared memory (`shm_open`), DMA-BUF descriptor transfer over UNIX sockets (`SCM_RIGHTS`), lock-free ring buffers | [[techniques/zero-copy-ipc-and-posix-shared-memory\|Zero-Copy IPC & POSIX Shared Memory Guide]] |
+| **SO(3) Steerable Convolutions** | Non-Euclidean Geometric AI | Wigner D-matrices, Spherical Harmonics, and Clebsch-Gordan tensor products guaranteeing 3D rotational equivariance | [[techniques/steerable-convolutions-and-so3-equivariance\|Steerable Convolutions & SO(3) Equivariance Guide]] |
+| **Joint-Embedding Predictive (JEPA)** | Self-Supervised Learning | Abstract latent state prediction $\hat{s}_y = g_\phi(s_x, z)$ with momentum EMA and VICReg covariance regularization | [[techniques/joint-embedding-predictive-architecture-jepa\|Joint-Embedding Predictive Architecture Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All 61 documents provide:
+All 63 documents provide:
 1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
 3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.

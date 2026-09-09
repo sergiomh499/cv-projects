@@ -64,6 +64,7 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Direct Linear Transform (DLT)** | Projective cross-product constraint $\mathbf{x}' \times (\mathbf{H} \mathbf{x}) = \mathbf{0}$, $2N \times 9$ SVD nullspace solve, Hartley isotropic normalization | Computes optimal 8-DoF planar homography mappings for calibration and bird's-eye-view transformations | [[techniques/direct-linear-transform-and-homography\|Direct Linear Transform & Homography Guide]] |
 | **RANSAC & Robust Estimators (USAC / MAGSAC++)** | Random minimal sample consensus $k = \frac{\ln(1-p)}{\ln(1-w^s)}$, marginalizing noise scales $\chi^2$ integrals, and local optimization (LO) | Rejects up to $85\%$ gross outliers in feature correspondences without manual threshold tuning | [[techniques/ransac-and-robust-model-estimation\|RANSAC & Robust Estimation Guide]] |
 | **Poisson Surface Reconstruction** | Screened PDE indicator field $\Delta \chi = \nabla \cdot \mathbf{V} + \alpha \sum (\chi(\mathbf{p}_i) - 0.5)^2$ solved over adaptive Octree | Converts unorganized, noisy 3D point clouds into watertight, manifold 2D triangle meshes | [[techniques/poisson-surface-reconstruction-screened\|Poisson Surface Reconstruction Guide]] |
+| **SO(3) & SE(3) Steerable Convolutions** | Wigner D-matrices $\mathbf{D}^l(\mathbf{R})$, Spherical Harmonics decomposition, and Clebsch-Gordan tensor products | Mathematically guarantees exact 3D rotational equivariance without brute-force data augmentation | [[techniques/steerable-convolutions-and-so3-equivariance\|Steerable Convolutions & SO(3) Equivariance Guide]] |
 
 ### 3. Detection, Assignment, Safety & Losses
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -97,6 +98,7 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Denoising Diffusion Models (DDPM & DDIM)** | Closed-form forward Gaussian jump $\mathbf{x}_t = \sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}$ and deterministic non-Markovian ODE sampling | Generates complex multimodal continuous robot action trajectories without regression mode collapse | [[techniques/denoising-diffusion-ddpm-and-ddim\|Denoising Diffusion (DDPM & DDIM) Guide]] |
 | **Multi-Head Self-Attention (MHA)** | Variance-scaled dot-product $\frac{1}{\sqrt{d_k}} \mathbf{Q}\mathbf{K}^T$, Softmax gradient stabilization, multi-subspace projection, KV-cache | Global instantaneous receptive field modeling long-range token interactions in vision and VLMs | [[techniques/multi-head-scaled-dot-product-attention\|Multi-Head Self-Attention Guide]] |
 | **Cross-Attention & Query Decoding** | Decoupled content $\mathbf{q}_{\text{content}}$ and positional reference queries $\mathbf{p}$, Softmax cross-attention to encoder feature maps | Decouples spatial resolution from compute, enabling NMS-free end-to-end set prediction | [[techniques/cross-attention-and-query-based-decoding\|Cross-Attention & Query-Based Decoding Guide]] |
+| **Joint-Embedding Predictive Architecture (JEPA)** | Abstract latent representation prediction $\hat{s}_y = g_\phi(s_x, z)$ with momentum EMA target encoding and VICReg regularization | Discards unpredictable high-frequency pixel noise, learning semantic world state transitions $2.5\times$ faster than MAE | [[techniques/joint-embedding-predictive-architecture-jepa\|Joint-Embedding Predictive Architecture Guide]] |
 
 ### 5. Edge Acceleration, Quantization & Architecture Efficiency
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -148,6 +150,7 @@ flowchart TD
         DLT_Tech["Direct Linear Transform (DLT)"]
         RANSAC_Tech["RANSAC & MAGSAC++"]
         Poisson_Tech["Screened Poisson Reconstruction"]
+        Steerable_Tech["SO(3) Steerable Convolutions"]
     end
 
     subgraph FoundationsAndControl ["Attention, Sequences & Provable Control"]
@@ -181,6 +184,7 @@ flowchart TD
         MPC_Tech["Model Predictive Control (MPC)"]
         Sparsity24_Tech["2:4 Structured Sparsity"]
         ZeroCopy_Tech["Zero-Copy IPC (DMA-BUF)"]
+        JEPA_Tech["JEPA Latent World Model"]
     end
 
     subgraph VaultDeployments ["Vault Architectures & Systems"]
@@ -275,6 +279,9 @@ flowchart TD
     MPC_Tech --> PI0_Model
     Sparsity24_Tech --> Y26
     ZeroCopy_Tech --> FastLIO
+    Steerable_Tech --> FoundationPose_Model
+    JEPA_Tech --> DINOv2_Model
+    DDPM_Tech --> Y14
 ```
 
 ---
