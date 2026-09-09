@@ -58,6 +58,16 @@ The vault includes native **Obsidian `.canvas` visual whiteboards** in `canvases
 | **19. Vision-Language-Action & Physical AI** | [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc|VLA Robotics MOC]] ([Directory](topics/vla-and-physical-ai-robotics/README.md)) | $\pi_0$, OpenVLA, Octo, Continuous Flow Matching, Cartesian Impedance | `openvla/openvla`, `huggingface/lerobot` | 50 Hz Control (20 ms) | **Apache-2.0 / MIT** |
 | **20. Optical Flow & Scene Flow Perception** | [[topics/optical-and-scene-flow-perception/00-optical-and-scene-flow-perception-moc|Optical Flow MOC]] ([Directory](topics/optical-and-scene-flow-perception/README.md)) | GMFlow, UniMatch, RAFT, 3D Point Scene Flow, Horn-Schunck Variational | `princeton-vl/RAFT`, `haofeixu/gmflow` | >60 FPS GMFlow (<15 ms) | **MIT / Apache-2.0** |
 ---
+## 🧬 Techniques & Algorithmic Mechanics Vault (`techniques/`)
+
+Dedicated, mathematically rigorous reference documents detailing foundational algorithms, signal processing transforms, and neural operators:
+- **[[techniques/fourier-domain-adaptation|Fourier Domain Adaptation (FDA)]]**: Frequency-space amplitude swapping preserving exact geometric phase for zero-parameter Sim2Real transfer.
+- **[[techniques/deformable-convolutions|Deformable Convolutions (DCNv1–DCNv4)]]**: Continuous 2D spatial offsets, modulation masks, and FlashDeformable fused memory kernels.
+- **[[techniques/hypergraph-computation|Hypergraph Neural Computation]]**: Spectral hypergraph Laplacian operators capturing high-order non-pairwise visual semantic cliques.
+- **[[techniques/gradient-reversal-and-dann|Gradient Reversal Layers & DANN]]**: Minimax adversarial domain alignment via gradient negation and dynamic annealing schedules.
+- **[[techniques/distribution-focal-loss-vs-direct-regression|Distribution Focal Loss (DFL) vs. Direct Metric Regression]]**: Discretization entropy breakdown, INT8 quantization collapse, and continuous metric regression (CIoU / NWD).
+
+---
 
 ## 🏛️ Central Architecture Vault (`architectures/`)
 

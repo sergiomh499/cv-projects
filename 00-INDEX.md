@@ -23,7 +23,7 @@ Welcome to the **CV Projects Knowledge & Engineering Vault**—a unified, produc
 
 ---
 
-## 🏛️ The Five Core Vault Pillars
+## 🏛️ The Six Core Vault Pillars
 
 ```mermaid
 flowchart TD
@@ -33,16 +33,18 @@ flowchart TD
     Root["🏛️ CV-PROJECTS VAULT ROOT"]:::hub
 
     Root --> P1["🌐 1. TOPICS VAULT<br>20 Domain Playbooks"]:::pillar
-    Root --> P2["🏛️ 2. ARCHITECTURES VAULT<br>98 SOTA Landmark Models"]:::pillar
+    Root --> P2["🏛️ 2. ARCHITECTURES VAULT<br>100 SOTA Landmark Models"]:::pillar
     Root --> P3["⚙️ 3. FRAMEWORKS VAULT<br>18 Software Runtimes"]:::pillar
     Root --> P4["⚡ 4. HARDWARE VAULT<br>20 Edge & Cloud Platforms"]:::pillar
     Root --> P5["🍳 5. COOKBOOKS VAULT<br>24 Runnable Production Scripts"]:::pillar
+    Root --> P6["🧬 6. TECHNIQUES VAULT<br>Algorithmic Mechanics & Math"]:::pillar
 
     click P1 "topics/00-topics-moc" "Open Topics Vault MOC"
     click P2 "architectures/00-architectures-moc" "Open Architectures Vault MOC"
     click P3 "frameworks/00-frameworks-moc" "Open Frameworks Vault MOC"
     click P4 "hardware/00-hardware-moc" "Open Hardware Vault MOC"
     click P5 "cookbooks/00-cookbooks-moc" "Open Cookbooks Vault MOC"
+    click P6 "techniques/00-techniques-moc" "Open Techniques Vault MOC"
 ```
 
 | Vault Pillar | Core Navigation Hub | Scope & Assets Covered | Key Technologies |
@@ -52,6 +54,7 @@ flowchart TD
 | **3. Frameworks Vault** | [[frameworks/00-frameworks-moc\|Software Frameworks MOC]] | 18 Production Inference, Training & IPC Toolchains | TensorRT 10, ONNX Runtime, Vulkan SC, Iceoryx2, Zenoh |
 | **4. Hardware Vault** | [[hardware/00-hardware-moc\|Hardware Platforms MOC]] | 20 Edge SoCs, Automotive Drives, NPUs & FPGAs | NVIDIA Orin/Thor, AMD Versal Gen 2, Intel NPU |
 | **5. Cookbooks Vault** | [[cookbooks/00-cookbooks-moc\|Runnable Cookbooks MOC]] | 24 Standalone, Pure-Python/Rust Verified Scripts | CUDA Graphs, Quark PTQ, Lie SLAM, Rerun, FiftyOne |
+| **6. Techniques Vault** | [[techniques/00-techniques-moc\|Techniques MOC]] | Foundational Operators, Transforms & Math Formulations | Fourier Adaptation, DCNv4, Hypergraphs, GRL, Direct Regression |
 
 ---
 
@@ -76,6 +79,13 @@ flowchart TD
 - Zero-Copy Communications: [[frameworks/iceoryx2|Eclipse Iceoryx2]], [[frameworks/zenoh|Eclipse Zenoh]], [[frameworks/ros2-rmw|ROS 2 RMW]]
 - Safety & Verification Playbook: [[topics/safety-verification-and-robustness/README|Safety Verification]], [[topics/real-time-systems/README|Real-Time Systems]]
 
+
+### 🧬 Looking for Foundational Techniques & Mathematical Mechanics?
+- **Fourier Domain Adaptation (FDA)**: [[techniques/fourier-domain-adaptation|Fourier Domain Adaptation]]
+- **Deformable Convolutions (DCNv1–DCNv4)**: [[techniques/deformable-convolutions|Deformable Convolutions Guide]]
+- **Hypergraph Neural Computation**: [[techniques/hypergraph-computation|Hypergraph Computation Guide]]
+- **Adversarial Domain Alignment (GRL / DANN)**: [[techniques/gradient-reversal-and-dann|Gradient Reversal & DANN Guide]]
+- **Regression Mechanics**: [[techniques/distribution-focal-loss-vs-direct-regression|DFL vs. Direct Metric Regression]]
 ---
 
 ## 📊 Dataview Dynamic Vault Directory
