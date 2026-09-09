@@ -50,6 +50,9 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Bundle Adjustment & Schur Complement** | Arrowhead block Hessian $\mathbf{H} = \begin{bmatrix} \mathbf{B} & \mathbf{E} \\ \mathbf{E}^T & \mathbf{C} \end{bmatrix}$, $\mathcal{O}(N)$ landmark marginalization $(\mathbf{B} - \mathbf{E}\mathbf{C}^{-1}\mathbf{E}^T)\Delta\mathbf{x}_p = \mathbf{g}$ | Solves multi-camera 3D reconstruction in $<5\text{ ms}$ bypassing the cubic $\mathcal{O}(D^3)$ inversion barrier | [[techniques/bundle-adjustment-and-schur-complement\|Bundle Adjustment & Schur Complement Guide]] |
 | **Epipolar Geometry & Essential Matrix** | Coplanarity constraint $\mathbf{x}_2^T \mathbf{E} \mathbf{x}_1 = 0$, Hartley isotropic scaling, SVD rank-2 projection, Cheirality depth check | Estimates relative camera rotation $\mathbf{R} \in \mathrm{SO}(3)$ and baseline direction $\mathbf{t}$ from 2D point correspondences | [[techniques/epipolar-geometry-essential-matrix\|Epipolar Geometry & Essential Matrix Guide]] |
 | **Perspective-n-Point (PnP & EPnP)** | 4 virtual control points with rigid-invariant barycentric weights, $\mathcal{O}(N)$ linear system $\mathbf{M}\mathbf{x} = \mathbf{0}$, closed-form Procrustes alignment | Computes 6-DoF object/camera pose $(\mathbf{R}, \mathbf{t}) \in \mathrm{SE}(3)$ from 2D-3D correspondences in $<1\text{ ms}$ | [[techniques/perspective-n-point-epnp-pose-estimation\|Perspective-n-Point (EPnP) Guide]] |
+| **Implicit Neural Representations (INR)** | Sinusoidal frequency projection $\gamma(\mathbf{v}) = [\sin(2^k \pi \mathbf{v}), \cos(2^k \pi \mathbf{v})]$ and SIREN periodic activations | Overcomes MLP spectral bias, unlocking high-frequency texture, normal, and continuous 3D field reconstruction | [[techniques/implicit-neural-representations-fourier-features\|Implicit Neural Representations Guide]] |
+| **Sparse Submanifold Convolutions (SpConv)** | Submanifold invariant $\text{Active}(\mathbf{y}_{\mathbf{p}}) = \text{Active}(\mathbf{x}_{\mathbf{p}})$, coordinate hash table, Rulebook Gather-GEMM-Scatter | Eliminates 3D voxel dilation explosion, enabling arbitrarily deep 3D sparse networks with $95\%$ VRAM savings | [[techniques/sparse-submanifold-convolutions-spconv\|Sparse Submanifold Convolutions Guide]] |
+| **Iterative Closest Point (ICP & G-ICP)** | Surface normal projection $e_i = \mathbf{n}_i^T (\mathbf{R}\mathbf{p}_i + \mathbf{t} - \mathbf{q}_i)$ and Gaussian covariance Mahalanobis distance | Prevents corridor drift and accelerates 3D point cloud scan matching convergence by $10\times$ | [[techniques/iterative-closest-point-and-generalized-icp\|Iterative Closest Point Guide]] |
 
 ### 3. Detection, Assignment, Safety & Losses
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -62,6 +65,9 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Bounding Box Losses (GIoU, DIoU, CIoU, NWD)** | Scale-invariant metrics: convex area penalty (GIoU), center distance (DIoU), aspect ratio (CIoU), and 2D Gaussian Wasserstein distance (NWD) | Eliminates vanishing gradients on non-overlapping boxes and stabilizes sub-pixel regression for tiny objects | [[techniques/bounding-box-losses-giou-ciou-nwd\|Bounding Box Regression Losses Guide]] |
 | **Focal Loss & Class Imbalance** | Dynamic modulating factor $\text{FL}(p_t) = -\alpha_t (1 - p_t)^\gamma \log(p_t)$ and Quality Focal Loss (QFL) with continuous IoU targets | Downweights easy negatives, preventing loss gradient domination in dense one-stage detectors with extreme $10,000:1$ class imbalance | [[techniques/focal-loss-and-class-imbalance\|Focal Loss & Class Imbalance Guide]] |
 | **FPN & Path Aggregation (PANet / BiFPN)** | Top-down semantic enrichment, bottom-up localization pathways, and fast normalized weighted cross-scale fusion | Delivers scale-invariant representations across tiny, medium, and large objects without costly multi-scale image inference | [[techniques/feature-pyramid-networks-and-path-aggregation\|FPN & Path Aggregation Guide]] |
+| **Two-Stage Association (ByteTrack)** | High/low confidence threshold partitioning ($\mathcal{D}_{\text{high}}, \mathcal{D}_{\text{low}}$) and unmatched tracklet recovery via Hungarian matching | Eliminates false-negative track fragmentation under heavy occlusion without deep Re-ID extraction overhead | [[techniques/two-stage-association-bytetrack\|Two-Stage Association Guide]] |
+| **Spatial Pyramid Pooling (SPP, SPPF, ASPP)** | Serial cascade equivalence $\text{MaxPool}_{9\times 9} \equiv \text{MaxPool}_{5\times 5}(\text{MaxPool}_{5\times 5})$ and atrous dilated convolutions | Expands effective receptive field without spatial downsampling, running $>2\times$ faster than parallel SPP | [[techniques/spatial-pyramid-pooling-spp-sppf-aspp\|Spatial Pyramid Pooling Guide]] |
+| **RoIAlign & Exact Bilinear Sampling** | Zero-quantization continuous floating-point coordinates and 4-point bilinear interpolation | Eliminates RoIPool 8–16 pixel spatial quantization drift, boosting instance segmentation by $+3\text{--}+5\text{ mAP}$ | [[techniques/roialign-and-exact-bilinear-sampling\|RoIAlign & Exact Bilinear Sampling Guide]] |
 
 ### 4. Sequence, Attention & Continuous Dynamical Systems
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -73,6 +79,7 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Multi-Scale Deformable Attention (MS-DeformAttn)** | Reference points with learned 2D sampling offsets $\Delta \mathbf{p}_{mqk}$, multi-scale bilinear interpolation, attention weight aggregation | Scales vision transformers to multi-scale high-resolution feature maps with strictly linear $\mathcal{O}(N_q C)$ complexity | [[techniques/multi-scale-deformable-attention\|Multi-Scale Deformable Attention Guide]] |
 | **Shifted Window Self-Attention (Swin)** | Partitioned non-overlapping window attention (W-MSA) with cyclic shift, masked computation, and reverse roll | Delivers hierarchical vision transformer backbones with linear $\mathcal{O}(M^2 HW)$ complexity and cross-window receptive fields | [[techniques/shifted-window-attention-swin\|Shifted Window Self-Attention Guide]] |
 | **Rotary Positional Embeddings (RoPE & M-RoPE)** | 2D complex orthogonal rotation matrices $\mathbf{R}_{\Theta, n-m}$ decomposing spatial coordinates into temporal, vertical, and horizontal $(t, y, x)$ axes | Encodes relative geometric distance directly within attention inner products, supporting arbitrary image resolutions and aspect ratios | [[techniques/rotary-positional-embeddings-rope-and-mrope\|Rotary Positional Embeddings Guide]] |
+| **Denoising Diffusion Models (DDPM & DDIM)** | Closed-form forward Gaussian jump $\mathbf{x}_t = \sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}$ and deterministic non-Markovian ODE sampling | Generates complex multimodal continuous robot action trajectories without regression mode collapse | [[techniques/denoising-diffusion-ddpm-and-ddim\|Denoising Diffusion (DDPM & DDIM) Guide]] |
 
 ### 5. Edge Acceleration, Quantization & Architecture Efficiency
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -107,6 +114,9 @@ flowchart TD
         BA_Schur["Bundle Adjustment & Schur"]
         Epipolar["Epipolar Geometry & Essential Matrix"]
         EPnP["Perspective-n-Point (EPnP)"]
+        INR_Fourier["Implicit Neural Fields (Fourier / SIREN)"]
+        SpConv_Tech["Submanifold Sparse Conv (SpConv)"]
+        ICP_Tech["Iterative Closest Point (Point-to-Plane)"]
     end
 
     subgraph FoundationsAndControl ["Attention, Sequences & Provable Control"]
@@ -126,6 +136,10 @@ flowchart TD
         MSDeform["Multi-Scale Deformable Attention"]
         SwinAttn["Shifted Window Attention (Swin)"]
         RoPE_Tech["Rotary Positional Embeddings (RoPE)"]
+        ByteTrack_Tech["Two-Stage Association (ByteTrack)"]
+        SPP_Tech["Spatial Pyramid Pooling (SPPF / ASPP)"]
+        RoIAlign_Tech["RoIAlign (Bilinear Sampling)"]
+        DDPM_Tech["Diffusion Models (DDPM & DDIM)"]
     end
 
     subgraph VaultDeployments ["Vault Architectures & Systems"]
@@ -142,6 +156,8 @@ flowchart TD
         PointPillars_Model["PointPillars"]
         DROID_SLAM_Model["DROID-SLAM"]
         FoundationPose_Model["FoundationPose"]
+        CenterPoint_Model["CenterPoint"]
+        Mask2Former_Model["Mask2Former"]
     end
 
     FDA --> Y14
@@ -182,6 +198,18 @@ flowchart TD
     FPN_PANet --> RFDETR
     SwinAttn --> DINOv2_Model
     RoPE_Tech --> OpenVLA_Model
+    INR_Fourier --> GS3D_SLAM
+    SpConv_Tech --> CenterPoint_Model
+    SpConv_Tech --> BEVFusion
+    ICP_Tech --> FastLIO
+    ICP_Tech --> FoundationPose_Model
+    ByteTrack_Tech --> CenterPoint_Model
+    SPP_Tech --> Y14
+    SPP_Tech --> Y26
+    SPP_Tech --> Mask2Former_Model
+    RoIAlign_Tech --> Mask2Former_Model
+    DDPM_Tech --> PI0_Model
+    DDPM_Tech --> OpenVLA_Model
 ```
 
 ---

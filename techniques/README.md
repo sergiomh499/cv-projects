@@ -62,12 +62,19 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Multi-Scale Deformable Attention** | Vision Transformers & Attention | Reference points with learned 2D sampling offsets and linear $\mathcal{O}(N_q C)$ complexity | [[techniques/multi-scale-deformable-attention\|Multi-Scale Deformable Attention Guide]] |
 | **Shifted Window Attention (Swin)** | Hierarchical Vision Backbones | Linear-complexity local window attention (W-MSA) with cyclic shift and masking | [[techniques/shifted-window-attention-swin\|Shifted Window Self-Attention Guide]] |
 | **Rotary Positional Embeddings (RoPE)** | Multimodal Attention & VLMs | Complex 2D orthogonal rotation matrices and 3D M-RoPE decomposing $(t, y, x)$ axes | [[techniques/rotary-positional-embeddings-rope-and-mrope\|Rotary Positional Embeddings Guide]] |
+| **Implicit Neural Representations** | Neural Fields & 3D Radiance | Sinusoidal frequency projection $\gamma(\mathbf{v})$ and SIREN periodic activations | [[techniques/implicit-neural-representations-fourier-features\|Implicit Neural Representations Guide]] |
+| **Sparse Submanifold Convolutions** | 3D Point Clouds & Voxels | Submanifold invariant $\text{Active}(\mathbf{y}) = \text{Active}(\mathbf{x})$ and Rulebook Gather-GEMM-Scatter | [[techniques/sparse-submanifold-convolutions-spconv\|Sparse Submanifold Convolutions Guide]] |
+| **Iterative Closest Point (G-ICP)** | 3D Point Clouds & Registration | Surface normal projection $e_i = \mathbf{n}_i^T (\mathbf{R}\mathbf{p}_i + \mathbf{t} - \mathbf{q}_i)$ and Gaussian covariance matching | [[techniques/iterative-closest-point-and-generalized-icp\|Iterative Closest Point Guide]] |
+| **Two-Stage Association (ByteTrack)** | Video Tracking & MOT | High/low confidence threshold partitioning ($\mathcal{D}_{\text{high}}, \mathcal{D}_{\text{low}}$) recovering occluded tracklets | [[techniques/two-stage-association-bytetrack\|Two-Stage Association Guide]] |
+| **Spatial Pyramid Pooling (SPPF / ASPP)** | Multi-Scale Receptive Fields | Serial cascade equivalence and atrous dilated convolutions without downsampling | [[techniques/spatial-pyramid-pooling-spp-sppf-aspp\|Spatial Pyramid Pooling Guide]] |
+| **RoIAlign & Bilinear Sampling** | Instance Segmentation & Extraction | Zero-quantization continuous sampling eliminating 8–16 pixel spatial drift | [[techniques/roialign-and-exact-bilinear-sampling\|RoIAlign & Exact Bilinear Sampling Guide]] |
+| **Denoising Diffusion (DDPM / DDIM)** | Generative Vision & Trajectories | Closed-form forward Gaussian jump and deterministic non-Markovian ODE sampling | [[techniques/denoising-diffusion-ddpm-and-ddim\|Denoising Diffusion (DDPM & DDIM) Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All 33 documents provide:
+All 40 documents provide:
 1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
 3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.
