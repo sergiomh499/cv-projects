@@ -46,6 +46,10 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Variational Optical Flow (TV-$L^1$)** | Primal-Dual Chambolle-Pock decoupling, Total Variation regularization $\|\nabla\mathbf{u}\|$, pointwise soft-thresholding shrinkage | Preserves razor-sharp motion step discontinuities across object boundaries without oversmoothing | [[techniques/variational-optical-flow-tv-l1\|Variational Optical Flow TV-L1 Guide]] |
 | **Multiresolution Spatial Hash Encodings** | Prime-XOR spatial hashing $h(\mathbf{v}) = (\bigoplus v_i \pi_i) \pmod T$, geometric level stacking, dynamic sparse voxel indexing | Delivers dense continuous 3D representations in constant $\mathcal{O}(1)$ memory, eliminating the cubic $\mathcal{O}(N^3)$ voxel memory barrier | [[techniques/multiresolution-hash-encodings-and-sparse-voxels\|Multiresolution Spatial Hash Encodings Guide]] |
 | **Orthogonal Procrustes & Umeyama Alignment** | Centroid decoupling, spatial cross-covariance SVD $\mathbf{\Sigma} = \mathbf{U}\mathbf{D}\mathbf{V}^T$, determinant reflection sign correction | Exact, closed-form, globally optimal $\mathrm{Sim}(3)$ metric scale, rotation, and translation in $<10\ \mu\text{s}$ | [[techniques/orthogonal-procrustes-and-umeyama-sim3\|Orthogonal Procrustes & Umeyama Guide]] |
+| **Pillar Feature Encoding (PointPillars)** | Vertical pillar discretization, 9D geometric feature augmentation, simplified PointNet max-pooling, and 2D pseudo-image scatter | Transforms unordered 3D LiDAR point clouds into dense 2D BEV representations running at $>60\text{ FPS}$ on standard 2D CNN engines | [[techniques/point-cloud-pillar-feature-encoding\|Point Cloud Pillar Feature Encoding Guide]] |
+| **Bundle Adjustment & Schur Complement** | Arrowhead block Hessian $\mathbf{H} = \begin{bmatrix} \mathbf{B} & \mathbf{E} \\ \mathbf{E}^T & \mathbf{C} \end{bmatrix}$, $\mathcal{O}(N)$ landmark marginalization $(\mathbf{B} - \mathbf{E}\mathbf{C}^{-1}\mathbf{E}^T)\Delta\mathbf{x}_p = \mathbf{g}$ | Solves multi-camera 3D reconstruction in $<5\text{ ms}$ bypassing the cubic $\mathcal{O}(D^3)$ inversion barrier | [[techniques/bundle-adjustment-and-schur-complement\|Bundle Adjustment & Schur Complement Guide]] |
+| **Epipolar Geometry & Essential Matrix** | Coplanarity constraint $\mathbf{x}_2^T \mathbf{E} \mathbf{x}_1 = 0$, Hartley isotropic scaling, SVD rank-2 projection, Cheirality depth check | Estimates relative camera rotation $\mathbf{R} \in \mathrm{SO}(3)$ and baseline direction $\mathbf{t}$ from 2D point correspondences | [[techniques/epipolar-geometry-essential-matrix\|Epipolar Geometry & Essential Matrix Guide]] |
+| **Perspective-n-Point (PnP & EPnP)** | 4 virtual control points with rigid-invariant barycentric weights, $\mathcal{O}(N)$ linear system $\mathbf{M}\mathbf{x} = \mathbf{0}$, closed-form Procrustes alignment | Computes 6-DoF object/camera pose $(\mathbf{R}, \mathbf{t}) \in \mathrm{SE}(3)$ from 2D-3D correspondences in $<1\text{ ms}$ | [[techniques/perspective-n-point-epnp-pose-estimation\|Perspective-n-Point (EPnP) Guide]] |
 
 ### 3. Detection, Assignment, Safety & Losses
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -55,6 +59,9 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Contrastive Learning: InfoNCE vs. SigLIP** | Decoupled pairwise binary Sigmoid loss $\mathcal{L} = - \frac{1}{B} \sum \log \sigma(y_{ij} (t \mathbf{u}_i^T \mathbf{v}_j + b))$ | Eliminates distributed multi-GPU `all-gather` communication bottlenecks, scaling contrastive pretraining past batch size 1M | [[techniques/contrastive-learning-infonce-vs-siglip\|InfoNCE vs SigLIP Contrastive Learning Guide]] |
 | **Control Barrier Functions (CBF-QP)** | Set forward invariance $\dot{h}(\mathbf{x}) + \gamma h(\mathbf{x}) \ge 0$, online convex Quadratic Program minimal intervention filter | Guarantees formal provable safety and collision avoidance around uncertified neural network and VLA policy actions in $<50\ \mu\text{s}$ | [[techniques/control-barrier-functions-safe-control\|Control Barrier Functions (CBF) Guide]] |
 | **Error-State Kalman Filter (ESKF)** | True/nominal/error decomposition, $\delta\boldsymbol{\theta} \in \mathfrak{so}(3)$ tangent rotation, error reset after injection | Non-singular minimal $15\times 15$ covariance matrix eliminating quaternion normalization singularity in visual-inertial fusion | [[techniques/error-state-kalman-filter-eskf-vio\|Error-State Kalman Filter (ESKF) Guide]] |
+| **Bounding Box Losses (GIoU, DIoU, CIoU, NWD)** | Scale-invariant metrics: convex area penalty (GIoU), center distance (DIoU), aspect ratio (CIoU), and 2D Gaussian Wasserstein distance (NWD) | Eliminates vanishing gradients on non-overlapping boxes and stabilizes sub-pixel regression for tiny objects | [[techniques/bounding-box-losses-giou-ciou-nwd\|Bounding Box Regression Losses Guide]] |
+| **Focal Loss & Class Imbalance** | Dynamic modulating factor $\text{FL}(p_t) = -\alpha_t (1 - p_t)^\gamma \log(p_t)$ and Quality Focal Loss (QFL) with continuous IoU targets | Downweights easy negatives, preventing loss gradient domination in dense one-stage detectors with extreme $10,000:1$ class imbalance | [[techniques/focal-loss-and-class-imbalance\|Focal Loss & Class Imbalance Guide]] |
+| **FPN & Path Aggregation (PANet / BiFPN)** | Top-down semantic enrichment, bottom-up localization pathways, and fast normalized weighted cross-scale fusion | Delivers scale-invariant representations across tiny, medium, and large objects without costly multi-scale image inference | [[techniques/feature-pyramid-networks-and-path-aggregation\|FPN & Path Aggregation Guide]] |
 
 ### 4. Sequence, Attention & Continuous Dynamical Systems
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -63,6 +70,9 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Visual State-Space Models (VMamba / SS2D)** | Discretized continuous ODE $\dot{h} = \mathbf{A} h + \mathbf{B} x$, ZOH discretization $\bar{\mathbf{A}} = \exp(\mathbf{\Delta} \mathbf{A})$, 4-way 2D selective scan | Global effective receptive field with strictly linear $\mathcal{O}(N)$ computation, bypassing quadratic attention | [[techniques/visual-state-space-mamba\|Visual State-Space Models (SSM) Guide]] |
 | **Continuous Flow Matching (CFM)** | Optimal Transport straight vector fields $\mathbf{u}_t = \mathbf{x}_1 - \mathbf{x}_0$, continuity equation, forward Euler ODE integration | Replaces curved Brownian diffusion paths with straight trajectories, generating samples in $1\text{--}4$ forward steps | [[techniques/continuous-flow-matching\|Continuous Flow Matching Guide]] |
 | **Action Chunking with C-VAE (ACT)** | C-VAE latent style $z \sim \mathcal{N}(0, I)$, predicting $H$-step future trajectory $a_{t:t+H}$, decaying temporal ensembling $w_i = e^{-mi}$ | Eliminates single-step compounding errors and prevents mode collapse in multimodal robot demonstrations at $50\text{ Hz}$ | [[techniques/action-chunking-cvae\|Action Chunking with C-VAE Guide]] |
+| **Multi-Scale Deformable Attention (MS-DeformAttn)** | Reference points with learned 2D sampling offsets $\Delta \mathbf{p}_{mqk}$, multi-scale bilinear interpolation, attention weight aggregation | Scales vision transformers to multi-scale high-resolution feature maps with strictly linear $\mathcal{O}(N_q C)$ complexity | [[techniques/multi-scale-deformable-attention\|Multi-Scale Deformable Attention Guide]] |
+| **Shifted Window Self-Attention (Swin)** | Partitioned non-overlapping window attention (W-MSA) with cyclic shift, masked computation, and reverse roll | Delivers hierarchical vision transformer backbones with linear $\mathcal{O}(M^2 HW)$ complexity and cross-window receptive fields | [[techniques/shifted-window-attention-swin\|Shifted Window Self-Attention Guide]] |
+| **Rotary Positional Embeddings (RoPE & M-RoPE)** | 2D complex orthogonal rotation matrices $\mathbf{R}_{\Theta, n-m}$ decomposing spatial coordinates into temporal, vertical, and horizontal $(t, y, x)$ axes | Encodes relative geometric distance directly within attention inner products, supporting arbitrary image resolutions and aspect ratios | [[techniques/rotary-positional-embeddings-rope-and-mrope\|Rotary Positional Embeddings Guide]] |
 
 ### 5. Edge Acceleration, Quantization & Architecture Efficiency
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -93,6 +103,10 @@ flowchart TD
         TVL1["Variational TV-L1 Flow"]
         Hash3D["Spatial Hash Encodings (Instant-NGP)"]
         Procrustes["Orthogonal Procrustes (Umeyama)"]
+        Pillars["Point Cloud Pillar Encoding"]
+        BA_Schur["Bundle Adjustment & Schur"]
+        Epipolar["Epipolar Geometry & Essential Matrix"]
+        EPnP["Perspective-n-Point (EPnP)"]
     end
 
     subgraph FoundationsAndControl ["Attention, Sequences & Provable Control"]
@@ -106,6 +120,12 @@ flowchart TD
         DirectReg["Direct Metric Regression"]
         RepConv["Structural Reparameterization"]
         PTQ["PTQ & Outlier Smoothing"]
+        BBoxLosses["Bounding Box Losses (CIoU / NWD)"]
+        FocalLoss["Focal Loss & Class Imbalance"]
+        FPN_PANet["FPN & Path Aggregation (BiFPN)"]
+        MSDeform["Multi-Scale Deformable Attention"]
+        SwinAttn["Shifted Window Attention (Swin)"]
+        RoPE_Tech["Rotary Positional Embeddings (RoPE)"]
     end
 
     subgraph VaultDeployments ["Vault Architectures & Systems"]
@@ -119,6 +139,9 @@ flowchart TD
         SAM2_Model["SAM 2"]
         DINOv2_Model["DINOv2"]
         FastLIO["FAST-LIO2"]
+        PointPillars_Model["PointPillars"]
+        DROID_SLAM_Model["DROID-SLAM"]
+        FoundationPose_Model["FoundationPose"]
     end
 
     FDA --> Y14
@@ -145,6 +168,20 @@ flowchart TD
     ESKF --> FastLIO
     Hash3D --> GS3D_SLAM
     Procrustes --> GS3D_SLAM
+    Pillars --> PointPillars_Model
+    Pillars --> BEVFusion
+    BA_Schur --> DROID_SLAM_Model
+    BA_Schur --> GS3D_SLAM
+    Epipolar --> DROID_SLAM_Model
+    EPnP --> FoundationPose_Model
+    MSDeform --> RFDETR
+    FocalLoss --> RFDETR
+    FocalLoss --> Y14
+    BBoxLosses --> Y14
+    FPN_PANet --> Y14
+    FPN_PANet --> RFDETR
+    SwinAttn --> DINOv2_Model
+    RoPE_Tech --> OpenVLA_Model
 ```
 
 ---

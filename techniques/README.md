@@ -52,12 +52,22 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Control Barrier Functions (CBF)** | Provable Safety & Control Theory | Online convex QP filter minimally perturbing uncertified neural policy actions | [[techniques/control-barrier-functions-safe-control\|Control Barrier Functions (CBF) Guide]] |
 | **Phase-Shifting Profilometry** | Active 3D Sensing & Metrology | Multi-frequency heterodyne phase unwrapping for $<10\ \mu\text{m}$ surface depth | [[techniques/phase-shifting-profilometry-structured-light\|Phase-Shifting Profilometry Guide]] |
 | **Variational Optical Flow (TV-L1)** | Visual Motion & Optimization | Total Variation regularization and primal-dual soft-thresholding shrinkage | [[techniques/variational-optical-flow-tv-l1\|Variational Optical Flow TV-L1 Guide]] |
+| **Pillar Feature Encoding** | 3D LiDAR & Point Clouds | PointPillars 9D augmentation and 2D pseudo-image scatter projection | [[techniques/point-cloud-pillar-feature-encoding\|Point Cloud Pillar Feature Encoding Guide]] |
+| **Bundle Adjustment & Schur** | Visual SLAM & Optimization | Arrowhead block Hessian marginalization solving reduced camera system in $<5\text{ ms}$ | [[techniques/bundle-adjustment-and-schur-complement\|Bundle Adjustment & Schur Complement Guide]] |
+| **Epipolar Geometry & Essential Matrix** | Two-View Geometry & Odometry | Coplanarity constraint, Hartley 8-point normalization, SVD rank-2, and Cheirality | [[techniques/epipolar-geometry-essential-matrix\|Epipolar Geometry & Essential Matrix Guide]] |
+| **Perspective-n-Point (EPnP)** | 6-DoF Pose & Spatial Localization | 4 virtual control points with barycentric Euclidean invariance for $\mathcal{O}(N)$ pose | [[techniques/perspective-n-point-epnp-pose-estimation\|Perspective-n-Point (EPnP) Guide]] |
+| **Bounding Box Losses (CIoU / NWD)** | Bounding Box Regression | Scale-invariant metrics: GIoU, DIoU, CIoU, and Gaussian Wasserstein distance | [[techniques/bounding-box-losses-giou-ciou-nwd\|Bounding Box Regression Losses Guide]] |
+| **Focal Loss & Class Imbalance** | Classification & Detection Losses | Dynamic modulating factor $(1-p_t)^\gamma$ and Quality Focal Loss for continuous IoU | [[techniques/focal-loss-and-class-imbalance\|Focal Loss & Class Imbalance Guide]] |
+| **FPN & Path Aggregation (BiFPN)** | Multi-Scale Feature Fusion | Top-down semantics, bottom-up localization, and fast normalized weighted fusion | [[techniques/feature-pyramid-networks-and-path-aggregation\|FPN & Path Aggregation Guide]] |
+| **Multi-Scale Deformable Attention** | Vision Transformers & Attention | Reference points with learned 2D sampling offsets and linear $\mathcal{O}(N_q C)$ complexity | [[techniques/multi-scale-deformable-attention\|Multi-Scale Deformable Attention Guide]] |
+| **Shifted Window Attention (Swin)** | Hierarchical Vision Backbones | Linear-complexity local window attention (W-MSA) with cyclic shift and masking | [[techniques/shifted-window-attention-swin\|Shifted Window Self-Attention Guide]] |
+| **Rotary Positional Embeddings (RoPE)** | Multimodal Attention & VLMs | Complex 2D orthogonal rotation matrices and 3D M-RoPE decomposing $(t, y, x)$ axes | [[techniques/rotary-positional-embeddings-rope-and-mrope\|Rotary Positional Embeddings Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All 23 documents provide:
+All 33 documents provide:
 1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
 3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.
