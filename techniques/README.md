@@ -83,12 +83,19 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Marching Cubes & SDF** | 3D Reconstruction & Graphics | Voxel cube 8-bit lookup, topological symmetry reduction, and linear zero-crossing surface meshing | [[techniques/marching-cubes-and-signed-distance-functions\|Marching Cubes & SDF Guide]] |
 | **Extended Kalman Filter (EKF)** | Sensor Fusion & Navigation | First-order Taylor Jacobian linearization $\mathbf{F}_k, \mathbf{H}_k$ and Joseph-form covariance propagation | [[techniques/extended-kalman-filter-nonlinear-estimation\|Extended Kalman Filter Guide]] |
 | **Graph Convolutional Networks (GCN)** | Non-Euclidean Geometric Deep Learning | Symmetric normalized adjacency $\tilde{\mathbf{D}}^{-1/2}\tilde{\mathbf{A}}\tilde{\mathbf{D}}^{-1/2}$ and spatial message passing | [[techniques/graph-convolutional-networks-message-passing\|Graph Convolutional Networks Guide]] |
+| **Unscented Kalman Filter (UKF)** | Sensor Fusion & Navigation | $2n+1$ deterministic sigma points, Cholesky matrix square root, and derivative-free propagation | [[techniques/unscented-kalman-filter-and-sigma-points\|Unscented Kalman Filter & Sigma Points Guide]] |
+| **Direct Linear Transform (DLT)** | Two-View Geometry & Calibration | 8-DoF planar homography via cross-product constraint $\mathbf{x}' \times (\mathbf{H}\mathbf{x}) = \mathbf{0}$, SVD nullspace solve, and Hartley normalization | [[techniques/direct-linear-transform-and-homography\|Direct Linear Transform & Homography Guide]] |
+| **RANSAC & Robust Estimation** | Robust Estimation & Matching | Minimal sample consensus $k \ge \frac{\ln(1-p)}{\ln(1-w^s)}$, MSAC scoring, and MAGSAC++ noise marginalization | [[techniques/ransac-and-robust-model-estimation\|RANSAC & Robust Estimation Guide]] |
+| **Structured Weight Pruning (2:4)** | Model Compression & Hardware | NVIDIA Ampere/Hopper 2:4 structured sparsity $\Pi_{2:4}(\mathbf{W})$ doubling GEMM throughput on Sparse Tensor Cores | [[techniques/structured-weight-pruning-and-2-4-sparsity\|Structured Weight Pruning & 2:4 Sparsity Guide]] |
+| **Poisson Surface Reconstruction** | 3D Geometry & Meshing | Screened Poisson equation $\Delta \chi = \nabla \cdot \mathbf{V} + \alpha \sum (\chi(\mathbf{p}_i) - 0.5)^2$ extracting watertight manifold meshes | [[techniques/poisson-surface-reconstruction-screened\|Poisson Surface Reconstruction Guide]] |
+| **Model Predictive Control (MPC)** | Robotics & Physical AI | Receding horizon dynamic quadratic program $\min \frac{1}{2} \mathbf{e}^T \mathbf{Q} \mathbf{e} + \frac{1}{2} \mathbf{u}^T \mathbf{R} \mathbf{u}$ with actuator saturation constraints | [[techniques/model-predictive-control-and-trajectory-optimization\|Model Predictive Control & Trajectory Optimization Guide]] |
+| **Zero-Copy IPC & Shared Memory** | Real-Time Systems & Edge | POSIX shared memory (`shm_open`), DMA-BUF descriptor transfer over UNIX sockets (`SCM_RIGHTS`), lock-free ring buffers | [[techniques/zero-copy-ipc-and-posix-shared-memory\|Zero-Copy IPC & POSIX Shared Memory Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All 54 documents provide:
+All 61 documents provide:
 1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
 3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.
