@@ -33,6 +33,8 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Fourier Domain Adaptation (FDA)** | 2D centered FFT decomposition into Phase $\mathcal{P}$ (geometry) and Amplitude $\mathcal{A}$ (style); low-frequency amplitude swap | Zero-parameter, zero-gradient transfer of real camera style to synthetic frames without altering bounding boxes | [[techniques/fourier-domain-adaptation\|Fourier Domain Adaptation Guide]] |
 | **Gradient Reversal Layer (GRL / DANN)** | Minimax adversarial optimization with identity forward $\mathcal{R}(\mathbf{z}) = \mathbf{z}$ and negated backward $\frac{d\mathcal{R}}{d\mathbf{z}} = -\lambda \mathbf{I}$ | Single-pass joint optimization forcing backbones to discard synthetic artifacts and learn domain-invariant representations | [[techniques/gradient-reversal-and-dann\|Gradient Reversal & DANN Guide]] |
 | **Sinusoidal Phase-Shifting Profilometry** | $N$-step fringe projection, arctangent wrapped phase $\phi = -\text{atan2}(\sum I_n \sin\delta_n, \sum I_n \cos\delta_n)$, heterodyne beat unwrapping | Sub-10-micron surface metrology completely invariant to ambient illumination and surface albedo | [[techniques/phase-shifting-profilometry-structured-light\|Phase-Shifting Profilometry Guide]] |
+| **Sim2Real Domain Randomization** | Parameter expectation $\min_\theta \mathbb{E}_{\boldsymbol{\xi}} [\mathcal{L}(\boldsymbol{\xi})]$, visual noise, and physical dynamics randomization | Closes reality gap, enabling zero-shot sim-to-real transfer on drones and robotic manipulators | [[techniques/sim2real-domain-randomization-and-dynamics\|Sim2Real Domain Randomization Guide]] |
+| **Masked Autoencoders (MAE)** | High 75% patch masking, asymmetric encoder-decoder processing only 25% visible tokens, normalized pixel MSE | Cuts self-attention quadratic compute by $16\times$ during self-supervised vision pretraining | [[techniques/masked-autoencoders-and-vision-pretraining\|Masked Autoencoders (MAE) Guide]] |
 
 ### 2. Spatial, Geometric & Structural Operators
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -53,6 +55,7 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Implicit Neural Representations (INR)** | Sinusoidal frequency projection $\gamma(\mathbf{v}) = [\sin(2^k \pi \mathbf{v}), \cos(2^k \pi \mathbf{v})]$ and SIREN periodic activations | Overcomes MLP spectral bias, unlocking high-frequency texture, normal, and continuous 3D field reconstruction | [[techniques/implicit-neural-representations-fourier-features\|Implicit Neural Representations Guide]] |
 | **Sparse Submanifold Convolutions (SpConv)** | Submanifold invariant $\text{Active}(\mathbf{y}_{\mathbf{p}}) = \text{Active}(\mathbf{x}_{\mathbf{p}})$, coordinate hash table, Rulebook Gather-GEMM-Scatter | Eliminates 3D voxel dilation explosion, enabling arbitrarily deep 3D sparse networks with $95\%$ VRAM savings | [[techniques/sparse-submanifold-convolutions-spconv\|Sparse Submanifold Convolutions Guide]] |
 | **Iterative Closest Point (ICP & G-ICP)** | Surface normal projection $e_i = \mathbf{n}_i^T (\mathbf{R}\mathbf{p}_i + \mathbf{t} - \mathbf{q}_i)$ and Gaussian covariance Mahalanobis distance | Prevents corridor drift and accelerates 3D point cloud scan matching convergence by $10\times$ | [[techniques/iterative-closest-point-and-generalized-icp\|Iterative Closest Point Guide]] |
+| **PointNet++ Set Abstraction** | Furthest Point Sampling (FPS), metric ball query $\mathcal{N}(\mathbf{c}_k)$, and local translation-invariant PointNet aggregation | Preserves local geometric surface structure across multi-scale 3D LiDAR point clouds | [[techniques/furthest-point-sampling-and-pointnet-set-abstraction\|PointNet++ Set Abstraction Guide]] |
 
 ### 3. Detection, Assignment, Safety & Losses
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -68,6 +71,8 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Two-Stage Association (ByteTrack)** | High/low confidence threshold partitioning ($\mathcal{D}_{\text{high}}, \mathcal{D}_{\text{low}}$) and unmatched tracklet recovery via Hungarian matching | Eliminates false-negative track fragmentation under heavy occlusion without deep Re-ID extraction overhead | [[techniques/two-stage-association-bytetrack\|Two-Stage Association Guide]] |
 | **Spatial Pyramid Pooling (SPP, SPPF, ASPP)** | Serial cascade equivalence $\text{MaxPool}_{9\times 9} \equiv \text{MaxPool}_{5\times 5}(\text{MaxPool}_{5\times 5})$ and atrous dilated convolutions | Expands effective receptive field without spatial downsampling, running $>2\times$ faster than parallel SPP | [[techniques/spatial-pyramid-pooling-spp-sppf-aspp\|Spatial Pyramid Pooling Guide]] |
 | **RoIAlign & Exact Bilinear Sampling** | Zero-quantization continuous floating-point coordinates and 4-point bilinear interpolation | Eliminates RoIPool 8–16 pixel spatial quantization drift, boosting instance segmentation by $+3\text{--}+5\text{ mAP}$ | [[techniques/roialign-and-exact-bilinear-sampling\|RoIAlign & Exact Bilinear Sampling Guide]] |
+| **Non-Maximum Suppression (NMS)** | Hard Greedy sequential removal, continuous Gaussian Soft-NMS $s \cdot \exp(-\text{IoU}^2/\sigma)$, and parallel Matrix NMS | Eliminates duplicate candidate boxes and resolves heavy pedestrian/vehicle occlusion | [[techniques/non-maximum-suppression-greedy-soft-matrix-nms\|Non-Maximum Suppression Guide]] |
+| **Vision-Language Contrastive (CLIP)** | Shared unit hypersphere $\mathcal{S}^{d-1}$ projection, symmetric temperature-scaled InfoNCE loss $\frac{1}{2}(\mathcal{L}_{I \to T} + \mathcal{L}_{T \to I})$ | Unlocks open-vocabulary zero-shot classification and text-grounded object detection | [[techniques/vision-language-contrastive-alignment-clip\|Vision-Language Contrastive Alignment Guide]] |
 
 ### 4. Sequence, Attention & Continuous Dynamical Systems
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -80,6 +85,8 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Shifted Window Self-Attention (Swin)** | Partitioned non-overlapping window attention (W-MSA) with cyclic shift, masked computation, and reverse roll | Delivers hierarchical vision transformer backbones with linear $\mathcal{O}(M^2 HW)$ complexity and cross-window receptive fields | [[techniques/shifted-window-attention-swin\|Shifted Window Self-Attention Guide]] |
 | **Rotary Positional Embeddings (RoPE & M-RoPE)** | 2D complex orthogonal rotation matrices $\mathbf{R}_{\Theta, n-m}$ decomposing spatial coordinates into temporal, vertical, and horizontal $(t, y, x)$ axes | Encodes relative geometric distance directly within attention inner products, supporting arbitrary image resolutions and aspect ratios | [[techniques/rotary-positional-embeddings-rope-and-mrope\|Rotary Positional Embeddings Guide]] |
 | **Denoising Diffusion Models (DDPM & DDIM)** | Closed-form forward Gaussian jump $\mathbf{x}_t = \sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}$ and deterministic non-Markovian ODE sampling | Generates complex multimodal continuous robot action trajectories without regression mode collapse | [[techniques/denoising-diffusion-ddpm-and-ddim\|Denoising Diffusion (DDPM & DDIM) Guide]] |
+| **Multi-Head Self-Attention (MHA)** | Variance-scaled dot-product $\frac{1}{\sqrt{d_k}} \mathbf{Q}\mathbf{K}^T$, Softmax gradient stabilization, multi-subspace projection, KV-cache | Global instantaneous receptive field modeling long-range token interactions in vision and VLMs | [[techniques/multi-head-scaled-dot-product-attention\|Multi-Head Self-Attention Guide]] |
+| **Cross-Attention & Query Decoding** | Decoupled content $\mathbf{q}_{\text{content}}$ and positional reference queries $\mathbf{p}$, Softmax cross-attention to encoder feature maps | Decouples spatial resolution from compute, enabling NMS-free end-to-end set prediction | [[techniques/cross-attention-and-query-based-decoding\|Cross-Attention & Query-Based Decoding Guide]] |
 
 ### 5. Edge Acceleration, Quantization & Architecture Efficiency
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -98,8 +105,9 @@ flowchart TD
         GRL["Gradient Reversal (DANN)"]
         PSP["Phase-Shifting Profilometry"]
         ESKF["Error-State Kalman Filter (ESKF)"]
+        Sim2Real_Tech["Sim2Real Domain Randomization"]
+        MAE_Tech["Masked Autoencoders (MAE)"]
     end
-
     subgraph SpatialAndGeometry ["Spatial, 3D & Geometry"]
         DCN["Deformable Convolutions (DCNv4)"]
         HG["Hypergraph Neural Networks"]
@@ -117,6 +125,7 @@ flowchart TD
         INR_Fourier["Implicit Neural Fields (Fourier / SIREN)"]
         SpConv_Tech["Submanifold Sparse Conv (SpConv)"]
         ICP_Tech["Iterative Closest Point (Point-to-Plane)"]
+        PointNet_Tech["PointNet++ Set Abstraction (FPS)"]
     end
 
     subgraph FoundationsAndControl ["Attention, Sequences & Provable Control"]
@@ -140,6 +149,10 @@ flowchart TD
         SPP_Tech["Spatial Pyramid Pooling (SPPF / ASPP)"]
         RoIAlign_Tech["RoIAlign (Bilinear Sampling)"]
         DDPM_Tech["Diffusion Models (DDPM & DDIM)"]
+        NMS_Tech["Non-Maximum Suppression (Matrix NMS)"]
+        CLIP_Tech["Vision-Language Alignment (CLIP)"]
+        MHA_Tech["Multi-Head Self-Attention (MHA)"]
+        CrossAttn_Tech["Cross-Attention & Query Decoding"]
     end
 
     subgraph VaultDeployments ["Vault Architectures & Systems"]
@@ -210,6 +223,14 @@ flowchart TD
     RoIAlign_Tech --> Mask2Former_Model
     DDPM_Tech --> PI0_Model
     DDPM_Tech --> OpenVLA_Model
+    Sim2Real_Tech --> Y14
+    MAE_Tech --> DINOv2_Model
+    PointNet_Tech --> PointPillars_Model
+    NMS_Tech --> Y26
+    CLIP_Tech --> OpenVLA_Model
+    MHA_Tech --> SAM2_Model
+    CrossAttn_Tech --> RFDETR
+    CrossAttn_Tech --> Mask2Former_Model
 ```
 
 ---

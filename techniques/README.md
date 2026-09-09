@@ -69,12 +69,19 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Spatial Pyramid Pooling (SPPF / ASPP)** | Multi-Scale Receptive Fields | Serial cascade equivalence and atrous dilated convolutions without downsampling | [[techniques/spatial-pyramid-pooling-spp-sppf-aspp\|Spatial Pyramid Pooling Guide]] |
 | **RoIAlign & Bilinear Sampling** | Instance Segmentation & Extraction | Zero-quantization continuous sampling eliminating 8–16 pixel spatial drift | [[techniques/roialign-and-exact-bilinear-sampling\|RoIAlign & Exact Bilinear Sampling Guide]] |
 | **Denoising Diffusion (DDPM / DDIM)** | Generative Vision & Trajectories | Closed-form forward Gaussian jump and deterministic non-Markovian ODE sampling | [[techniques/denoising-diffusion-ddpm-and-ddim\|Denoising Diffusion (DDPM & DDIM) Guide]] |
+| **Multi-Head Self-Attention (MHA)** | Sequence Modeling & Transformers | Variance-scaled dot-product $\frac{1}{\sqrt{d_k}} \mathbf{Q}\mathbf{K}^T$ and KV-cache autoregression | [[techniques/multi-head-scaled-dot-product-attention\|Multi-Head Self-Attention Guide]] |
+| **Cross-Attention & Query Decoding** | Object Detection & Set Prediction | Content and positional reference queries cross-attending to encoder visual features | [[techniques/cross-attention-and-query-based-decoding\|Cross-Attention & Query-Based Decoding Guide]] |
+| **Non-Maximum Suppression (NMS)** | 2D/3D Bounding Box Pruning | Greedy Hard-NMS, continuous Gaussian Soft-NMS, and parallel Matrix NMS | [[techniques/non-maximum-suppression-greedy-soft-matrix-nms\|Non-Maximum Suppression Guide]] |
+| **Vision-Language Alignment (CLIP)** | Foundation Models & Zero-Shot | Shared hypersphere projection $\mathcal{S}^{d-1}$ and symmetric dual-contrastive loss | [[techniques/vision-language-contrastive-alignment-clip\|Vision-Language Contrastive Alignment Guide]] |
+| **Masked Autoencoders (MAE)** | Self-Supervised Vision Pretraining | Extreme 75% patch masking and asymmetric encoder-decoder with normalized MSE | [[techniques/masked-autoencoders-and-vision-pretraining\|Masked Autoencoders (MAE) Guide]] |
+| **PointNet++ Set Abstraction** | 3D LiDAR & Point Clouds | Furthest Point Sampling (FPS), metric ball query, and local translation-invariant MLPs | [[techniques/furthest-point-sampling-and-pointnet-set-abstraction\|PointNet++ Set Abstraction Guide]] |
+| **Sim2Real Domain Randomization** | Robotics & Physical AI | Visual procedural augmentation and dynamics parameter distribution expectation | [[techniques/sim2real-domain-randomization-and-dynamics\|Sim2Real Domain Randomization Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All 40 documents provide:
+All 47 documents provide:
 1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
 3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.
