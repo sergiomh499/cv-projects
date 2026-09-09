@@ -134,6 +134,11 @@ def main() -> int:
                     target = repo_root / node.get("file", "")
                     if not target.exists():
                         errors.append(f"Broken file link in canvas {c_file.name}: {node.get('file')}")
+                elif node.get("type") == "text":
+                    for match in re.finditer(r"\[\[([A-Za-z0-9_\-\./]+)(?:\|[^\]]+)?\]\]", node.get("text", "")):
+                        wlink = match.group(1)
+                        if not ((repo_root / wlink).exists() or (repo_root / f"{wlink}.md").exists()):
+                            errors.append(f"Broken wikilink in canvas {c_file.name} text: {wlink}")
         if not any("canvas" in err.lower() for err in errors):
             print(f"[+] Canvas validation: ALL {len(canvases)} Obsidian canvas visual maps passed.")
 

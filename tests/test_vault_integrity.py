@@ -182,4 +182,9 @@ def test_all_canvases_valid(repo_root):
                 target = repo_root / target_rel
                 if not target.exists():
                     problems.append(f"Broken file link in {c_file.name}: {target_rel}")
+            elif node.get("type") == "text":
+                for match in re.finditer(r"\[\[([A-Za-z0-9_\-\./]+)(?:\|[^\]]+)?\]\]", node.get("text", "")):
+                    wlink = match.group(1)
+                    if not ((repo_root / wlink).exists() or (repo_root / f"{wlink}.md").exists()):
+                        problems.append(f"Broken wikilink in {c_file.name} text: {wlink}")
     assert not problems, "\n".join(problems)

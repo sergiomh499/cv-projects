@@ -3,51 +3,51 @@
     {
       "id": "grp-topics",
       "type": "group",
-      "label": "1. Edge Real-Time Deployment Domains",
-      "x": -1000,
-      "y": -300,
-      "width": 380,
-      "height": 620,
+      "label": "Stage 1: Edge Operational Domains & Latency Budgets",
+      "x": -1050,
+      "y": -340,
+      "width": 420,
+      "height": 720,
       "color": "1"
     },
     {
       "id": "node-topic-gpu",
-      "type": "file",
-      "file": "topics/gpu-deployment/README.md",
-      "x": -960,
-      "y": -240,
-      "width": 300,
-      "height": 130,
+      "type": "text",
+      "text": "### \ud83d\ude80 Step 1A: GPU Acceleration Domain\n**[[topics/gpu-deployment/00-gpu-deployment-moc|GPU Deployment MOC \u2197]]**\n- **Target**: NVIDIA Ada, Blackwell, Orin Architecture\n- **Techniques**: CUDA Streams, FP8/FP16 Kernels, Graph Capture\n- **Playbook**: [[topics/gpu-deployment/README|GPU Production Deployment Playbook]]",
+      "x": -1010,
+      "y": -280,
+      "width": 340,
+      "height": 180,
       "color": "1"
     },
     {
       "id": "node-topic-fpga",
-      "type": "file",
-      "file": "topics/fpga-deployment/README.md",
-      "x": -960,
-      "y": -80,
-      "width": 300,
-      "height": 130,
+      "type": "text",
+      "text": "### \u26a1 Step 1B: FPGA Acceleration Domain\n**[[topics/fpga-deployment/00-fpga-deployment-moc|FPGA Deployment MOC \u2197]]**\n- **Target**: AMD Versal Gen 2, Zynq UltraScale+ MPSoC\n- **Techniques**: DPU Cores, FINN Dataflow, INT4/INT8 PTQ\n- **Playbook**: [[topics/fpga-deployment/README|FPGA Hardware Synthesis Playbook]]",
+      "x": -1010,
+      "y": -70,
+      "width": 340,
+      "height": 180,
       "color": "1"
     },
     {
       "id": "node-topic-rt",
-      "type": "file",
-      "file": "topics/real-time-systems/README.md",
-      "x": -960,
-      "y": 80,
-      "width": 300,
-      "height": 130,
+      "type": "text",
+      "text": "### \u23f1\ufe0f Step 1C: Hard Real-Time Systems\n**[[topics/real-time-systems/00-real-time-systems-moc|Real-Time Systems MOC \u2197]]**\n- **Target**: Deterministic p99 Latency (<10 ms robotics, <33 ms CV)\n- **Stack**: Linux PREEMPT_RT, Lock-Free Rings, ASIL-D ISO 26262\n- **Playbook**: [[topics/real-time-systems/README|Real-Time Systems Playbook]]",
+      "x": -1010,
+      "y": 140,
+      "width": 340,
+      "height": 200,
       "color": "1"
     },
     {
       "id": "grp-frameworks",
       "type": "group",
-      "label": "2. Acceleration Runtimes & Compilers",
+      "label": "Stage 2: DL Compilers & Acceleration Runtimes",
       "x": -580,
-      "y": -340,
+      "y": -360,
       "width": 380,
-      "height": 700,
+      "height": 760,
       "color": "2"
     },
     {
@@ -55,9 +55,9 @@
       "type": "file",
       "file": "frameworks/tensorrt.md",
       "x": -540,
-      "y": -280,
+      "y": -300,
       "width": 300,
-      "height": 120,
+      "height": 150,
       "color": "2"
     },
     {
@@ -65,9 +65,9 @@
       "type": "file",
       "file": "frameworks/onnxruntime.md",
       "x": -540,
-      "y": -130,
+      "y": -120,
       "width": 300,
-      "height": 120,
+      "height": 150,
       "color": "2"
     },
     {
@@ -75,9 +75,9 @@
       "type": "file",
       "file": "frameworks/vulkan-sc.md",
       "x": -540,
-      "y": 20,
+      "y": 60,
       "width": 300,
-      "height": 120,
+      "height": 150,
       "color": "2"
     },
     {
@@ -85,7 +85,7 @@
       "type": "file",
       "file": "frameworks/quark.md",
       "x": -540,
-      "y": 170,
+      "y": 240,
       "width": 300,
       "height": 120,
       "color": "2"
@@ -93,131 +93,131 @@
     {
       "id": "grp-cookbooks",
       "type": "group",
-      "label": "3. Engine Compilation & Optimization Recipes",
+      "label": "Stage 3: Engine Compilation & Zero-Overhead Cookbooks",
       "x": -160,
-      "y": -340,
-      "width": 420,
-      "height": 700,
+      "y": -360,
+      "width": 440,
+      "height": 780,
       "color": "4"
     },
     {
       "id": "node-cb-16",
-      "type": "file",
-      "file": "cookbooks/16-tensorrt-cuda-graphs/README.md",
+      "type": "text",
+      "text": "### \ud83c\udfaf Step 3A: TensorRT 10 & CUDA Graphs\n**[[cookbooks/16-tensorrt-cuda-graphs/README|Cookbook 16: TensorRT Graphs Playbook \u2197]]**\n- **Feature**: Zero-CPU kernel launch overhead via `cudaGraphLaunch`\n- **Memory**: Pre-allocated zero-copy page-locked pinned memory\n- **Performance**: $<0.60\\text{ ms}$ ($1,724\\text{ FPS}$ on RTX 5090)",
       "x": -120,
-      "y": -280,
-      "width": 340,
-      "height": 120,
+      "y": -300,
+      "width": 360,
+      "height": 170,
       "color": "4"
     },
     {
       "id": "node-cb-23",
-      "type": "file",
-      "file": "cookbooks/23-onnxruntime-iobinding/README.md",
+      "type": "text",
+      "text": "### \ud83d\udd04 Step 3B: ONNX Runtime IOBinding\n**[[cookbooks/23-onnxruntime-iobinding/README|Cookbook 23: ORT IOBinding Playbook \u2197]]**\n- **Feature**: Direct device buffer mapping (eliminates CPU-GPU copies)\n- **Engine**: Cross-platform EPs (TensorRT, CUDA, OpenVINO, QNN)\n- **Speedup**: $1.85\\times$ end-to-end latency reduction",
       "x": -120,
-      "y": -130,
-      "width": 340,
-      "height": 120,
+      "y": -100,
+      "width": 360,
+      "height": 170,
       "color": "4"
     },
     {
       "id": "node-cb-24",
-      "type": "file",
-      "file": "cookbooks/24-vulkan-sc-safety-critical/README.md",
+      "type": "text",
+      "text": "### \ud83d\udee1\ufe0f Step 3C: Vulkan SC Safety-Critical Compute\n**[[cookbooks/24-vulkan-sc-safety-critical/README|Cookbook 24: Vulkan SC Playbook \u2197]]**\n- **Standard**: ISO 26262 ASIL-D / DO-178C avionics certification\n- **Architecture**: AOT pipeline cache + zero dynamic runtime memory\n- **Execution**: Deterministic offline compiled SPIR-V shaders",
       "x": -120,
-      "y": 20,
-      "width": 340,
-      "height": 120,
+      "y": 100,
+      "width": 360,
+      "height": 170,
       "color": "4"
     },
     {
       "id": "node-cb-17",
-      "type": "file",
-      "file": "cookbooks/17-amd-quark-versal-ptq/README.md",
+      "type": "text",
+      "text": "### \u26a1 Step 3D: AMD Quark Versal PTQ\n**[[cookbooks/17-amd-quark-versal-ptq/README|Cookbook 17: AMD Quark Playbook \u2197]]**\n- **Quantization**: SmoothQuant + AWQ outlier channel migration\n- **Precision**: INT4 AWQ / FP8 AIE-ML v2 graph export\n- **Target**: AMD Versal Gen 2 AI Engines (AIE-ML)",
       "x": -120,
-      "y": 170,
-      "width": 340,
-      "height": 120,
+      "y": 300,
+      "width": 360,
+      "height": 170,
       "color": "4"
     },
     {
       "id": "grp-ipc",
       "type": "group",
-      "label": "4. Zero-Copy IPC & Real-Time Scheduling",
-      "x": 300,
-      "y": -280,
-      "width": 420,
-      "height": 580,
+      "label": "Stage 4: Lock-Free Shared Memory & Hard RT Scheduling",
+      "x": 330,
+      "y": -340,
+      "width": 440,
+      "height": 720,
       "color": "5"
     },
     {
       "id": "node-fw-iceoryx2",
       "type": "file",
       "file": "frameworks/iceoryx2.md",
-      "x": 340,
-      "y": -220,
-      "width": 340,
-      "height": 110,
+      "x": 370,
+      "y": -280,
+      "width": 360,
+      "height": 140,
       "color": "5"
     },
     {
       "id": "node-cb-03",
-      "type": "file",
-      "file": "cookbooks/03-iceoryx2-zero-copy-ipc/README.md",
-      "x": 340,
-      "y": -80,
-      "width": 340,
-      "height": 120,
+      "type": "text",
+      "text": "### \ud83d\udce6 Step 4A: Iceoryx2 Zero-Copy Shared Memory\n**[[cookbooks/03-iceoryx2-zero-copy-ipc/README|Cookbook 03: Iceoryx2 Playbook \u2197]]**\n- **Transport**: POSIX shared memory (`/dev/shm`) lock-free ring\n- **Latency**: $0.85\\ \\mu\\text{s}$ transfer for $4\\text{K RGB}$ frames ($0\\text{ copies}$)\n- **Jitter**: P99 $<0.05\\ \\mu\\text{s}$ inter-process latency variance",
+      "x": 370,
+      "y": -110,
+      "width": 360,
+      "height": 190,
       "color": "5"
     },
     {
       "id": "node-cb-15",
-      "type": "file",
-      "file": "cookbooks/15-realtime-rms-edf-scheduler/README.md",
-      "x": 340,
-      "y": 70,
-      "width": 340,
-      "height": 120,
+      "type": "text",
+      "text": "### \u23f1\ufe0f Step 4B: Real-Time RMS & EDF Task Scheduler\n**[[cookbooks/15-realtime-rms-edf-scheduler/README|Cookbook 15: Real-Time Scheduler Playbook \u2197]]**\n- **Policies**: Rate Monotonic (RMS) + Earliest Deadline First (EDF)\n- **Cert**: Liu & Layland theoretical utilization bounds ($U \\le 1.0$)\n- **Monitoring**: Microsecond tick simulation + zero deadline misses",
+      "x": 370,
+      "y": 110,
+      "width": 360,
+      "height": 200,
       "color": "5"
     },
     {
       "id": "grp-silicon",
       "type": "group",
-      "label": "5. Target Silicon Hardware",
-      "x": 760,
-      "y": -280,
+      "label": "Stage 5: Target Silicon Hardware Targets",
+      "x": 820,
+      "y": -300,
       "width": 380,
-      "height": 580,
+      "height": 640,
       "color": "6"
     },
     {
       "id": "node-hw-orin",
       "type": "file",
       "file": "hardware/nvidia-jetson-orin.md",
-      "x": 800,
-      "y": -220,
+      "x": 860,
+      "y": -240,
       "width": 300,
-      "height": 140,
+      "height": 170,
       "color": "6"
     },
     {
       "id": "node-hw-versal2",
       "type": "file",
       "file": "hardware/amd-versal-ai-edge-gen2.md",
-      "x": 800,
-      "y": -50,
+      "x": 860,
+      "y": -40,
       "width": 300,
-      "height": 140,
+      "height": 170,
       "color": "6"
     },
     {
       "id": "node-hw-zynq",
       "type": "file",
       "file": "hardware/amd-zynq-ultrascale-plus.md",
-      "x": 800,
-      "y": 120,
+      "x": 860,
+      "y": 160,
       "width": 300,
-      "height": 140,
+      "height": 160,
       "color": "6"
     }
   ],
@@ -228,7 +228,7 @@
       "fromSide": "right",
       "toNode": "node-fw-trt",
       "toSide": "left",
-      "label": "CUDA Engine"
+      "label": "CUDA Engine Definition"
     },
     {
       "id": "e-fpga-quark",
@@ -236,7 +236,7 @@
       "fromSide": "right",
       "toNode": "node-fw-quark",
       "toSide": "left",
-      "label": "W4A4/W8A8 PTQ"
+      "label": "W4A4/W8A8 PTQ Graph"
     },
     {
       "id": "e-trt-cb16",
@@ -244,7 +244,7 @@
       "fromSide": "right",
       "toNode": "node-cb-16",
       "toSide": "left",
-      "label": "CUDA Graphs"
+      "label": "Capture CUDA Graph"
     },
     {
       "id": "e-ort-cb23",
@@ -252,7 +252,7 @@
       "fromSide": "right",
       "toNode": "node-cb-23",
       "toSide": "left",
-      "label": "IOBinding"
+      "label": "IOBinding Zero-Copy"
     },
     {
       "id": "e-vulkan-cb24",
@@ -260,7 +260,7 @@
       "fromSide": "right",
       "toNode": "node-cb-24",
       "toSide": "left",
-      "label": "Static Memory"
+      "label": "Static Memory Layout"
     },
     {
       "id": "e-quark-cb17",
@@ -268,7 +268,7 @@
       "fromSide": "right",
       "toNode": "node-cb-17",
       "toSide": "left",
-      "label": "AIE-ML Engines"
+      "label": "AIE-ML Synthesis"
     },
     {
       "id": "e-cb16-ice",
@@ -276,7 +276,7 @@
       "fromSide": "right",
       "toNode": "node-cb-03",
       "toSide": "left",
-      "label": "Zero-Copy Ingestion"
+      "label": "Zero-Copy IPC Transport"
     },
     {
       "id": "e-ice-sched",
@@ -284,7 +284,7 @@
       "fromSide": "bottom",
       "toNode": "node-cb-15",
       "toSide": "top",
-      "label": "Hard RT Latency"
+      "label": "Bounded Jitter Feeds"
     },
     {
       "id": "e-sched-hw",
@@ -292,7 +292,7 @@
       "fromSide": "right",
       "toNode": "node-hw-orin",
       "toSide": "left",
-      "label": "Deterministic RT"
+      "label": "Deterministic RT Execution"
     }
   ]
 }

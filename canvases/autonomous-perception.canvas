@@ -3,61 +3,61 @@
     {
       "id": "grp-stage1",
       "type": "group",
-      "label": "1. Multi-Sensor Ingestion & Cross-Calibration",
-      "x": -1000,
-      "y": -300,
-      "width": 380,
-      "height": 620,
-      "color": "5"
-    },
-    {
-      "id": "node-topic-fusion",
-      "type": "file",
-      "file": "topics/sensor-fusion/README.md",
-      "x": -960,
-      "y": -240,
-      "width": 300,
-      "height": 130,
+      "label": "Stage 1: Multi-Sensor Ingestion & Cross-Calibration",
+      "x": -1050,
+      "y": -320,
+      "width": 420,
+      "height": 720,
       "color": "5"
     },
     {
       "id": "node-cb-11",
-      "type": "file",
-      "file": "cookbooks/11-multi-sensor-cross-calibration/README.md",
-      "x": -960,
-      "y": -80,
-      "width": 300,
-      "height": 150,
+      "type": "text",
+      "text": "### \ud83d\udce1 Step 1A: Extrinsic Cross-Calibration\n**[[cookbooks/11-multi-sensor-cross-calibration/README|Cookbook 11: Cross-Calibration Playbook \u2197]]**\n- **Inputs**: 4K RGB Camera + LWIR Thermal + 32-beam LiDAR\n- **Algorithm**: Horn SVD Closed-Form Rigid Procrustes\n- **Target**: Sub-pixel depth reprojection into RGB frame\n- **Error**: $<0.05^\\circ$ rotation, $<1.0\\text{ mm}$ translation",
+      "x": -1010,
+      "y": -260,
+      "width": 340,
+      "height": 190,
+      "color": "5"
+    },
+    {
+      "id": "node-topic-fusion",
+      "type": "text",
+      "text": "### \ud83d\udd00 Step 1B: Sensor Fusion Strategy\n**[[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC \u2197]]**\n- **Architectures**: Early vs. Late vs. Asymmetric BEV Fusion\n- **Playbook**: [[topics/sensor-fusion/README|Production Sensor Fusion Guide]]\n- **Benchmark**: NuScenes Benchmark ($72.9\\%\\text{ NDS}$)",
+      "x": -1010,
+      "y": -40,
+      "width": 340,
+      "height": 170,
       "color": "5"
     },
     {
       "id": "node-hw-thor",
       "type": "file",
       "file": "hardware/nvidia-drive-thor.md",
-      "x": -960,
-      "y": 100,
-      "width": 300,
-      "height": 150,
+      "x": -1010,
+      "y": 160,
+      "width": 340,
+      "height": 180,
       "color": "5"
     },
     {
       "id": "grp-stage2",
       "type": "group",
-      "label": "2. 2D & 3D Feature Extraction",
+      "label": "Stage 2: 2D Camera & 3D LiDAR Feature Extraction",
       "x": -580,
       "y": -360,
-      "width": 420,
-      "height": 740,
+      "width": 440,
+      "height": 800,
       "color": "4"
     },
     {
-      "id": "node-topic-det",
-      "type": "file",
-      "file": "topics/object-detection/README.md",
+      "id": "node-cb-01",
+      "type": "text",
+      "text": "### \ud83c\udfaf Step 2A: Real-Time 2D Object Detection\n**[[cookbooks/01-rfdetr-tensorrt/README|Cookbook 01: RF-DETR TensorRT \u2197]]**\n- **Backbone**: DINOv2 with SuperNet NAS\n- **Runtime**: TensorRT 10 FP16 (`rf_detr.engine`)\n- **Performance**: $56.9\\%\\text{ AP}$ @ $1.15\\text{ ms}$ (RTX 4090)\n- **Domain**: [[topics/object-detection/README|Object Detection Playbook]]",
       "x": -540,
       "y": -300,
-      "width": 340,
-      "height": 120,
+      "width": 360,
+      "height": 190,
       "color": "4"
     },
     {
@@ -65,19 +65,19 @@
       "type": "file",
       "file": "architectures/real-time-detectors-and-segmenters/yolov10.md",
       "x": -540,
-      "y": -160,
-      "width": 340,
-      "height": 120,
+      "y": -80,
+      "width": 360,
+      "height": 140,
       "color": "4"
     },
     {
       "id": "node-topic-lidar",
-      "type": "file",
-      "file": "topics/lidar-perception/README.md",
+      "type": "text",
+      "text": "### \u2601\ufe0f Step 2B: 3D LiDAR Point Cloud Encoding\n**[[topics/lidar-perception/00-lidar-perception-moc|LiDAR Perception MOC \u2197]]**\n- **Architectures**: PointPillars, DSVT, CenterPoint\n- **Input**: $(N, 4)$ Point Cloud $[x, y, z, \\text{intensity}]$\n- **Playbook**: [[topics/lidar-perception/README|LiDAR Production Guide]]",
       "x": -540,
-      "y": -20,
-      "width": 340,
-      "height": 120,
+      "y": 90,
+      "width": 360,
+      "height": 170,
       "color": "4"
     },
     {
@@ -85,148 +85,118 @@
       "type": "file",
       "file": "architectures/3d-pointclouds-and-lidar/pointpillars.md",
       "x": -540,
-      "y": 120,
-      "width": 340,
-      "height": 120,
-      "color": "4"
-    },
-    {
-      "id": "node-cb-01",
-      "type": "file",
-      "file": "cookbooks/01-rfdetr-tensorrt/README.md",
-      "x": -540,
-      "y": 260,
-      "width": 340,
-      "height": 100,
+      "y": 290,
+      "width": 360,
+      "height": 110,
       "color": "4"
     },
     {
       "id": "grp-stage3",
       "type": "group",
-      "label": "3. Spatial BEV Frustum Pooling",
-      "x": -120,
-      "y": -220,
-      "width": 380,
-      "height": 460,
+      "label": "Stage 3: Spatial BEV Frustum Pooling",
+      "x": -90,
+      "y": -260,
+      "width": 420,
+      "height": 580,
       "color": "6"
     },
     {
       "id": "node-cb-14",
-      "type": "file",
-      "file": "cookbooks/14-bev-voxel-pooling-projection/README.md",
-      "x": -80,
-      "y": -160,
-      "width": 300,
-      "height": 160,
+      "type": "text",
+      "text": "### \ud83d\uddfa\ufe0f Step 3: Frustum Camera-to-BEV Pooling\n**[[cookbooks/14-bev-voxel-pooling-projection/README|Cookbook 14: BEV Voxel Pooling \u2197]]**\n- **Mechanism**: Lift-Splat-Shoot / BEVFusion Frustum Grid\n- **Projection**: $32\\text{k}$ frustum rays $\\to$ $128 \\times 128$ BEV grid\n- **Operation**: Segmented reduction without slow 3D convs\n- **Throughput**: $4.2\\text{ ms}$ ($238\\text{ FPS}$ on GPU)",
+      "x": -50,
+      "y": -200,
+      "width": 340,
+      "height": 210,
       "color": "6"
     },
     {
       "id": "node-arch-bevfusion",
       "type": "file",
       "file": "architectures/3d-pointclouds-and-lidar/bevfusion.md",
-      "x": -80,
-      "y": 30,
-      "width": 300,
-      "height": 160,
+      "x": -50,
+      "y": 40,
+      "width": 340,
+      "height": 240,
       "color": "6"
     },
     {
       "id": "grp-stage4",
       "type": "group",
-      "label": "4. Association, Tracking & 6-DoF Pose",
-      "x": 300,
+      "label": "Stage 4: Multi-Object Tracking & 6-DoF Pose Estimation",
+      "x": 380,
       "y": -340,
-      "width": 420,
-      "height": 700,
-      "color": "2"
-    },
-    {
-      "id": "node-topic-tracking",
-      "type": "file",
-      "file": "topics/video-tracking/README.md",
-      "x": 340,
-      "y": -280,
-      "width": 340,
-      "height": 120,
+      "width": 440,
+      "height": 740,
       "color": "2"
     },
     {
       "id": "node-cb-12",
-      "type": "file",
-      "file": "cookbooks/12-bytetrack-two-stage-association/README.md",
-      "x": 340,
-      "y": -140,
-      "width": 340,
-      "height": 140,
+      "type": "text",
+      "text": "### \ud83c\udfc3 Step 4A: ByteTrack MOT Association\n**[[cookbooks/12-bytetrack-two-stage-association/README|Cookbook 12: ByteTrack Playbook \u2197]]**\n- **Mechanism**: Two-Stage IoU Association (High + Low Score)\n- **Advantage**: Zero ID switches during severe visual occlusions\n- **Performance**: $80.3\\%\\text{ MOTA}$ @ $0.35\\text{ ms}$ per frame\n- **Domain**: [[topics/video-tracking/README|Video Tracking Production Guide]]",
+      "x": 420,
+      "y": -280,
+      "width": 360,
+      "height": 200,
       "color": "2"
     },
     {
       "id": "node-arch-bytetrack",
       "type": "file",
       "file": "architectures/visual-tracking-and-flow/bytetrack.md",
-      "x": 340,
-      "y": 20,
-      "width": 340,
-      "height": 120,
-      "color": "2"
-    },
-    {
-      "id": "node-topic-6dof",
-      "type": "file",
-      "file": "topics/6dof-pose-estimation/README.md",
-      "x": 340,
-      "y": 160,
-      "width": 340,
-      "height": 120,
+      "x": 420,
+      "y": -50,
+      "width": 360,
+      "height": 130,
       "color": "2"
     },
     {
       "id": "node-cb-13",
-      "type": "file",
-      "file": "cookbooks/13-epnp-analytical-pose-solver/README.md",
-      "x": 340,
-      "y": 300,
-      "width": 340,
-      "height": 120,
+      "type": "text",
+      "text": "### \ud83d\udcd0 Step 4B: EPnP Analytical 6-DoF Solver\n**[[cookbooks/13-epnp-analytical-pose-solver/README|Cookbook 13: EPnP Solver Playbook \u2197]]**\n- **Algorithm**: $\\mathcal{O}(n)$ Perspective-n-Point closed-form math\n- **Control Points**: 4 Virtual PCA control points + SVD null space\n- **Execution**: $0.18\\text{ ms}$ ($5,500\\text{ FPS}$ analytical speed)\n- **Domain**: [[topics/6dof-pose-estimation/README|6-DoF Pose Production Guide]]",
+      "x": 420,
+      "y": 110,
+      "width": 360,
+      "height": 210,
       "color": "2"
     },
     {
       "id": "grp-stage5",
       "type": "group",
-      "label": "5. Mission-Critical Safety Verification",
-      "x": 760,
-      "y": -260,
-      "width": 380,
-      "height": 540,
+      "label": "Stage 5: Real-Time Safety Filter & ASIL-D Intercept",
+      "x": 870,
+      "y": -300,
+      "width": 420,
+      "height": 660,
       "color": "1"
     },
     {
       "id": "node-cb-08",
-      "type": "file",
-      "file": "cookbooks/08-control-barrier-filter/README.md",
-      "x": 800,
-      "y": -200,
-      "width": 300,
-      "height": 140,
+      "type": "text",
+      "text": "### \ud83d\udee1\ufe0f Step 5A: Control Barrier Function (CBF-QP)\n**[[cookbooks/08-control-barrier-filter/README|Cookbook 08: CBF-QP Safety Filter \u2197]]**\n- **Guarantee**: Nagumo forward invariance $h(x) \\ge 0$\n- **Intervention**: Solves convex QP in $<50\\ \\mu\\text{s}$ to filter unsafe actions\n- **Integration**: Overrides deep neural policy when collision is imminent\n- **Domain**: [[topics/safety-verification-and-robustness/README|Safety Playbook]]",
+      "x": 910,
+      "y": -240,
+      "width": 340,
+      "height": 210,
       "color": "1"
     },
     {
       "id": "node-cb-09",
-      "type": "file",
-      "file": "cookbooks/09-dann-sim2real-safety-gate/README.md",
-      "x": 800,
-      "y": -40,
-      "width": 300,
-      "height": 140,
+      "type": "text",
+      "text": "### \ud83d\udea8 Step 5B: Sim2Real Safety Gate\n**[[cookbooks/09-dann-sim2real-safety-gate/README|Cookbook 09: Sim2Real Safety Gate \u2197]]**\n- **Trigger**: Mahalanobis latent domain discrepancy monitoring\n- **Fallback**: Triggers certified fail-safe state on anomaly\n- **Catch Rate**: $99.4\\%$ out-of-distribution synthetic anomalies caught",
+      "x": 910,
+      "y": 0,
+      "width": 340,
+      "height": 180,
       "color": "1"
     },
     {
       "id": "node-hw-r52",
       "type": "file",
       "file": "hardware/arm-cortex-r52.md",
-      "x": 800,
-      "y": 120,
-      "width": 300,
+      "x": 910,
+      "y": 210,
+      "width": 340,
       "height": 120,
       "color": "1"
     }
@@ -236,9 +206,9 @@
       "id": "e-calib-det",
       "fromNode": "node-cb-11",
       "fromSide": "right",
-      "toNode": "node-topic-det",
+      "toNode": "node-cb-01",
       "toSide": "left",
-      "label": "Rectified RGB"
+      "label": "Rectified RGB (4K)"
     },
     {
       "id": "e-calib-lidar",
@@ -246,23 +216,23 @@
       "fromSide": "right",
       "toNode": "node-topic-lidar",
       "toSide": "left",
-      "label": "Rigid Transform (R,t)"
+      "label": "Rigid Transform (R, t)"
     },
     {
       "id": "e-det-bev",
-      "fromNode": "node-arch-yolov10",
+      "fromNode": "node-cb-01",
       "fromSide": "right",
       "toNode": "node-cb-14",
       "toSide": "left",
-      "label": "Visual Features"
+      "label": "2D Features + Depths"
     },
     {
       "id": "e-lidar-bev",
-      "fromNode": "node-arch-pointpillars",
+      "fromNode": "node-topic-lidar",
       "fromSide": "right",
       "toNode": "node-arch-bevfusion",
       "toSide": "left",
-      "label": "Voxelized LiDAR"
+      "label": "Voxelized LiDAR (3D)"
     },
     {
       "id": "e-bev-track",
@@ -270,15 +240,15 @@
       "fromSide": "right",
       "toNode": "node-cb-12",
       "toSide": "left",
-      "label": "BEV Detections"
+      "label": "BEV Obstacle Detections"
     },
     {
-      "id": "e-bev-6dof",
+      "id": "e-bev-epnp",
       "fromNode": "node-arch-bevfusion",
       "fromSide": "right",
       "toNode": "node-cb-13",
       "toSide": "left",
-      "label": "3D Oriented BBoxes"
+      "label": "3D Bounding Boxes"
     },
     {
       "id": "e-track-cbf",
@@ -286,7 +256,7 @@
       "fromSide": "right",
       "toNode": "node-cb-08",
       "toSide": "left",
-      "label": "Tracked Obstacle States"
+      "label": "Dynamic Track States"
     },
     {
       "id": "e-cbf-r52",
@@ -294,7 +264,7 @@
       "fromSide": "bottom",
       "toNode": "node-hw-r52",
       "toSide": "top",
-      "label": "ASIL-D Certified Intercept"
+      "label": "ASIL-D Lockstep Execution"
     }
   ]
 }
