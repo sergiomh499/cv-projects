@@ -21,7 +21,7 @@ aliases:
 > **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Techniques & Algorithmic Mechanics**
 > **Map of Content**: Access the full visual graph at [[techniques/00-techniques-moc|Techniques MOC]].
 
-This directory catalogs standalone, mathematically rigorous, and code-grounded explanations of foundational techniques and operators across computer vision, multimodal physical AI, and edge deployment.
+This directory catalogs standalone, mathematically rigorous, and code-grounded explanations of foundational techniques, signal transforms, variational solvers, and neural operators across computer vision, multimodal physical AI, and edge deployment.
 
 ---
 
@@ -44,13 +44,21 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Lie Algebra se(3) Pose Tracking** | Robotics & Visual SLAM | Unconstrained 6D tangent space optimization and analytical photometric Jacobians | [[techniques/lie-algebra-se3-pose-tracking\|Lie Algebra se(3) Pose Tracking Guide]] |
 | **All-Pairs Correlation Pyramids** | Visual Motion & Optical Flow | Full 4D pairwise dot-product volume and local bilinear lookup operators | [[techniques/all-pairs-correlation-pyramids\|All-Pairs Correlation Pyramids Guide]] |
 | **PTQ & Outlier Smoothing** | Quantization & Precision | SmoothQuant activation-weight difficulty migration for INT8 GEMM execution | [[techniques/post-training-quantization-and-outlier-smoothing\|PTQ & Outlier Smoothing Guide]] |
+| **FlashAttention & Online Softmax** | Hardware Acceleration & Attention | SRAM block tiling and online maximum/denominator rescaling avoiding DRAM IO | [[techniques/flash-attention-and-online-softmax\|FlashAttention & Online Softmax Guide]] |
+| **Contrastive SigLIP vs. InfoNCE** | Vision-Language Pretraining | Decoupled pairwise binary Sigmoid loss scaling to batch size 1,000,000+ | [[techniques/contrastive-learning-infonce-vs-siglip\|InfoNCE vs SigLIP Contrastive Learning Guide]] |
+| **Spatial Hash Encodings & Voxels** | 3D Perception & Radiance Fields | Prime-XOR spatial hashing delivering dense representations in $\mathcal{O}(1)$ memory | [[techniques/multiresolution-hash-encodings-and-sparse-voxels\|Multiresolution Spatial Hash Encodings Guide]] |
+| **Error-State Kalman Filter (ESKF)** | Sensor Fusion & Inertial Navigation | Minimal non-singular $15\times 15$ covariance on $\mathfrak{so}(3)$ manifolds | [[techniques/error-state-kalman-filter-eskf-vio\|Error-State Kalman Filter (ESKF) Guide]] |
+| **Orthogonal Procrustes & Umeyama** | 6-DoF Registration & Pose Tracking | SVD cross-covariance decomposition for closed-form globally optimal $\mathrm{Sim}(3)$ | [[techniques/orthogonal-procrustes-and-umeyama-sim3\|Orthogonal Procrustes & Umeyama Guide]] |
+| **Control Barrier Functions (CBF)** | Provable Safety & Control Theory | Online convex QP filter minimally perturbing uncertified neural policy actions | [[techniques/control-barrier-functions-safe-control\|Control Barrier Functions (CBF) Guide]] |
+| **Phase-Shifting Profilometry** | Active 3D Sensing & Metrology | Multi-frequency heterodyne phase unwrapping for $<10\ \mu\text{m}$ surface depth | [[techniques/phase-shifting-profilometry-structured-light\|Phase-Shifting Profilometry Guide]] |
+| **Variational Optical Flow (TV-L1)** | Visual Motion & Optimization | Total Variation regularization and primal-dual soft-thresholding shrinkage | [[techniques/variational-optical-flow-tv-l1\|Variational Optical Flow TV-L1 Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All documents provide:
-1. **Mathematical derivations** and signal processing proofs.
+All 23 documents provide:
+1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
-3. **Pure PyTorch runnable reference modules** without external dependencies.
-4. **Hardware efficiency profiles** for TensorRT and edge embedded targets.
+3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.
+4. **Hardware efficiency profiles** for TensorRT, CUDA, and edge embedded targets.

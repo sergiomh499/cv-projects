@@ -21,17 +21,18 @@ aliases:
 
 > **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Techniques & Algorithmic Mechanics**
 
-This directory houses dedicated, mathematically rigorous, and didactic guides explaining the foundational algorithmic building blocks, signal processing transforms, neural operators, and geometric mechanics that empower modern computer vision, physical AI, and edge deployment architectures.
+This directory houses dedicated, mathematically rigorous, and didactic guides explaining the foundational algorithmic building blocks, signal processing transforms, neural operators, variational solvers, and geometric mechanics that empower modern computer vision, physical AI, and edge deployment architectures.
 
 ---
 
 ## 🧭 Core Architectural Mechanics & Techniques Index
 
-### 1. Signal Processing, Domain Adaptation & Physics
+### 1. Signal Processing, Domain Adaptation & Active Metrology
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
 | :--- | :--- | :--- | :--- |
 | **Fourier Domain Adaptation (FDA)** | 2D centered FFT decomposition into Phase $\mathcal{P}$ (geometry) and Amplitude $\mathcal{A}$ (style); low-frequency amplitude swap | Zero-parameter, zero-gradient transfer of real camera style to synthetic frames without altering bounding boxes | [[techniques/fourier-domain-adaptation\|Fourier Domain Adaptation Guide]] |
 | **Gradient Reversal Layer (GRL / DANN)** | Minimax adversarial optimization with identity forward $\mathcal{R}(\mathbf{z}) = \mathbf{z}$ and negated backward $\frac{d\mathcal{R}}{d\mathbf{z}} = -\lambda \mathbf{I}$ | Single-pass joint optimization forcing backbones to discard synthetic artifacts and learn domain-invariant representations | [[techniques/gradient-reversal-and-dann\|Gradient Reversal & DANN Guide]] |
+| **Sinusoidal Phase-Shifting Profilometry** | $N$-step fringe projection, arctangent wrapped phase $\phi = -\text{atan2}(\sum I_n \sin\delta_n, \sum I_n \cos\delta_n)$, heterodyne beat unwrapping | Sub-10-micron surface metrology completely invariant to ambient illumination and surface albedo | [[techniques/phase-shifting-profilometry-structured-light\|Phase-Shifting Profilometry Guide]] |
 
 ### 2. Spatial, Geometric & Structural Operators
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -42,16 +43,23 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **3D Gaussian Splatting & Tile Rasterization** | Anisotropic 3D covariance $\mathbf{\Sigma} = \mathbf{R} \mathbf{S} \mathbf{S}^T \mathbf{R}^T$, 2D EWA projection $\mathbf{\Sigma}' = \mathbf{J} \mathbf{W} \mathbf{\Sigma} \mathbf{W}^T \mathbf{J}^T$, tile Radix sort & alpha blending | Explicit differentiable 3D rendering achieving photorealistic $1080\text{p}$ novel view synthesis at $>100\text{ FPS}$ | [[techniques/3d-gaussian-splatting-rasterization\|3D Gaussian Splatting Guide]] |
 | **Lie Algebra $\mathfrak{se}(3)$ & $\mathrm{SE}(3)$ Pose Tracking** | Unconstrained 6D tangent twist $\boldsymbol{\xi} = [\boldsymbol{\upsilon}, \boldsymbol{\omega}]^T \in \mathbb{R}^6$, matrix exponential $\exp(\boldsymbol{\xi}^\wedge)$, analytical photometric Jacobians | Rigorous manifold optimization maintaining perfect rotation orthogonality without gimbal lock or quaternion drift | [[techniques/lie-algebra-se3-pose-tracking\|Lie Algebra se(3) Pose Tracking Guide]] |
 | **All-Pairs Correlation Pyramids (RAFT)** | Full 4D pairwise dot-product volume $\mathbf{C} = \frac{1}{\sqrt{C}} \mathbf{f}_1^T \mathbf{f}_2$, target multi-scale pooling, local bilinear neighborhood lookup | Preserves small, fast-moving objects across frames that vanish in traditional coarse-to-fine feature warping | [[techniques/all-pairs-correlation-pyramids\|All-Pairs Correlation Pyramids Guide]] |
+| **Variational Optical Flow (TV-$L^1$)** | Primal-Dual Chambolle-Pock decoupling, Total Variation regularization $\|\nabla\mathbf{u}\|$, pointwise soft-thresholding shrinkage | Preserves razor-sharp motion step discontinuities across object boundaries without oversmoothing | [[techniques/variational-optical-flow-tv-l1\|Variational Optical Flow TV-L1 Guide]] |
+| **Multiresolution Spatial Hash Encodings** | Prime-XOR spatial hashing $h(\mathbf{v}) = (\bigoplus v_i \pi_i) \pmod T$, geometric level stacking, dynamic sparse voxel indexing | Delivers dense continuous 3D representations in constant $\mathcal{O}(1)$ memory, eliminating the cubic $\mathcal{O}(N^3)$ voxel memory barrier | [[techniques/multiresolution-hash-encodings-and-sparse-voxels\|Multiresolution Spatial Hash Encodings Guide]] |
+| **Orthogonal Procrustes & Umeyama Alignment** | Centroid decoupling, spatial cross-covariance SVD $\mathbf{\Sigma} = \mathbf{U}\mathbf{D}\mathbf{V}^T$, determinant reflection sign correction | Exact, closed-form, globally optimal $\mathrm{Sim}(3)$ metric scale, rotation, and translation in $<10\ \mu\text{s}$ | [[techniques/orthogonal-procrustes-and-umeyama-sim3\|Orthogonal Procrustes & Umeyama Guide]] |
 
-### 3. Detection, Assignment & Loss Formulations
+### 3. Detection, Assignment, Safety & Losses
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
 | :--- | :--- | :--- | :--- |
 | **DFL vs. Direct Metric Regression** | Expected value over 16 Softmax bins $\sum i \cdot P(i)$ versus continuous direct coordinate metrics (CIoU / GIoU / NWD) | Direct regression eliminates INT8 quantization drops, cuts regression VRAM by $16\times$, and avoids Sim2Real edge blur jitter | [[techniques/distribution-focal-loss-vs-direct-regression\|DFL vs Direct Regression Guide]] |
 | **Bipartite Matching & Hungarian Assigner** | Permutation $\hat{\sigma} \in \mathfrak{S}_N = \arg\min \sum \mathcal{L}_{\text{match}}(y_i, \hat{y}_{\sigma(i)})$ via Kuhn-Munkres cost matrix reduction | Enforces strict $1:1$ prediction matching, permanently eliminating heuristic Non-Maximum Suppression (NMS) | [[techniques/bipartite-matching-and-hungarian-assigner\|Bipartite Matching & Hungarian Assigner Guide]] |
+| **Contrastive Learning: InfoNCE vs. SigLIP** | Decoupled pairwise binary Sigmoid loss $\mathcal{L} = - \frac{1}{B} \sum \log \sigma(y_{ij} (t \mathbf{u}_i^T \mathbf{v}_j + b))$ | Eliminates distributed multi-GPU `all-gather` communication bottlenecks, scaling contrastive pretraining past batch size 1M | [[techniques/contrastive-learning-infonce-vs-siglip\|InfoNCE vs SigLIP Contrastive Learning Guide]] |
+| **Control Barrier Functions (CBF-QP)** | Set forward invariance $\dot{h}(\mathbf{x}) + \gamma h(\mathbf{x}) \ge 0$, online convex Quadratic Program minimal intervention filter | Guarantees formal provable safety and collision avoidance around uncertified neural network and VLA policy actions in $<50\ \mu\text{s}$ | [[techniques/control-barrier-functions-safe-control\|Control Barrier Functions (CBF) Guide]] |
+| **Error-State Kalman Filter (ESKF)** | True/nominal/error decomposition, $\delta\boldsymbol{\theta} \in \mathfrak{so}(3)$ tangent rotation, error reset after injection | Non-singular minimal $15\times 15$ covariance matrix eliminating quaternion normalization singularity in visual-inertial fusion | [[techniques/error-state-kalman-filter-eskf-vio\|Error-State Kalman Filter (ESKF) Guide]] |
 
 ### 4. Sequence, Attention & Continuous Dynamical Systems
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
 | :--- | :--- | :--- | :--- |
+| **FlashAttention & Online Softmax** | Online max-sum rescaling $m^{\text{new}} = \max(m_1, m_2)$, on-chip SRAM block tiling, $\mathcal{O}(N)$ IO complexity | Computes exact attention without materializing the $N \times N$ matrix in DRAM, unlocking $3\times$ speedup and $85\%$ VRAM reduction | [[techniques/flash-attention-and-online-softmax\|FlashAttention & Online Softmax Guide]] |
 | **Visual State-Space Models (VMamba / SS2D)** | Discretized continuous ODE $\dot{h} = \mathbf{A} h + \mathbf{B} x$, ZOH discretization $\bar{\mathbf{A}} = \exp(\mathbf{\Delta} \mathbf{A})$, 4-way 2D selective scan | Global effective receptive field with strictly linear $\mathcal{O}(N)$ computation, bypassing quadratic attention | [[techniques/visual-state-space-mamba\|Visual State-Space Models (SSM) Guide]] |
 | **Continuous Flow Matching (CFM)** | Optimal Transport straight vector fields $\mathbf{u}_t = \mathbf{x}_1 - \mathbf{x}_0$, continuity equation, forward Euler ODE integration | Replaces curved Brownian diffusion paths with straight trajectories, generating samples in $1\text{--}4$ forward steps | [[techniques/continuous-flow-matching\|Continuous Flow Matching Guide]] |
 | **Action Chunking with C-VAE (ACT)** | C-VAE latent style $z \sim \mathcal{N}(0, I)$, predicting $H$-step future trajectory $a_{t:t+H}$, decaying temporal ensembling $w_i = e^{-mi}$ | Eliminates single-step compounding errors and prevents mode collapse in multimodal robot demonstrations at $50\text{ Hz}$ | [[techniques/action-chunking-cvae\|Action Chunking with C-VAE Guide]] |
@@ -64,82 +72,79 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 
 ---
 
-## 🔗 Comprehensive Architectural Cross-Reference Matrix
+## 🔗 Architectural Mapping & Knowledge Network
 
 ```mermaid
 flowchart TD
-    subgraph Techniques ["Foundational Algorithmic Techniques (techniques/)"]
+    subgraph SignalAndSensors ["Signal, Sensors & Active Vision"]
         FDA["Fourier Domain Adaptation (FDA)"]
+        GRL["Gradient Reversal (DANN)"]
+        PSP["Phase-Shifting Profilometry"]
+        ESKF["Error-State Kalman Filter (ESKF)"]
+    end
+
+    subgraph SpatialAndGeometry ["Spatial, 3D & Geometry"]
         DCN["Deformable Convolutions (DCNv4)"]
-        HG["Hypergraph Neural Networks (HG-AP)"]
-        GRL["Gradient Reversal Layers (DANN)"]
-        DirectReg["Direct Metric Regression (No DFL)"]
-        RepConv["Structural Reparameterization"]
-        Bipartite["Bipartite Matching (Hungarian)"]
+        HG["Hypergraph Neural Networks"]
         LSS["Lift-Splat-Shoot (BEV Pooling)"]
-        SSM["Visual State-Space (VMamba SS2D)"]
-        ACT["Action Chunking (C-VAE)"]
-        CFM["Continuous Flow Matching (CFM)"]
         GS3D["3D Gaussian Splatting (3DGS)"]
         LieSE3["Lie Algebra se(3) Photometric"]
-        AllPairs["All-Pairs Correlation Pyramids"]
-        PTQ["PTQ & Outlier Smoothing (SmoothQuant)"]
+        AllPairs["All-Pairs Correlation (RAFT)"]
+        TVL1["Variational TV-L1 Flow"]
+        Hash3D["Spatial Hash Encodings (Instant-NGP)"]
+        Procrustes["Orthogonal Procrustes (Umeyama)"]
     end
 
-    subgraph ArchDetect ["Detectors & Segmenters"]
-        Y13["YOLOv13"]
+    subgraph FoundationsAndControl ["Attention, Sequences & Provable Control"]
+        FlashAttn["FlashAttention & Online Softmax"]
+        SigLIP_Tech["Contrastive SigLIP vs InfoNCE"]
+        SSM["Visual State-Space (VMamba SS2D)"]
+        CFM["Continuous Flow Matching"]
+        ACT["Action Chunking (C-VAE)"]
+        CBF["Control Barrier Functions (CBF-QP)"]
+        Bipartite["Bipartite Matching (Hungarian)"]
+        DirectReg["Direct Metric Regression"]
+        RepConv["Structural Reparameterization"]
+        PTQ["PTQ & Outlier Smoothing"]
+    end
+
+    subgraph VaultDeployments ["Vault Architectures & Systems"]
         Y14["YOLOv14-Sim2Real"]
         Y26["YOLO26"]
-        DFINE["D-FINE"]
         RFDETR["RF-DETR"]
-        GroundingDINO["Grounding DINO"]
-    end
-
-    subgraph Arch3D ["3D, SLAM & Sensor Fusion"]
         BEVFusion["BEVFusion"]
-        Sparse4D["Sparse4D"]
         GS3D_SLAM["3DGS-SLAM"]
-        DROID["DROID-SLAM"]
-    end
-
-    subgraph ArchRobot ["Robotics, VLA & Foundation Models"]
-        PI0["pi0 (Physical Intelligence)"]
-        ACT_Arch["ACT (ALOHA)"]
-        VMamba_Arch["VMamba"]
-        DINOv2_Arch["DINOv2"]
-        SAM2_Arch["SAM 2"]
-        RAFT_Arch["RAFT"]
+        OpenVLA_Model["OpenVLA"]
+        PI0_Model["pi0"]
+        SAM2_Model["SAM 2"]
+        DINOv2_Model["DINOv2"]
+        FastLIO["FAST-LIO2"]
     end
 
     FDA --> Y14
     GRL --> Y14
     DirectReg --> Y14
     DirectReg --> Y26
-    DirectReg --> DFINE
     DCN --> Y14
-    DCN --> DFINE
     DCN --> RFDETR
-    DCN --> Sparse4D
     DCN --> BEVFusion
-    HG --> Y13
     RepConv --> Y14
     RepConv --> Y26
     Bipartite --> RFDETR
-    Bipartite --> DFINE
-    Bipartite --> GroundingDINO
     LSS --> BEVFusion
-    LSS --> Sparse4D
     GS3D --> GS3D_SLAM
     LieSE3 --> GS3D_SLAM
-    LieSE3 --> DROID
-    AllPairs --> RAFT_Arch
-    AllPairs --> DROID
-    SSM --> VMamba_Arch
-    ACT --> ACT_Arch
-    ACT --> PI0
-    CFM --> PI0
-    PTQ --> DINOv2_Arch
-    PTQ --> SAM2_Arch
+    FlashAttn --> SAM2_Model
+    FlashAttn --> DINOv2_Model
+    SigLIP_Tech --> OpenVLA_Model
+    CFM --> PI0_Model
+    ACT --> PI0_Model
+    ACT --> OpenVLA_Model
+    CBF --> OpenVLA_Model
+    CBF --> PI0_Model
+    ESKF --> FastLIO
+    Hash3D --> GS3D_SLAM
+    Procrustes --> GS3D_SLAM
 ```
 
 ---
@@ -148,6 +153,6 @@ flowchart TD
 
 - **Central Architecture MOC**: [[architectures/00-architectures-moc|Central Architecture MOC]] (100 production architectures).
 - **Runnable Cookbooks**: [[cookbooks/00-cookbooks-moc|Cookbooks Vault MOC]] (24 standalone scripts).
-- **Sim2Real Playbook**: [[topics/object-detection/03-sim2real-and-domain-adaptation|Sim2Real Object Detection Playbook]].
-- **Physical AI & VLA Hub**: [[topics/vla-and-physical-ai-robotics/00-vla-and-physical-ai-robotics-moc|VLA & Physical AI MOC]].
-- **SLAM & Spatial Perception Hub**: [[topics/slam-and-spatial-perception/00-slam-and-spatial-perception-moc|SLAM & Spatial Perception MOC]].
+- **Safety Verification Hub**: [[topics/safety-verification-and-robustness/00-safety-verification-and-robustness-moc|Safety Verification MOC]].
+- **Active 3D Sensing Hub**: [[topics/active-3d-sensing-and-structured-light/00-active-3d-sensing-and-structured-light-moc|Active 3D Sensing MOC]].
+- **Sensor Fusion Hub**: [[topics/sensor-fusion/00-sensor-fusion-moc|Sensor Fusion MOC]].
