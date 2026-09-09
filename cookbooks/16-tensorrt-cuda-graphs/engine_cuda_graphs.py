@@ -244,9 +244,9 @@ class TensorRTCUDAGraphEngine:
                 return self.conv2(self.act(self.conv1(x)))
 
         self.torch_module = FastPerceptionModule(self.in_channels, self.out_dim).cuda().eval()
+        self.torch_module.requires_grad_(False)
         if self.precision == DataType.FLOAT16:
             self.torch_module = self.torch_module.half()
-
         # Static I/O buffers for CUDA Graph capture
         torch_dtype = torch.float16 if self.precision == DataType.FLOAT16 else torch.float32
         self.static_input_tensor = torch.zeros(self.input_shape, device="cuda", dtype=torch_dtype)
@@ -264,16 +264,16 @@ class TensorRTCUDAGraphEngine:
             stream = torch.cuda.Stream()
             stream.wait_stream(torch.cuda.current_stream())
             with torch.cuda.stream(stream):
-                # Warmup iterations
-                for _ in range(warmup_iters):
-                    _ = self.torch_module(self.static_input_tensor)
-                torch.cuda.current_stream().synchronize()
+                with torch.no_grad():
+                    # Warmup iterations
+                    for _ in range(warmup_iters):
+                        _ = self.torch_module(self.static_input_tensor)
+                    torch.cuda.current_stream().synchronize()
 
-                # Graph Capture
-                self.torch_cuda_graph = torch.cuda.CUDAGraph()
-                with torch.cuda.graph(self.torch_cuda_graph, stream=stream):
-                    self.static_output_tensor = self.torch_module(self.static_input_tensor)
-
+                    # Graph Capture
+                    self.torch_cuda_graph = torch.cuda.CUDAGraph()
+                    with torch.cuda.graph(self.torch_cuda_graph, stream=stream):
+                        self.static_output_tensor = self.torch_module(self.static_input_tensor)
             torch.cuda.current_stream().wait_stream(stream)
             self.is_graph_captured = True
         else:
@@ -291,7 +291,7 @@ class TensorRTCUDAGraphEngine:
             with torch.no_grad():
                 d_out = self.torch_module(d_in)
             torch.cuda.synchronize()
-            return d_out.cpu().float().numpy()
+            return d_out.detach().cpu().float().numpy()
         else:
             # Emulated CPU execution with synthetic CPU dispatch delay
             # Simulate CPU driver launch overhead (15 microseconds)
@@ -315,7 +315,7 @@ class TensorRTCUDAGraphEngine:
             # Replay captured graph
             self.torch_cuda_graph.replay()
             torch.cuda.synchronize()
-            return self.static_output_tensor.cpu().float().numpy()
+            return self.static_output_tensor.detach().cpu().float().numpy()
         else:
             # Emulated CUDA Graph Replay (near-zero launch overhead)
             out = self.backbone.forward_cpu(input_data, self.precision)

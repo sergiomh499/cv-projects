@@ -8,9 +8,11 @@ Executes in pure NumPy with zero external dependencies.
 """
 
 from __future__ import annotations
+
 import sys
 from pathlib import Path
 from typing import Optional, Tuple
+
 import numpy as np
 
 # Add repo root to path for cookbooks.common imports
@@ -18,7 +20,7 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from cookbooks.common.sensors import PinholeCamera
+from cookbooks.common.sensors import PinholeCamera  # noqa: E402
 
 
 class MonocularDepthUnprojector:

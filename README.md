@@ -72,6 +72,7 @@ Dedicated, mathematically rigorous reference documents detailing foundational al
 ## 🏛️ Central Architecture Vault (`architectures/`)
 
 Dedicated landmark architectures and foundation models (each in an independent reference document):
+- **[[architectures/3d-pointclouds-and-lidar/bevformer|BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers]]**: Spatiotemporal BEV Transformer (Apache-2.0).
 - **[[architectures/3d-pointclouds-and-lidar/bevfusion|BEVFusion: Multi-Task Multi-Sensor Camera-LiDAR Fusion in Bird's-Eye View]]**: Unified Multi-Modal Bird's-Eye-View (BEV) Network (Apache-2.0).
 - **[[architectures/3d-pointclouds-and-lidar/centerpoint|CenterPoint: Center-based 3D Object Detection and Tracking]]**: Center-Based Anchor-Free 3D Detection and Tracking Network (MIT).
 - **[[architectures/3d-pointclouds-and-lidar/dsvt|DSVT: Dynamic Sparse Voxel Transformer for 3D LiDAR Object Detection]]**: Dynamic Sparse Window Voxel Transformer (Apache-2.0).
@@ -83,6 +84,7 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/backbones-and-edge-efficiency/convnext-v2|ConvNeXt V2: Co-designing Pure ConvNets and Masked Autoencoders with Global Response Normalization]]**: Modern Pure ConvNet (Inverted Bottleneck & GRN) (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/efficientnet-v2|EfficientNetV2: Smaller Models and Faster Training with Fused-MBConv and Progressive Learning]]**: Efficient ConvNet with Fused-MBConv & Progressive Learning (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/fastvit|FastViT: A Fast Hybrid Vision Transformer using Structural Reparameterization]]**: Hybrid Vision Transformer (RepMixer & RepConv) (Apple Sample Code / Research).
+- **[[architectures/backbones-and-edge-efficiency/internimage|InternImage: Exploring Large-Scale Vision Foundation Models with Deformable Convolutions]]**: Large-Scale Deformable Convolution Backbone (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/mambavision|MambaVision: Hybrid Visual State-Space and Transformer Foundation Backbone]]**: Hybrid State-Space Model (SSM) & Vision Transformer (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/mobilenetv4|MobileNetV4: Universal Models for Efficient On-Device Computer Vision]]**: Universal Inverted Bottleneck (UIB) & Mobile-MQA (Apache-2.0).
 - **[[architectures/backbones-and-edge-efficiency/repvgg|RepVGG: Making VGG-style ConvNets Great Again via Structural Reparameterization]]**: Structurally Reparameterized Plain ConvNet (Multi-Branch Training, Single-Path Inference) (Apache-2.0).
@@ -108,6 +110,8 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/multimodal-vlm-and-vla/qwen2-5-vl|Qwen2.5-VL: Dynamic-Resolution Vision-Language & Visual-Agent Foundation Model]]**: Foundation Model (Apache-2.0).
 - **[[architectures/multimodal-vlm-and-vla/qwen2-vl|Qwen2-VL: Dynamic Resolution Vision-Language Foundation Model]]**: Real-Time Unified (Apache-2.0).
 - **[[architectures/multimodal-vlm-and-vla/rt-2|RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control]]**: Autoregressive Vision-Language-Action (VLA) Model (Proprietary (Google DeepMind Reference Architecture)).
+- **[[architectures/pose-and-robotics-manipulation/bundlesdf|BundleSDF: Neural 6-DoF Tracking and 3D Reconstruction of Unknown Objects]]**: Neural Implicit Field Bundle Adjustment & 6D Pose Tracker (Apache-2.0).
+- **[[architectures/pose-and-robotics-manipulation/contact-graspnet|Contact-GraspNet: 6-DoF Grasp Generation from Cluttered Point Clouds]]**: Point-to-Contact Residual 6-DoF Grasp Generator (Apache-2.0).
 - **[[architectures/pose-and-robotics-manipulation/cosypose|CosyPose: Consistent Multi-View Multi-Object 6D Pose Estimation with Global Scene Graph Optimization]]**: Iterative Render-and-Compare Refiner with Global Multi-View Scene Graph Bundle Adjustment (Apache-2.0).
 - **[[architectures/pose-and-robotics-manipulation/dexnet|Dex-Net: Deep Grasping via Robust Surface Normals, Grasp Quality Convolutional Neural Networks (GQ-CNN), and Antipodal Wrench Spaces]]**: Grasp Quality Convolutional Neural Network (GQ-CNN) with Robust Quasi-Static Wrench Space Physics (BSD-2-Clause).
 - **[[architectures/pose-and-robotics-manipulation/foundationpose|FoundationPose: Unified 6D Pose Estimation and Tracking for Novel Objects]]**: Foundation Render-and-Compare Vision Transformer (Custom Non-Commercial (NVIDIA)).
@@ -117,6 +121,7 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/real-time-detectors-and-segmenters/bisenetv2|BiSeNet V2: Bilateral Segmentation Network for Real-Time Semantic Segmentation]]**: Real-Time Segmentation (MIT).
 - **[[architectures/real-time-detectors-and-segmenters/d-fine|D-FINE: Redefine Regression Task for Real-Time Object Detection]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/ddrnet|DDRNet: Deep Dual-Resolution Networks for Real-Time and Accurate Semantic Segmentation]]**: Real-Time Segmentation (Apache-2.0).
+- **[[architectures/real-time-detectors-and-segmenters/diffusiondet|DiffusionDet: Diffusion Model for Object Detection]]**: Denoising Diffusion Object Detector (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/edge-sam|EdgeSAM: Prompt-In-the-Loop Distillation for On-Device Real-Time SAM]]**: Prompt-In-the-Loop Distilled Real-Time Segmenter (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/efficient-sam|EfficientSAM: Leveraged Masked Image Pretraining for Efficient Segment Anything]]**: Masked-Image-Pretrained Lightweight Foundation Segmenter (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/efficientvit-sam|EfficientViT-SAM: Accelerated Segment Anything Model Without Performance Loss]]**: Real-Time Foundation Segmenter (Apache-2.0).
@@ -156,11 +161,13 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/spatial-radiance-and-slam/nerf|NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis]]**: Continuous Implicit Coordinate Neural Radiance Field (Custom / Research-Only (UC Berkeley / Google Research)).
 - **[[architectures/spatial-radiance-and-slam/splatam|SplaTAM: Dense RGB-D SLAM with Explicit 3D Gaussian Radiance Fields]]**: Differentiable 3D Gaussian Optimization (MIT).
 - **[[architectures/vision-foundation-models/clip|CLIP: Learning Transferable Visual Models From Natural Language Supervision]]**: Contrastive Dual-Encoder Vision-Language Foundation Model (MIT).
+- **[[architectures/vision-foundation-models/controlnet|ControlNet: Adding Conditional Control to Text-to-Image and Vision Diffusion Models]]**: Conditional Latent Diffusion Adapter (Apache-2.0).
 - **[[architectures/vision-foundation-models/depth-anything-v2|Depth Anything V2: Metric Depth & Surface Segmentation Foundation Model]]**: Foundation Vision Transformer (DINOv2 Distillation) (Apache-2.0).
 - **[[architectures/vision-foundation-models/depth-anything|Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data]]**: Monocular Foundation Vision Transformer (Semi-Supervised Distillation) (Apache-2.0).
 - **[[architectures/vision-foundation-models/dinov2|DINOv2: Learning Robust Visual Features with Self-Supervised Vision Transformers]]**: Self-Supervised Isotropic Vision Transformer (ViT) (Apache-2.0).
 - **[[architectures/vision-foundation-models/dinov3|DINOv3: Hierarchical Multimodal Vision Foundation Model with 2D-RoPE and Dense Pre-Training]]**: Hierarchical Vision Transformer with 2D-RoPE (Apache-2.0).
 - **[[architectures/vision-foundation-models/eva-02|EVA-02: A Visual Representation for Pre-training with Masked Image Modeling]]**: Masked Image Modeling Vision Transformer with CLIP Tokenizer Guidance (Apache-2.0).
+- **[[architectures/vision-foundation-models/i-jepa|I-JEPA: Image Joint-Embedding Predictive Architecture]]**: Joint-Embedding Predictive Architecture (CC-BY-NC-4.0).
 - **[[architectures/vision-foundation-models/marigold|Marigold: Repurposing Diffusion-Based Image Generators for Monocular Depth Estimation]]**: Generative Latent Diffusion Foundation Model for Depth (Apache-2.0).
 - **[[architectures/vision-foundation-models/sam-2-1|SAM 2.1: Segment Anything in Images and Videos 2.1]]**: Hierarchical Vision Foundation Model & Video Memory Transformer (Apache-2.0).
 - **[[architectures/vision-foundation-models/sam-2|SAM 2, SAM 2.1 & SAM 3: Segment Anything in Images, Videos & Open Concepts]]**: Foundation Model (Hierarchical Vision Transformer) (Apache-2.0).
@@ -171,6 +178,7 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/visual-tracking-and-flow/deepsort|DeepSORT: Simple Online and Realtime Tracking with a Deep Association Metric]]**: Tracking-by-Detection (Kalman Filter + Deep ReID Matching Cascade) (GPL-3.0).
 - **[[architectures/visual-tracking-and-flow/oc-sort|OC-SORT: Observation-Centric SORT for Robust Multi-Object Tracking]]**: Tracking-by-Detection (Observation-Centric Kalman Association) (MIT).
 - **[[architectures/visual-tracking-and-flow/raft|RAFT: Recurrent All-Pairs Field Transforms for Optical Flow]]**: Recurrent Correlation Flow Network (ConvGRU + 4D Correlation Volume) (BSD-3-Clause).
+- **[[architectures/visual-tracking-and-flow/sea-raft|SEA-RAFT: Simple, Efficient, and Accurate Recurrent All-Pairs Optical Flow]]**: Recurrent Correlation Volume Optical Flow Estimator (Apache-2.0).
 - **[[architectures/visual-tracking-and-flow/tapir|TAPIR: Tracking Any Point with Per-Frame Initialization and Temporal Refinement]]**: Two-Stage Point Tracker (Matching + Temporal Refinement) (Apache-2.0).
 
 ---
@@ -253,6 +261,66 @@ Dedicated guides covering compilation pipelines, zero-copy memory, and runtime m
 - **[[frameworks/torchvision|TorchVision: C++/CUDA Vision Operators, Transforms v2, GPU Video I/O & Model Zoo]]**: Computer Vision Infrastructure, Custom CUDA Operators & Data Augmentation.
 - **[[frameworks/triton-inference-server|NVIDIA Triton Inference Server: Dynamic Batching, BLS & Zero-Copy IPC Shared Memory]]**: High-Throughput Model Serving & Microservices.
 - **[[frameworks/vitis-ai|AMD Vitis AI 3.5: DPU Compilation, XIR Graph IR & AIE-ML Systolic Array Mapping]]**: FPGA & NPU Neural Acceleration (Versal AI Core / Kria SOM / Zynq MPSoC).
+- **[[frameworks/vulkan-sc|Vulkan SC 2.0: Safety-Critical GPU Compute, ISO 26262 ASIL-D & Deterministic Pipelines]]**: Safety-Critical GPU Compute, Automotive ADAS & Avionics.
+- **[[frameworks/vulkan|Vulkan 1.3 / 1.4 Compute: Explicit GPU Acceleration, SPIR-V & Cooperative Matrix]]**: Cross-Platform GPU Acceleration & Low-Overhead Compute.
+- **[[frameworks/zenoh|Eclipse Zenoh & Zenoh-Pico: Decentralized Edge-to-Cloud Communication Framework]]**: Edge Robotics Middleware, Distributed Pub/Sub & Geodistributed Querying.
+
+---
+
+---
+
+## ⚡ Hardware Platforms & Silicon Acceleration Vault (`hardware/`)
+
+---
+
+## ⚡ Hardware Platforms & Silicon Acceleration Vault (`hardware/`)
+
+Dedicated silicon guides covering compute, memory, and functional safety (each in an independent document):
+
+- **[[hardware/amd-versal-ai-edge-gen1|AMD Versal AI Edge Gen 1: Architecture, AIE-ML v1 & Heterogeneous Compute]]**: FPGA & ACAP Compute Platforms.
+- **[[hardware/amd-versal-ai-edge-gen2|AMD Versal AI Edge Gen 2: Architecture, AIE-ML v2, Microscaling & ASIL-D Compute]]**: FPGA & ACAP Compute Platforms.
+- **[[hardware/amd-zynq-ultrascale-plus|AMD Zynq UltraScale+ MPSoC: Architecture, DPUCZDX8G & Embedded Vision]]**: FPGA & Embedded SoC Platforms.
+- **[[hardware/arm-cortex-a78ae|Arm Cortex-A78AE: Split-Lock Architecture, Hybrid Clusters & ISO 26262 ASIL-D Microarchitecture]]**: Functional Safety & High-Performance Automotive CPU.
+- **[[hardware/arm-cortex-r52|Arm Cortex-R52: Hard Real-Time Lockstep Safety Core, MPU & Fast Interrupt Handling]]**: Hard Real-Time Control & ISO 26262 ASIL-D Safety Cores.
+- **[[hardware/arm-ethos-u65|Arm Ethos-U65: Micro-NPU for Embedded Edge, Microcontrollers & IoT Acceleration]]**: Embedded Micro-NPUs, TinyML & Microcontroller Acceleration.
+- **[[hardware/arm-ethos-u85|Arm Ethos-U85: Micro-NPU for Edge Vision, Transformers & 4 TOPS Embedded AI Acceleration]]**: Micro-NPUs, TinyML & Edge Vision Transformers.
+- **[[hardware/arm-neoverse-v3ae|Arm Neoverse V3AE: Automotive Server-Class High-Throughput CPU, SVE2 & AMBA CHI Architecture]]**: Automotive High-Performance Compute & Centralized SDV Infrastructure.
+- **[[hardware/coreavi-cots-safety-hardware|CoreAVI COTS Safety Hardware: DO-254 DAL A, VkCoreSC & Avionics GPU Architectures]]**: Avionics, Defense & High-Integrity Safety Systems.
+- **[[hardware/esperanto-et-soc-1|Esperanto ET-SoC-1: 1088-Core Energy-Efficient RISC-V Tensor Inference Architecture]]**: RISC-V Many-Core Compute & Low-Power Datacenter Acceleration.
+- **[[hardware/intel-loihi-2|Intel Loihi 2: Asynchronous Neuromorphic Spiking Neural Processor & Microcode Architecture]]**: Neuromorphic Computing, Spiking Neural Networks & Event-Driven Intelligence.
+- **[[hardware/intel-npu|Intel NPU 4 & 5: Lunar Lake, Arrow Lake & Panther Lake Neural Processing Units]]**: Client SoCs, Edge AI & Integrated Neural Processing Units.
+- **[[hardware/intel-xeon-amx|Intel Xeon 6th Gen: AMX TMUL Matrix Acceleration & Datacenter AI Architecture]]**: Datacenter Compute, High-Performance CPU & Matrix Acceleration.
+- **[[hardware/nvidia-blackwell-b200|NVIDIA Blackwell B200 & GB200: Dual-Die Architecture, NVLink 5 & Hyperscale NVFP4 AI]]**: Data Center, High-Performance AI Infrastructure & Frontier Model Training.
+- **[[hardware/nvidia-drive-thor|NVIDIA DRIVE Thor: Blackwell Architecture, 1000-2000 TFLOPS & Centralized Automotive Superchip]]**: Autonomous Vehicles & Centralized Automotive Superchips.
+- **[[hardware/nvidia-jetson-orin|NVIDIA Jetson Orin: Architecture, Ampere Tensor Cores, NVDLA 2.0 & Autonomous Systems]]**: Edge GPU & Autonomous Robotics Platforms.
+- **[[hardware/nvidia-jetson-thor|NVIDIA Jetson Thor: Blackwell Architecture, Physical AI & Compact Robotics Superchip]]**: Physical AI, Humanoid Robotics & Edge Autonomy.
+- **[[hardware/qualcomm-hexagon-npu|Qualcomm Hexagon NPU: Fused Scalar, Vector (HVX) & Matrix (HMX) Tensor Architecture]]**: Edge AI, Mobile & Automotive Central Compute.
+- **[[hardware/synsense-speck|SynSense Speck & Xylo: Sub-Milliwatt Neuromorphic Dynamic Vision & Audio Processors]]**: Neuromorphic Vision, Event-Based Sensors & Ultra-Low-Power SNN SoCs.
+- **[[hardware/tenstorrent-wormhole-blackhole|Tenstorrent Wormhole & Blackhole: Tensix Core Spatial Dataflow & Direct Mesh Architecture]]**: RISC-V, Spatial Dataflow & Scalable AI Infrastructure.
+
+---
+
+---
+
+## 🚀 Software Frameworks, Compilers & Inference Runtimes (`frameworks/`)
+
+Dedicated guides covering compilation pipelines, zero-copy memory, and runtime models (each in an independent document):
+
+- **[[frameworks/apache-tvm|Apache TVM Unity & Relax: Symbolic Shapes, TensorIR Schedule Primitives & Multi-Target CodeGen]]**: Machine Learning Compilers, Kernel Optimization & Multi-Target Code Generation.
+- **[[frameworks/fiftyone|Voxel51 FiftyOne: Dataset Curation, Multimodal Embeddings & Vector Search Architecture]]**: Computer Vision Data Curation, Embeddings Indexing & Dataset Quality.
+- **[[frameworks/iceoryx2|Eclipse Iceoryx2: Zero-Copy Lock-Free Shared Memory Inter-Process Communication]]**: Real-Time Robotics Middleware & Deterministic IPC.
+- **[[frameworks/lerobot|HuggingFace LeRobot: Physical AI, Robot Teleoperation & Visuomotor Policy Pipelines]]**: Physical AI, Robot Learning & Visuomotor Imitation Learning.
+- **[[frameworks/onnxruntime|ONNX Runtime 1.20+: Cross-Platform Execution Provider Architecture & Memory Primitives]]**: Cross-Platform Inference & Execution Providers.
+- **[[frameworks/openvino|Intel OpenVINO 2025.x / 2026.x: nGraph IR, NPU Acceleration & Heterogeneous Scheduling]]**: Heterogeneous Edge Inference & NPU Acceleration.
+- **[[frameworks/pytorch|PyTorch 2.5 / 2.6 Core: TorchDynamo, AOTAutograd, TorchInductor & FlexAttention]]**: Deep Learning Compilers, GPU Acceleration & JIT Code Generation.
+- **[[frameworks/quark|AMD Quark: Unified Quantization, Sub-Byte Formats (FP8, MX6, MX9, INT4) & Hardware Calibration]]**: Model Quantization, Compression & Low-Precision Compilation.
+- **[[frameworks/rerun|Rerun.io SDK: Multimodal Spatial-Temporal Columnar Visualization & Time-Series Engine]]**: Spatial Computing, Robotics Visualization & Multimodal Stream Debugging.
+- **[[frameworks/robomimic|Robomimic: Modular Imitation Learning, Offline RL Benchmarks & RoboSuite Integration]]**: Robot Learning, Offline Reinforcement Learning & Imitation Learning Benchmarks.
+- **[[frameworks/ros2-rmw|ROS 2 RMW Architecture: rmw_zenoh, rmw_iceoryx2, and CycloneDDS Zero-Copy Middleware]]**: Robotics Middleware & Real-Time Communication Abstraction.
+- **[[frameworks/tensorrt|NVIDIA TensorRT 10.x / 10.8+: Deep Learning Inference Compiler & Engine Runtime]]**: GPU Acceleration & High-Throughput Inference.
+- **[[frameworks/torchvision|TorchVision: C++/CUDA Vision Operators, Transforms v2, GPU Video I/O & Model Zoo]]**: Computer Vision Infrastructure, Custom CUDA Operators & Data Augmentation.
+- **[[frameworks/triton-inference-server|NVIDIA Triton Inference Server: Dynamic Batching, BLS & Zero-Copy IPC Shared Memory]]**: High-Throughput Model Serving & Microservices.
+- **[[frameworks/vitis-ai|AMD Vitis AI: DPU Compilation, XIR Graph IR & Versal Gen 1/Gen 2 AIE-ML Runtime (3.5, 5.x, 6.x)]]**: FPGA & NPU Neural Acceleration (Versal AI Edge Gen 1/2 / Kria SOM / Zynq UltraScale+).
 - **[[frameworks/vulkan-sc|Vulkan SC 2.0: Safety-Critical GPU Compute, ISO 26262 ASIL-D & Deterministic Pipelines]]**: Safety-Critical GPU Compute, Automotive ADAS & Avionics.
 - **[[frameworks/vulkan|Vulkan 1.3 / 1.4 Compute: Explicit GPU Acceleration, SPIR-V & Cooperative Matrix]]**: Cross-Platform GPU Acceleration & Low-Overhead Compute.
 - **[[frameworks/zenoh|Eclipse Zenoh & Zenoh-Pico: Decentralized Edge-to-Cloud Communication Framework]]**: Edge Robotics Middleware, Distributed Pub/Sub & Geodistributed Querying.
