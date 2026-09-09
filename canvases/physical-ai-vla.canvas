@@ -1,0 +1,246 @@
+{
+  "nodes": [
+    {
+      "id": "grp-vlm",
+      "type": "group",
+      "label": "1. Vision-Language Foundation & Multimodal Reasoning",
+      "x": -950,
+      "y": -320,
+      "width": 380,
+      "height": 640,
+      "color": "3"
+    },
+    {
+      "id": "node-topic-vlm",
+      "type": "file",
+      "file": "topics/visual-guidance-and-robotics/README.md",
+      "x": -910,
+      "y": -260,
+      "width": 300,
+      "height": 130,
+      "color": "3"
+    },
+    {
+      "id": "node-arch-florence",
+      "type": "file",
+      "file": "architectures/multimodal-vlm-and-vla/florence-2.md",
+      "x": -910,
+      "y": -100,
+      "width": 300,
+      "height": 130,
+      "color": "3"
+    },
+    {
+      "id": "node-arch-openvla",
+      "type": "file",
+      "file": "architectures/multimodal-vlm-and-vla/openvla.md",
+      "x": -910,
+      "y": 60,
+      "width": 300,
+      "height": 130,
+      "color": "3"
+    },
+    {
+      "id": "grp-action",
+      "type": "group",
+      "label": "2. Action Chunking & Visuomotor Policies",
+      "x": -520,
+      "y": -360,
+      "width": 420,
+      "height": 720,
+      "color": "4"
+    },
+    {
+      "id": "node-topic-embodied",
+      "type": "file",
+      "file": "topics/vla-and-physical-ai-robotics/README.md",
+      "x": -480,
+      "y": -300,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "node-cb-20",
+      "type": "file",
+      "file": "cookbooks/20-act-trajectory-chunking/README.md",
+      "x": -480,
+      "y": -150,
+      "width": 340,
+      "height": 140,
+      "color": "4"
+    },
+    {
+      "id": "node-arch-act",
+      "type": "file",
+      "file": "architectures/multimodal-vlm-and-vla/act.md",
+      "x": -480,
+      "y": 20,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "node-arch-diffusion",
+      "type": "file",
+      "file": "architectures/multimodal-vlm-and-vla/diffusion-policy.md",
+      "x": -480,
+      "y": 170,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "grp-slam",
+      "type": "group",
+      "label": "3. Spatial Scene Memory & 3DGS SLAM",
+      "x": -60,
+      "y": -280,
+      "width": 380,
+      "height": 560,
+      "color": "6"
+    },
+    {
+      "id": "node-topic-slam",
+      "type": "file",
+      "file": "topics/slam-and-spatial-perception/README.md",
+      "x": -20,
+      "y": -220,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "node-cb-18",
+      "type": "file",
+      "file": "cookbooks/18-3dgs-lie-slam/README.md",
+      "x": -20,
+      "y": -70,
+      "width": 300,
+      "height": 150,
+      "color": "6"
+    },
+    {
+      "id": "node-arch-3dgs",
+      "type": "file",
+      "file": "architectures/spatial-radiance-and-slam/3dgs-slam.md",
+      "x": -20,
+      "y": 110,
+      "width": 300,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "grp-safety",
+      "type": "group",
+      "label": "4. Control Barrier Safety & Sim2Real",
+      "x": 360,
+      "y": -340,
+      "width": 420,
+      "height": 680,
+      "color": "1"
+    },
+    {
+      "id": "node-cb-08",
+      "type": "file",
+      "file": "cookbooks/08-control-barrier-filter/README.md",
+      "x": 400,
+      "y": -280,
+      "width": 340,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "node-cb-10",
+      "type": "file",
+      "file": "cookbooks/10-contrastive-sim2real-alignment/README.md",
+      "x": 400,
+      "y": -110,
+      "width": 340,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "node-cb-06",
+      "type": "file",
+      "file": "cookbooks/06-mechanistic-cbm-attribution/README.md",
+      "x": 400,
+      "y": 60,
+      "width": 340,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "grp-hardware",
+      "type": "group",
+      "label": "5. Edge Robotic Hardware Compute",
+      "x": 820,
+      "y": -220,
+      "width": 360,
+      "height": 440,
+      "color": "5"
+    },
+    {
+      "id": "node-hw-thor",
+      "type": "file",
+      "file": "hardware/nvidia-jetson-thor.md",
+      "x": 850,
+      "y": -160,
+      "width": 300,
+      "height": 150,
+      "color": "5"
+    },
+    {
+      "id": "node-hw-versal",
+      "type": "file",
+      "file": "hardware/amd-versal-ai-edge-gen2.md",
+      "x": 850,
+      "y": 20,
+      "width": 300,
+      "height": 150,
+      "color": "5"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-vlm-act",
+      "fromNode": "node-arch-openvla",
+      "fromSide": "right",
+      "toNode": "node-cb-20",
+      "toSide": "left",
+      "label": "Action Chunks"
+    },
+    {
+      "id": "e-act-slam",
+      "fromNode": "node-cb-20",
+      "fromSide": "right",
+      "toNode": "node-cb-18",
+      "toSide": "left",
+      "label": "Keyframe Poses"
+    },
+    {
+      "id": "e-slam-cbf",
+      "fromNode": "node-cb-18",
+      "fromSide": "right",
+      "toNode": "node-cb-08",
+      "toSide": "left",
+      "label": "Obstacle Geometries"
+    },
+    {
+      "id": "e-act-cbf",
+      "fromNode": "node-cb-20",
+      "fromSide": "right",
+      "toNode": "node-cb-08",
+      "toSide": "left",
+      "label": "Uncertified Velocity u_deep"
+    },
+    {
+      "id": "e-cbf-hw",
+      "fromNode": "node-cb-08",
+      "fromSide": "right",
+      "toNode": "node-hw-thor",
+      "toSide": "left",
+      "label": "Certified Safe Control u_safe"
+    }
+  ]
+}

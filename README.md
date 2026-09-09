@@ -20,6 +20,17 @@ A curated research engineering knowledge base, didactic repository, and producti
 
 > **Obsidian Users**: This repository is designed to be opened directly as an **Obsidian Vault**. It implements a hybrid **PARA + Zettelkasten + Maps of Content (MOC)** structure with bidirectional wikilinks (`[[...]]`), structured YAML properties, and central architecture notes under `architectures/`.
 
+## 🗺️ Interactive Obsidian Visual Canvases (Spatial Maps)
+
+The vault includes native **Obsidian `.canvas` visual whiteboards** in `canvases/` providing interactive 2D spatial navigation across end-to-end architectures, hardware targets, and runnable recipes:
+
+| Canvas File | Spatial Focus | Core Pipeline Nodes & Flows |
+| :--- | :--- | :--- |
+| **[`canvases/vault-overview.canvas`](canvases/vault-overview.canvas)** | **Entire Vault High-Level Topology** | Connects all 20 Perception Domains, Primary MOCs, Hardware Targets, Acceleration Runtimes, and Embodied AI. |
+| **[`canvases/autonomous-perception.canvas`](canvases/autonomous-perception.canvas)** | **Autonomous Driving & Multi-Sensor Perception** | Multi-Sensor Calibration -> LiDAR/Camera Ingestion -> BEV Frustum Voxel Pooling -> ByteTrack / EPnP -> CBF Real-Time Safety Filter. |
+| **[`canvases/physical-ai-vla.canvas`](canvases/physical-ai-vla.canvas)** | **Physical AI, Visuomotor & VLA Robotics** | Multimodal VLMs (OpenVLA, Florence-2) -> ACT Action Trajectory Chunking -> 3DGS Lie SLAM -> Control Barrier Invariance -> Edge Robotics Silicon. |
+| **[`canvases/realtime-edge-deployment.canvas`](canvases/realtime-edge-deployment.canvas)** | **Low-Latency Edge Deployment & Scheduling** | Deep Learning Compilers (TensorRT, ONNX Runtime, Vulkan SC, AMD Quark) -> Zero-Copy IPC (Iceoryx2, Zenoh) -> RMS/EDF Scheduling -> Embedded Hardware. |
+
 ---
 
 ## 🧭 Master Knowledge Map & Topic MOCs

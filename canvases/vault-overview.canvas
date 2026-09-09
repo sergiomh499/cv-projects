@@ -1,0 +1,292 @@
+{
+  "nodes": [
+    {
+      "id": "hub-center",
+      "type": "text",
+      "text": "# \ud83c\udf10 Computer Vision & Perception Knowledge Vault\n\nCentral interactive visual map for all **20 topic domains**, **98 model architectures**, **20 hardware platforms**, **18 runtime frameworks**, and **24 production cookbooks**.",
+      "x": 0,
+      "y": 0,
+      "width": 460,
+      "height": 220,
+      "color": "6"
+    },
+    {
+      "id": "grp-mocs",
+      "type": "group",
+      "label": "Central Maps of Content (MOCs)",
+      "x": -680,
+      "y": -340,
+      "width": 540,
+      "height": 680,
+      "color": "4"
+    },
+    {
+      "id": "moc-arch",
+      "type": "file",
+      "file": "architectures/00-architectures-moc.md",
+      "x": -640,
+      "y": -280,
+      "width": 460,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "moc-hw",
+      "type": "file",
+      "file": "hardware/00-hardware-moc.md",
+      "x": -640,
+      "y": -140,
+      "width": 460,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "moc-fw",
+      "type": "file",
+      "file": "frameworks/00-frameworks-moc.md",
+      "x": -640,
+      "y": 0,
+      "width": 460,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "moc-cookbooks",
+      "type": "file",
+      "file": "cookbooks/00-cookbooks-moc.md",
+      "x": -640,
+      "y": 140,
+      "width": 460,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "grp-perception",
+      "type": "group",
+      "label": "2D/3D Perception & Tracking Domains",
+      "x": 600,
+      "y": -460,
+      "width": 560,
+      "height": 840,
+      "color": "5"
+    },
+    {
+      "id": "topic-det",
+      "type": "file",
+      "file": "topics/object-detection/README.md",
+      "x": 640,
+      "y": -400,
+      "width": 480,
+      "height": 110,
+      "color": "5"
+    },
+    {
+      "id": "topic-seg",
+      "type": "file",
+      "file": "topics/object-segmentation/README.md",
+      "x": 640,
+      "y": -270,
+      "width": 480,
+      "height": 110,
+      "color": "5"
+    },
+    {
+      "id": "topic-track",
+      "type": "file",
+      "file": "topics/video-tracking/README.md",
+      "x": 640,
+      "y": -140,
+      "width": 480,
+      "height": 110,
+      "color": "5"
+    },
+    {
+      "id": "topic-6dof",
+      "type": "file",
+      "file": "topics/6dof-pose-estimation/README.md",
+      "x": 640,
+      "y": -10,
+      "width": 480,
+      "height": 110,
+      "color": "5"
+    },
+    {
+      "id": "topic-lidar",
+      "type": "file",
+      "file": "topics/lidar-perception/README.md",
+      "x": 640,
+      "y": 120,
+      "width": 480,
+      "height": 110,
+      "color": "5"
+    },
+    {
+      "id": "topic-fusion",
+      "type": "file",
+      "file": "topics/sensor-fusion/README.md",
+      "x": 640,
+      "y": 250,
+      "width": 480,
+      "height": 110,
+      "color": "5"
+    },
+    {
+      "id": "grp-edge",
+      "type": "group",
+      "label": "Real-Time & Embedded Edge Deployment",
+      "x": -350,
+      "y": 420,
+      "width": 1160,
+      "height": 380,
+      "color": "1"
+    },
+    {
+      "id": "topic-gpu",
+      "type": "file",
+      "file": "topics/gpu-deployment/README.md",
+      "x": -310,
+      "y": 480,
+      "width": 520,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "topic-fpga",
+      "type": "file",
+      "file": "topics/fpga-deployment/README.md",
+      "x": 250,
+      "y": 480,
+      "width": 520,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "topic-rt",
+      "type": "file",
+      "file": "topics/real-time-systems/README.md",
+      "x": -310,
+      "y": 630,
+      "width": 520,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "topic-runtimes",
+      "type": "file",
+      "file": "topics/safety-verification-and-robustness/README.md",
+      "x": 250,
+      "y": 630,
+      "width": 520,
+      "height": 120,
+      "color": "1"
+    },
+    {
+      "id": "grp-vla",
+      "type": "group",
+      "label": "Embodied AI, Robotics & World Models",
+      "x": -350,
+      "y": -540,
+      "width": 820,
+      "height": 380,
+      "color": "3"
+    },
+    {
+      "id": "topic-embodied",
+      "type": "file",
+      "file": "topics/vla-and-physical-ai-robotics/README.md",
+      "x": -310,
+      "y": -480,
+      "width": 360,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "topic-vlm",
+      "type": "file",
+      "file": "topics/visual-guidance-and-robotics/README.md",
+      "x": 70,
+      "y": -480,
+      "width": 360,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "topic-world",
+      "type": "file",
+      "file": "topics/optical-and-scene-flow-perception/README.md",
+      "x": -310,
+      "y": -330,
+      "width": 360,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "topic-slam",
+      "type": "file",
+      "file": "topics/slam-and-spatial-perception/README.md",
+      "x": 70,
+      "y": -330,
+      "width": 360,
+      "height": 120,
+      "color": "3"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-hub-mocs",
+      "fromNode": "hub-center",
+      "fromSide": "left",
+      "toNode": "grp-mocs",
+      "toSide": "right",
+      "label": "Structure"
+    },
+    {
+      "id": "e-hub-percep",
+      "fromNode": "hub-center",
+      "fromSide": "right",
+      "toNode": "grp-perception",
+      "toSide": "left",
+      "label": "Perception"
+    },
+    {
+      "id": "e-hub-edge",
+      "fromNode": "hub-center",
+      "fromSide": "bottom",
+      "toNode": "grp-edge",
+      "toSide": "top",
+      "label": "Deployment"
+    },
+    {
+      "id": "e-hub-vla",
+      "fromNode": "hub-center",
+      "fromSide": "top",
+      "toNode": "grp-vla",
+      "toSide": "bottom",
+      "label": "Embodied AI"
+    },
+    {
+      "id": "e-percep-fusion",
+      "fromNode": "topic-lidar",
+      "fromSide": "bottom",
+      "toNode": "topic-fusion",
+      "toSide": "top",
+      "label": "BEV Multi-Modal"
+    },
+    {
+      "id": "e-percep-track",
+      "fromNode": "topic-det",
+      "fromSide": "bottom",
+      "toNode": "topic-track",
+      "toSide": "top",
+      "label": "ByteTrack"
+    },
+    {
+      "id": "e-vla-slam",
+      "fromNode": "topic-embodied",
+      "fromSide": "bottom",
+      "toNode": "topic-slam",
+      "toSide": "top",
+      "label": "Spatial Map"
+    }
+  ]
+}

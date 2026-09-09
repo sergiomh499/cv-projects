@@ -1,0 +1,300 @@
+{
+  "nodes": [
+    {
+      "id": "grp-stage1",
+      "type": "group",
+      "label": "1. Multi-Sensor Ingestion & Cross-Calibration",
+      "x": -1000,
+      "y": -300,
+      "width": 380,
+      "height": 620,
+      "color": "5"
+    },
+    {
+      "id": "node-topic-fusion",
+      "type": "file",
+      "file": "topics/sensor-fusion/README.md",
+      "x": -960,
+      "y": -240,
+      "width": 300,
+      "height": 130,
+      "color": "5"
+    },
+    {
+      "id": "node-cb-11",
+      "type": "file",
+      "file": "cookbooks/11-multi-sensor-cross-calibration/README.md",
+      "x": -960,
+      "y": -80,
+      "width": 300,
+      "height": 150,
+      "color": "5"
+    },
+    {
+      "id": "node-hw-thor",
+      "type": "file",
+      "file": "hardware/nvidia-drive-thor.md",
+      "x": -960,
+      "y": 100,
+      "width": 300,
+      "height": 150,
+      "color": "5"
+    },
+    {
+      "id": "grp-stage2",
+      "type": "group",
+      "label": "2. 2D & 3D Feature Extraction",
+      "x": -580,
+      "y": -360,
+      "width": 420,
+      "height": 740,
+      "color": "4"
+    },
+    {
+      "id": "node-topic-det",
+      "type": "file",
+      "file": "topics/object-detection/README.md",
+      "x": -540,
+      "y": -300,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "node-arch-yolov10",
+      "type": "file",
+      "file": "architectures/real-time-detectors-and-segmenters/yolov10.md",
+      "x": -540,
+      "y": -160,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "node-topic-lidar",
+      "type": "file",
+      "file": "topics/lidar-perception/README.md",
+      "x": -540,
+      "y": -20,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "node-arch-pointpillars",
+      "type": "file",
+      "file": "architectures/3d-pointclouds-and-lidar/pointpillars.md",
+      "x": -540,
+      "y": 120,
+      "width": 340,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "node-cb-01",
+      "type": "file",
+      "file": "cookbooks/01-rfdetr-tensorrt/README.md",
+      "x": -540,
+      "y": 260,
+      "width": 340,
+      "height": 100,
+      "color": "4"
+    },
+    {
+      "id": "grp-stage3",
+      "type": "group",
+      "label": "3. Spatial BEV Frustum Pooling",
+      "x": -120,
+      "y": -220,
+      "width": 380,
+      "height": 460,
+      "color": "6"
+    },
+    {
+      "id": "node-cb-14",
+      "type": "file",
+      "file": "cookbooks/14-bev-voxel-pooling-projection/README.md",
+      "x": -80,
+      "y": -160,
+      "width": 300,
+      "height": 160,
+      "color": "6"
+    },
+    {
+      "id": "node-arch-bevfusion",
+      "type": "file",
+      "file": "architectures/3d-pointclouds-and-lidar/bevfusion.md",
+      "x": -80,
+      "y": 30,
+      "width": 300,
+      "height": 160,
+      "color": "6"
+    },
+    {
+      "id": "grp-stage4",
+      "type": "group",
+      "label": "4. Association, Tracking & 6-DoF Pose",
+      "x": 300,
+      "y": -340,
+      "width": 420,
+      "height": 700,
+      "color": "2"
+    },
+    {
+      "id": "node-topic-tracking",
+      "type": "file",
+      "file": "topics/video-tracking/README.md",
+      "x": 340,
+      "y": -280,
+      "width": 340,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "node-cb-12",
+      "type": "file",
+      "file": "cookbooks/12-bytetrack-two-stage-association/README.md",
+      "x": 340,
+      "y": -140,
+      "width": 340,
+      "height": 140,
+      "color": "2"
+    },
+    {
+      "id": "node-arch-bytetrack",
+      "type": "file",
+      "file": "architectures/visual-tracking-and-flow/bytetrack.md",
+      "x": 340,
+      "y": 20,
+      "width": 340,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "node-topic-6dof",
+      "type": "file",
+      "file": "topics/6dof-pose-estimation/README.md",
+      "x": 340,
+      "y": 160,
+      "width": 340,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "node-cb-13",
+      "type": "file",
+      "file": "cookbooks/13-epnp-analytical-pose-solver/README.md",
+      "x": 340,
+      "y": 300,
+      "width": 340,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "grp-stage5",
+      "type": "group",
+      "label": "5. Mission-Critical Safety Verification",
+      "x": 760,
+      "y": -260,
+      "width": 380,
+      "height": 540,
+      "color": "1"
+    },
+    {
+      "id": "node-cb-08",
+      "type": "file",
+      "file": "cookbooks/08-control-barrier-filter/README.md",
+      "x": 800,
+      "y": -200,
+      "width": 300,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "node-cb-09",
+      "type": "file",
+      "file": "cookbooks/09-dann-sim2real-safety-gate/README.md",
+      "x": 800,
+      "y": -40,
+      "width": 300,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "node-hw-r52",
+      "type": "file",
+      "file": "hardware/arm-cortex-r52.md",
+      "x": 800,
+      "y": 120,
+      "width": 300,
+      "height": 120,
+      "color": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-calib-det",
+      "fromNode": "node-cb-11",
+      "fromSide": "right",
+      "toNode": "node-topic-det",
+      "toSide": "left",
+      "label": "Rectified RGB"
+    },
+    {
+      "id": "e-calib-lidar",
+      "fromNode": "node-cb-11",
+      "fromSide": "right",
+      "toNode": "node-topic-lidar",
+      "toSide": "left",
+      "label": "Rigid Transform (R,t)"
+    },
+    {
+      "id": "e-det-bev",
+      "fromNode": "node-arch-yolov10",
+      "fromSide": "right",
+      "toNode": "node-cb-14",
+      "toSide": "left",
+      "label": "Visual Features"
+    },
+    {
+      "id": "e-lidar-bev",
+      "fromNode": "node-arch-pointpillars",
+      "fromSide": "right",
+      "toNode": "node-arch-bevfusion",
+      "toSide": "left",
+      "label": "Voxelized LiDAR"
+    },
+    {
+      "id": "e-bev-track",
+      "fromNode": "node-cb-14",
+      "fromSide": "right",
+      "toNode": "node-cb-12",
+      "toSide": "left",
+      "label": "BEV Detections"
+    },
+    {
+      "id": "e-bev-6dof",
+      "fromNode": "node-arch-bevfusion",
+      "fromSide": "right",
+      "toNode": "node-cb-13",
+      "toSide": "left",
+      "label": "3D Oriented BBoxes"
+    },
+    {
+      "id": "e-track-cbf",
+      "fromNode": "node-cb-12",
+      "fromSide": "right",
+      "toNode": "node-cb-08",
+      "toSide": "left",
+      "label": "Tracked Obstacle States"
+    },
+    {
+      "id": "e-cbf-r52",
+      "fromNode": "node-cb-08",
+      "fromSide": "bottom",
+      "toNode": "node-hw-r52",
+      "toSide": "top",
+      "label": "ASIL-D Certified Intercept"
+    }
+  ]
+}

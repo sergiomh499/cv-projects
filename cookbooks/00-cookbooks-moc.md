@@ -53,6 +53,18 @@ The **Cookbooks Vault** contains 24 standalone, production-structured implementa
 
 ---
 
+## 🧩 Shared Sensor & Geometric Simulation Library (`cookbooks/common/`)
+
+The `cookbooks/common/` module provides shared, zero-dependency mathematical and sensor simulation primitives utilized across the cookbook implementations:
+
+| Component | Primary Class / Utility | Key Capabilities |
+| :--- | :--- | :--- |
+| **Camera Geometry** | `PinholeCamera` | Intrinsic matrix $K$, perspective projection, unprojection from depth, boundary and positive depth gating. |
+| **Rigid Body SE(3)** | `SE3Transform` | Group operations in $SE(3)$, Euler angles (XYZ degrees) to $SO(3)$, inverse transformations, homogeneous $4 \times 4$ matrices. |
+| **LiDAR Simulation** | `SyntheticLidar` | Multi-beam (16/32/64) spinning and solid-state point cloud generation with ground planes and 3D bounding box obstacle clusters. |
+| **Calibration Targets** | `SyntheticCalibrationTarget` | 3D metric checkerboard corner generators, 3D oriented bounding box corner synthesis with yaw. |
+---
+
 ## ⚡ Execution Verification
 
 Run the complete smoke test suite across all cookbooks:

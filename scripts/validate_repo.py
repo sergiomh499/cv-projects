@@ -116,6 +116,26 @@ def main() -> int:
             errors.append(f"Mermaid validation failed:\n{m_res.stdout}\n{m_res.stderr}")
         else:
             print("[+] Mermaid syntax validation: ALL diagrams passed without errors.")
+    # 6. Obsidian Canvas validation
+    canvas_dir = repo_root / "canvases"
+    if canvas_dir.exists():
+        import json
+        canvases = list(canvas_dir.glob("*.canvas"))
+        if not canvases:
+            errors.append("canvases/ directory exists but contains no .canvas files")
+        for c_file in canvases:
+            try:
+                c_data = json.loads(c_file.read_text(encoding="utf-8"))
+            except Exception as e:
+                errors.append(f"Canvas JSON parse error in {c_file}: {e}")
+                continue
+            for node in c_data.get("nodes", []):
+                if node.get("type") == "file":
+                    target = repo_root / node.get("file", "")
+                    if not target.exists():
+                        errors.append(f"Broken file link in canvas {c_file.name}: {node.get('file')}")
+        if not any("canvas" in err.lower() for err in errors):
+            print(f"[+] Canvas validation: ALL {len(canvases)} Obsidian canvas visual maps passed.")
 
     if errors:
         print(f"[-] Validation FAILED with {len(errors)} error(s):")

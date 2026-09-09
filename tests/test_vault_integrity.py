@@ -156,3 +156,30 @@ def test_all_mermaid_diagrams_valid(repo_root):
     assert validator.exists(), f"Mermaid validator script missing: {validator}"
     res = subprocess.run([sys.executable, str(validator)], cwd=str(repo_root), capture_output=True, text=True)
     assert res.returncode == 0, f"Mermaid validation failed:\n{res.stdout}\n{res.stderr}"
+
+
+# ---------------------------------------------------------------------------
+# Test 7: all Obsidian .canvas files have valid JSON and zero broken links
+# ---------------------------------------------------------------------------
+
+def test_all_canvases_valid(repo_root):
+    import json
+    canvas_dir = repo_root / "canvases"
+    if not canvas_dir.exists():
+        return
+    canvases = list(canvas_dir.glob("*.canvas"))
+    assert len(canvases) > 0, "canvases/ directory exists but contains no .canvas files"
+    problems: list[str] = []
+    for c_file in canvases:
+        try:
+            c_data = json.loads(c_file.read_text(encoding="utf-8"))
+        except Exception as e:
+            problems.append(f"JSON syntax error in {c_file.name}: {e}")
+            continue
+        for node in c_data.get("nodes", []):
+            if node.get("type") == "file":
+                target_rel = node.get("file", "")
+                target = repo_root / target_rel
+                if not target.exists():
+                    problems.append(f"Broken file link in {c_file.name}: {target_rel}")
+    assert not problems, "\n".join(problems)
