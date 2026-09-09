@@ -81,11 +81,11 @@ flowchart TD
 
 
 ### 🧬 Looking for Foundational Techniques & Mathematical Mechanics?
-- **Fourier Domain Adaptation (FDA)**: [[techniques/fourier-domain-adaptation|Fourier Domain Adaptation]]
-- **Deformable Convolutions (DCNv1–DCNv4)**: [[techniques/deformable-convolutions|Deformable Convolutions Guide]]
-- **Hypergraph Neural Computation**: [[techniques/hypergraph-computation|Hypergraph Computation Guide]]
-- **Adversarial Domain Alignment (GRL / DANN)**: [[techniques/gradient-reversal-and-dann|Gradient Reversal & DANN Guide]]
-- **Regression Mechanics**: [[techniques/distribution-focal-loss-vs-direct-regression|DFL vs. Direct Metric Regression]]
+- **Signal Processing & Domain Adaptation**: [[techniques/fourier-domain-adaptation|Fourier Domain Adaptation (FDA)]], [[techniques/gradient-reversal-and-dann|Gradient Reversal Layer (GRL / DANN)]]
+- **Spatial, Geometric & Structural Operators**: [[techniques/deformable-convolutions|Deformable Convolutions (DCNv1–DCNv4)]], [[techniques/hypergraph-computation|Hypergraph Neural Computation]], [[techniques/lift-splat-shoot-bev-pooling|Lift-Splat-Shoot (LSS & BEV Pooling)]], [[techniques/3d-gaussian-splatting-rasterization|3D Gaussian Splatting Rasterization]], [[techniques/lie-algebra-se3-pose-tracking|Lie Algebra se(3) Pose Tracking]], [[techniques/all-pairs-correlation-pyramids|All-Pairs Correlation Pyramids (RAFT)]]
+- **Set Prediction & Regression**: [[techniques/bipartite-matching-and-hungarian-assigner|Bipartite Matching & Hungarian Assigner]], [[techniques/distribution-focal-loss-vs-direct-regression|DFL vs. Direct Metric Regression]]
+- **State-Space & Continuous Generative Trajectories**: [[techniques/visual-state-space-mamba|Visual State-Space Models (VMamba / SS2D)]], [[techniques/continuous-flow-matching|Continuous Flow Matching (CFM)]], [[techniques/action-chunking-cvae|Action Chunking with C-VAE (ACT)]]
+- **Edge Acceleration & Quantization**: [[techniques/structural-reparameterization|Structural Reparameterization (RepConv)]], [[techniques/post-training-quantization-and-outlier-smoothing|PTQ & Outlier Smoothing (SmoothQuant)]]
 ---
 
 ## 📊 Dataview Dynamic Vault Directory
@@ -93,6 +93,6 @@ flowchart TD
 ```dataview
 TABLE domain AS "Engineering Domain", status AS "Status", updated AS "Last Verified"
 FROM ""
-WHERE file.name = "00-topics-moc" OR file.name = "00-architectures-moc" OR file.name = "00-frameworks-moc" OR file.name = "00-hardware-moc" OR file.name = "00-cookbooks-moc"
+WHERE file.name = "00-topics-moc" OR file.name = "00-architectures-moc" OR file.name = "00-frameworks-moc" OR file.name = "00-hardware-moc" OR file.name = "00-cookbooks-moc" OR file.name = "00-techniques-moc"
 SORT file.name ASC
 ```

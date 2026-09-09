@@ -60,13 +60,13 @@ The vault includes native **Obsidian `.canvas` visual whiteboards** in `canvases
 ---
 ## 🧬 Techniques & Algorithmic Mechanics Vault (`techniques/`)
 
-Dedicated, mathematically rigorous reference documents detailing foundational algorithms, signal processing transforms, and neural operators:
-- **[[techniques/fourier-domain-adaptation|Fourier Domain Adaptation (FDA)]]**: Frequency-space amplitude swapping preserving exact geometric phase for zero-parameter Sim2Real transfer.
-- **[[techniques/deformable-convolutions|Deformable Convolutions (DCNv1–DCNv4)]]**: Continuous 2D spatial offsets, modulation masks, and FlashDeformable fused memory kernels.
-- **[[techniques/hypergraph-computation|Hypergraph Neural Computation]]**: Spectral hypergraph Laplacian operators capturing high-order non-pairwise visual semantic cliques.
-- **[[techniques/gradient-reversal-and-dann|Gradient Reversal Layers & DANN]]**: Minimax adversarial domain alignment via gradient negation and dynamic annealing schedules.
-- **[[techniques/distribution-focal-loss-vs-direct-regression|Distribution Focal Loss (DFL) vs. Direct Metric Regression]]**: Discretization entropy breakdown, INT8 quantization collapse, and continuous metric regression (CIoU / NWD).
-
+Dedicated, mathematically rigorous reference documents detailing foundational algorithms, signal processing transforms, neural operators, and geometric mechanics:
+- **Signal Processing & Sim2Real**: [[techniques/fourier-domain-adaptation|Fourier Domain Adaptation (FDA)]], [[techniques/gradient-reversal-and-dann|Gradient Reversal Layers & DANN]]
+- **Spatial, Geometric & Neural Operators**: [[techniques/deformable-convolutions|Deformable Convolutions (DCNv1–DCNv4)]], [[techniques/hypergraph-computation|Hypergraph Neural Computation]], [[techniques/lift-splat-shoot-bev-pooling|Lift-Splat-Shoot (LSS & BEV Pooling)]], [[techniques/3d-gaussian-splatting-rasterization|3D Gaussian Splatting Rasterization]], [[techniques/lie-algebra-se3-pose-tracking|Lie Algebra se(3) Pose Tracking]], [[techniques/all-pairs-correlation-pyramids|All-Pairs Correlation Pyramids (RAFT)]]
+- **Set Prediction & Regression Mechanics**: [[techniques/bipartite-matching-and-hungarian-assigner|Bipartite Matching & Hungarian Assigner]], [[techniques/distribution-focal-loss-vs-direct-regression|Distribution Focal Loss (DFL) vs. Direct Metric Regression]]
+- **State-Space, Diffusion & Action Trajectories**: [[techniques/visual-state-space-mamba|Visual State-Space Models (VMamba / SS2D)]], [[techniques/continuous-flow-matching|Continuous Flow Matching (CFM)]], [[techniques/action-chunking-cvae|Action Chunking with C-VAE (ACT)]]
+- **Hardware Acceleration & Precision**: [[techniques/structural-reparameterization|Structural Reparameterization (RepConv)]], [[techniques/post-training-quantization-and-outlier-smoothing|PTQ & Outlier Smoothing (SmoothQuant)]]
+- **Complete Index & Flow Graph**: [[techniques/00-techniques-moc|Techniques & Mechanics MOC]]
 ---
 
 ## 🏛️ Central Architecture Vault (`architectures/`)
