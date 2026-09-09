@@ -31,6 +31,7 @@ topics/object-detection/
 ├── 00-object-detection-moc.md                    # 🗺️ Master Map of Content & Cross-Domain Hub
 ├── 01-historical-evolution-and-paradigms.md       # 📜 Historical Evolution (Haar -> Faster R-CNN -> YOLOv1-26 -> DETR)
 ├── 02-production-pipeline-and-workarounds.md      # 🛠️ Production Pipeline, Engineering Traps & SAHI Workarounds
+├── 03-sim2real-and-domain-adaptation.md           # 🏭 Sim2Real Domain Adaptation & Synthetic-to-Physical Transfer
 └── models/                                       # 🔬 In-Depth Model Architectures
     ├── rf-detr.md                                 # RF-DETR: NAS-Optimized Real-Time Transformers with DINOv2
     ├── rt-detr.md                                 # RT-DETRv2 & RT-DETRv3: Hybrid Encoders & Dense Positive Supervision
@@ -47,9 +48,12 @@ topics/object-detection/
 | **Object Detection MOC** | `MOC` | Master navigational hub, benchmark matrix & license audit | [Open MOC](00-object-detection-moc.md) <br> `[[topics/object-detection/00-object-detection-moc|00-object-detection-moc]]` |
 | **Historical Evolution & Paradigms** | `Evolution Guide` | Complete didactic breakdown across the 3 historical eras with 4 Mermaid diagrams | [Open Evolution](01-historical-evolution-and-paradigms.md) <br> `[[topics/object-detection/01-historical-evolution-and-paradigms|01-historical-evolution-and-paradigms]]` |
 | **Production Pipeline & Workarounds** | `Playbook` | Sensor ingestion, TensorRT pipelines, SAHI tiling & CUDA streaming workarounds | [Open Playbook](02-production-pipeline-and-workarounds.md) <br> `[[topics/object-detection/02-production-pipeline-and-workarounds|02-production-pipeline-and-workarounds]]` |
+| **Sim2Real Playbook** | `Playbook` | Fourier domain adaptation (FDA), DANN adversarial necks, sensor noise & DFL-free Sim2Real | [Open Playbook](03-sim2real-and-domain-adaptation.md) <br> `[[topics/object-detection/03-sim2real-and-domain-adaptation|03-sim2real-and-domain-adaptation]]` |
 | **RF-DETR Guide** | `Model Guide` | DINOv2 distillation, SuperNet NAS, sub-6ms latency (Apache-2.0) | `[[architectures/real-time-detectors-and-segmenters/rf-detr\|RF-DETR]]` |
 | **RT-DETR Family** | `Model Guide` | CCFM hybrid encoders, hierarchical supervision, VFM distillation | `[[architectures/real-time-detectors-and-segmenters/rt-detr\|RT-DETR]]`, `[[architectures/real-time-detectors-and-segmenters/rt-detr-v3\|v3]]`, `[[architectures/real-time-detectors-and-segmenters/rt-detr-v4\|v4]]` |
 | **YOLO Family** | `Model Guide` | YOLOv10, YOLO11, and flagship YOLO26; dual-label assignments | `[[architectures/real-time-detectors-and-segmenters/yolo11\|YOLO11]]`, `[[architectures/real-time-detectors-and-segmenters/yolo26\|YOLO26]]` |
+| **YOLOv13 Guide** | `Model Guide` | Hypergraph-enhanced adaptive visual perception for occlusion and domain shift | `[[architectures/real-time-detectors-and-segmenters/yolov13\|YOLOv13]]` |
+| **YOLOv14 & Sim2Real** | `Model Guide` | Domain-generalized real-time detection, Fourier stem, GRL adversarial neck | `[[architectures/real-time-detectors-and-segmenters/yolov14-sim2real\|YOLOv14-Sim2Real]]` |
 | **Grounding DINO Guide** | `Model Guide` | Multi-modal cross-attention, zero-shot open-vocabulary queries (Apache-2.0) | `[[architectures/real-time-detectors-and-segmenters/grounding-dino\|Grounding DINO]]` |
 
 ---
@@ -61,6 +65,8 @@ topics/object-detection/
 | **RT-DETRv3-L** | 31.8 M | 108.0 G | 54.3% | 8.80 ms | No | Apache-2.0 |
 | **RT-DETRv2-X** | 67.0 M | 234.0 G | 55.1% | 13.60 ms | No | Apache-2.0 |
 | **YOLO26-S** | 7.4 M | 22.1 G | 47.9% | 2.30 ms | No | AGPL-3.0 / Commercial |
+| **YOLOv13-S** | 8.9 M | 24.6 G | 49.2% | 2.15 ms | No | GPL-3.0 |
+| **YOLOv14-S (Sim2Real)** | 9.4 M | 26.2 G | 49.8% (78.4% Sim2Real) | 2.24 ms | No | Apache-2.0 |
 | **YOLOv10-X** | 29.5 M | 160.4 G | 54.4% | 10.70 ms | No | AGPL-3.0 / Commercial |
 | **Grounding DINO (Swin-T)**| 172.0 M | 340.0 G | 52.5% (Zero-Shot)| 78.00 ms | Yes | Apache-2.0 |
 | **Co-Deformable-DETR (Swin-L)**| 217.0 M | 1280.0 G | 66.0% (SOTA Heavy)| 145.00 ms | Yes | Apache-2.0 |

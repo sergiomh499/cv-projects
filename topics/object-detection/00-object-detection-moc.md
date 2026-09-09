@@ -17,21 +17,7 @@ aliases:
 
 # 🗺️ Object Detection MOC (Map of Content)
 
-> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Object Detection
-tags:
-  - moc
-  - computer-vision
-  - object-detection
-  - sota
-status: evergreen
-updated: 2026-09-08
-aliases:
-  - Object Detection MOC
-  - Object Detection Hub
-  - Detection MOC
----
-
-# 🗺️ Object Detection MOC (Map of Content)
+> **Navigation**: [[README|🏠 Central Knowledge Hub]] / **Object Detection**
 
 ## 📌 Domain Overview & Scope
 Object Detection localizes visual instances with 2D bounding boxes (axis-aligned or oriented) and assigns class probabilities to each. Modern production systems demand sub-10ms latency, zero-shot open-vocabulary capability, robust performance under dense clutter, and deterministic execution profiles without erratic post-processing delays.
@@ -43,13 +29,15 @@ This Map of Content connects the historical evolution, production playbooks, and
 ## 🧭 Navigation & Knowledge Graph
 - **Historical Lineage & Evolution**: [[topics/object-detection/01-historical-evolution-and-paradigms|Object Detection: Historical Lineage & Paradigms]]
 - **Production Implementation Playbook**: [[topics/object-detection/02-production-pipeline-and-workarounds|Object Detection: Production Pipeline, Traps & Workarounds]]
-
+- **Sim2Real & Domain Adaptation Playbook**: [[topics/object-detection/03-sim2real-and-domain-adaptation|Object Detection: Sim2Real & Domain Adaptation Playbook]]
 ### 🔬 In-Depth Model & Architecture Notes
 | Model / System | Architecture Class | Primary Innovation | License | Dedicated Deep-Dive Note |
 | :--- | :--- | :--- | :---: | :---: |
 | **RF-DETR** | Transformer + DINOv2 | Weight-sharing NAS over DINOv2 backbone for real-time edge | **Apache-2.0** | [[architectures/real-time-detectors-and-segmenters/rf-detr|RF-DETR Guide]] |
 | **RT-DETRv2 / v3 / v4**| Transformer (CCFM) | NMS-free, hybrid encoder, hierarchical dense supervision, VFM distillation | **Apache-2.0** | [[architectures/real-time-detectors-and-segmenters/rt-detr|RT-DETR]], [[architectures/real-time-detectors-and-segmenters/rt-detr-v3|v3]], [[architectures/real-time-detectors-and-segmenters/rt-detr-v4|v4]] |
 | **YOLO Family** | Real-Time NMS-Free CNN | Evolution to YOLOv10, YOLO11, and flagship NMS-free YOLO26 | **AGPL-3.0** | [[architectures/real-time-detectors-and-segmenters/yolo11|YOLO11]], [[architectures/real-time-detectors-and-segmenters/yolo26|YOLO26]] |
+| **YOLOv13** | Real-Time Hypergraph | Hypergraph-enhanced adaptive visual perception for occlusion & domain shifts | **GPL-3.0** | [[architectures/real-time-detectors-and-segmenters/yolov13|YOLOv13 Guide]] |
+| **YOLOv14 & Sim2Real** | Real-Time Domain-Adaptive | Fourier domain adaptation, GRL adversarial neck & DFL-free direct regression | **Apache-2.0** | [[architectures/real-time-detectors-and-segmenters/yolov14-sim2real|YOLOv14-Sim2Real Guide]] |
 | **Grounding DINO** | Vision-Language OVD | 3-stage visual-text cross-attention for zero-shot open-vocabulary | **Apache-2.0** | [[architectures/real-time-detectors-and-segmenters/grounding-dino|Grounding DINO Guide]] |
 
 ---
@@ -61,6 +49,8 @@ This Map of Content connects the historical evolution, production playbooks, and
 | **RT-DETRv3-L** | 31.8 M | 108.0 G | 54.3% | 8.80 ms | No | Apache-2.0 |
 | **RT-DETRv2-X** | 67.0 M | 234.0 G | 55.1% | 13.60 ms | No | Apache-2.0 |
 | **YOLO26-S** | 7.4 M | 22.1 G | 47.9% | 2.30 ms | No | AGPL-3.0 / Commercial |
+| **YOLOv13-S** | 8.9 M | 24.6 G | 49.2% | 2.15 ms | No | GPL-3.0 |
+| **YOLOv14-S (Sim2Real)** | 9.4 M | 26.2 G | 49.8% (78.4% Sim2Real) | 2.24 ms | No | Apache-2.0 |
 | **YOLOv10-X** | 29.5 M | 160.4 G | 54.4% | 10.70 ms | No | AGPL-3.0 / Commercial |
 | **Grounding DINO (Swin-T)**| 172.0 M | 340.0 G | 52.5% (Zero-Shot)| 78.00 ms | Yes | Apache-2.0 |
 | **Co-Deformable-DETR (Swin-L)**| 217.0 M | 1280.0 G | 66.0% (SOTA Heavy)| 145.00 ms | Yes | Apache-2.0 |

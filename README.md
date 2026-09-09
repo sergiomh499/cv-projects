@@ -132,6 +132,8 @@ Dedicated landmark architectures and foundation models (each in an independent r
 - **[[architectures/real-time-detectors-and-segmenters/yolo26|YOLO26: State-of-the-Art NMS-Free Real-Time Object Detector for Edge Vision AI]]**: Real-Time Object Detection (AGPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov10|YOLOv10: Consistent Dual Assignments for NMS-Free Real-Time Object Detection]]**: Real-Time Object Detection (AGPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov12|YOLOv12: Attention-Centric Real-Time Detection Architecture]]**: Real-Time Unified (AGPL-3.0).
+- **[[architectures/real-time-detectors-and-segmenters/yolov13|YOLOv13: Real-Time Object Detection with Hypergraph-Enhanced Adaptive Visual Perception]]**: Real-Time Object Detection (GPL-3.0).
+- **[[architectures/real-time-detectors-and-segmenters/yolov14-sim2real|YOLOv14 & Sim2Real Adaptive Detectors: Domain-Generalized Real-Time Perception for Synthetic-to-Physical Transfer]]**: Real-Time Object Detection (Apache-2.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov8|Ultralytics YOLOv8: Anchor-Free Decoupled Architecture for Real-Time Perception]]**: Real-Time Unified (AGPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolov9|YOLOv9: Learning What You Want to Learn via Programmable Gradient Information]]**: Real-Time Object Detection (GPL-3.0).
 - **[[architectures/real-time-detectors-and-segmenters/yolox|YOLOX: High-Performance Anchor-Free YOLO with Dynamic Optimal Transport Assignment]]**: Real-Time Object Detection (Apache-2.0).
