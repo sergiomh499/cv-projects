@@ -76,12 +76,19 @@ This directory catalogs standalone, mathematically rigorous, and code-grounded e
 | **Masked Autoencoders (MAE)** | Self-Supervised Vision Pretraining | Extreme 75% patch masking and asymmetric encoder-decoder with normalized MSE | [[techniques/masked-autoencoders-and-vision-pretraining\|Masked Autoencoders (MAE) Guide]] |
 | **PointNet++ Set Abstraction** | 3D LiDAR & Point Clouds | Furthest Point Sampling (FPS), metric ball query, and local translation-invariant MLPs | [[techniques/furthest-point-sampling-and-pointnet-set-abstraction\|PointNet++ Set Abstraction Guide]] |
 | **Sim2Real Domain Randomization** | Robotics & Physical AI | Visual procedural augmentation and dynamics parameter distribution expectation | [[techniques/sim2real-domain-randomization-and-dynamics\|Sim2Real Domain Randomization Guide]] |
+| **Mixed-Precision Training (AMP)** | Edge Acceleration & Quantization | Dynamic loss scaling $\mathcal{L}_{\text{scaled}} = S \cdot \mathcal{L}$, gradient unscaling, and FP32 master weights | [[techniques/mixed-precision-training-and-loss-scaling\|Mixed-Precision Training (AMP) Guide]] |
+| **Knowledge Distillation (KD)** | Model Compression & Edge AI | Temperature-softened probabilities $q_i \propto \exp(z_i / T)$ and $T^2$-scaled KL divergence distillation | [[techniques/knowledge-distillation-and-logits-matching\|Knowledge Distillation Guide]] |
+| **Photometric Bundle Adjustment** | Visual SLAM & Odometry | Direct continuous pixel intensity minimization $I_j(\mathbf{p}') - I_i(\mathbf{p})$ with affine brightness scaling | [[techniques/photometric-bundle-adjustment-and-direct-slam\|Photometric Bundle Adjustment Guide]] |
+| **Cartesian Impedance Control** | Robotics & Physical AI | Programmable mass-spring-damper compliance $\mathbf{M}_d \ddot{\mathbf{e}} + \mathbf{D}_d \dot{\mathbf{e}} + \mathbf{K}_d \mathbf{e} = \mathbf{F}$ | [[techniques/cartesian-impedance-and-admittance-control\|Cartesian Impedance Control Guide]] |
+| **Marching Cubes & SDF** | 3D Reconstruction & Graphics | Voxel cube 8-bit lookup, topological symmetry reduction, and linear zero-crossing surface meshing | [[techniques/marching-cubes-and-signed-distance-functions\|Marching Cubes & SDF Guide]] |
+| **Extended Kalman Filter (EKF)** | Sensor Fusion & Navigation | First-order Taylor Jacobian linearization $\mathbf{F}_k, \mathbf{H}_k$ and Joseph-form covariance propagation | [[techniques/extended-kalman-filter-nonlinear-estimation\|Extended Kalman Filter Guide]] |
+| **Graph Convolutional Networks (GCN)** | Non-Euclidean Geometric Deep Learning | Symmetric normalized adjacency $\tilde{\mathbf{D}}^{-1/2}\tilde{\mathbf{A}}\tilde{\mathbf{D}}^{-1/2}$ and spatial message passing | [[techniques/graph-convolutional-networks-message-passing\|Graph Convolutional Networks Guide]] |
 
 ---
 
 ## 🎯 Quick Implementation Reference
 
-All 47 documents provide:
+All 54 documents provide:
 1. **Mathematical derivations** and formal analytical proofs.
 2. **Intuitive visual diagrams** (ASCII & Mermaid).
 3. **Pure PyTorch / NumPy runnable reference modules** without external dependencies.

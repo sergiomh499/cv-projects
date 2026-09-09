@@ -35,6 +35,7 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Sinusoidal Phase-Shifting Profilometry** | $N$-step fringe projection, arctangent wrapped phase $\phi = -\text{atan2}(\sum I_n \sin\delta_n, \sum I_n \cos\delta_n)$, heterodyne beat unwrapping | Sub-10-micron surface metrology completely invariant to ambient illumination and surface albedo | [[techniques/phase-shifting-profilometry-structured-light\|Phase-Shifting Profilometry Guide]] |
 | **Sim2Real Domain Randomization** | Parameter expectation $\min_\theta \mathbb{E}_{\boldsymbol{\xi}} [\mathcal{L}(\boldsymbol{\xi})]$, visual noise, and physical dynamics randomization | Closes reality gap, enabling zero-shot sim-to-real transfer on drones and robotic manipulators | [[techniques/sim2real-domain-randomization-and-dynamics\|Sim2Real Domain Randomization Guide]] |
 | **Masked Autoencoders (MAE)** | High 75% patch masking, asymmetric encoder-decoder processing only 25% visible tokens, normalized pixel MSE | Cuts self-attention quadratic compute by $16\times$ during self-supervised vision pretraining | [[techniques/masked-autoencoders-and-vision-pretraining\|Masked Autoencoders (MAE) Guide]] |
+| **Extended Kalman Filter (EKF)** | First-order Taylor series Jacobian linearization $\mathbf{F}_k, \mathbf{H}_k$, Riccati covariance propagation, and Joseph-form update | Optimal state tracking under non-linear radar, camera, and inertial kinematics | [[techniques/extended-kalman-filter-nonlinear-estimation\|Extended Kalman Filter Guide]] |
 
 ### 2. Spatial, Geometric & Structural Operators
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -56,6 +57,9 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **Sparse Submanifold Convolutions (SpConv)** | Submanifold invariant $\text{Active}(\mathbf{y}_{\mathbf{p}}) = \text{Active}(\mathbf{x}_{\mathbf{p}})$, coordinate hash table, Rulebook Gather-GEMM-Scatter | Eliminates 3D voxel dilation explosion, enabling arbitrarily deep 3D sparse networks with $95\%$ VRAM savings | [[techniques/sparse-submanifold-convolutions-spconv\|Sparse Submanifold Convolutions Guide]] |
 | **Iterative Closest Point (ICP & G-ICP)** | Surface normal projection $e_i = \mathbf{n}_i^T (\mathbf{R}\mathbf{p}_i + \mathbf{t} - \mathbf{q}_i)$ and Gaussian covariance Mahalanobis distance | Prevents corridor drift and accelerates 3D point cloud scan matching convergence by $10\times$ | [[techniques/iterative-closest-point-and-generalized-icp\|Iterative Closest Point Guide]] |
 | **PointNet++ Set Abstraction** | Furthest Point Sampling (FPS), metric ball query $\mathcal{N}(\mathbf{c}_k)$, and local translation-invariant PointNet aggregation | Preserves local geometric surface structure across multi-scale 3D LiDAR point clouds | [[techniques/furthest-point-sampling-and-pointnet-set-abstraction\|PointNet++ Set Abstraction Guide]] |
+| **Photometric Bundle Adjustment** | Continuous raw pixel intensity residual $r_{\mathbf{p}} = I_j(\mathbf{p}') - I_i(\mathbf{p})$, affine brightness scaling $(a, b)$, and analytical $\mathfrak{se}(3)$ Jacobians | Dense drift-free visual odometry across low-texture surfaces without corner keypoints | [[techniques/photometric-bundle-adjustment-and-direct-slam\|Photometric Bundle Adjustment Guide]] |
+| **Marching Cubes & Signed Distance Functions** | Voxel cube 8-vertex classification ($2^8 = 256$ cases), canonical topological reduction, and linear edge zero-crossing interpolation | Transforms continuous neural implicit fields into watertight discrete triangle meshes | [[techniques/marching-cubes-and-signed-distance-functions\|Marching Cubes & SDF Guide]] |
+| **Graph Convolutional Networks (GCN)** | Symmetric normalized Graph Laplacian $\tilde{\mathbf{D}}^{-1/2} \tilde{\mathbf{A}} \tilde{\mathbf{D}}^{-1/2} \mathbf{H} \mathbf{W}$ and spatial Message Passing (MPNN) | Non-Euclidean spatial reasoning over skeletal pose joints and scene graph affordances | [[techniques/graph-convolutional-networks-message-passing\|Graph Convolutional Networks Guide]] |
 
 ### 3. Detection, Assignment, Safety & Losses
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -73,6 +77,7 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | **RoIAlign & Exact Bilinear Sampling** | Zero-quantization continuous floating-point coordinates and 4-point bilinear interpolation | Eliminates RoIPool 8–16 pixel spatial quantization drift, boosting instance segmentation by $+3\text{--}+5\text{ mAP}$ | [[techniques/roialign-and-exact-bilinear-sampling\|RoIAlign & Exact Bilinear Sampling Guide]] |
 | **Non-Maximum Suppression (NMS)** | Hard Greedy sequential removal, continuous Gaussian Soft-NMS $s \cdot \exp(-\text{IoU}^2/\sigma)$, and parallel Matrix NMS | Eliminates duplicate candidate boxes and resolves heavy pedestrian/vehicle occlusion | [[techniques/non-maximum-suppression-greedy-soft-matrix-nms\|Non-Maximum Suppression Guide]] |
 | **Vision-Language Contrastive (CLIP)** | Shared unit hypersphere $\mathcal{S}^{d-1}$ projection, symmetric temperature-scaled InfoNCE loss $\frac{1}{2}(\mathcal{L}_{I \to T} + \mathcal{L}_{T \to I})$ | Unlocks open-vocabulary zero-shot classification and text-grounded object detection | [[techniques/vision-language-contrastive-alignment-clip\|Vision-Language Contrastive Alignment Guide]] |
+| **Cartesian Impedance & Admittance Control** | Virtual mass-spring-damper dynamics $\mathbf{M}_d \ddot{\mathbf{e}} + \mathbf{D}_d \dot{\mathbf{e}} + \mathbf{K}_d \mathbf{e} = \mathbf{F}_{\text{ext}}$ and dynamically consistent nullspace projection | Prevents catastrophic force spikes during contact-rich physical robotic manipulation | [[techniques/cartesian-impedance-and-admittance-control\|Cartesian Impedance Control Guide]] |
 
 ### 4. Sequence, Attention & Continuous Dynamical Systems
 | Technique / Operator | Core Mathematical Principle | Key Benefit | Dedicated Deep-Dive Guide |
@@ -93,6 +98,8 @@ This directory houses dedicated, mathematically rigorous, and didactic guides ex
 | :--- | :--- | :--- | :--- |
 | **Structural Reparameterization** | Homogeneous linear transformation fusion: $W_{\text{fused}} = \frac{\gamma}{\sigma} W$, Dirac kernel conversion, addition into single $3\times 3$ kernel | Multi-branch training for high gradient diversity folded into a single zero-overhead linear conv path for edge inference | [[techniques/structural-reparameterization\|Structural Reparameterization Guide]] |
 | **PTQ & Outlier Smoothing (SmoothQuant)** | Mathematical difficulty migration: $\mathbf{Y} = \mathbf{X} \mathbf{W} = (\mathbf{X} \mathbf{S}^{-1}) (\mathbf{S} \mathbf{W})$ via diagonal per-channel scaling matrix $\mathbf{S}$ | Eliminates activation outliers in Vision Transformers, enabling full INT8 GEMM acceleration with $<0.5\%$ Top-1 accuracy drop | [[techniques/post-training-quantization-and-outlier-smoothing\|PTQ & Outlier Smoothing Guide]] |
+| **Mixed-Precision Training (AMP)** | Dynamic loss scaling $\mathcal{L}_{\text{scaled}} = S \cdot \mathcal{L}$, gradient unscaling, and FP32 master weight retention | Prevents FP16 gradient underflow while unlocking $2\times\text{--}4\times$ Tensor Core speedups | [[techniques/mixed-precision-training-and-loss-scaling\|Mixed-Precision Training (AMP) Guide]] |
+| **Knowledge Distillation (KD)** | Softened temperature probabilities $q_i \propto \exp(z_i / T)$, dark knowledge extraction, and $T^2$-scaled KL-divergence loss | Compresses high-capacity teacher representations into real-time edge student models | [[techniques/knowledge-distillation-and-logits-matching\|Knowledge Distillation Guide]] |
 
 ---
 
@@ -107,6 +114,7 @@ flowchart TD
         ESKF["Error-State Kalman Filter (ESKF)"]
         Sim2Real_Tech["Sim2Real Domain Randomization"]
         MAE_Tech["Masked Autoencoders (MAE)"]
+        EKF_Tech["Extended Kalman Filter (EKF)"]
     end
     subgraph SpatialAndGeometry ["Spatial, 3D & Geometry"]
         DCN["Deformable Convolutions (DCNv4)"]
@@ -126,6 +134,9 @@ flowchart TD
         SpConv_Tech["Submanifold Sparse Conv (SpConv)"]
         ICP_Tech["Iterative Closest Point (Point-to-Plane)"]
         PointNet_Tech["PointNet++ Set Abstraction (FPS)"]
+        PhotoBA_Tech["Photometric Bundle Adjustment"]
+        MarchingCubes_Tech["Marching Cubes & SDF"]
+        GCN_Tech["Graph Convolutional Networks (GCN)"]
     end
 
     subgraph FoundationsAndControl ["Attention, Sequences & Provable Control"]
@@ -153,6 +164,9 @@ flowchart TD
         CLIP_Tech["Vision-Language Alignment (CLIP)"]
         MHA_Tech["Multi-Head Self-Attention (MHA)"]
         CrossAttn_Tech["Cross-Attention & Query Decoding"]
+        Impedance_Tech["Cartesian Impedance Control"]
+        AMP_Tech["Mixed-Precision Training (AMP)"]
+        KD_Tech["Knowledge Distillation (KD)"]
     end
 
     subgraph VaultDeployments ["Vault Architectures & Systems"]
@@ -231,6 +245,14 @@ flowchart TD
     MHA_Tech --> SAM2_Model
     CrossAttn_Tech --> RFDETR
     CrossAttn_Tech --> Mask2Former_Model
+    EKF_Tech --> FastLIO
+    PhotoBA_Tech --> DROID_SLAM_Model
+    MarchingCubes_Tech --> GS3D_SLAM
+    GCN_Tech --> FoundationPose_Model
+    Impedance_Tech --> OpenVLA_Model
+    Impedance_Tech --> PI0_Model
+    AMP_Tech --> Y26
+    KD_Tech --> DINOv2_Model
 ```
 
 ---
